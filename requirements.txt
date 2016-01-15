@@ -38,6 +38,8 @@ django-filter
 django-geoposition
 django-hstore
 django-inmemorystorage
+boto
+django-storages-redux
 django-jsonfield
 -e git+https://github.com/agiliq/Django-parsley.git@c11296dafcea475a6a6ec85b016b7a59b56c2470#egg=django_parsley-master
 django-pipeline
@@ -45,12 +47,13 @@ django-rest-auth
 django-rest-swagger
 django-rulez
 django-shortuuidfield
--e git+https://github.com/rosscdh/django-templated-email@fd2eabd4afa0da520d5e8ffb3dc07a397a2cfbd3#egg=django_templated_email-origin\attachments
+-e git+https://github.com/rosscdh/django-templated-email@fd2eabd4afa0da520d5e8ffb3dc07a397a2cfbd3#egg=django_templated_email
 djangorestframework
 djangorestframework-hstore
 djangorestframework-jwt
 drf-extensions
 easy-thumbnails
+django-embed-video
 ecdsa
 enum34
 freezegun
@@ -72,7 +75,7 @@ model-mommy
 ndg-httpsclient
 oauthlib
 paramiko
--e git+https://github.com/rosscdh/pinax-eventlog.git@d1018d626db926dee6593bc7f51dd653659367b1#egg=pinax_eventlog-origin\feature\dateoverride
+-e git+https://github.com/rosscdh/pinax-eventlog.git@d1018d626db926dee6593bc7f51dd653659367b1#egg=pinax_eventlog
 # pinax-stripe
 psycopg2
 pusher
@@ -100,3 +103,4 @@ urllib3
 wsgiref
 django-rq
 honcho
+django-autoslug

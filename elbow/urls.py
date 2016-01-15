@@ -19,6 +19,9 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    # Projects
+    url(r'^projects/', include('elbow.apps.project.urls', namespace='project')),
+
     # User Auth
     url(r'^auth/token/', 'rest_framework_jwt.views.obtain_jwt_token'),
     url(r'^auth/token/refresh/', 'rest_framework_jwt.views.refresh_jwt_token'),

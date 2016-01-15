@@ -50,6 +50,7 @@ DJANGO_APPS = (
 PROJECT_APPS = (
     'elbow.apps.public',
     'elbow.apps.project',
+    'elbow.apps.document',
     'elbow.apps.order',
 )
 
@@ -218,26 +219,13 @@ JWT_AUTH = {
 }
 
 
-PIPELINE_CSS_COMPRESSOR = 'pipeline.compressors.cssmin.CSSMinCompressor'
-PIPELINE_CSSMIN_BINARY = 'cssmin'
-PIPELINE_JS_COMPRESSOR = 'pipeline.compressors.slimit.SlimItCompressor'
-
-PIPELINE_CSS = {
-    # 'pages': {
-    #     'source_filenames': (
-    #         'css/main.css',
-    #     ),
-    #     'output_filename': 'dist/pages.css',
-    # }
-}
-
-PIPELINE_JS = {
-    # 'pages': {
-    #     'source_filenames': (
-    #         'js/main.js',
-    #     ),
-    #     'output_filename': 'dist/pages.js',
-    # }
+PIPELINE = {
+    'PIPELINE_ENABLED': True,
+    'CSS_COMPRESSOR': 'pipeline.compressors.cssmin.CSSMinCompressor',
+    'CSSMIN_BINARY': 'cssmin',
+    'JS_COMPRESSOR': 'pipeline.compressors.slimit.SlimItCompressor',
+    'CSS': {},
+    'JAVASCRIPT': {}
 }
 
 
@@ -252,3 +240,8 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
+
+
+MOMMY_CUSTOM_FIELDS_GEN = {
+    'autoslug.fields.AutoSlugField': lambda: None
+}

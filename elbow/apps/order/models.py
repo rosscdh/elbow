@@ -1,5 +1,51 @@
+# -*- coding: UTF-8 -*-
 from __future__ import unicode_literals
-
 from django.db import models
 
-# Create your models here.
+from .apps import ORDER_STATUS
+
+from shortuuidfield import ShortUUIDField
+
+
+class Order(models.Model):
+    ORDER_STATUS = ORDER_STATUS
+
+    uuid = ShortUUIDField(db_index=True, blank=False)
+    user = models.ForeignKey('auth.User')
+    project = models.ForeignKey('project.Project')
+    payment_option = models.ForeignKey('order.PaymentOption')
+
+    token = models.CharField(max_length=255, blank=True, null=True)
+    transaction_id = models.CharField(max_length=128, blank=True, null=True)
+
+    phone = models.CharField(max_length=128, blank=True, null=True)
+
+    customer_name = models.CharField(max_length=255, blank=True, null=True)
+    address = models.TextField(blank=True, null=True)
+    country = models.CharField(max_length=64, blank=True, null=True)
+
+    status = models.CharField(choices=ORDER_STATUS.get_choices(),
+                              default=ORDER_STATUS.pending,
+                              max_length=64,
+                              db_index=True)
+
+    amount = models.DecimalField(max_digits=8, decimal_places=2)
+    shipping = models.DecimalField(max_digits=5, decimal_places=2)
+    tracking_number = models.CharField(max_length=128, blank=True, null=True)
+
+    expiration = models.DateField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+
+class PaymentOption(models.Model):
+    project = models.ForeignKey('project.Project', blank=True, null=True)
+
+    amount = models.DecimalField(max_digits=8, decimal_places=2)
+
+    description = models.TextField()
+    shipping_desc = models.CharField(max_length=255, blank=True, null=True)
+    delivery_desc = models.CharField(max_length=255, blank=True, null=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
