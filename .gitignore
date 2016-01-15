@@ -1,0 +1,49 @@
+venv
+.vagrant
+*.db
+*.py[cod]
+.env
+/config/*
+local_settings.py
+templates/dashboard/*
+/static/*
+/media/*
+*.pyc
+
+# ignore the locally generated dash as its uploaded seperately
+/scantrust/apps/dash/static/dashboard/*
+
+bower_components/
+# C extensions
+*.so
+# Packages
+*.egg
+*.egg-info
+dist
+build
+eggs
+parts
+bin
+var
+sdist
+develop-eggs
+.installed.cfg
+lib
+lib64
+__pycache__
+# Installer logs
+pip-log.txt
+# Unit test / coverage reports
+.coverage
+.tox
+nosetests.xml
+# Translations
+*.mo
+# Komodo
+*.komodoproject
+*.kpf
+# OSX
+.DS_Store
+core/media_root/*
+core/collected_static/*
+.idea
