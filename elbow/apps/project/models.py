@@ -11,9 +11,12 @@ from elbow.utils import CustomManagedStorage
 
 from .apps import PROJECT_STATUS, USE_PAYMENTOPTIONS
 
+import os
 
-def _image_upload_path(cls, instance, filename):
-    return 'project/%s-%s' % (instance.slug, slugify(filename))
+
+def _image_upload_path(instance, filename):
+    filename, file_extension = os.path.splitext(filename)
+    return 'project/%s-%s.%s' % (instance.uuid, slugify(filename), file_extension)
 
 
 class Project(models.Model):
@@ -53,6 +56,9 @@ class Project(models.Model):
     expiration = models.DateField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __unicode__(self):
+        return self.name
 
     @property
     def url(self):

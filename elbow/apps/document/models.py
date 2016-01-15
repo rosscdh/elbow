@@ -10,9 +10,12 @@ from shortuuidfield import ShortUUIDField
 
 from .apps import DOCUMENT_STATUS
 
+import os
 
-def _document_upload_path(cls, instance, filename):
-    return 'document/%s-%s' % (instance.uuid, slugify(filename))
+
+def _document_upload_path(instance, filename):
+    filename, file_extension = os.path.splitext(filename)
+    return 'document/%s-%s.%s' % (instance.uuid, slugify(filename), file_extension)
 
 
 class Document(models.Model):
@@ -33,3 +36,6 @@ class Document(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __unicode__(self):
+        return self.name
