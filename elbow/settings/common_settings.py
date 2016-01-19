@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 from . import BASE_DIR
+
 try:
     from ..local_settings import PROJECT_ENVIRONMENT
     from ..local_settings import ROLLBAR_POST_SERVER_ITEM_ACCESS_TOKEN
@@ -45,6 +46,7 @@ DJANGO_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.flatpages',
 )
 
 PROJECT_APPS = (
@@ -55,7 +57,11 @@ PROJECT_APPS = (
 )
 
 HELPER_APPS = (
+    'dj_paymill',
+
     'pipeline',
+    'djangobower',
+    'crispy_forms',
     'django_extensions',
 
     # 'corsheaders',
@@ -70,7 +76,7 @@ HELPER_APPS = (
 
     'pinax.eventlog',
 
-    'geoposition',
+    #'geoposition',
 
     'rulez',
     #  'django_rq',
@@ -101,8 +107,9 @@ MIDDLEWARE_CLASSES = [
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'djangobower.finders.BowerFinder',
     'pipeline.finders.PipelineFinder',
-    #  'djangobower.finders.BowerFinder',
+    'pipeline.finders.ManifestFinder',
 )
 
 STATICFILES_STORAGE = 'pipeline.storage.PipelineStorage'
@@ -120,7 +127,7 @@ ROOT_URLCONF = 'elbow.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -218,17 +225,6 @@ JWT_AUTH = {
     'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
 }
 
-
-PIPELINE = {
-    'PIPELINE_ENABLED': True,
-    'CSS_COMPRESSOR': 'pipeline.compressors.cssmin.CSSMinCompressor',
-    'CSSMIN_BINARY': 'cssmin',
-    'JS_COMPRESSOR': 'pipeline.compressors.slimit.SlimItCompressor',
-    'CSS': {},
-    'JAVASCRIPT': {}
-}
-
-
 AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
     'django.contrib.auth.backends.ModelBackend',
@@ -241,7 +237,70 @@ ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 
+PIPELINE = {
+    'PIPELINE_ENABLED': True,
+    'CSS_COMPRESSOR': 'pipeline.compressors.cssmin.CSSMinCompressor',
+    'CSSMIN_BINARY': 'cssmin',
+    'JS_COMPRESSOR': 'pipeline.compressors.slimit.SlimItCompressor',
+    'STYLESHEETS': {
+        'theme': {
+            'source_filenames': (
+                'bootstrap/dist/css/bootstrap.css',
+                'bootstrap/dist/css/bootstrap-theme.css',
+            ),
+            'output_filename': 'dist/theme.css',
+        },
+    },
+    'JAVASCRIPT': {
+        'theme': {
+            'source_filenames': (
+                'bootstrap/js/bootstrap.js',
+            ),
+            'output_filename': 'dist/theme.js',
+        },
+        'angular_base': {
+            'source_filenames': (
+                'angular/angular.js',
+                'angular-animate/angular-animate.js',
+                'angular-sanitize/angular-sanitize.js',
+                'angular-route/angular-route.js',
+                'angular-resource/angular-resource.js',
+                'angular-ui-router/release/angular-ui-router.js',
+                'angular-bootstrap/ui-bootstrap.js',
+                'angular-bootstrap/ui-bootstrap-tpls.js',
+                'angular-toastr/dist/angular-toastr.js',
+                'urijs/src/URI.js',
+            ),
+            'output_filename': 'dist/angular_base.js',
+        }
+    }
+}
+
+BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, '../')
+
+BOWER_INSTALLED_APPS = (
+    "angular#1.4.7",
+    "angular-animate#1.4.7",
+    "angular-sanitize#1.4.7",
+    "angular-route#1.4.7",
+    "angular-resource#1.3.4",
+    "angular-ui-router#0.2.13",
+    "angular-moment#0.9.0",
+    "moment#2.9.0",
+    "angular-toastr#1.6.0",
+    "angular-bootstrap#1.0.3",
+    "uri.js#1.17.0",
+    "bootstrap#3.3.6",
+)
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
 
 MOMMY_CUSTOM_FIELDS_GEN = {
     'autoslug.fields.AutoSlugField': lambda: None
+}
+
+PAYMILL = {
+    'PRIVATE_API_KEY': 'd1269f85bd99db07d3c7437c8a435047',
+    'WEBHOOK_URI': 'http://example.com/',
 }

@@ -1,0 +1,38 @@
+{% extends 'project/base.html' %}
+
+{% block page_title %}{{ object.name }} - Project Detail{% endblock %}
+{% block page_description %}A list of available projects{% endblock %}
+{% block page_keywords %}list,projects{% endblock %}
+
+{% block page_header %}
+<div class="jumbotron">
+  <h1>{{ project.name }}</h1>
+  <p>{{ project.proposition }}</p>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+
+  <div class="col-sm-5">
+    <img src="{{ project.image }}" alt="" title="" />
+  </div>
+
+  <div class="col-sm-offset-2 col-sm-5">
+    <p>{{ project.description }}</p>
+
+    <div class="col-sm-12">
+    {{ form }}
+    </div>
+
+    <ul>
+      {% for row in project.documents.all %}
+        <li><a href="document" target="_NEW">{{ row }}</a></li>
+      {% empty %}
+        <li>No Documents</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+</div>
+{% endblock %}

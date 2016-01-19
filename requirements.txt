@@ -43,6 +43,7 @@ django-storages-redux
 django-jsonfield
 -e git+https://github.com/agiliq/Django-parsley.git@c11296dafcea475a6a6ec85b016b7a59b56c2470#egg=django_parsley-master
 django-pipeline
+slimit
 django-rest-auth
 django-rest-swagger
 django-rulez
@@ -104,3 +105,4 @@ wsgiref
 django-rq
 honcho
 django-autoslug
+paymill-wrapper

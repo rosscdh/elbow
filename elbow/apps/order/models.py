@@ -13,7 +13,7 @@ class Order(models.Model):
     uuid = ShortUUIDField(db_index=True, blank=False)
     user = models.ForeignKey('auth.User')
     project = models.ForeignKey('project.Project')
-    payment_option = models.ForeignKey('order.PaymentOption')
+    payment_option = models.ForeignKey('order.PaymentOption', blank=True, null=True)
 
     token = models.CharField(max_length=255, blank=True, null=True)
     transaction_id = models.CharField(max_length=128, blank=True, null=True)

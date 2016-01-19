@@ -11,7 +11,7 @@ templates/dashboard/*
 *.pyc
 
 # ignore the locally generated dash as its uploaded seperately
-/scantrust/apps/dash/static/dashboard/*
+dj_paymill
 
 bower_components/
 # C extensions

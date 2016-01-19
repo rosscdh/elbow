@@ -1,0 +1,71 @@
+<!doctype html>{% load pipeline %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{% block page_title %}TodayCapital.de{% endblock %}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="{% block page_description %}{% endblock %}">
+    <meta name="keywords" content="{% block page_keywords %}{% endblock %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="{{ GOOGLE_SITE_VERIFICATION }}" />
+
+    {% block page_itemprops %}{% endblock %}
+
+    <!-- SocialSharing -->
+    {% block page_ogprops %}{% endblock %}
+
+    {% stylesheet 'theme' %}
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    {% block css %}{% endblock %}
+
+  </head>
+  <body>
+
+<div id="outer-wrapper" class="container-fluid">
+    {% block navigation %}{% endblock %}
+</div>
+<div id="outer-wrapper" class="container-fluid">
+    {% block page_header %}{% endblock %}
+    {% block content %}{% endblock %}
+</div><!-- end id="outer-wrapper" -->
+
+
+<footer class="footer text-center">
+  <div class="container-fluid">
+    <div class="col-sm-12 col-xs-12">
+<!--       <ul class="links list-unstyled list-inline visible-xs">
+        <li class="col-xs-3"><a class="more" href="/about">manualONE</a></li>
+        <li class="col-xs-3"><a aria-label="Team" href="/team">Team</a></li>
+        <li class="col-xs-3"><a aria-label="Jobs" href="/jobs">Jobs</a></li>
+        <li class="col-xs-3"><a aria-label="Newsletter" href="/newsletter">Newsletter</a></li>
+
+        <li class="col-xs-4"><a aria-label="Feedback" href="/feedback">Feedback</a></li>
+        <li class="col-xs-4"><a aria-label="Datenschutz" href="/datenschutz">Datenschutz &amp; AGB</a></li>
+        <li class="col-xs-4"><a aria-label="Presse" href="/press">Presse</a></li>
+
+        <li class="col-xs-6" style="padding-top: 5px;"><a aria-label="Impressum" href="/impressum">Impressum</a></li>
+        <li class="col-xs-6" style="padding-top: 5px;"><a aria-label="Kontakt" href="/kontakt">Kontakt</a></li>
+      </ul> -->
+    </div>
+    <div class="col-xs-12">
+      <ul class="social list-inline">
+        <li><a class="fb" aria-label="Facebook" target="_FACEBOOK" href="https://www.facebook.com/pages/manualONE/1445072319088206"></a></li>
+        <li><a class="tw" aria-label="Twitter" target="_TWITTER" href="https://twitter.com/manual_ONE"></a></li>
+        <li><a class="go" aria-label="Google" target="Google+" href="https://plus.google.com/+ManualoneApp/"></a></li>
+        <li><a class="xg" aria-label="Xing" target="_XING" href="https://www.xing.com/companies/kumukangmbh"></a></li>
+        <li><a class="li" aria-label="Linkedin" target="_LINKEDIN" href="https://www.linkedin.com/company/manualone"></a></li>
+      </ul>
+    </div>
+    <div class="col-xs-12">
+      <small class="copyright">
+        Copyright @ 2016 TodayCapital GmbH&nbsp;-&nbsp;<fa name="heart"></fa>&nbsp;<b>Mit Hätz in Kölle jemacht</b>
+      </small>
+    </div>
+  </div>
+</footer>
+
+{% javascript 'theme' %}
+{% block javascript %}{% endblock %}
+</body>
+</html>
+
