@@ -47,6 +47,7 @@ DJANGO_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.flatpages',
+    'django.contrib.humanize',
 )
 
 PROJECT_APPS = (
@@ -57,8 +58,6 @@ PROJECT_APPS = (
 )
 
 HELPER_APPS = (
-    'dj_paymill',
-
     'pipeline',
     'djangobower',
     'crispy_forms',
@@ -121,6 +120,7 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, '../', 'media')
 MEDIA_URL = '/media/'
+
 
 ROOT_URLCONF = 'elbow.urls'
 
@@ -242,36 +242,23 @@ PIPELINE = {
     'CSS_COMPRESSOR': 'pipeline.compressors.cssmin.CSSMinCompressor',
     'CSSMIN_BINARY': 'cssmin',
     'JS_COMPRESSOR': 'pipeline.compressors.slimit.SlimItCompressor',
+    'COMPILERS': ('pipeline.compilers.sass.SASSCompiler',),
     'STYLESHEETS': {
-        'theme': {
+        'base': {
             'source_filenames': (
-                'bootstrap/dist/css/bootstrap.css',
-                'bootstrap/dist/css/bootstrap-theme.css',
+                'bootstrap-sass/assets/stylesheets/_bootstrap.scss',
+                'css/theme.scss',
             ),
-            'output_filename': 'dist/theme.css',
+            'output_filename': 'dist/base.css',
         },
     },
     'JAVASCRIPT': {
-        'theme': {
+        'base': {
             'source_filenames': (
-                'bootstrap/js/bootstrap.js',
+                'jquery/dist/jquery.js',
+                'bootstrap-sass/assets/javascripts/bootstrap.js',
             ),
-            'output_filename': 'dist/theme.js',
-        },
-        'angular_base': {
-            'source_filenames': (
-                'angular/angular.js',
-                'angular-animate/angular-animate.js',
-                'angular-sanitize/angular-sanitize.js',
-                'angular-route/angular-route.js',
-                'angular-resource/angular-resource.js',
-                'angular-ui-router/release/angular-ui-router.js',
-                'angular-bootstrap/ui-bootstrap.js',
-                'angular-bootstrap/ui-bootstrap-tpls.js',
-                'angular-toastr/dist/angular-toastr.js',
-                'urijs/src/URI.js',
-            ),
-            'output_filename': 'dist/angular_base.js',
+            'output_filename': 'dist/base.js',
         }
     }
 }
@@ -279,18 +266,7 @@ PIPELINE = {
 BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, '../')
 
 BOWER_INSTALLED_APPS = (
-    "angular#1.4.7",
-    "angular-animate#1.4.7",
-    "angular-sanitize#1.4.7",
-    "angular-route#1.4.7",
-    "angular-resource#1.3.4",
-    "angular-ui-router#0.2.13",
-    "angular-moment#0.9.0",
-    "moment#2.9.0",
-    "angular-toastr#1.6.0",
-    "angular-bootstrap#1.0.3",
-    "uri.js#1.17.0",
-    "bootstrap#3.3.6",
+    "bootstrap-sass#3.3.6",
 )
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'

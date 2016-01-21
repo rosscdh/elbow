@@ -12,7 +12,7 @@ urlpatterns = [
     # Orders
     url(r'^orders/', include('elbow.apps.order.urls', namespace='order')),
     # Paymill
-    url(r'^paymill/', include('dj_paymill.urls', namespace='paymill')),
+    # url(r'^paymill/', include('dj_paymill.urls', namespace='paymill')),
     # User Auth
     url(r'^auth/token/', 'rest_framework_jwt.views.obtain_jwt_token'),
     url(r'^auth/token/refresh/', 'rest_framework_jwt.views.refresh_jwt_token'),
