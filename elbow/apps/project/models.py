@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 from __future__ import unicode_literals
+from django.utils.translation import ugettext_lazy as _
 
 from moneyed import Money
 
@@ -60,6 +61,10 @@ class Project(models.Model):
     expiration = models.DateField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = _('Project')
+        verbose_name_plural = _('Projects')
 
     def __unicode__(self):
         return self.name

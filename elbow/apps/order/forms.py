@@ -2,6 +2,8 @@
 from django import forms
 from django.conf import settings
 from django.contrib.auth import get_user_model
+from django.utils.translation import ugettext_lazy as _
+
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit
 from crispy_forms.bootstrap import PrependedAppendedText
@@ -14,9 +16,16 @@ DEFAULT_CURRENCY_SYMBOL = getattr(settings, 'DEFAULT_CURRENCY_SYMBOL', '€')
 
 
 class BaseOrderForm(forms.ModelForm):
-    amount = forms.IntegerField(label='Investment Amount')
-    user = forms.ModelChoiceField(queryset=get_user_model().objects.all(), widget=forms.HiddenInput)
-    project = forms.ModelChoiceField(queryset=Project.objects.all(), widget=forms.HiddenInput)
+    amount = forms.IntegerField(label=_('Investment Amount'))
+
+    amount_currency = forms.CharField(initial=DEFAULT_CURRENCY_SYMBOL,
+                                      widget=forms.HiddenInput)
+
+    user = forms.ModelChoiceField(queryset=get_user_model().objects.all(),
+                                  widget=forms.HiddenInput)
+
+    project = forms.ModelChoiceField(queryset=Project.objects.all(),
+                                     widget=forms.HiddenInput)
 
     class Meta:
         model = Order
@@ -27,27 +36,17 @@ class BaseOrderForm(forms.ModelForm):
         self.fields['user'].initial = user
         self.fields['project'].initial = project
 
-    @property
-    def helper(self):
-        helper = FormHelper(self)
-        helper.layout = Layout(
-          Fieldset(
-                None,
-                'amount',
-                'user',
-                'project',
-            ),
-            ButtonHolder(
-                Submit('submit', 'Submit', css_class='button white')
-            )
-        )
-        return helper
-
 
 class CreateOrderForm(BaseOrderForm):
-    customer_name = forms.CharField(label='Name of Investor Person/Company')
-    t_and_c = forms.BooleanField(label='', help_text='I agree to the terms and conditions', widget=forms.CheckboxInput)
-    read_contract = forms.BooleanField(label='', help_text='I have read and agree to be bound to the terms of the contract document', widget=forms.CheckboxInput)
+    customer_name = forms.CharField(label=_('Name of Investor Person/Company'))
+
+    t_and_c = forms.BooleanField(label=None,
+                                 help_text=_('I agree to the terms and conditions'),
+                                 widget=forms.CheckboxInput)
+
+    read_contract = forms.BooleanField(label=None,
+                                       help_text=_('I have read and agree to be bound to the terms of the contract document'),
+                                       widget=forms.CheckboxInput)
 
     class Meta(BaseOrderForm.Meta):
         fields = ('amount',
@@ -69,7 +68,8 @@ class CreateOrderForm(BaseOrderForm):
         helper = FormHelper(self)
 
         helper.form_action = ''
-        helper.form_error_title = 'TEST'
+        helper.form_show_errors = True
+        helper.render_unmentioned_fields = True
 
         helper.layout = Layout(
           Fieldset(
@@ -88,7 +88,7 @@ class CreateOrderForm(BaseOrderForm):
                 'read_contract',
             ),
             ButtonHolder(
-                Submit('submit', 'Submit', css_class='button white')
+                Submit('submit', _('Submit'), css_class='button white')
             )
         )
         return helper

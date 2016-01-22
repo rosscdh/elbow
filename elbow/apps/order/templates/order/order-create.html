@@ -19,8 +19,12 @@
 {% endblock %}
 
 {% block content %}
-HERe: {{form.is_valid}}
+
 <div class="row">
+
+  <div class="col-md-12">
+    <p class="lead">{{ project.description }}</p>
+  </div>
 
   <div class="col-sm-5">
     {% if project.video %}
@@ -64,7 +68,6 @@ HERe: {{form.is_valid}}
   </div>
 
   <div class="col-offset-1 col-sm-6">
-    <p class="lead">{{ project.description }}</p>
     {% crispy form %}
   </div>
 

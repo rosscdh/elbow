@@ -1,0 +1,23 @@
+{% load i18n static djmoney %}
+{% comment %}
+This is view is deliberately without a outer div, allows you to define the project _stats width col-sm-2 or col-sm-7
+{% endcomment %}
+<img src="{% get_media_prefix %}{{ project.image }}" class="img img-responsive center-block" alt="" title="" />
+<div class="row">
+  <p><b>{% trans "Investment:" %}</b> {% money_localize project.amount %}</p>
+
+  <ul class="nav nav-pills" role="tablist">
+    <li role="presentation">{% trans "Backers" %} <span class="badge">{{ project.num_backers }}</span></a></li>
+    <li role="presentation">{% trans "Revenue" %} <span class="badge">{% money_localize project.revenue %}</span></a></li>
+  </ul>
+
+  {% if project.percent > 0 %}
+  <div class="progress">
+    <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="{{ project.percent }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ project.percent }}%">
+      {{ project.percent }}%
+    </div>
+  </div>
+  {% else %}
+    <div class="alert alert-success" role="alert">{% trans "<b>NB</b> Be one of the first to invest in this opportunity" %}</div>
+  {% endif %}
+</div><!-- End investment row -->

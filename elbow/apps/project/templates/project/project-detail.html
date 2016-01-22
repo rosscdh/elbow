@@ -1,4 +1,4 @@
-{% extends 'project/base.html' %}{% load static djmoney embed_video_tags %}
+{% extends 'project/base.html' %}{% load i18n static djmoney embed_video_tags %}
 
 {% block page_title %}{{ object.name }} - Project Detail{% endblock %}
 {% block page_description %}A list of available projects{% endblock %}
@@ -10,11 +10,11 @@
   <h1>{{ project.name }}</h1>
   <p>{{ project.proposition }}</p>
 
-  <p><b>Investment:</b> {% money_localize project.amount %}</p>
+  <p><b>{% trans "Investment:" %}</b> {% money_localize project.amount %}</p>
 
   <ul class="nav nav-pills" role="tablist">
-    <li role="presentation">Backers <span class="badge">{{ project.num_backers }}</span></a></li>
-    <li role="presentation">Revenue <span class="badge">{% money_localize project.revenue %}</span></a></li>
+    <li role="presentation">{% trans "Backers" %} <span class="badge">{{ project.num_backers }}</span></a></li>
+    <li role="presentation">{% trans "Revenue" %} <span class="badge">{% money_localize project.revenue %}</span></a></li>
   </ul>
 
   {% if project.percent > 0 %}
@@ -24,10 +24,10 @@
     </div>
   </div>
   {% else %}
-    <div class="alert alert-success" role="alert"><b>NB</b> Be one of the first to invest in this opportunity</div>
+    <div class="alert alert-success" role="alert">{% trans "<b>NB</b> Be one of the first to invest in this opportunity" %}</div>
   {% endif %}
   <div class="text-center col-md-6 col-md-push-3">
-    <a href="{% url 'order:create' project_slug=project.slug %}" class="btn btn-success btn-lg" name="" id="">Invest Now</a>
+    <a href="{% url 'order:create' project_slug=project.slug %}" class="btn btn-success btn-lg" name="" id="">{% trans "Invest Now" %}</a>
   </div>
   <br/><br/><br/><br/>
 
@@ -53,12 +53,12 @@
         {% for row in project.documents.all %}
           <li><a href="document" target="_NEW">{{ row }}</a></li>
         {% empty %}
-          <li>No Documents</li>
+          <li>{% trans "No documents found" %}</li>
         {% endfor %}
       </ul>
     </div>
     <div class="col-md-8 pull-right">
-
+      &nbsp;
     </div>
   </div>
 

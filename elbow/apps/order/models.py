@@ -1,6 +1,7 @@
 # -*- coding: UTF-8 -*-
 from __future__ import unicode_literals
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 from djmoney.models.fields import MoneyField
 
@@ -39,6 +40,10 @@ class Order(models.Model):
     expiration = models.DateField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = _('Order')
+        verbose_name_plural = _('Orders')
 
 
 class PaymentOption(models.Model):
