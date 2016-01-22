@@ -23,7 +23,11 @@ class ProjectModelTest(TestCase):
         self.assertEqual(self.project.percent, 0)
 
     def test_revenue(self):
-        self.assertEqual(self.project.revenue, 0)
+        self.assertEqual(self.project.revenue.__class__.__name__, 'Money')
+        self.assertEqual(self.project.revenue.amount, 0)
+        self.assertEqual(self.project.revenue.currency.__class__.__name__, 'Currency')
+        self.assertEqual(self.project.revenue.currency.name, 'Euro')
+        self.assertEqual(self.project.revenue.currency.code, 'EUR')
 
 
 class ProjectModelWithOrdersTest(TestCase):

@@ -79,7 +79,10 @@ class Project(models.Model):
 
     @property
     def percent(self):
-        return (float(self.revenue.amount) / float(self.amount)) * 100
+        if self.amount.amount > 0:
+            return (float(self.revenue.amount) / float(self.amount.amount)) * 100
+        else:
+            return 0
 
     @property
     def revenue(self):
