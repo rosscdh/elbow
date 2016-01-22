@@ -1,13 +1,22 @@
 # -*- coding: utf-8 -*-
 from django import forms
+from django.conf import settings
+from django.contrib.auth import get_user_model
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit
+from crispy_forms.bootstrap import PrependedAppendedText
+
+from elbow.apps.project.models import Project
 
 from .models import Order
+
+DEFAULT_CURRENCY_SYMBOL = getattr(settings, 'DEFAULT_CURRENCY_SYMBOL', '€')
 
 
 class BaseOrderForm(forms.ModelForm):
     amount = forms.IntegerField(label='Investment Amount')
-    user = forms.CharField(widget=forms.HiddenInput)
-    project = forms.CharField(widget=forms.HiddenInput)
+    user = forms.ModelChoiceField(queryset=get_user_model().objects.all(), widget=forms.HiddenInput)
+    project = forms.ModelChoiceField(queryset=Project.objects.all(), widget=forms.HiddenInput)
 
     class Meta:
         model = Order
@@ -17,6 +26,22 @@ class BaseOrderForm(forms.ModelForm):
         super(BaseOrderForm, self).__init__(*args, **kwargs)
         self.fields['user'].initial = user
         self.fields['project'].initial = project
+
+    @property
+    def helper(self):
+        helper = FormHelper(self)
+        helper.layout = Layout(
+          Fieldset(
+                None,
+                'amount',
+                'user',
+                'project',
+            ),
+            ButtonHolder(
+                Submit('submit', 'Submit', css_class='button white')
+            )
+        )
+        return helper
 
 
 class CreateOrderForm(BaseOrderForm):
@@ -36,3 +61,34 @@ class CreateOrderForm(BaseOrderForm):
     def __init__(self, user, project, *args, **kwargs):
         super(CreateOrderForm, self).__init__(user, project, *args, **kwargs)
         self.fields['customer_name'].initial = user.first_name
+        self.fields['user'].initial = user
+        self.fields['project'].initial = project
+
+    @property
+    def helper(self):
+        helper = FormHelper(self)
+
+        helper.form_action = ''
+        helper.form_error_title = 'TEST'
+
+        helper.layout = Layout(
+          Fieldset(
+                'Investment Amount',
+                PrependedAppendedText('amount', DEFAULT_CURRENCY_SYMBOL, '.00'),
+                'user',
+                'project',
+            ),
+          Fieldset(
+                'Investor Details',
+                'customer_name',
+                'phone',
+                'address',
+                'country',
+                't_and_c',
+                'read_contract',
+            ),
+            ButtonHolder(
+                Submit('submit', 'Submit', css_class='button white')
+            )
+        )
+        return helper

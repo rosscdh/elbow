@@ -12,7 +12,7 @@ from shortuuidfield import ShortUUIDField
 class Order(models.Model):
     ORDER_STATUS = ORDER_STATUS
 
-    uuid = ShortUUIDField(db_index=True, blank=False)
+    uuid = ShortUUIDField(db_index=True)
     user = models.ForeignKey('auth.User')
     project = models.ForeignKey('project.Project')
     payment_option = models.ForeignKey('order.PaymentOption', blank=True, null=True)

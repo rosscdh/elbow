@@ -7,7 +7,7 @@
 {% block content %}
 <!-- Carousel
 ================================================== -->
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
+<div id="myCarousel" class="carousel slide clearfix" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -98,14 +98,14 @@
             <p><b>Investment:</b> {% money_localize row.amount %}</p>
 
             <ul class="nav nav-pills" role="tablist">
-              <li role="presentation">No. Backers <span class="badge">{{ row.num_backers }}</span></a></li>
+              <li role="presentation">Backers <span class="badge">{{ row.num_backers }}</span></a></li>
               <li role="presentation">Revenue <span class="badge">{% money_localize row.revenue %}</span></a></li>
             </ul>
 
             {% if row.percent > 0 %}
             <div class="progress">
               <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="{{ row.percent }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ row.percent }}%">
-                <span class="sr-only">{{ row.percent }}% Complete</span>
+                {{ row.percent }}%
               </div>
             </div>
             {% else %}

@@ -1,4 +1,5 @@
 {% extends 'project/base.html' %}{% load static crispy_forms_tags djmoney embed_video_tags %}
+{% load crispy_forms_filters %}
 
 {% block page_title %}{{ object.name }} - Invest Now{% endblock %}
 {% block page_description %}Invest in {{ object.name }}{% endblock %}
@@ -18,6 +19,7 @@
 {% endblock %}
 
 {% block content %}
+HERe: {{form.is_valid}}
 <div class="row">
 
   <div class="col-sm-5">
@@ -33,14 +35,14 @@
       <p><b>Investment:</b> {% money_localize project.amount %}</p>
 
       <ul class="nav nav-pills" role="tablist">
-        <li role="presentation">No. Backers <span class="badge">{{ project.num_backers }}</span></a></li>
+        <li role="presentation">Backers <span class="badge">{{ project.num_backers }}</span></a></li>
         <li role="presentation">Revenue <span class="badge">{% money_localize project.revenue %}</span></a></li>
       </ul>
 
       {% if project.percent > 0 %}
       <div class="progress">
         <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="{{ project.percent }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ project.percent }}%">
-          <span class="sr-only">{{ project.percent }}% Complete</span>
+          {{ row.percent }}%
         </div>
       </div>
       {% else %}
