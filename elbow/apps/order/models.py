@@ -2,6 +2,8 @@
 from __future__ import unicode_literals
 from django.db import models
 
+from djmoney.models.fields import MoneyField
+
 from .apps import ORDER_STATUS
 
 from shortuuidfield import ShortUUIDField
@@ -29,8 +31,9 @@ class Order(models.Model):
                               max_length=64,
                               db_index=True)
 
-    amount = models.DecimalField(max_digits=8, decimal_places=2)
-    shipping = models.DecimalField(max_digits=5, decimal_places=2)
+    amount = MoneyField(max_digits=10, decimal_places=2, default_currency='EUR')
+
+    shipping = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
     tracking_number = models.CharField(max_length=128, blank=True, null=True)
 
     expiration = models.DateField(blank=True, null=True)

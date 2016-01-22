@@ -107,4 +107,5 @@ wsgiref
 django-rq
 honcho
 django-autoslug
-paymill-wrapper
+py-moneyed
+django-money

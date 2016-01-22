@@ -5,6 +5,9 @@ from elbow.utils import get_namedtuple_choices
 
 ORDER_STATUS = get_namedtuple_choices('ORDER_STATUS', (
     ('pending', 'pending', 'Pending'),
+    ('new', 'new', 'New'),
+    ('paid', 'paid', 'Paid'),
+    ('canceled', 'canceled', 'Canceled'),
 ))
 
 

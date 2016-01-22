@@ -1,9 +1,13 @@
 # -*- coding: UTF-8 -*-
 from __future__ import unicode_literals
 
+from moneyed import Money
+
 from django.db import models
 from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
+
+from djmoney.models.fields import MoneyField
 
 from autoslug import AutoSlugField
 from embed_video.fields import EmbedVideoField
@@ -29,7 +33,7 @@ class Project(models.Model):
     slug = AutoSlugField(populate_from='name')
     name = models.CharField(max_length=255)
 
-    amount = models.DecimalField(max_digits=8, decimal_places=2)
+    amount = MoneyField(max_digits=10, decimal_places=2, default_currency='EUR')
 
     proposition = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
@@ -70,10 +74,10 @@ class Project(models.Model):
 
     @property
     def percent(self):
-        return (float(self.revenue) / float(self.amount)) * 100
+        return (float(self.revenue.amount) / float(self.amount)) * 100
 
     @property
     def revenue(self):
         amount = self.order_set.all().annotate(sum=models.Sum('amount')).aggregate(models.Sum('sum')).get('sum__sum')
-        return amount if amount else 0
+        return Money(amount, 'EUR') if amount else Money(0, 'EUR')
 

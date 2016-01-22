@@ -78,6 +78,8 @@ HELPER_APPS = (
     #'geoposition',
 
     'rulez',
+    'djmoney',
+    'embed_video',
     #  'django_rq',
     'easy_thumbnails',
 )
