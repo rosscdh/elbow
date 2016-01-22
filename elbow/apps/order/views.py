@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.core.urlresolvers import reverse
 from django.views.generic import FormView, DetailView
 
 from elbow.mixins import LoginRequiredMixin
@@ -17,12 +18,12 @@ class OrderCreate(LoginRequiredMixin, FormView):
         self.project = Project.objects.get(slug=self.kwargs.get('project_slug'))
         return super(OrderCreate, self).dispatch(request, *args, **kwargs)
 
-    def form_invalid(self, form):
-        """
-        If the form is invalid, re-render the context data with the
-        data-filled form and errors.
-        """
-        return self.render_to_response(self.get_context_data())
+    def form_valid(self, form):
+        self.order = form.save()
+        return super(OrderCreate, self).form_valid(form=form)
+
+    def get_success_url(self):
+        return reverse('order:payment', kwargs={'project_slug': self.project.slug, 'uuid': self.order.uuid})
 
     def get_context_data(self, *args, **kwargs):
         context = super(OrderCreate, self).get_context_data(*args, **kwargs)
@@ -35,7 +36,17 @@ class OrderCreate(LoginRequiredMixin, FormView):
         return {
             'user': self.request.user,
             'project': self.project,
+            'data': self.request.POST,
         }
+
+
+class OrderPayment(LoginRequiredMixin, DetailView):
+    template_name = 'order/order-payment.html'
+    model = Order
+
+    def dispatch(self, request, *args, **kwargs):
+        self.project = Project.objects.get(slug=self.kwargs.get('project_slug'))
+        return super(OrderPayment, self).dispatch(request, *args, **kwargs)
 
 
 class OrderDetail(LoginRequiredMixin, DetailView):

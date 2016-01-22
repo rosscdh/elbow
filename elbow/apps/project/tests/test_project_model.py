@@ -55,4 +55,4 @@ class ProjectModelWithOrdersTest(TestCase):
         self.assertEqual(self.project.percent, 50.0)
 
     def test_revenue(self):
-        self.assertEqual(self.project.revenue, 5000.0)
+        self.assertEqual(self.project.revenue.amount, 5000.0)

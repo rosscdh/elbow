@@ -1,0 +1,86 @@
+{% extends 'project/base.html' %}{% load i18n static crispy_forms_tags djmoney embed_video_tags %}
+{% load crispy_forms_filters %}
+
+{% block page_title %}{{ project.name }} - Payment{% endblock %}
+{% block page_description %}Invest in {{ project.name }}{% endblock %}
+{% block page_keywords %}invest,project,and-development,development{% endblock %}
+
+{% block page_header %}
+<div class="page-header clearfix">
+  <h1>Invest in {{ project.name }}</h1>
+  <p>{{ project.proposition }}</p>
+  <div class="col-md-4">
+  &nbsp;
+  </div>
+  <div class="col-md-8 text-right">
+  &nbsp;
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+
+  <div class="col-md-12">
+    <p class="lead">{{ project.description }}</p>
+  </div>
+
+  <div class="col-sm-5">
+    {% if project.video %}
+      {% video project.video as project_video %}
+        {% video project_video "small" %}
+      {% endvideo %}
+    {% else %}
+      <img src="{% get_media_prefix %}{{ project.image }}" class="img img-responsive" alt="" title="" />
+    {% endif %}
+
+    <div class="col-md-12">
+      <p><b>Investment:</b> {% money_localize project.amount %}</p>
+
+      <div class="col-md-12">
+        {% if project.percent > 0 %}
+        <div class="progress">
+          <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="{{ project.percent }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ project.percent }}%">
+            {{ row.percent }}%
+          </div>
+        </div>
+        {% else %}
+          <div class="alert alert-success" role="alert"><b>NB</b> Be one of the first to invest in this opportunity</div>
+        {% endif %}
+      </div>
+
+      <div class="col-md-12">
+        <div class="col-sm-4 well well-sm text-center">
+          {% trans "Backers" %}<br/><span class="badge">{{ project.num_backers }}</span>
+        </div>
+        <div class="col-sm-4 well well-sm text-center">
+          {% trans "Revenue" %}<br/><span class="badge">{% money_localize project.revenue %}</span>
+        </div>
+      </div>
+
+    </div><!-- End investment row -->
+
+    <div class="col-md-12">
+      <ul class="list-unstyled">
+        {% for row in project.documents.all %}
+          <li>
+            <button type="button" class="btn btn-info btn-lg" aria-label="Left Align">
+              <span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span>
+              {{ row.name }}
+            </button>
+          </li>
+        {% empty %}
+          <li>No Documents</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="col-offset-1 col-sm-6">
+    {% crispy form %}
+  </div>
+
+</div>
+{% endblock %}

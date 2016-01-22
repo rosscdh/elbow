@@ -110,3 +110,4 @@ django-autoslug
 py-moneyed
 django-money
 -e git+https://github.com/rosscdh/django-templated-email.git@fd2eabd4afa0da520d5e8ffb3dc07a397a2cfbd3#egg=templated_email
+django-countries
