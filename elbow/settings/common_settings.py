@@ -252,6 +252,7 @@ PIPELINE = {
                 'css/theme.scss',
             ),
             'output_filename': 'dist/base.css',
+            'variant': 'datauri',
         },
     },
     'JAVASCRIPT': {

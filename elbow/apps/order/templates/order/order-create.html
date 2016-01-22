@@ -1,4 +1,4 @@
-{% extends 'project/base.html' %}{% load static crispy_forms_tags djmoney embed_video_tags %}
+{% extends 'project/base.html' %}{% load i18n static crispy_forms_tags djmoney embed_video_tags %}
 {% load crispy_forms_filters %}
 
 {% block page_title %}{{ object.name }} - Invest Now{% endblock %}
@@ -38,27 +38,38 @@
     <div class="col-md-12">
       <p><b>Investment:</b> {% money_localize project.amount %}</p>
 
-      <ul class="nav nav-pills" role="tablist">
-        <li role="presentation">Backers <span class="badge">{{ project.num_backers }}</span></a></li>
-        <li role="presentation">Revenue <span class="badge">{% money_localize project.revenue %}</span></a></li>
-      </ul>
+      <div class="col-md-12">
+        {% if project.percent > 0 %}
+        <div class="progress">
+          <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="{{ project.percent }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ project.percent }}%">
+            {{ row.percent }}%
+          </div>
+        </div>
+        {% else %}
+          <div class="alert alert-success" role="alert"><b>NB</b> Be one of the first to invest in this opportunity</div>
+        {% endif %}
+      </div>
 
-      {% if project.percent > 0 %}
-      <div class="progress">
-        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="{{ project.percent }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ project.percent }}%">
-          {{ row.percent }}%
+      <div class="col-md-12">
+        <div class="col-sm-4 well well-sm text-center">
+          {% trans "Backers" %}<br/><span class="badge">{{ project.num_backers }}</span>
+        </div>
+        <div class="col-sm-4 well well-sm text-center">
+          {% trans "Revenue" %}<br/><span class="badge">{% money_localize project.revenue %}</span>
         </div>
       </div>
-      {% else %}
-        <div class="alert alert-success" role="alert"><b>NB</b> Be one of the first to invest in this opportunity</div>
-      {% endif %}
 
     </div><!-- End investment row -->
 
     <div class="col-md-12">
-      <ul>
+      <ul class="list-unstyled">
         {% for row in project.documents.all %}
-          <li><a href="document" target="_NEW">{{ row }}</a></li>
+          <li>
+            <button type="button" class="btn btn-info btn-lg" aria-label="Left Align">
+              <span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span>
+              {{ row.name }}
+            </button>
+          </li>
         {% empty %}
           <li>No Documents</li>
         {% endfor %}
