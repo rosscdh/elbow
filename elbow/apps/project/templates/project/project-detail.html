@@ -5,9 +5,21 @@
 {% block page_keywords %}list,projects{% endblock %}
 
 {% block page_header %}
-<div class="jumbotron">
+<div class="jumbotron clearfix">
   <h1>{{ project.name }}</h1>
   <p>{{ project.proposition }}</p>
+  <div class="col-md-4">
+    <ul>
+      {% for row in project.documents.all %}
+        <li><a href="document" target="_NEW">{{ row }}</a></li>
+      {% empty %}
+        <li>No Documents</li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="col-md-8 text-right">
+    <a href="{% url 'order:create' project_slug=project.slug %}" class="btn btn-success btn-lg" name="" id="">Invest Now</a>
+  </div>
 </div>
 {% endblock %}
 
@@ -16,22 +28,16 @@
 
   <div class="col-sm-5">
     <img src="{{ project.image }}" alt="" title="" />
+    {% if project.video %}
+    <div class="col-sm-5">
+      {{ project.video }}
+    </div>
+    {% endif %}
   </div>
 
-  <div class="col-sm-offset-2 col-sm-5">
-    <p>{{ project.description }}</p>
-
-    <div class="col-sm-12">
-      <a href="{% url 'order:create' project_slug=project.slug %}" class="btn btn-primary" name="" id="">Invest Now</a>
-    </div>
-
-    <ul>
-      {% for row in project.documents.all %}
-        <li><a href="document" target="_NEW">{{ row }}</a></li>
-      {% empty %}
-        <li>No Documents</li>
-      {% endfor %}
-    </ul>
+  <div class="col-offset-1 col-sm-6">
+    <p class="lead">{{ project.description }}</p>
+    Blah
   </div>
 
 </div>
