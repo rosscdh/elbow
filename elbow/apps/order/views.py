@@ -36,7 +36,7 @@ class OrderCreate(LoginRequiredMixin, FormView):
         return {
             'user': self.request.user,
             'project': self.project,
-            'data': self.request.POST,
+            'data': self.request.POST if self.request.method.lower() in ['post'] else None,
         }
 
 
