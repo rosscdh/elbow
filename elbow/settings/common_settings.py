@@ -26,7 +26,7 @@ ALLOWED_HOSTS = ['*']
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en-gb'
 
 TIME_ZONE = 'UTC'
 
@@ -46,7 +46,6 @@ DJANGO_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.flatpages',
     'django.contrib.humanize',
 )
 
@@ -76,7 +75,8 @@ HELPER_APPS = (
     'pinax.eventlog',
 
     #'geoposition',
-
+    'pages', # cms
+    'mptt',  # for cms
     'rulez',
     'djmoney',
     'embed_video',
@@ -104,6 +104,15 @@ MIDDLEWARE_CLASSES = [
     # must come last
     'rollbar.contrib.django.middleware.RollbarNotifierMiddleware',
 ]
+
+TEMPLATE_CONTEXT_PROCESSORS = ["django.contrib.auth.context_processors.auth",
+                               "django.template.context_processors.debug",
+                               "django.template.context_processors.i18n",
+                               "django.template.context_processors.media",
+                               "django.template.context_processors.static",
+                               "django.template.context_processors.tz",
+                               "django.contrib.messages.context_processors.messages",
+                               'pages.context_processors.media',]
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -238,6 +247,8 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_LOGOUT_ON_GET = True
+LOGIN_REDIRECT_URL = '/'
 
 PIPELINE = {
     'PIPELINE_ENABLED': True,
@@ -288,3 +299,15 @@ DEFAULT_CURRENCY = 'EUR'
 DEFAULT_CURRENCY_SYMBOL = '€'
 
 CRISPY_FAIL_SILENTLY = False
+
+# CMS settings
+PAGE_DEFAULT_TEMPLATE = 'pages/index.html'
+
+# This is defined here as a do-nothing function because we can't import
+# django.utils.translation -- that module depends on the settings.
+gettext_noop = lambda s: s
+
+PAGE_LANGUAGES = (
+    ('de', gettext_noop('German')),
+    ('en-gb', gettext_noop('English')),
+)
