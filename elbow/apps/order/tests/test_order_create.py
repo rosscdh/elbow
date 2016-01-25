@@ -1,22 +1,10 @@
 # -*- coding: UTF-8 -*-
-from . import TestCase
-from django.test import Client, SimpleTestCase
+from . import TestCase, VALID_ORDER_POST_DATA
+from django.test import Client
 from django.core.urlresolvers import reverse
 
 from elbow.apps.order.forms import CreateOrderForm
-from elbow.apps.project.models import Project
 from model_mommy import mommy
-
-VALID_DATA = {
-    'amount': 250,
-    'customer_name': 'Bob Dylan Inc.',
-    'phone': '555-55-55',
-    'address': '46a BismarkStrasse Mönchengladbach, NRW',
-    'country': 'Germany',
-    'payment_type': 'bank_debit',
-    't_and_c': True,
-    'has_read_contract': True
-}
 
 
 class BaseTestCase(TestCase):
@@ -38,7 +26,7 @@ class OrderCreateViewTest(BaseTestCase):
         user_dict = {'first_name': 'Test', 'last_name': 'User', 'email': 'test@example.com'}
         self.user = mommy.make('auth.User', **user_dict)
 
-        self.initial = VALID_DATA
+        self.initial = VALID_ORDER_POST_DATA
 
     def test_form_redirects_to_login(self):
         resp = self.c.get(self.url)
