@@ -68,3 +68,15 @@ class SendForPaymentServiceInvalidTest(BaseTestCase):
             order = mommy.prepare('order.Order', status=status)
             subject = SendForPaymentService(order=order)
             self.assertTrue(subject.should_send_for_payment() is False)
+
+    def test_payment_has_transaction_id_and_not_sent(self):
+        """
+        DONT send the email, even if status is "processing"
+        and we have a transaction_id
+        """
+        order = mommy.prepare('order.Order',
+                              status=Order.ORDER_STATUS.processing,
+                              transaction_id='abc123ABC')
+
+        subject = SendForPaymentService(order=order)
+        self.assertTrue(subject.should_send_for_payment() is False)
