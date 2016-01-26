@@ -4,6 +4,9 @@ from django.utils.translation import ugettext_lazy as _
 
 from elbow.utils import HTML2TextEmailMessageService
 
+import logging
+logger = logging.getLogger('django.request')
+
 
 class SendForPaymentService(object):
     """
@@ -12,6 +15,7 @@ class SendForPaymentService(object):
     """
     def __init__(self, order, **kwargs):
         self.order = order
+        self._messages = []
 
     def should_send_for_payment(self):
         """
@@ -23,6 +27,7 @@ class SendForPaymentService(object):
         return {}
 
     def send_success_email(self, user_list):
+        logger.debug('Payment Success')
         send_success = []
         html2text = HTML2TextEmailMessageService(template_name='order/email/payment_admin_success.html',
                                                  order=self.order,
@@ -32,7 +37,7 @@ class SendForPaymentService(object):
         message = html2text.plain_text
         from_email = 'application@todaycapital.de'
         recipient_list = ['founders@todaycapital.de']
-
+        logger.debug('Send founders email')
         send_success.append(('founders', send_mail(subject=subject,
                                                    message=message,
                                                    from_email=from_email,
@@ -45,6 +50,7 @@ class SendForPaymentService(object):
         from_email = 'application@todaycapital.de'
 
         for user in user_list:
+            logger.debug('Send user %s email' % user)
             html2text = HTML2TextEmailMessageService(template_name='order/email/payment_customer_success.html',
                                                      user=user,
                                                      order=self.order)
@@ -57,6 +63,7 @@ class SendForPaymentService(object):
         return send_success
 
     def send_fail_email(self):
+        logger.debug('Payment Failure')
         send_success = []
         html2text = HTML2TextEmailMessageService(template_name='order/email/payment_admin_fail.html',
                                                  order=self.order)
@@ -77,7 +84,11 @@ class SendForPaymentService(object):
 
     def process(self):
         if self.should_send_for_payment() is True:
+            logger.debug('Attempting to send Payment')
             if self.send_payment():
                 self.send_success_email()
             else:
                 self.send_fail_email()
+        else:
+            self._messages.push({'type': 'error', 'title': 'Can not be sent for payment.', 'message': ''})
+            logger.debug('Is not valid and should not be sent for payment')

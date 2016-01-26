@@ -13,15 +13,17 @@ class OrderAdmin(admin.ModelAdmin):
     def get_urls(self):
         urls = super(OrderAdmin, self).get_urls()
         my_urls = [
-            url(r'^/order/(?P<uuid>.*)/send/$',
+            url(r'^(?P<uuid>.*)/send/$',
                 self.admin_site.admin_view(self.send_for_payment),
                 name='order_send_for_payment'),
-            url(r'^/order/(?P<uuid>.*)/cancel/$',
+
+            url(r'^(?P<uuid>.*)/cancel/$',
                 self.admin_site.admin_view(self.cancel_order),
                 name='order_cancel'),
-            url(r'^/order/(?P<uuid>.*)/log/$',
+
+            url(r'^(?P<uuid>.*)/log/$',
                 self.admin_site.admin_view(self.log_event),
-                name='order_cancel'),
+                name='order_add_log'),
         ]
         return my_urls + urls
 
@@ -30,6 +32,10 @@ class OrderAdmin(admin.ModelAdmin):
 
     def send_for_payment(self, request, uuid):
         order = self.get_order(uuid=uuid)
+
+        order.status = order.ORDER_STATUS.processing
+        order.save(update_fields=['status'])
+
         service = SendForPaymentService(order=order)
         service.process()
         log(
@@ -45,6 +51,10 @@ class OrderAdmin(admin.ModelAdmin):
 
     def cancel_order(self, request, uuid):
         order = self.get_order(uuid=uuid)
+
+        order.status = order.ORDER_STATUS.canceled
+        order.save(update_fields=['status'])
+
         log(
             user=request.user,
             action="order.lifecycle.canceled",

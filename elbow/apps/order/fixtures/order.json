@@ -13,7 +13,7 @@
       "customer_name": "A company I represent",
       "address": "23 Somewhere av, someplace, dorset",
       "country": "UK",
-      "status": "pending",
+      "status": "paid",
       "amount_currency": "EUR",
       "amount": "10500.00",
       "shipping": "0.00",

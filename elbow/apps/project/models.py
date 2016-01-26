@@ -75,7 +75,7 @@ class Project(models.Model):
 
     @property
     def num_backers(self):
-        return self.order_set.all().count()
+        return self.order_set.filter(status__in=['paid']).count()
 
     @property
     def percent(self):
@@ -86,6 +86,6 @@ class Project(models.Model):
 
     @property
     def revenue(self):
-        amount = self.order_set.all().annotate(sum=models.Sum('amount')).aggregate(models.Sum('sum')).get('sum__sum')
+        amount = self.order_set.filter(status__in=['paid']).annotate(sum=models.Sum('amount')).aggregate(models.Sum('sum')).get('sum__sum')
         return Money(amount, 'EUR') if amount else Money(0, 'EUR')
 

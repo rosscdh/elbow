@@ -3,6 +3,7 @@
   <div class="tabular inline-related {% if forloop.last %}last-related{% endif %}">
 {{ inline_admin_formset.formset.management_form }}
 <fieldset class="module">
+
    <h2>{{ inline_admin_formset.opts.verbose_name_plural|capfirst }}</h2>
    {{ inline_admin_formset.formset.non_form_errors }}
    <table>
@@ -64,10 +65,10 @@
           <!-- <button class="" id="" name="">{% trans 'Add Note' %}</button> -->
 
           {% if inline_admin_form.original.status == 'pending' or inline_admin_form.original.status != 'failed' %}
-          <button class="order-lifecycle-sent_for_payment" id="" name="">{% trans 'Send for Payment' %}</button>
+          <button class="order-lifecycle-sent_for_payment" id="" name="" data-url="{% url 'admin:order_send_for_payment' uuid=inline_admin_form.original.uuid %}">{% trans 'Send for Payment' %}</button>
           {% endif %}
           {% if inline_admin_form.original.status != 'canceled' or inline_admin_form.original.status != 'paid' %}
-          <button class="order-lifecycle-canceled" id="" name="">{% trans 'Cancel Order' %}</button>
+          <button class="order-lifecycle-canceled" id="" name="" data-url="{% url 'admin:order_cancel' uuid=inline_admin_form.original.uuid %}">{% trans 'Cancel Order' %}</button>
           {% endif %}
         </td>
         {% if inline_admin_formset.formset.can_delete %}
@@ -84,13 +85,69 @@
 <script type="text/javascript">
 
 (function($) {
-  $('order-lifecycle-sent_for_payment').on('click', function (event) {
+  'use strict';
+
+  $('.order-lifecycle-sent_for_payment').on('click', function (event) {
     event.preventDefault();
-    console.log('send to backend')
+    var button = $(this);
+    var url = button.data().url;
+
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: JSON.stringify({
+        }),
+        dataType: 'json',
+        contentType: "application/json",
+        beforeSend: function (request) {
+            request.setRequestHeader("X-CSRFToken", '{{csrf_token}}');
+            // disable the button
+            button.prop('disabled', true);
+        },
+        error: function ( data ) {
+            var payload = data.responseJSON;
+            // enable the button again
+            button.prop('disabled', false);
+        },
+        success: function ( data ) {
+            //console.log(data)
+            if ( data.status == 200 ) {
+            }
+            button.prop('disabled', false);
+        }
+    });
+
   });
-  $('order-lifecycle-canceled').on('click', function (event) {
+  $('.order-lifecycle-canceled').on('click', function (event) {
     event.preventDefault();
-    console.log('send to backend')
+    var button = $(this);
+    var url = button.data().url;
+
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: JSON.stringify({
+        }),
+        dataType: 'json',
+        contentType: "application/json",
+        beforeSend: function (request) {
+            request.setRequestHeader("X-CSRFToken", '{{csrf_token}}');
+            // disable the button
+            button.prop('disabled', true);
+        },
+        error: function ( data ) {
+            var payload = data.responseJSON;
+            // enable the button again
+            button.prop('disabled', false);
+        },
+        success: function ( data ) {
+            //console.log(data)
+            if ( data.status == 200 ) {
+            }
+            button.prop('disabled', false);
+        }
+    });
+
   });
   // $("#{{ inline_admin_formset.formset.prefix|escapejs }}-group .tabular.inline-related tbody tr").tabularFormset({
   //   prefix: "{{ inline_admin_formset.formset.prefix|escapejs }}",
