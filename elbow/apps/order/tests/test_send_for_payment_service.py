@@ -27,13 +27,13 @@ class SendForPaymentServiceTest(BaseTestCase):
         self.subject = SendForPaymentService(order=self.order)
 
     def test_should_send_for_payment(self):
-        self.assertTrue(self.subject.should_send_for_payment() == True)
+        self.assertTrue(self.subject.should_send_for_payment() is True)
 
     def test_send_payment(self):
         self.assertEqual(self.subject.send_payment(), {})
 
     def test_send_success_email(self):
-        result = self.subject.send_success_email(recipients=[self.order.user.email])  # Send the email
+        result = self.subject.send_success_email(user_list=[self.order.user])  # Send the email
         # Should have email to managers AND email to customer
         self.assertEqual(2, len(mail.outbox))
         self.assertEqual(type(result), list)
@@ -67,4 +67,4 @@ class SendForPaymentServiceInvalidTest(BaseTestCase):
                        Order.ORDER_STATUS.canceled]:
             order = mommy.prepare('order.Order', status=status)
             subject = SendForPaymentService(order=order)
-            self.assertTrue(subject.should_send_for_payment() == False)
+            self.assertTrue(subject.should_send_for_payment() is False)

@@ -45,6 +45,13 @@ class Order(models.Model):
         verbose_name = _('Order')
         verbose_name_plural = _('Orders')
 
+    @property
+    def can_send_payment(self):
+        """
+        In order to be sent to secupay, we must be in "processing" status AND have a None for transaction_id
+        """
+        return self.status in [self.ORDER_STATUS.processing] and self.transaction_id in [None, '']
+
 
 class PaymentOption(models.Model):
     project = models.ForeignKey('project.Project', blank=True, null=True)

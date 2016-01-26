@@ -2,6 +2,8 @@
 from django.core.mail import send_mail
 from django.utils.translation import ugettext_lazy as _
 
+from elbow.utils import HTML2TextEmailMessageService
+
 
 class SendForPaymentService(object):
     """
@@ -15,34 +17,43 @@ class SendForPaymentService(object):
         """
         In order to be sent to secupay, we must be in "processing" status AND have a None for transaction_id
         """
-        return self.order.status in [self.order.ORDER_STATUS.processing] and self.order.transaction_id in [None, '']
+        return self.order.can_send_payment
 
     def send_payment(self):
         return {}
 
-    def send_success_email(self, recipients):
+    def send_success_email(self, user_list):
         send_success = []
-        # Send Customer Email
+        html2text = HTML2TextEmailMessageService(template_name='order/email/payment_admin_success.html',
+                                                 order=self.order,
+                                                 recipients=user_list)
+        # Send Admin Email
         subject = _('TodayCapital.de - Investment Payment, Success')
-        message = _('')
+        message = html2text.plain_text
         from_email = 'application@todaycapital.de'
         recipient_list = ['founders@todaycapital.de']
 
         send_success.append(('founders', send_mail(subject=subject,
                                                    message=message,
                                                    from_email=from_email,
-                                                   recipient_list=recipient_list)))
+                                                   recipient_list=recipient_list,
+                                                   html_message=html2text.html)))
 
         # Send Customer Email
         subject = _('TodayCapital.de - Investment Payment, Success')
-        message = _('')
+        message = html2text.plain_text
         from_email = 'application@todaycapital.de'
-        recipient_list = recipients
 
-        send_success.append(('customer', send_mail(subject=subject,
-                                                   message=message,
-                                                   from_email=from_email,
-                                                   recipient_list=recipient_list)))
+        for user in user_list:
+            html2text = HTML2TextEmailMessageService(template_name='order/email/payment_customer_success.html',
+                                                     user=user,
+                                                     order=self.order)
+
+            send_success.append(('customer', send_mail(subject=subject,
+                                                       message=message,
+                                                       from_email=from_email,
+                                                       recipient_list=[user.email],
+                                                       html_message=html2text.html)))
         return send_success
 
     def send_fail_email(self):

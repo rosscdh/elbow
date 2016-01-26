@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 from django.conf import settings
+from django.template import loader
 from django.core.files.storage import FileSystemStorage
 
 from storages.backends.s3boto import S3BotoStorage
@@ -113,3 +114,22 @@ def CustomManagedStorage():
     else:
         #return S3BotoStorage()
         return FileSystemStorage()
+
+
+class HTML2TextEmailMessageService(object):
+    def __init__(self, template_name, **kwargs):
+        self.html = None
+        self.plain_text = None
+        self.template_name = template_name
+        self.context = kwargs
+        self.process(context=self.context)
+
+    def process(self, context):
+        """
+        Render HTML template and convert into a markdown version as well
+        """
+        self.html = loader.render_to_string(self.template_name,
+                                            context)
+        self.plain_text = None  # Add html2text here so we get mardown
+        # Return tuple
+        return (self.plain_text, self.html)

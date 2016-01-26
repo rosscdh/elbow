@@ -101,3 +101,9 @@ class CreateOrderForm(forms.Form):
 
         order = Order.objects.create(**self.cleaned_data)
         return order
+
+
+class OrderAdminLimitedListForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ('amount', 'status', 'user', 'customer_name', 'address', 'country', 'transaction_id',)

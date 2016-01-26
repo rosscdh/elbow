@@ -62,7 +62,7 @@ class OrderFormTest(TestCase):
         user_dict = {'first_name': 'Test', 'last_name': 'User', 'email': 'test@example.com'}
         self.user = mommy.make('auth.User', **user_dict)
 
-        self.initial = VALID_DATA
+        self.initial = VALID_ORDER_POST_DATA
 
     def test_invalid_form(self):
         # Test no data
