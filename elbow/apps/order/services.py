@@ -58,16 +58,21 @@ class SendForPaymentService(object):
 
     def send_fail_email(self):
         send_success = []
+        html2text = HTML2TextEmailMessageService(template_name='order/email/payment_admin_fail.html',
+                                                 order=self.order)
+
         # Send Customer Email
         subject = _('TodayCapital.de - Investment Payment, Failure')
-        message = _('')
+        message = html2text.plain_text
         from_email = 'application@todaycapital.de'
         recipient_list = ['founders@todaycapital.de']
 
         send_success.append(('founders', send_mail(subject=subject,
                                                    message=message,
                                                    from_email=from_email,
-                                                   recipient_list=recipient_list)))
+                                                   recipient_list=recipient_list,
+                                                   html_message=html2text.html)))
+
         return send_success
 
     def process(self):

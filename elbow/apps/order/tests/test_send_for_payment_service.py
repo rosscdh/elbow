@@ -45,7 +45,7 @@ class SendForPaymentServiceTest(BaseTestCase):
         email = mail.outbox[0]  # 0 should be to the Founders
         self.assertEqual(email.recipients(), ['founders@todaycapital.de'])
 
-        email = mail.outbox[1]  # 0 should be to the Founders
+        email = mail.outbox[1]  # 1 should be to the Customers
         self.assertEqual(email.recipients(), [self.order.user.email])
 
     def test_send_fail_email(self):
