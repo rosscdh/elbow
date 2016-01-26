@@ -10,10 +10,10 @@ from .handlers import post_save_send_payment_request
 
 ORDER_STATUS = get_namedtuple_choices('ORDER_STATUS', (
     ('pending', 'pending', 'Pending'),
-    ('new', 'new', 'New'),
     ('processing', 'processing', 'Send for Processing'),
     ('paid', 'paid', 'Paid'),
-    ('canceled', 'canceled', 'Canceled'),
+    ('failed', 'failed', 'Payment Failed'),
+    ('canceled', 'canceled', 'Payment Canceled'),
 ))
 
 

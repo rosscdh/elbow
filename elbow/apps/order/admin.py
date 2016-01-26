@@ -1,5 +1,72 @@
+# -*- coding: utf-8 -*-
 from django.contrib import admin
+from django.conf.urls import url
+from django.http import JsonResponse
+
+from pinax.eventlog.models import log
 
 from .models import Order
+from .services import SendForPaymentService
 
-admin.site.register([Order])
+
+class OrderAdmin(admin.ModelAdmin):
+    def get_urls(self):
+        urls = super(OrderAdmin, self).get_urls()
+        my_urls = [
+            url(r'^/order/(?P<uuid>.*)/send/$',
+                self.admin_site.admin_view(self.send_for_payment),
+                name='order_send_for_payment'),
+            url(r'^/order/(?P<uuid>.*)/cancel/$',
+                self.admin_site.admin_view(self.cancel_order),
+                name='order_cancel'),
+            url(r'^/order/(?P<uuid>.*)/log/$',
+                self.admin_site.admin_view(self.log_event),
+                name='order_cancel'),
+        ]
+        return my_urls + urls
+
+    def get_order(self, uuid):
+        return Order.objects.get(uuid=uuid)
+
+    def send_for_payment(self, request, uuid):
+        order = self.get_order(uuid=uuid)
+        service = SendForPaymentService(order=order)
+        service.process()
+        log(
+            user=request.user,
+            action="order.lifecycle.sent_for_payment",
+            obj=order,
+            extra={
+                "note": "%s Sent the Order to secupay for payment" % request.user
+            }
+        )
+        resp = {}
+        return JsonResponse(resp)
+
+    def cancel_order(self, request, uuid):
+        order = self.get_order(uuid=uuid)
+        log(
+            user=request.user,
+            action="order.lifecycle.canceled",
+            obj=order,
+            extra={
+                "note": "%s Cancelled the Order" % request.user
+            }
+        )
+        resp = {}
+        return JsonResponse(resp)
+
+    def log_event(self, request, uuid):
+        order = self.get_order(uuid=uuid)
+        log(
+            user=request.user,
+            action="order.note.add",
+            obj=order,
+            extra={
+                "note": request.post.get('note')
+            }
+        )
+        resp = {}
+        return JsonResponse(resp)
+
+admin.site.register(Order, OrderAdmin)

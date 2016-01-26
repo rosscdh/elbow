@@ -30,9 +30,10 @@ class SendForPaymentServiceTest(BaseTestCase):
 class SendForPaymentServiceInvalidTest(BaseTestCase):
     def test_invalid_status_payment_not_sent(self):
         for status in [Order.ORDER_STATUS.pending,
-                       Order.ORDER_STATUS.new,
                        Order.ORDER_STATUS.paid,
+                       Order.ORDER_STATUS.failed,
                        Order.ORDER_STATUS.canceled]:
+
             order = mommy.prepare('order.Order', status=status)
             self.assertTrue(order.can_send_payment is False)
 

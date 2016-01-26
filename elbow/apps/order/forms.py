@@ -104,6 +104,13 @@ class CreateOrderForm(forms.Form):
 
 
 class OrderAdminLimitedListForm(forms.ModelForm):
+    amount = forms.CharField(label=_('Amount'), help_text=_(''), disabled=True, widget=forms.HiddenInput)
+    #user = forms.CharField(label=_('User'), help_text=_(''), disabled=True, widget=forms.HiddenInput)
+    customer_name = forms.CharField(label=_('Customer Name'), help_text=_(''), disabled=True, widget=forms.HiddenInput)
+    address = forms.CharField(label=_('Address'), help_text=_(''), disabled=True, widget=forms.HiddenInput)
+    country = forms.CharField(label=_('Country'), help_text=_(''), disabled=True, widget=forms.HiddenInput)
+    transaction_id = forms.CharField(label=_('Secupay Id'), help_text=_(''), disabled=True, widget=forms.HiddenInput)
+
     class Meta:
         model = Order
-        fields = ('amount', 'status', 'user', 'customer_name', 'address', 'country', 'transaction_id',)
+        fields = ('status', 'amount', 'user', 'customer_name', 'address', 'country', 'transaction_id',)

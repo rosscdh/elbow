@@ -3,8 +3,11 @@ from django.conf import settings
 from django.template import loader
 from django.core.files.storage import FileSystemStorage
 
-from storages.backends.s3boto import S3BotoStorage
+#from storages.backends.s3boto import S3BotoStorage
 from inmemorystorage import InMemoryStorage
+
+import html2text    # convert html to text
+html2text.BODY_WIDTH = 0  # prevent random new lines all over the show: http://stackoverflow.com/questions/12839143/python-html2text-adds-random-n
 
 from collections import namedtuple, OrderedDict
 
@@ -130,6 +133,8 @@ class HTML2TextEmailMessageService(object):
         """
         self.html = loader.render_to_string(self.template_name,
                                             context)
-        self.plain_text = None  # Add html2text here so we get mardown
+        # Add html2text here so we get mardown
+        self.plain_text = html2text.html2text(self.html,
+                                              bodywidth=0)
         # Return tuple
         return (self.plain_text, self.html)
