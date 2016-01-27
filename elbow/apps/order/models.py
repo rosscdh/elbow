@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.contenttypes.models import ContentType
 
 from djmoney.models.fields import MoneyField
 
@@ -54,6 +55,14 @@ class Order(models.Model):
         In order to be sent to secupay, we must be in "processing" status AND have a None for transaction_id
         """
         return self.status in [self.ORDER_STATUS.processing] and self.transaction_id in [None, '']
+
+    @property
+    def content_type(self):
+        return ContentType.objects.filter(app_label='order', model='order').first()
+
+    @property
+    def log_history(self):
+        return self.content_type.log_set.filter(object_id=self.pk)
 
 
 class PaymentOption(models.Model):

@@ -68,15 +68,18 @@ class OrderAdmin(admin.ModelAdmin):
 
     def log_event(self, request, uuid):
         order = self.get_order(uuid=uuid)
-        log(
-            user=request.user,
-            action="order.note.add",
-            obj=order,
-            extra={
-                "note": request.post.get('note')
-            }
-        )
         resp = {}
+
+        if request.method == 'POST':
+            log(
+                user=request.user,
+                action="order.note.add",
+                obj=order,
+                extra={
+                    "note": request.POST.get('note')
+                }
+            )
+
         return JsonResponse(resp)
 
 admin.site.register(Order, OrderAdmin)

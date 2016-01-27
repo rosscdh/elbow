@@ -1,15 +1,9 @@
 # -*- coding: UTF-8 -*-
-from . import TestCase, VALID_ORDER_POST_DATA
-from django.test import Client
+from . import BaseTestCase, TestCase, VALID_ORDER_POST_DATA
 from django.core.urlresolvers import reverse
 
 from elbow.apps.order.forms import CreateOrderForm
 from model_mommy import mommy
-
-
-class BaseTestCase(TestCase):
-    def setUp(self):
-        self.c = Client()
 
 
 class OrderCreateViewTest(BaseTestCase):

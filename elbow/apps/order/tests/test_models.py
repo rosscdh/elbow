@@ -3,11 +3,9 @@ from django.core import mail
 from django.test import SimpleTestCase
 
 from model_mommy import mommy
+
 from elbow.apps.order.models import Order
-
-
-class BaseTestCase(SimpleTestCase):
-    fixtures = ['project.json']
+from . import BaseTestCase
 
 
 class SendForPaymentServiceTest(BaseTestCase):

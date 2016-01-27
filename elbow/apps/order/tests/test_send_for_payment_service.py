@@ -1,14 +1,11 @@
 # -*- coding: UTF-8 -*-
+from . import BaseTestCase
 from django.core import mail
 from django.test import SimpleTestCase
 
 from model_mommy import mommy
 from elbow.apps.order.models import Order
 from elbow.apps.order.services import SendForPaymentService
-
-
-class BaseTestCase(SimpleTestCase):
-    fixtures = ['project.json']
 
 
 class SendForPaymentServiceTest(BaseTestCase):

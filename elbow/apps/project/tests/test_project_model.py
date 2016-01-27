@@ -40,7 +40,8 @@ class ProjectModelWithOrdersTest(TestCase):
                                   amount=10000.00)
         self.orders = mommy.make('order.Order', _quantity=5,
                                  project=self.project,
-                                 amount=1000.00)
+                                 amount=1000.00,
+                                 status='paid')
 
     def test_url(self):
         """

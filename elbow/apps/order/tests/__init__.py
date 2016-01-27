@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-from django.test import TestCase
+from django.test import TestCase, Client
 
 
 VALID_ORDER_POST_DATA = {
@@ -12,3 +12,10 @@ VALID_ORDER_POST_DATA = {
     't_and_c': True,
     'has_read_contract': True
 }
+
+
+class BaseTestCase(TestCase):
+    fixtures = ['project.json']
+
+    def setUp(self):
+        self.c = Client()
