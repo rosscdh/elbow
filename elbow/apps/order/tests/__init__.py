@@ -8,7 +8,7 @@ VALID_ORDER_POST_DATA = {
     'phone': '555-55-55',
     'address': '46a BismarkStrasse Mönchengladbach, NRW',
     'country': 'Germany',
-    'payment_type': 'bank_debit',
+    'payment_type': 'bank_transfer',
     't_and_c': True,
     'has_read_contract': True
 }

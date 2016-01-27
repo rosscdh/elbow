@@ -26,7 +26,7 @@ class OrderCreateViewTest(BaseTestCase):
         resp = self.c.get(self.url)
 
         self.assertEqual(resp.status_code, 302)
-        self.assertEqual(resp.url, '/accounts/login/?next=/orders/my-basic-test-project/order/')
+        self.assertEqual(resp.url, '/accounts/login/?next=/de/orders/my-basic-test-project/order/')
 
     def test_form_shows_to_authenticated(self):
         self.c.force_login(self.user)
@@ -42,6 +42,7 @@ class OrderCreateViewTest(BaseTestCase):
     def test_form_redirects_to_payments_page_on_success(self):
         self.c.force_login(self.user)
         resp = self.c.post(self.url, self.initial)
+
         self.assertEqual(resp.status_code, 302)
         # shortUUIDHexMatch.search("/orders/my-basic-test-project/order/CQGsvHhfhfnsQQp4zRax2g/")
         # import pdb;pdb.set_trace()

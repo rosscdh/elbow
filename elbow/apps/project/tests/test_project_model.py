@@ -14,7 +14,7 @@ class ProjectModelTest(TestCase):
         """
         Autoslug should auto generate the slug field
         """
-        self.assertEqual(self.project.url, u'/projects/my-basic-test-project/')
+        self.assertEqual(self.project.url, u'/de/projects/my-basic-test-project/')
 
     def test_num_backers(self):
         self.assertEqual(self.project.num_backers, 0)
@@ -47,7 +47,7 @@ class ProjectModelWithOrdersTest(TestCase):
         """
         Autoslug should auto generate the slug field
         """
-        self.assertEqual(self.project.url, u'/projects/my-test-project-with-orders/')
+        self.assertEqual(self.project.url, u'/de/projects/my-test-project-with-orders/')
 
     def test_num_backers(self):
         self.assertEqual(self.project.num_backers, 5)

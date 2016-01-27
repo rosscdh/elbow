@@ -27,7 +27,7 @@ class OrderAdminViewCallsTest(BaseTestCase):
         self.c.force_login(self.user)
         url = reverse('admin:order_send_for_payment', kwargs={'uuid': order.uuid})
 
-        self.assertEqual(url, u'/admin/order/order/%s/send/' % order.uuid)
+        self.assertEqual(url, u'/de/admin/order/order/%s/send/' % order.uuid)
         self.assertTrue(order.status is 'new')
 
         resp = self.c.post(url, {})
@@ -46,7 +46,7 @@ class OrderAdminViewCallsTest(BaseTestCase):
         self.c.force_login(self.user)
         url = reverse('admin:order_cancel', kwargs={'uuid': order.uuid})
 
-        self.assertEqual(url, u'/admin/order/order/%s/cancel/' % order.uuid)
+        self.assertEqual(url, u'/de/admin/order/order/%s/cancel/' % order.uuid)
         self.assertTrue(order.status is 'new')
 
         resp = self.c.post(url, {})
@@ -67,7 +67,7 @@ class OrderAdminViewCallsTest(BaseTestCase):
         self.c.force_login(self.user)
         url = reverse('admin:order_add_log', kwargs={'uuid': order.uuid})
 
-        self.assertEqual(url, u'/admin/order/order/%s/log/' % order.uuid)
+        self.assertEqual(url, u'/de/admin/order/order/%s/log/' % order.uuid)
 
         resp = self.c.post(url, {'note': 'My Test Note'})
 
