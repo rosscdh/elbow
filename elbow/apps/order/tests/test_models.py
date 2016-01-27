@@ -32,7 +32,7 @@ class SendForPaymentServiceInvalidTest(BaseTestCase):
         for status in [Order.ORDER_STATUS.pending,
                        Order.ORDER_STATUS.paid,
                        Order.ORDER_STATUS.failed,
-                       Order.ORDER_STATUS.canceled]:
+                       Order.ORDER_STATUS.cancelled]:
 
             order = mommy.prepare('order.Order', status=status)
             self.assertTrue(order.can_send_payment is False)

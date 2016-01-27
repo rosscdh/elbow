@@ -52,12 +52,12 @@ class OrderAdmin(admin.ModelAdmin):
     def cancel_order(self, request, uuid):
         order = self.get_order(uuid=uuid)
 
-        order.status = order.ORDER_STATUS.canceled
+        order.status = order.ORDER_STATUS.cancelled
         order.save(update_fields=['status'])
 
         log(
             user=request.user,
-            action="order.lifecycle.canceled",
+            action="order.lifecycle.cancelled",
             obj=order,
             extra={
                 "note": "%s Cancelled the Order" % request.user

@@ -105,15 +105,16 @@ MIDDLEWARE_CLASSES = [
     'rollbar.contrib.django.middleware.RollbarNotifierMiddleware',
 ]
 
-TEMPLATE_CONTEXT_PROCESSORS = ["django.contrib.auth.context_processors.auth",
-                               "django.template.context_processors.debug",
-                               "django.template.context_processors.i18n",
-                               "django.template.context_processors.media",
-                               "django.template.context_processors.static",
-                               "django.template.context_processors.tz",
-                               "django.contrib.messages.context_processors.messages",
-                               'pages.context_processors.media',]
-
+TEMPLATES = {
+    'CONTEXT_PROCESSORS': ["django.contrib.auth.context_processors.auth",
+                           "django.template.context_processors.debug",
+                           "django.template.context_processors.i18n",
+                           "django.template.context_processors.media",
+                           "django.template.context_processors.static",
+                           "django.template.context_processors.tz",
+                           "django.contrib.messages.context_processors.messages",
+                           'pages.context_processors.media']
+}
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',

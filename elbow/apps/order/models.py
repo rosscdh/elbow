@@ -6,6 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 from djmoney.models.fields import MoneyField
 
 from .apps import ORDER_STATUS
+from .managers import OrderManager
 
 from shortuuidfield import ShortUUIDField
 
@@ -40,6 +41,8 @@ class Order(models.Model):
     expiration = models.DateField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    objects = OrderManager()
 
     class Meta:
         verbose_name = _('Order')

@@ -15,6 +15,7 @@ from embed_video.fields import EmbedVideoField
 from elbow.utils import CustomManagedStorage
 
 from .apps import PROJECT_STATUS, USE_PAYMENTOPTIONS
+from .managers import ProjectManager
 
 import os
 
@@ -62,6 +63,8 @@ class Project(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    objects = ProjectManager()
+
     class Meta:
         verbose_name = _('Project')
         verbose_name_plural = _('Projects')
@@ -75,7 +78,7 @@ class Project(models.Model):
 
     @property
     def num_backers(self):
-        return self.order_set.filter(status__in=['paid']).count()
+        return self.order_set.paid().count()
 
     @property
     def percent(self):
@@ -86,6 +89,6 @@ class Project(models.Model):
 
     @property
     def revenue(self):
-        amount = self.order_set.filter(status__in=['paid']).annotate(sum=models.Sum('amount')).aggregate(models.Sum('sum')).get('sum__sum')
+        amount = self.order_set.paid().annotate(sum=models.Sum('amount')).aggregate(models.Sum('sum')).get('sum__sum')
         return Money(amount, 'EUR') if amount else Money(0, 'EUR')
 

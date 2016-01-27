@@ -17,9 +17,10 @@ class Migration(migrations.Migration):
             name='shipping',
             field=models.DecimalField(blank=True, decimal_places=2, max_digits=5, null=True),
         ),
+
         migrations.AlterField(
             model_name='order',
             name='status',
-            field=models.CharField(choices=[(b'pending', b'Pending'), (b'new', b'New'), (b'paid', b'Paid'), (b'canceled', b'Canceled')], db_index=True, default=b'pending', max_length=64),
+            field=models.CharField(choices=[(b'pending', b'Pending'), (b'processing', b'Send for Processing'), (b'paid', b'Paid'), (b'failed', b'Payment Failed'), (b'cancelled', b'Payment Cancelled')], db_index=True, default=b'pending', max_length=64),
         ),
     ]
