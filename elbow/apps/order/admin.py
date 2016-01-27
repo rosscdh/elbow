@@ -21,6 +21,14 @@ class OrderAdmin(admin.ModelAdmin):
                 self.admin_site.admin_view(self.cancel_order),
                 name='order_cancel'),
 
+            url(r'^(?P<uuid>.*)/marked/reset/$',
+                self.admin_site.admin_view(self.reset_order),
+                name='order_reset'),
+
+            url(r'^(?P<uuid>.*)/marked/paid/$',
+                self.admin_site.admin_view(self.marked_as_paid),
+                name='order_marked_as_paid'),
+
             url(r'^(?P<uuid>.*)/log/$',
                 self.admin_site.admin_view(self.log_event),
                 name='order_add_log'),
@@ -32,7 +40,6 @@ class OrderAdmin(admin.ModelAdmin):
 
     def send_for_payment(self, request, uuid):
         order = self.get_order(uuid=uuid)
-
         order.status = order.ORDER_STATUS.processing
         order.save(update_fields=['status'])
 
@@ -51,7 +58,6 @@ class OrderAdmin(admin.ModelAdmin):
 
     def cancel_order(self, request, uuid):
         order = self.get_order(uuid=uuid)
-
         order.status = order.ORDER_STATUS.cancelled
         order.save(update_fields=['status'])
 
@@ -61,6 +67,38 @@ class OrderAdmin(admin.ModelAdmin):
             obj=order,
             extra={
                 "note": "%s Cancelled the Order" % request.user
+            }
+        )
+        resp = {}
+        return JsonResponse(resp)
+
+    def reset_order(self, request, uuid):
+        order = self.get_order(uuid=uuid)
+        order.status = order.ORDER_STATUS.pending
+        order.save(update_fields=['status'])
+
+        log(
+            user=request.user,
+            action="order.lifecycle.reset",
+            obj=order,
+            extra={
+                "note": "%s Reset the manual_bank_tx Order" % request.user
+            }
+        )
+        resp = {}
+        return JsonResponse(resp)
+
+    def marked_as_paid(self, request, uuid):
+        order = self.get_order(uuid=uuid)
+        order.status = order.ORDER_STATUS.paid_manually
+        order.save(update_fields=['status'])
+
+        log(
+            user=request.user,
+            action="order.lifecycle.manually_marked_as_piad",
+            obj=order,
+            extra={
+                "note": "%s Marked the Order as manually paid" % request.user
             }
         )
         resp = {}

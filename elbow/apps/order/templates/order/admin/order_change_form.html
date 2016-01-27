@@ -1,0 +1,121 @@
+{% extends "admin/change_form.html" %}
+{% load i18n admin_urls admin_static admin_modify humanize %}
+
+
+{% block after_related_objects %}
+    <!-- CUSTOM ORDERS -->
+   <h1>{% trans 'Project Orders' %}</h1>
+   <table>
+    <thead>
+    <tr>
+        <th class="required">ID</th>
+        <th class="required">Amount</th>
+        <th class="required">Payment type</th>
+        <th class="required">User</th>
+        <th class="required">Customer Name</th>
+        <th class="required">Address</th>
+        <th class="required">Country</th>
+        <th class="required">Secupay Id</th>
+        <th class="required">Status</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+
+     <tbody>
+     {% for order in original.order_set.all %}
+        <tr class="form-row {% cycle "row1" "row2" %}">
+            <td class="field-uuid">
+                <a href=""><b>{{ order.uuid }}</b></a><br/>
+                <b>{% trans 'Created:' %}</b> <a href="javascript:;" title="{{ order.created_at }}">{{ order.created_at|naturaltime }}</a><br/>
+                <b>{% trans 'Updated:' %}</b> <a href="javascript:;" title="{{ order.created_at }}">{{ order.updated_at|naturaltime }}</a><br/>
+            </td>
+            <td class="field-amount">
+                {{ order.amount }}
+            </td>
+            <td class="field-payment_type">
+                {{ order.payment_type }}
+            </td>
+            <td class="field-user">
+                {% if order.user.first_name and order.user.last_name %}{{ order.user.first_name }}{% else %}{{ order.user.username }}{% endif %} {{ order.user.last_name }} {% if order.user.email %}({{ order.user.email }}){% endif %}
+            </td>
+            <td class="field-customer_name">
+                {{ order.customer_name }}
+            </td>
+            <td class="field-address">
+                {{ order.address }}
+            </td>
+            <td class="field-country">
+                {{ order.country }}
+            </td>
+            <td class="field-transaction_id">
+                {{ order.transaction_id|default:"" }}
+            </td>
+            <td class="field-status">
+                {{ order.status }}
+            </td>
+            <td class="action buttons">
+              <!-- <button class="">{% trans 'Add Note' %}</button> -->
+              {% if order.status == 'pending' and order.status != 'failed' %}
+                {% if order.payment_type == 'bank_transfer' %}<a href="javascript:;" class="order-lifecycle-event" data-url="{% url 'admin:order_send_for_payment' uuid=order.uuid %}">{% trans 'Send for Payment' %}</a><br/>{% endif %}
+                {% if order.payment_type == 'manual_bank_tx' %}<a href="javascript:;" class="order-lifecycle-event" data-url="{% url 'admin:order_marked_as_paid' uuid=order.uuid %}">{% trans 'Mark as Paid' %}</a><br/>{% endif %}
+              {% endif %}
+              {% if order.status != 'cancelled' and order.status != 'paid' %}
+              <a href="javascript:;" class="order-lifecycle-event" data-url="{% url 'admin:order_cancel' uuid=order.uuid %}">{% trans 'Cancel Order' %}</a><br/>
+              {% endif %}
+              {% if order.status == 'cancelled' or order.status == 'processing' %}
+              <a href="javascript:;" class="order-lifecycle-event" data-url="{% url 'admin:order_reset' uuid=order.uuid %}">{% trans 'Reset Order' %}</a>
+              {% endif %}
+            </td>
+        </tr>
+     {% empty %}
+         <tr class="form-row {% cycle "row1" "row2" %}">
+             <td colspan="10"><b>{% trans 'No orders found' %}</b></td>
+         </tr>
+     {% endfor %}
+     </tbody>
+   </table>
+   <!-- END CUSTOM ORDERS -->
+    {{ block.super }}
+{% endblock %}
+
+{% block admin_change_form_document_ready %}
+    {{ block.super }}
+    <script type="text/javascript">
+    'use strict';
+    (function($) {
+
+      $('.order-lifecycle-event').on('click', function (event) {
+        event.preventDefault();
+        var button = $(this);
+        var url = button.data().url;
+        console.log(url);
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: JSON.stringify({
+            }),
+            dataType: 'json',
+            contentType: "application/json",
+            beforeSend: function (request) {
+                request.setRequestHeader("X-CSRFToken", '{{csrf_token}}');
+                // disable the button
+                button.prop('disabled', true);
+            },
+            error: function ( data ) {
+                var payload = data.responseJSON;
+                // enable the button again
+                button.prop('disabled', false);
+            },
+            success: function ( data ) {
+                //console.log(data)
+                if ( data.status == 200 ) {
+                }
+                button.prop('disabled', false);
+                document.location.reload();
+            }
+        });
+
+      });
+    })(django.jQuery);
+    </script>
+{% endblock %}

@@ -12,6 +12,7 @@ ORDER_STATUS = get_namedtuple_choices('ORDER_STATUS', (
     ('pending', 'pending', _('Pending')),
     ('processing', 'processing', _('Send for Processing')),
     ('paid', 'paid', _('Paid')),
+    ('paid_manually', 'paid_manually', _('Manually Paid')),
     ('failed', 'failed', _('Payment Failed')),
     ('cancelled', 'cancelled', _('Payment Cancelled')),
 ))

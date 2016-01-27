@@ -53,6 +53,7 @@ class Order(models.Model):
     class Meta:
         verbose_name = _('Order')
         verbose_name_plural = _('Orders')
+        ordering = ('-created_at',)
 
     @property
     def can_send_payment(self):
