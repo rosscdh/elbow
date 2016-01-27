@@ -1,5 +1,6 @@
-<!doctype html>{% load pipeline i18n pages_tags %}{% load_pages %}
-<html>
+<!doctype html>{% load pipeline i18n pages_tags flags %}{% load_pages %}
+{% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}{% get_available_languages as LANGUAGES %}
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
   <head>
     <meta charset="utf-8">
     <title>{% block page_title %}TodayCapital.de{% endblock %}</title>
@@ -38,12 +39,25 @@
             {% for page in pages_navigation %}
                 {% pages_menu page %}
             {% endfor %}
+            <!-- Languages -->
+            <!-- <li class="dropdown">
+              {% get_language_info for LANGUAGE_CODE as current_lang %}
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{% famfamfam_flag_icon current_lang %}{{ current_lang.name_translated }} <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                {% for lang in LANGUAGES %}
+                <li class="{% if LANGUAGE_CODE == lang.0 %}active{% endif %}">
+                  <a href="/{{ lang.0 }}">{{ lang.1 }}</a>
+                </li>
+                {% endfor %}
+              </ul>
+            </li> -->
+            <!-- End languages -->
             {% if not user.is_authenticated %}
             <li><a href="{% url 'account_login' %}">Login</a></li>
             <li><a href="{% url 'account_signup' %}">Register</a></li>
             {% else %}
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{% trans 'Settings' %} <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="{% url 'account_email' %}">Email Settings</a></li>
                 <li><a href="{% url 'account_change_password' %}">Change Password</a></li>

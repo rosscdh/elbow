@@ -3,10 +3,11 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import url, include
+from django.conf.urls.i18n import i18n_patterns
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 
-urlpatterns = [
+urlpatterns = i18n_patterns(
     url(r'^admin/', admin.site.urls),
     # Projects
     url(r'^projects/', include('elbow.apps.project.urls', namespace='project')),
@@ -23,4 +24,4 @@ urlpatterns = [
     url(r'^p/', include('pages.urls')),
     url(r'^', include('django.contrib.auth.urls')),
     url(r'^', include('elbow.apps.public.urls', namespace='public')),
-] + staticfiles_urlpatterns() + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+) + staticfiles_urlpatterns() + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

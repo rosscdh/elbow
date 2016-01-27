@@ -14,6 +14,7 @@ from moneyed import Money, EUR
 #from django_countries.fields import CountryField
 
 from elbow.apps.order.models import Order
+from .apps import ORDER_PAYMENT_TYPE
 
 
 DEFAULT_CURRENCY_SYMBOL = getattr(settings, 'DEFAULT_CURRENCY_SYMBOL', '€')
@@ -34,7 +35,7 @@ class CreateOrderForm(forms.Form):
     country = forms.CharField(label=_('Country'), required=True)
 
     payment_type = forms.ChoiceField(label=_('How to Pay'),
-                                     choices=[('bank_debit', _('Bank Debit')), ('self_pay', _('Self Pay'))],
+                                     choices=ORDER_PAYMENT_TYPE.get_choices(),
                                      help_text=_(''))
 
     t_and_c = forms.BooleanField(label=_('Terms & Conditions'),
@@ -91,7 +92,6 @@ class CreateOrderForm(forms.Form):
         """
         t_and_c = self.cleaned_data.pop('t_and_c')
         has_read_contract = self.cleaned_data.pop('has_read_contract')
-        payment_type = self.cleaned_data.pop('payment_type')
 
         amount = self.cleaned_data['amount']
         self.cleaned_data['amount'] = Money(Decimal(amount), EUR)

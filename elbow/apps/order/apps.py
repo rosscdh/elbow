@@ -16,6 +16,11 @@ ORDER_STATUS = get_namedtuple_choices('ORDER_STATUS', (
     ('cancelled', 'cancelled', _('Payment Cancelled')),
 ))
 
+ORDER_PAYMENT_TYPE = get_namedtuple_choices('ORDER_PAYMENT_TYPE', (
+    ('bank_transfer', 'bank_transfer', _('Bank transfer')),
+    ('manual_bank_tx', 'manual_bank_tx', _('Manual bank transfer')),
+))
+
 
 class OrderConfig(AppConfig):
     name = 'order'

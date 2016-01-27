@@ -6,7 +6,7 @@ from django.contrib.contenttypes.models import ContentType
 
 from djmoney.models.fields import MoneyField
 
-from .apps import ORDER_STATUS
+from .apps import ORDER_STATUS, ORDER_PAYMENT_TYPE
 from .managers import OrderManager
 
 from shortuuidfield import ShortUUIDField
@@ -33,6 +33,11 @@ class Order(models.Model):
                               default=ORDER_STATUS.pending,
                               max_length=64,
                               db_index=True)
+
+    payment_type = models.CharField(choices=ORDER_PAYMENT_TYPE.get_choices(),
+                                    default=ORDER_PAYMENT_TYPE.bank_transfer,
+                                    max_length=24,
+                                    db_index=True)
 
     amount = MoneyField(max_digits=10, decimal_places=2, default_currency='EUR')
 

@@ -26,7 +26,7 @@ ALLOWED_HOSTS = ['*']
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
-LANGUAGE_CODE = 'en-gb'
+LANGUAGE_CODE = 'de'
 
 TIME_ZONE = 'UTC'
 
@@ -98,6 +98,8 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # Language
+    'django.middleware.locale.LocaleMiddleware',
     # Minify
     'pipeline.middleware.MinifyHTMLMiddleware',
     'django.middleware.gzip.GZipMiddleware',
@@ -262,6 +264,7 @@ PIPELINE = {
             'source_filenames': (
                 'bootstrap-sass/assets/stylesheets/_bootstrap.scss',
                 'css/theme.scss',
+                'famfamfam-flags/dist/sprite/famfamfam-flags.css',
             ),
             'output_filename': 'dist/base.css',
             'variant': 'datauri',
@@ -282,6 +285,7 @@ BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, '../')
 
 BOWER_INSTALLED_APPS = (
     "bootstrap-sass#3.3.6",
+    'famfamfam-flags#0.5.0',
 )
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
@@ -308,7 +312,7 @@ PAGE_DEFAULT_TEMPLATE = 'pages/index.html'
 # django.utils.translation -- that module depends on the settings.
 gettext_noop = lambda s: s
 
-PAGE_LANGUAGES = (
+PAGE_LANGUAGES = LANGUAGES = (
     ('de', gettext_noop('German')),
     ('en-gb', gettext_noop('English')),
 )

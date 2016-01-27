@@ -8,10 +8,10 @@ urlpatterns = patterns('',
                            OrderCreate.as_view(),
                            name='create'),
 
-                       url(r'^(?P<project_slug>[\w-]+)/order/(?P<uuid>.*)/$',
+                       url(r'^(?P<project_slug>[\w-]+)/order/(?P<uuid>.*)/payment/$',
                            OrderPayment.as_view(),
                            name='payment'),
 
-                       url(r'^(?P<project_slug>[\w-]+)/order/(?P<slug>[\w-]+)/$',
+                       url(r'^(?P<project_slug>[\w-]+)/order/(?P<uuid>[\w-]+)/$',
                            OrderDetail.as_view(),
                            name='detail'),)

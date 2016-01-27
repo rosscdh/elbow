@@ -43,12 +43,23 @@ class OrderCreate(LoginRequiredMixin, FormView):
 class OrderPayment(LoginRequiredMixin, DetailView):
     template_name = 'order/order-payment.html'
     model = Order
+    slug_field = 'uuid'
+    slug_url_kwarg = 'uuid'
 
     def dispatch(self, request, *args, **kwargs):
         self.project = Project.objects.get(slug=self.kwargs.get('project_slug'))
         return super(OrderPayment, self).dispatch(request, *args, **kwargs)
 
+    def get_context_data(self, *args, **kwargs):
+        context = super(OrderPayment, self).get_context_data(*args, **kwargs)
+        context.update({
+            'project': self.project
+        })
+        return context
+
 
 class OrderDetail(LoginRequiredMixin, DetailView):
     template_name = 'order/order-detail.html'
     model = Order
+    slug_field = 'uuid'
+    slug_url_kwarg = 'uuid'
