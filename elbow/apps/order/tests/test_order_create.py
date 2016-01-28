@@ -1,6 +1,7 @@
 # -*- coding: UTF-8 -*-
 from . import BaseTestCase, TestCase, VALID_ORDER_POST_DATA
 from django.core.urlresolvers import reverse
+from django.core import mail
 
 from elbow.apps.order.forms import CreateOrderForm
 from model_mommy import mommy
@@ -58,6 +59,7 @@ class OrderFormTest(TestCase):
         self.user = mommy.make('auth.User', **user_dict)
 
         self.initial = VALID_ORDER_POST_DATA
+        mail.outbox = []
 
     def test_invalid_form(self):
         # Test no data
@@ -76,4 +78,14 @@ class OrderFormTest(TestCase):
 
         self.assertEqual(order.user, self.user)
         self.assertEqual(order.project, self.project)
+
+        # Should have email to managers AND email to customer
+        self.assertEqual(2, len(mail.outbox))
+        email = mail.outbox[0]
+        self.assertEqual(unicode(email.subject), u'TodayCapital.de - Investment order created')
+        self.assertEqual(email.recipients(), ['founders@todaycapital.de'])
+
+        email = mail.outbox[1]
+        self.assertEqual(unicode(email.subject), u'TodayCapital.de - Your Investment Order has been created')
+        self.assertEqual(email.recipients(), [self.user.email])
 
