@@ -311,3 +311,9 @@ PAGE_LANGUAGES = LANGUAGES = (
     ('de', gettext_noop('German')),
     ('en-gb', gettext_noop('English')),
 )
+
+# copy PAGE_LANGUAGES
+languages = list(PAGE_LANGUAGES)
+
+# redefine the LANGUAGES setting in order to be sure to have the correct request.LANGUAGE_CODE
+LANGUAGES = languages
