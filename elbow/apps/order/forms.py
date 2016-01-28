@@ -4,6 +4,8 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext_lazy as _
 
+from pinax.eventlog.models import log
+
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit
 from crispy_forms.bootstrap import PrependedAppendedText
@@ -14,6 +16,8 @@ from moneyed import Money, EUR
 #from django_countries.fields import CountryField
 
 from elbow.apps.order.models import Order
+
+from .services import SendForPaymentService
 from .apps import ORDER_PAYMENT_TYPE
 
 
@@ -100,4 +104,17 @@ class CreateOrderForm(forms.Form):
         self.cleaned_data['project'] = self.project
 
         order = Order.objects.create(**self.cleaned_data)
+
+        service = SendForPaymentService(order=order)
+        service.send_order_created_email(user_list=[self.user])
+
+        log(
+            user=self.user,
+            action="order.lifecycle.created",
+            obj=order,
+            extra={
+                "note": "%s Created a new Order to Invest" % self.user
+            }
+        )
+
         return order
