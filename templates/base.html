@@ -1,7 +1,7 @@
 <!doctype html>{% load pipeline i18n pages_tags flags %}{% load_pages %}
 {% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}{% get_available_languages as LANGUAGES %}
 {% get_language_info for LANGUAGE_CODE as current_lang %}
-<html lang="{{ LANGUAGE_CODE|default:"en-us" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+<html lang="{{ LANGUAGE_CODE|default:"de" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
   <head>
     <meta charset="utf-8">
     <title>{% block page_title %}TodayCapital.de{% endblock %}</title>
@@ -36,12 +36,12 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/{{ current_lang.code }}/">{% trans 'Home' %}</a></li>
+            <!-- <li class="active"><a href="/{{ current_lang.code }}/">{% trans 'Home' %}</a></li> -->
             {% for page in pages_navigation %}
                 {% pages_menu page %}
             {% endfor %}
             <!-- Languages -->
-            <li class="dropdown">
+<!--             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{% famfamfam_flag_icon current_lang %}{{ current_lang.name_translated }} <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 {% for lang in LANGUAGES %}
@@ -50,7 +50,7 @@
                 </li>
                 {% endfor %}
               </ul>
-            </li>
+            </li> -->
             <!-- End languages -->
             {% if not user.is_authenticated %}
             <li><a href="{% url 'account_login' %}">{% trans 'Login' %}</a></li>

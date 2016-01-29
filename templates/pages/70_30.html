@@ -1,0 +1,18 @@
+{% extends 'base.html' %}{% load cache pages_tags i18n %}
+
+{% block page_header %}
+    {% placeholder page_head with RichTextarea %}
+{% endblock %}
+
+{% block content %}
+    {% placeholder right-column with RichTextarea parsed as right_column %}
+    <div style="col-sm-4 pull-right">
+        {{ right_column }}
+    </div>
+
+    {% if current_page %}
+    <div style="col-sm-8">
+        {% placeholder body with RichTextarea %}
+    </div>
+    {% endif %}
+{% endblock %}

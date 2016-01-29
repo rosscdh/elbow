@@ -1,0 +1,87 @@
+{% extends 'base.html' %}{% load cache pages_tags i18n %}{% load project_tags %}
+
+{% block page_header %}
+    {% placeholder carousel_page_header with AdminTextareaWidget %}
+{% endblock %}
+
+{% block content %}
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+    <div class="container marketing">
+
+      <!-- Three columns of text below the carousel -->
+      <div class="row">
+        <div class="col-md-4">
+            {% placeholder marketing_col_1 with AdminTextareaWidget %}
+        </div><!-- /.col-lg-4 -->
+        <div class="col-md-4">
+          {% placeholder marketing_col_2 with AdminTextareaWidget %}
+        </div><!-- /.col-lg-4 -->
+        <div class="col-md-4">
+          {% placeholder marketing_col_3 with AdminTextareaWidget %}
+        </div><!-- /.col-lg-4 -->
+      </div><!-- /.row -->
+
+
+      <!-- START THE FEATURETTES -->
+
+      <hr class="featurette-divider">
+      {% project_preview project_list %}
+
+      {% placeholder featurette_1 with AdminTextareaWidget parsed as featurette_1 %}
+      {% imageplaceholder featurette_1_image as featurette_1_image %}
+
+      {% placeholder featurette_2 with AdminTextareaWidget parsed as featurette_2 %}
+      {% imageplaceholder featurette_2_image as featurette_2_image %}
+
+      {% placeholder featurette_3 with AdminTextareaWidget parsed as featurette_3 %}
+      {% imageplaceholder featurette_3_image as featurette_3_image %}
+
+      <div class="row featurette">
+        <div class="col-md-7">
+          {{ featurette_1 }}
+        </div>
+        <div class="col-md-5">
+        {% if featurette_1_image %}
+          <img class="featurette-image img-responsive center-block" data-src="{{ featurette_1_image }}" alt="" />
+        {% else %}
+          &nbsp;
+        {% endif %}
+        </div>
+      </div>
+
+      <hr class="featurette-divider">
+
+      <div class="row featurette">
+        <div class="col-md-7 col-md-push-5">
+          {{ featurette_2 }}
+        </div>
+        <div class="col-md-5 col-md-pull-7">
+        {% if featurette_2_image %}
+          <img class="featurette-image img-responsive center-block" data-src="{{ featurette_2_image }}" alt="" />
+        {% else %}
+          &nbsp;
+        {% endif %}
+        </div>
+      </div>
+
+      <hr class="featurette-divider">
+
+      <div class="row featurette">
+        <div class="col-md-7">
+          {{ featurette_3 }}
+        </div>
+        <div class="col-md-5">
+        {% if featurette_3_image %}
+          <img class="featurette-image img-responsive center-block" data-src="{{ featurette_3_image }}" alt="" />
+        {% else %}
+          &nbsp;
+        {% endif %}
+        </div>
+      </div>
+
+      <hr class="featurette-divider">
+      <!-- /END THE FEATURETTES -->
+{% endblock %}

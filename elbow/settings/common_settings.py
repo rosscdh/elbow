@@ -301,7 +301,11 @@ DEFAULT_CURRENCY_SYMBOL = '€'
 CRISPY_FAIL_SILENTLY = False
 
 # CMS settings
-PAGE_DEFAULT_TEMPLATE = 'pages/index.html'
+PAGE_DEFAULT_TEMPLATE = 'pages/70_30.html'
+PAGE_TEMPLATES = (
+    ('pages/home_page.html', 'Homepage'),
+    ('pages/70_40.html', '70/30'),
+)
 
 # This is defined here as a do-nothing function because we can't import
 # django.utils.translation -- that module depends on the settings.
