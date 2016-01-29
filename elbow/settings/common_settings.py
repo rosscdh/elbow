@@ -321,3 +321,5 @@ languages = list(PAGE_LANGUAGES)
 
 # redefine the LANGUAGES setting in order to be sure to have the correct request.LANGUAGE_CODE
 LANGUAGES = languages
+
+SECUPAY_TOKEN = 'testToken'
