@@ -17,7 +17,7 @@ from moneyed import Money, EUR
 
 from elbow.apps.order.models import Order
 
-from .services import SendForPaymentService
+from elbow.apps.public.services import SendEmailService
 from .apps import ORDER_PAYMENT_TYPE
 
 
@@ -105,8 +105,8 @@ class CreateOrderForm(forms.Form):
 
         order = Order.objects.create(**self.cleaned_data)
 
-        service = SendForPaymentService(order=order)
-        service.send_order_created_email(user_list=[self.user])
+        email_service = SendEmailService(order=order)
+        email_service.send_order_created_email(user_list=[self.user])
 
         log(
             user=self.user,
