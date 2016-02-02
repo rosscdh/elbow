@@ -73,15 +73,15 @@ class Order(models.Model):
 
     @property
     def url_success(self):
-        return reverse('order:payment_success', kwargs={'project_slug': self.project.slug, 'uuid': self.order.uuid})
+        return reverse('order:payment_success', kwargs={'project_slug': self.project.slug, 'uuid': self.uuid})
 
     @property
     def url_failure(self):
-        return reverse('order:payment_failure', kwargs={'project_slug': self.project.slug, 'uuid': self.order.uuid})
+        return reverse('order:payment_failure', kwargs={'project_slug': self.project.slug, 'uuid': self.uuid})
 
     @property
-    def url_push(self):
-        return reverse('order:payment_webhook', kwargs={'project_slug': self.project.slug, 'uuid': self.order.uuid})
+    def url_webhook(self):
+        return reverse('order:payment_webhook', kwargs={'project_slug': self.project.slug, 'uuid': self.uuid})
 
 
 class PaymentOption(models.Model):

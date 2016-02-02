@@ -15,7 +15,7 @@ class OrderModelTest(BaseTestCase):
     def setUp(self):
         super(OrderModelTest, self).setUp()
         mail.outbox = []
-        self.order = mommy.prepare('order.Order',
+        self.order = mommy.make('order.Order',
                                    status='processing',  # Must be in processing
                                    transaction_id=None)  # AND must NOT have a transaction_id
         self.order.user.email = 'bob@example.com'  # Set the email of the order User
@@ -28,3 +28,12 @@ class OrderModelTest(BaseTestCase):
 
     def test_log_history(self):
         self.assertEqual(self.order.log_history.__class__.__name__, 'QuerySet')
+
+    def test_url_success(self):
+        self.assertEqual(self.order.url_success, u'/de/orders/%s/order/%s/payment/successful/' % (self.order.project.slug, self.order.uuid))
+
+    def test_url_failure(self):
+        self.assertEqual(self.order.url_failure, u'/de/orders/%s/order/%s/payment/failure/' % (self.order.project.slug, self.order.uuid))
+
+    def test_url_failure(self):
+        self.assertEqual(self.order.url_webhook, u'/de/orders/%s/order/%s/payment/webhook/' % (self.order.project.slug, self.order.uuid))

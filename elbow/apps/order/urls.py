@@ -27,6 +27,6 @@ urlpatterns = patterns('',
                            OrderDetail.as_view(),
                            name='payment_failure'),
 
-                       url(r'^(?P<project_slug>[\w-]+)/order/(?P<uuid>[\w-]+)/payment/webhooks/$',
+                       url(r'^(?P<project_slug>[\w-]+)/order/(?P<uuid>[\w-]+)/payment/webhook/$',
                            OrderDetail.as_view(),
                            name='payment_webhook'),)
