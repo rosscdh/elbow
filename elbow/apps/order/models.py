@@ -1,6 +1,7 @@
 # -*- coding: UTF-8 -*-
 from __future__ import unicode_literals
 from django.db import models
+from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.contenttypes.models import ContentType
 
@@ -69,6 +70,18 @@ class Order(models.Model):
     @property
     def log_history(self):
         return self.content_type.log_set.filter(object_id=self.pk)
+
+    @property
+    def url_success(self):
+        return reverse('order:payment_success', kwargs={'project_slug': self.project.slug, 'uuid': self.order.uuid})
+
+    @property
+    def url_failure(self):
+        return reverse('order:payment_failure', kwargs={'project_slug': self.project.slug, 'uuid': self.order.uuid})
+
+    @property
+    def url_push(self):
+        return reverse('order:payment_webhook', kwargs={'project_slug': self.project.slug, 'uuid': self.order.uuid})
 
 
 class PaymentOption(models.Model):
