@@ -3,7 +3,6 @@
 help:
 	@echo "bootstrap - bootstrap a local dev environment in vagrant"
 	@echo "clean-pyc - remove Python file artifacts"
-	@echo "clean     - remove various artifacts"
 	@echo "lint      - check style with flake8"
 	@echo "test      - run tests"
 	@echo "coverage  - check code coverage"
@@ -21,19 +20,16 @@ clean-pyc:
 	find . -name '*.pyo' -exec rm -f {} +
 	find . -name '*~' -exec rm -f {} +
 
-clean: clean-pyc
-	rm -rf htmlcov/
-
 lint:
-	flake8 --max-line-length=120 --exclude=migrations --ignore=E128 revision
+	flake8 --max-line-length=120 --exclude=migrations --ignore=E128 elbow
 
 test:
-	honcho run python manage.py test
+	honcho run coverage run --source='.' manage.py test
+	coverage xml
 
 coverage:
 	honcho run coverage run --source='.' manage.py test
-	coverage html
-	open htmlcov/index.html
+	coverage xml
 
 docs:
 	@echo "Not implemented"

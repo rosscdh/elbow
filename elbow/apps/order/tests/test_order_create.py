@@ -45,9 +45,6 @@ class OrderCreateViewTest(BaseTestCase):
         resp = self.c.post(self.url, self.initial)
 
         self.assertEqual(resp.status_code, 302)
-        # shortUUIDHexMatch.search("/orders/my-basic-test-project/order/CQGsvHhfhfnsQQp4zRax2g/")
-        # import pdb;pdb.set_trace()
-        # self.assertEqual(resp.url, "/orders/my-basic-test-project/order/CQGsvHhfhfnsQQp4zRax2g/")
 
 
 class OrderFormTest(TestCase):
