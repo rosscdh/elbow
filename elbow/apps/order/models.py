@@ -20,6 +20,7 @@ from shortuuidfield import ShortUUIDField
 
 class Order(models.Model):
     ORDER_STATUS = ORDER_STATUS
+    ORDER_PAYMENT_TYPE = ORDER_PAYMENT_TYPE
 
     uuid = ShortUUIDField(db_index=True)
     user = models.ForeignKey('auth.User')
@@ -98,7 +99,9 @@ class Order(models.Model):
         """
         resp = None
 
-        if self.payment_type in [ORDER_PAYMENT_TYPE.creditcard, ORDER_PAYMENT_TYPE.debit]:
+        if self.payment_type in [ORDER_PAYMENT_TYPE.creditcard,
+                                 ORDER_PAYMENT_TYPE.debit]:
+
             sp = SecuPay(settings=settings)
             resp = sp.payment().make_payment(amount=str(self.amount.amount),
                                              payment_type=self.payment_type,

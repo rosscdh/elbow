@@ -41,7 +41,7 @@ class OrderModelTest(BaseTestCase):
         self.assertEqual(self.order.url_webhook, u'/de/orders/%s/order/%s/payment/webhook/' % (self.order.project.slug, self.order.uuid))
 
     @httpretty.activate
-    def test_make_payment(self):
+    def test_valid_make_payment(self):
         expected_response = {
             "status": "ok",
             "data": {
@@ -64,4 +64,19 @@ class OrderModelTest(BaseTestCase):
 
         self.assertEqual(self.order.transaction_id, 'tujevzgobryk3303')
         self.assertEqual(self.order.data, {u'iframe_url': u'https://api.secupay.ag/payment/tujevzgobryk3303', u'hash': u'tujevzgobryk3303'})
+
+    def test_invalid_payment_type_make_payment(self):
+        self.order.payment_type = self.order.ORDER_PAYMENT_TYPE.manual_bank_tx
+        self.order.save(update_fields=['payment_type'])
+
+        with self.settings(DEBUG=True):
+            resp = self.order.make_payment(user=self.order.user)
+
+        self.assertTrue(type(resp) is tuple)
+        self.assertTrue(len(resp) is 2)
+        self.assertTrue(resp[0].__class__.__name__ == 'Order')
+        self.assertTrue(resp[1] is None)
+
+        self.assertEqual(self.order.transaction_id, None)
+        self.assertEqual(self.order.data, {})
 
