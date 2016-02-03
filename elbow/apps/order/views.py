@@ -23,6 +23,7 @@ class OrderCreate(LoginRequiredMixin, FormView):
 
     def form_valid(self, form):
         self.order = form.save()
+        self.order, payment_api_response = self.order.make_payment(user=self.request.user)
         return super(OrderCreate, self).form_valid(form=form)
 
     def get_success_url(self):
