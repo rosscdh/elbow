@@ -10,12 +10,12 @@
     <tr>
         <th class="required">ID</th>
         <th class="required">Amount</th>
-        <th class="required">Payment type</th>
         <th class="required">User</th>
         <th class="required">Customer Name</th>
         <th class="required">Address</th>
         <th class="required">Country</th>
         <th class="required">Secupay Id</th>
+        <th class="required">Payment type</th>
         <th class="required">Status</th>
         <th>Actions</th>
     </tr>
@@ -32,9 +32,6 @@
             <td class="field-amount">
                 {{ order.amount }}
             </td>
-            <td class="field-payment_type">
-                {{ order.payment_type }}
-            </td>
             <td class="field-user">
                 {% if order.user.first_name and order.user.last_name %}{{ order.user.first_name }}{% else %}{{ order.user.username }}{% endif %} {{ order.user.last_name }} {% if order.user.email %}({{ order.user.email }}){% endif %}
             </td>
@@ -49,6 +46,9 @@
             </td>
             <td class="field-transaction_id">
                 {{ order.transaction_id|default:"" }}
+            </td>
+            <td class="field-payment_type">
+                {{ order.payment_type }}
             </td>
             <td class="field-status">
                 {{ order.status }}
@@ -65,7 +65,7 @@
               {% if order.status == 'cancelled' or order.status == 'processing' %}
               <a href="javascript:;" class="order-lifecycle-event" data-url="{% url 'admin:order_reset' uuid=order.uuid %}">{% trans 'Reset Order' %}</a>
               {% endif %}
-              <a href="{% url 'admin:order_add_log' uuid=order.uuid %}" class="view-order-logs" data-url="{% url 'admin:order_add_log' uuid=order.uuid %}">{% trans 'View Logs' %}</a>
+              <br/><a href="{% url 'admin:order_add_log' uuid=order.uuid %}" target="_NEW" class="view-order-logs" data-url="{% url 'admin:order_add_log' uuid=order.uuid %}">{% trans 'View Logs' %}</a>
             </td>
         </tr>
      {% empty %}
