@@ -1,0 +1,55 @@
+{% extends "admin/base.html" %}{% load i18n admin_urls admin_static admin_modify humanize %}
+
+{% block content %}
+    <!-- CUSTOM ORDERS -->
+   <h1>{% trans 'Order Logs' %}</h1>
+   <div class="well">
+     <p><b>Amount:</b> {{ order.amount }}</p>
+     <p><b>User:</b> {{ order.user }}</p>
+     <p><b>Customer:</b> {{ order.customer_name }}</p>
+     <p><b>Secupay ID:</b> {{ order.transaction_id }}</p>
+     <p><b>Status:</b> {{ order.status }}</p>
+   </div>
+   <table>
+    <thead>
+    <tr>
+        <th class="required">Date</th>
+        <th class="required">Event</th>
+        <th class="required">Data</th>
+    </tr>
+    </thead>
+
+     <tbody>
+     {% for log in object_list %}
+        <tr class="form-row {% cycle "row1" "row2" %}">
+            <td class="field-uuid">
+                {{ log.timestamp|naturaltime }}
+                <br/><small>{{ log.timestamp }}</small>
+            </td>
+            <td class="field-action">
+              {{ log.action }}
+            </td>
+            <td class="field-extra">
+              {{ log.extra }}
+            </td>
+        </tr>
+     {% empty %}
+         <tr class="form-row {% cycle "row1" "row2" %}">
+             <td colspan="10"><b>{% trans 'No logs found' %}</b></td>
+         </tr>
+     {% endfor %}
+     </tbody>
+   </table>
+   <!-- END CUSTOM ORDERS -->
+    {{ block.super }}
+{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <script type="text/javascript">
+    'use strict';
+    (function($) {
+
+    })(django.jQuery);
+    </script>
+{% endblock %}

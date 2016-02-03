@@ -26,8 +26,8 @@
         <tr class="form-row {% cycle "row1" "row2" %}">
             <td class="field-uuid">
                 <a href=""><b>{{ order.uuid }}</b></a><br/>
-                <b>{% trans 'Created:' %}</b> <a href="javascript:;" title="{{ order.created_at }}">{{ order.created_at|naturaltime }}</a><br/>
-                <b>{% trans 'Updated:' %}</b> <a href="javascript:;" title="{{ order.created_at }}">{{ order.updated_at|naturaltime }}</a><br/>
+                <b>{% trans 'Created:' %}</b> <a title="{{ order.created_at }}">{{ order.created_at|naturaltime }}</a><br/>
+                <b>{% trans 'Updated:' %}</b> <a title="{{ order.created_at }}">{{ order.updated_at|naturaltime }}</a><br/>
             </td>
             <td class="field-amount">
                 {{ order.amount }}
@@ -56,7 +56,7 @@
             <td class="action buttons">
               <!-- <button class="">{% trans 'Add Note' %}</button> -->
               {% if order.status == 'pending' and order.status != 'failed' %}
-                {% if order.payment_type == 'bank_transfer' %}<a href="javascript:;" class="order-lifecycle-event" data-url="{% url 'admin:order_send_for_payment' uuid=order.uuid %}">{% trans 'Send for Payment' %}</a><br/>{% endif %}
+                <!-- {% if order.payment_type == 'bank_transfer' %}<a href="javascript:;" class="order-lifecycle-event" data-url="{% url 'admin:order_send_for_payment' uuid=order.uuid %}">{% trans 'Send for Payment' %}</a><br/>{% endif %} -->
                 {% if order.payment_type == 'manual_bank_tx' %}<a href="javascript:;" class="order-lifecycle-event" data-url="{% url 'admin:order_marked_as_paid' uuid=order.uuid %}">{% trans 'Mark as Paid' %}</a><br/>{% endif %}
               {% endif %}
               {% if order.status != 'cancelled' and order.status != 'paid' %}
@@ -65,6 +65,7 @@
               {% if order.status == 'cancelled' or order.status == 'processing' %}
               <a href="javascript:;" class="order-lifecycle-event" data-url="{% url 'admin:order_reset' uuid=order.uuid %}">{% trans 'Reset Order' %}</a>
               {% endif %}
+              <a href="{% url 'admin:order_add_log' uuid=order.uuid %}" class="view-order-logs" data-url="{% url 'admin:order_add_log' uuid=order.uuid %}">{% trans 'View Logs' %}</a>
             </td>
         </tr>
      {% empty %}

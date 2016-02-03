@@ -2,6 +2,7 @@
 from django.contrib import admin
 from django.conf.urls import url
 from django.http import JsonResponse
+from django.template.response import TemplateResponse
 
 from pinax.eventlog.models import log
 
@@ -117,7 +118,16 @@ class OrderAdmin(admin.ModelAdmin):
                     "note": request.POST.get('note')
                 }
             )
+            return JsonResponse(resp)
+        else:
+            resp = {
+                'is_popup': True,
+                'order': order,
+                'object_list': order.log_history,
+            }
+            return TemplateResponse(request,
+                                    'order/admin/order-logs.html',
+                                    resp)
 
-        return JsonResponse(resp)
 
 admin.site.register(Order, OrderAdmin)
