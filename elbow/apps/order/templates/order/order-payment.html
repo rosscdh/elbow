@@ -22,18 +22,16 @@
 
 <div class="row">
 
-  <iframe src="{{ order.data.iframe_url }}" width="100%" height="420"></iframe>
-
-  {% if order.payment_type == 'bank_transfer' %}
+  {% if order.payment_type == 'manual_bank_tx' %}
 
     <div class="col-md-12">
-      <h2>The secupay payment iframe here</h2>
+      <h2>Our Bank Details Here</h2>
     </div>
 
   {% else %}
 
     <div class="col-md-12">
-      <h2>Our Bank Details Here</h2>
+      <iframe src="{{ order.data.iframe_url }}" width="100%" height="420"></iframe>
     </div>
 
   {% endif %}

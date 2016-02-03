@@ -96,23 +96,26 @@ class Order(models.Model):
         """
         Primary make payment interface returns the iframe url
         """
-        sp = SecuPay(settings=settings)
-        resp = sp.payment().make_payment(amount=str(self.amount.amount),
-                                         payment_type='debit', #creditcard
-                                         url_success=self.url_success,
-                                         url_failure=self.url_failure,
-                                         url_push=self.url_webhook)
-        log(
-            user=user,
-            action="order.lifecycle.payment.make_payment",
-            obj=self,
-            extra=resp
-        )
+        resp = None
 
-        self.transaction_id = resp.get('data', {}).get('hash')
-        self.data['iframe_url'] = resp.get('data', {}).get('iframe_url', None)
-        self.data['hash'] = resp.get('data', {}).get('hash', None)
-        self.save(update_fields=['transaction_id', 'data'])
+        if self.payment_type in [ORDER_PAYMENT_TYPE.creditcard, ORDER_PAYMENT_TYPE.debit]:
+            sp = SecuPay(settings=settings)
+            resp = sp.payment().make_payment(amount=str(self.amount.amount),
+                                             payment_type='debit', #creditcard
+                                             url_success=self.url_success,
+                                             url_failure=self.url_failure,
+                                             url_push=self.url_webhook)
+            log(
+                user=user,
+                action="order.lifecycle.payment.make_payment",
+                obj=self,
+                extra=resp
+            )
+
+            self.transaction_id = resp.get('data', {}).get('hash')
+            self.data['iframe_url'] = resp.get('data', {}).get('iframe_url', None)
+            self.data['hash'] = resp.get('data', {}).get('hash', None)
+            self.save(update_fields=['transaction_id', 'data'])
 
         return (self, resp,)
 
