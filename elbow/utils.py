@@ -3,7 +3,6 @@ from django.conf import settings
 from django.template import loader
 from django.core.files.storage import FileSystemStorage
 
-#from storages.backends.s3boto import S3BotoStorage
 from inmemorystorage import InMemoryStorage
 
 import html2text    # convert html to text
