@@ -120,7 +120,7 @@ class Order(models.Model):
             self.data['hash'] = resp.get('data', {}).get('hash', None)
             self.save(update_fields=['transaction_id', 'data'])
 
-        return (self, resp,)
+        return self, resp
 
 
 class PaymentOption(models.Model):
