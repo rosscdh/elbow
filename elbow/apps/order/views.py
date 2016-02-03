@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
+from django.http import HttpResponse
 from django.core.urlresolvers import reverse
-from django.views.generic import FormView, DetailView
+from django.views.generic import FormView, DetailView, View
+
+from pinax.eventlog.models import log
 
 from elbow.mixins import LoginRequiredMixin
 from elbow.apps.project.models import Project
@@ -63,3 +66,57 @@ class OrderDetail(LoginRequiredMixin, DetailView):
     model = Order
     slug_field = 'uuid'
     slug_url_kwarg = 'uuid'
+
+
+class OrderWebhook(View):
+    """
+    Process payment webhooks
+    """
+    model = Order
+
+    def get_object(self):
+        return self.model.objects.get(transaction_id=self.transaction_id)
+
+    def post(self, request, *args, **kwargs):
+        self.transaction_id = request.POST.get('hash')
+        try:
+            order = self.get_object()
+        except Order.DoesNotExist:
+            order = None
+            status_code = 400
+            request.POST.update(ack='Disapproved',
+                                error='Order with transaction_id of %s does not exist' % self.transaction_id)
+
+        if order:
+            amount = request.POST.get('amount')
+            status_id = request.POST.get('status_id')
+            status_description = request.POST.get('status_description')
+            changed = request.POST.get('changed')
+            apikey = request.POST.get('apikey')
+            hint = request.POST.get('hint')
+            payment_status = request.POST.get('payment_status')
+            simplifiedstatus = request.POST.get('simplifiedstatus')
+
+            log(
+                user=request.user,
+                action="order.lifecycle.payment.webhook.%s" % simplifiedstatus,
+                obj=order,
+                extra={
+                    'transaction_id': self.transaction_id,
+                    'amount': amount,
+                    'status_id': status_id,
+                    'status_description': status_description,
+                    'changed': changed,
+                    #'apikey': apikey, # Should not be TXing this at all
+                    'hint': hint,
+                    'payment_status': payment_status,
+                    'simplifiedstatus': simplifiedstatus,
+                }
+            )
+            status_code = 200
+            request.POST.update(ack='Approved')
+
+        content = request.POST.urlencode()
+
+        return HttpResponse(content, 'text/plain', status_code)
+

@@ -6,6 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.contenttypes.models import ContentType
 
 from djmoney.models.fields import MoneyField
+from jsonfield import JSONField
 
 from .apps import ORDER_STATUS, ORDER_PAYMENT_TYPE
 from .managers import OrderManager
@@ -21,7 +22,6 @@ class Order(models.Model):
     project = models.ForeignKey('project.Project')
     payment_option = models.ForeignKey('order.PaymentOption', blank=True, null=True)
 
-    token = models.CharField(max_length=255, blank=True, null=True)
     transaction_id = models.CharField(max_length=128, blank=True, null=True)
 
     phone = models.CharField(max_length=128, blank=True, null=True)
@@ -44,6 +44,8 @@ class Order(models.Model):
 
     shipping = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
     tracking_number = models.CharField(max_length=128, blank=True, null=True)
+
+    data = JSONField(default={})
 
     expiration = models.DateField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)

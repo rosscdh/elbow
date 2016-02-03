@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 from django.conf.urls import patterns, url
 
-from .views import OrderCreate, OrderPayment, OrderDetail
+from .views import (OrderCreate,
+                    OrderPayment,
+                    OrderDetail,
+                    OrderWebhook)
 
 urlpatterns = patterns('',
                        url(r'^(?P<project_slug>[\w-]+)/order/$',
@@ -17,16 +20,16 @@ urlpatterns = patterns('',
                            name='detail'),
 
                        #
-                       # Secupay integration
+                       # Payment integration, All are webhooks
                        #
                        url(r'^(?P<project_slug>[\w-]+)/order/(?P<uuid>[\w-]+)/payment/successful/$',
-                           OrderDetail.as_view(),
+                           OrderWebhook.as_view(),
                            name='payment_success'),
 
                        url(r'^(?P<project_slug>[\w-]+)/order/(?P<uuid>[\w-]+)/payment/failure/$',
-                           OrderDetail.as_view(),
+                           OrderWebhook.as_view(),
                            name='payment_failure'),
 
                        url(r'^(?P<project_slug>[\w-]+)/order/(?P<uuid>[\w-]+)/payment/webhook/$',
-                           OrderDetail.as_view(),
+                           OrderWebhook.as_view(),
                            name='payment_webhook'),)
