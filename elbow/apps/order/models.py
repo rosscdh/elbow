@@ -97,7 +97,7 @@ class Order(models.Model):
         Primary make payment interface returns the iframe url
         """
         sp = SecuPay(settings=settings)
-        resp = sp.payment().make_payment(amount=float(self.amount.amount),
+        resp = sp.payment().make_payment(amount=str(self.amount.amount),
                                          payment_type='debit', #creditcard
                                          url_success=self.url_success,
                                          url_failure=self.url_failure,
