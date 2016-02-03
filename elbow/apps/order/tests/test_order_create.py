@@ -3,6 +3,9 @@ from . import BaseTestCase, TestCase, VALID_ORDER_POST_DATA
 from django.core.urlresolvers import reverse
 from django.core import mail
 
+import json
+import httpretty
+
 from elbow.apps.order.forms import CreateOrderForm
 from model_mommy import mommy
 
@@ -40,9 +43,23 @@ class OrderCreateViewTest(BaseTestCase):
         # Default sets the current usres name
         self.assertEqual(resp.context['form'].fields['customer_name'].initial, '%s %s' % (self.user.first_name, self.user.last_name))
 
+    @httpretty.activate
     def test_form_redirects_to_payments_page_on_success(self):
-        self.c.force_login(self.user)
-        resp = self.c.post(self.url, self.initial)
+        expected_response = {
+            "status": "ok",
+            "data": {
+                "hash": "tujevzgobryk3303",
+                "iframe_url": "https://api.secupay.ag/payment/tujevzgobryk3303"
+            },
+            "errors": None
+        }
+        httpretty.register_uri(httpretty.POST, "https://api-dist.secupay-ag.de/payment/init",
+                               body=json.dumps(expected_response),
+                               content_type="application/json")
+
+        with self.settings(DEBUG=True):
+            self.c.force_login(self.user)
+            resp = self.c.post(self.url, self.initial)
 
         self.assertEqual(resp.status_code, 302)
 
@@ -63,14 +80,33 @@ class OrderFormTest(TestCase):
         form = CreateOrderForm(user=self.user, project=self.project)
         self.assertTrue(form.is_valid() is False)
 
+    @httpretty.activate
     def test_valid_form(self):
-        # Test with data
-        form = CreateOrderForm(user=self.user, project=self.project, data=self.initial)
-        self.assertTrue(form.is_valid())
-        order = form.save()
+        expected_response = {
+            "status": "ok",
+            "data": {
+                "hash": "tujevzgobryk3303",
+                "iframe_url": "https://api.secupay.ag/payment/tujevzgobryk3303"
+            },
+            "errors": None
+        }
+        httpretty.register_uri(httpretty.POST, "https://api-dist.secupay-ag.de/payment/init",
+                               body=json.dumps(expected_response),
+                               content_type="application/json")
+
+        with self.settings(DEBUG=True):
+
+            # Test with data
+            form = CreateOrderForm(user=self.user, project=self.project, data=self.initial)
+
+            self.assertTrue(form.is_valid())
+            order = form.save()
+
         self.assertEqual(order.__class__.__name__, 'Order')
+
         assert order.uuid
         assert order.pk
+
         self.assertEqual(order.amount.__class__.__name__, 'MoneyPatched')
 
         self.assertEqual(order.user, self.user)

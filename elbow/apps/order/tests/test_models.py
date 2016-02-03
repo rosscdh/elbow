@@ -2,6 +2,8 @@
 from django.core import mail
 from django.contrib.contenttypes.models import ContentType
 
+import json
+import httpretty
 from model_mommy import mommy
 
 from . import BaseTestCase
@@ -37,3 +39,29 @@ class OrderModelTest(BaseTestCase):
 
     def test_url_failure(self):
         self.assertEqual(self.order.url_webhook, u'/de/orders/%s/order/%s/payment/webhook/' % (self.order.project.slug, self.order.uuid))
+
+    @httpretty.activate
+    def test_make_payment(self):
+        expected_response = {
+            "status": "ok",
+            "data": {
+                "hash": "tujevzgobryk3303",
+                "iframe_url": "https://api.secupay.ag/payment/tujevzgobryk3303"
+            },
+            "errors": None
+        }
+        httpretty.register_uri(httpretty.POST, "https://api-dist.secupay-ag.de/payment/init",
+                               body=json.dumps(expected_response),
+                               content_type="application/json")
+
+        with self.settings(DEBUG=True):
+            resp = self.order.make_payment(user=self.order.user)
+
+        self.assertTrue(type(resp) is tuple)
+        self.assertTrue(len(resp) is 2)
+        self.assertTrue(resp[0].__class__.__name__ == 'Order')
+        self.assertTrue(type(resp[1]) is dict)
+
+        self.assertEqual(self.order.transaction_id, 'tujevzgobryk3303')
+        self.assertEqual(self.order.data, {u'iframe_url': u'https://api.secupay.ag/payment/tujevzgobryk3303', u'hash': u'tujevzgobryk3303'})
+

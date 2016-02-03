@@ -40,7 +40,7 @@ class Order(models.Model):
                               db_index=True)
 
     payment_type = models.CharField(choices=ORDER_PAYMENT_TYPE.get_choices(),
-                                    default=ORDER_PAYMENT_TYPE.bank_transfer,
+                                    default=ORDER_PAYMENT_TYPE.debit,
                                     max_length=24,
                                     db_index=True)
 
@@ -101,7 +101,7 @@ class Order(models.Model):
         if self.payment_type in [ORDER_PAYMENT_TYPE.creditcard, ORDER_PAYMENT_TYPE.debit]:
             sp = SecuPay(settings=settings)
             resp = sp.payment().make_payment(amount=str(self.amount.amount),
-                                             payment_type='debit', #creditcard
+                                             payment_type=self.payment_type,
                                              url_success=self.url_success,
                                              url_failure=self.url_failure,
                                              url_push=self.url_webhook)
