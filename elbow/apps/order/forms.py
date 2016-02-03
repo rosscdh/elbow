@@ -13,8 +13,6 @@ from crispy_forms.bootstrap import PrependedAppendedText
 from decimal import Decimal
 from moneyed import Money, EUR
 
-#from django_countries.fields import CountryField
-
 from elbow.apps.order.models import Order
 
 from elbow.apps.public.services import SendEmailService
