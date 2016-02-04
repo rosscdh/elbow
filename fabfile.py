@@ -31,7 +31,7 @@ env.celery_app_name = 'current'
 env.disable_known_hosts = True
 env.fixtures = None
 
-env.application_user = env.user = os.environ.get('USER', 'ubuntu')
+env.application_user = env.user = os.environ.get('USER', 'django')
 
 env.SHA1_FILENAME = None
 env.timestamp = time.time()
@@ -61,7 +61,7 @@ env.roledefs.update({
 @task
 def staging():
     from config.environments import staging as config
-    env.application_user = env.user = 'ubuntu'
+    env.application_user = env.user = 'django'
 
     env.hosts = config.HOSTS if not env.hosts else env.hosts
 
@@ -69,13 +69,13 @@ def staging():
     env.environment_class = 'staging'
     env.newrelic_app_name = 'TodayCapital Staging'
 
-    env.remote_project_path = '/home/ubuntu/apps/elbow/'
-    env.deploy_archive_path = '/home/ubuntu/apps/'
-    env.virtualenv_path = '/home/ubuntu/.virtualenvs/elbow/'
+    env.remote_project_path = '/home/django/apps/elbow-staging/'
+    env.deploy_archive_path = '/home/django/apps/'
+    env.virtualenv_path = '/home/django/.virtualenvs/elbow-staging/'
     env.remote_dashboard_path = None
 
-    env.start_service = 'supervisorctl start elbow'
-    env.stop_service = 'supervisorctl stop elbow'
+    env.start_service = 'supervisorctl start elbow-staging'
+    env.stop_service = 'supervisorctl stop elbow-staging'
     env.start_worker = None
     env.stop_worker = None
 
@@ -560,19 +560,24 @@ def chores():
     sudo('pip install newrelic')
 
 
+# @task
+# def add_user():
+#     sudo('adduser --disabled-password --gecos "" django')
+
 @task
-def add_user():
-    sudo('adduser --disabled-password --gecos "" ubuntu')
+def virtualenv_setup():
+    run('echo "WORKON_HOME=$HOME/.virtualenvs" >> $HOME/.bash_profile')
+    run('echo "source /usr/local/bin/virtualenvwrapper.sh" >> $HOME/.bash_profile')
+    run('echo "source $HOME/.bash_profile" >> $HOME/.bashrc')
+    run('mkdir -p ~/.virtualenvs')
 
 
 @task
 def paths():
-    # run('echo "WORKON_HOME=$HOME/.virtualenvs" >> $HOME/.bash_profile')
-    # run('echo "source /usr/local/bin/virtualenvwrapper.sh" >> $HOME/.bash_profile')
-    # run('echo "source $HOME/.bash_profile" >> $HOME/.bashrc')
-    # run('mkdir -p ~/.virtualenvs')
-    run('mkdir -p ~/apps/elbow/versions/tmp')
-    run('ln -s ~/apps/elbow/versions/tmp ~/apps/elbow/current')
+    run('mkdir -p %s/static' % env.remote_project_path)
+    run('mkdir -p %s/media' % env.remote_project_path)
+    run('mkdir -p %s/versions/tmp' % env.remote_project_path)
+    run('ln -s %s/versions/tmp %s/current' % (env.remote_project_path, env.remote_project_path))
     # pass
 
 @task
