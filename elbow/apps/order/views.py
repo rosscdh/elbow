@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.http import HttpResponse
 from django.core.urlresolvers import reverse
-from django.views.generic import FormView, DetailView, View
+from django.views.generic import FormView, ListView, DetailView, View
 
 from pinax.eventlog.models import log
 
@@ -110,6 +110,16 @@ class OrderPayment(LoginRequiredMixin, DetailView):
             'project': self.project
         })
         return context
+
+
+class UserOrderList(LoginRequiredMixin, ListView):
+    template_name = 'order/order-list.html'
+    model = Order
+    slug_field = 'uuid'
+    slug_url_kwarg = 'uuid'
+
+    def get_queryset(self):
+        return self.model.objects.filter(user=self.request.user)
 
 
 class OrderDetail(LoginRequiredMixin, DetailView):

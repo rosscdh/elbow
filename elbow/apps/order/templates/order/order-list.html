@@ -1,13 +1,13 @@
 {% extends 'order/base.html' %}{% load i18n static crispy_forms_tags djmoney embed_video_tags order_tags %}
 {% load crispy_forms_filters %}
 
-{% block page_title %}{{ project.name }} - Invest Now{% endblock %}
+{% block page_title %}Your Investments{% endblock %}
 {% block page_description %}Invest in {{ project.name }}{% endblock %}
 {% block page_keywords %}invest,project,and-development,development{% endblock %}
 
 {% block page_header %}
 <div class="page-header clearfix">
-  <h1>Your Previous Orders</h1>
+  <h1>Your Investments</h1>
 </div>
 {% endblock %}
 
@@ -16,6 +16,10 @@
 <div class="row">
 
   <div class="col-sm-12">
+  {% for order in object_list %}
+    {{order}}
+  {% empty %}
+  {% endfor %}
   </div>
 
 </div>

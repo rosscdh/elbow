@@ -1,4 +1,4 @@
-{% extends 'order/base.html' %}{% load i18n static crispy_forms_tags djmoney embed_video_tags order_tags %}
+{% extends 'order/base.html' %}{% load i18n static crispy_forms_tags djmoney embed_video_tags %}
 {% load crispy_forms_filters %}
 
 {% block page_title %}{{ project.name }} - Invest Now{% endblock %}
@@ -79,7 +79,6 @@
   </div>
 
   <div class="col-offset-1 col-sm-6">
-    {% project_user_orders project user %}
     {% crispy form %}
   </div>
 

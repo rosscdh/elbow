@@ -5,10 +5,15 @@ from .views import (OrderCreate,
                     OrderMoreInfo,
                     OrderLargeSumAgreement,
                     OrderPayment,
+                    UserOrderList,
                     OrderDetail,
                     OrderWebhook)
 
 urlpatterns = patterns('',
+                       url(r'^$',
+                           UserOrderList.as_view(),
+                           name='user-list'),
+
                        url(r'^(?P<project_slug>[\w-]+)/order/$',
                            OrderCreate.as_view(),
                            name='create'),
