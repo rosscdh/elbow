@@ -1,4 +1,4 @@
-<!doctype html>{% load pipeline i18n pages_tags flags %}{% load_pages %}
+<!doctype html>{% load pipeline i18n pages_tags static flags %}{% load_pages %}
 {% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}{% get_available_languages as LANGUAGES %}
 {% get_language_info for LANGUAGE_CODE as current_lang %}
 <html lang="{{ LANGUAGE_CODE|default:"de" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
@@ -32,7 +32,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/{{ current_lang.code }}/">TodayCapital.de</a>
+          <a class="navbar-brand" href="/{{ current_lang.code }}/"><img class="img img-responsive" src="{% get_static_prefix %}img/todaycapital-logo-white-bg-160.png" alt="" title="" /></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
