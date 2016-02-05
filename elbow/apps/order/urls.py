@@ -18,7 +18,7 @@ urlpatterns = patterns('',
                            name='more_info'),
 
                        url(r'^(?P<project_slug>[\w-]+)/order/(?P<uuid>[\w-]+)/large-sum-agreement/$',
-                           OrderMoreInfo.as_view(),
+                           OrderLargeSumAgreement.as_view(),
                            name='large_sum_agreement'),
 
                        url(r'^(?P<project_slug>[\w-]+)/order/(?P<uuid>.*)/payment/$',

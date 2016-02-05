@@ -53,6 +53,14 @@ class OrderMoreInfo(LoginRequiredMixin, FormView):
         self.order = Order.objects.get(uuid=self.kwargs.get('uuid'))
         return super(OrderMoreInfo, self).dispatch(request, *args, **kwargs)
 
+    def get_context_data(self, *args, **kwargs):
+        context = super(OrderMoreInfo, self).get_context_data(*args, **kwargs)
+        context.update({
+            'project': self.project,
+            'order': self.order,
+        })
+        return context
+
     def form_valid(self, form):
         self.order = form.save()
         return super(OrderMoreInfo, self).form_valid(form=form)
@@ -73,6 +81,7 @@ class OrderMoreInfo(LoginRequiredMixin, FormView):
             'order': self.order,
             'user': self.request.user,
             'project': self.project,
+            'document': self.order.documents.filter(document_type='order').first(),
             'data': self.request.POST if self.request.method.lower() in ['post'] else None,
         })
         return context

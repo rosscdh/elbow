@@ -1,0 +1,34 @@
+{% extends 'project/base.html' %}{% load i18n static crispy_forms_tags djmoney embed_video_tags %}
+{% load crispy_forms_filters %}
+
+{% block page_title %}{{ project.name }} - Large Sum Agreement{% endblock %}
+{% block page_description %}Invest in {{ project.name }}{% endblock %}
+{% block page_keywords %}invest,project,and-development,development{% endblock %}
+
+{% block page_header %}
+<div class="page-header clearfix">
+  <h1>Large Investment amount Agreement for {{ project.name }}</h1>
+  <p>{{ project.proposition }}</p>
+  <div class="col-md-4">
+  &nbsp;
+  </div>
+  <div class="col-md-8 text-right">
+  &nbsp;
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+
+  <div class="col-md-12">
+    <p class="lead">{{ project.description }}</p>
+  </div>
+
+  <div class="col-offset-1 col-sm-6">
+    {% crispy form %}
+  </div>
+
+</div>
+{% endblock %}
