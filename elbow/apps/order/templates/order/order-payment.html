@@ -25,7 +25,16 @@
   {% if order.payment_type == 'prepay' %}
 
     <div class="col-md-12">
-      <h2>Our Bank Details Here</h2>
+      <h2>Please submit payment to</h2>
+      <div class="col-xs-12 well well-lg">
+        <b>Bankcode:</b> {{ order.data.payment_data.bankcode }}<br/>
+        <b>Account Owner:</b> {{ order.data.payment_data.accountowner }}<br/>
+        <b>IBAN:</b> {{ order.data.payment_data.iban }}<br/>
+        <b>BIC:</b> {{ order.data.payment_data.bic }}<br/>
+        <b>Account No.:</b> {{ order.data.payment_data.accountnumber }}<br/>
+        <hr/>
+        <p class="lead"><b><em>Please Quote:</em></b> {{ order.transaction_id }}</p>
+      </div>
     </div>
 
   {% else %}
