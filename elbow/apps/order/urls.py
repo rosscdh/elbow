@@ -12,7 +12,7 @@ from .views import (OrderCreate,
 urlpatterns = patterns('',
                        url(r'^$',
                            UserOrderList.as_view(),
-                           name='user-list'),
+                           name='user_list'),
 
                        url(r'^(?P<project_slug>[\w-]+)/order/$',
                            OrderCreate.as_view(),

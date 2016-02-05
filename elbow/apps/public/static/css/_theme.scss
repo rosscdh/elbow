@@ -8,14 +8,14 @@ $bootstrap-sass-asset-helper: false !default;
 //
 //## Gray and brand colors for use across Bootstrap.
 
-$gray-base:              #555555 !default;
+$gray-base:              #808080 !default;
 $gray-darker:            lighten($gray-base, 13.5%) !default; // #222
 $gray-dark:              #333333;   // #333
-$gray:                   #555555; // #555
+$gray:                   #808080; // #555
 $gray-light:             #999999; // #777
 $gray-lighter:           #eeeeee; // #eee
 
-$brand-primary:         #bed43b; // #337ab7
+$brand-primary:         #8dc040; // #337ab7
 $brand-success:         #5cb85c !default;
 $brand-info:            #5bc0de !default;
 $brand-warning:         #f0ad4e !default;
@@ -370,7 +370,7 @@ $navbar-padding-vertical:          (($navbar-height - $line-height-computed) / 2
 $navbar-collapse-max-height:       340px !default;
 
 $navbar-default-color:             #777 !default;
-$navbar-default-bg:                #f8f8f8 !default;
+$navbar-default-bg:                #808080 !default;
 $navbar-default-border:            darken($navbar-default-bg, 6.5%) !default;
 
 // Navbar links

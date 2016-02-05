@@ -1,4 +1,4 @@
-{% extends 'order/base.html' %}{% load i18n static crispy_forms_tags djmoney embed_video_tags order_tags %}
+{% extends 'order/base.html' %}{% load i18n static humanize djmoney %}
 {% load crispy_forms_filters %}
 
 {% block page_title %}Your Investments{% endblock %}
@@ -7,20 +7,57 @@
 
 {% block page_header %}
 <div class="page-header clearfix">
-  <h1>Your Investments</h1>
+  <h1>{% trans 'Investment History' %}</h1>
 </div>
 {% endblock %}
 
 {% block content %}
 
-<div class="row">
+<div class="row" id="order-list">
 
   <div class="col-sm-12">
   {% for order in object_list %}
-    {{order}}
+    <div class="row clearfix">
+      <div class="col-xs-3">
+        <h4 class="header"><a href="{{ order.project.url }}">{{ order.project }}</a></h4>
+        <a href="{{ order.project.url }}"><img class="img img-responsive" src="{% get_media_prefix %}{{ order.project.image }}" alt="" title=""/></a>
+      </div>
+      <div class="col-xs-2">
+        <b>{% money_localize order.amount %}</b>
+        <br/><em>{{ order.payment_type }}</em>
+        <br/><b>{{ order.created_at|naturaltime }}</b><br/><small>{{ order.created_at }}</small>
+      </div>
+      <div class="col-xs-3">
+        <p><b>{{ order.customer_name }}</b></p>
+        <p>{{ order.address }}<br/>
+        {{ order.country }}</p>
+      </div>
+      <div class="col-xs-2">{{ order.status }}</div>
+      <div class="col-xs-2">
+        {% if order.status == 'pending' %}<a href="" class="btn btn-sm btn-danger">Cancel Investment</a>{% endif %}
+      </div>
+    </div>
+
   {% empty %}
   {% endfor %}
   </div>
 
 </div>
+{% endblock %}
+
+
+{% block css %}
+<style>
+.row:nth-child(1) {
+    margin-top:0px;
+}
+.row {
+  margin-top:25px;
+  padding-bottom:25px;
+  border-bottom:solid #eee 1px;
+}
+#order-list h4.header {
+  margin-top:0px;
+}
+</style>
 {% endblock %}
