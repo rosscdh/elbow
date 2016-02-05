@@ -98,12 +98,6 @@ class Order(models.Model):
         activate(settings.LANGUAGE_CODE)
         return reverse('order:payment_webhook', kwargs={'project_slug': self.project.slug, 'uuid': self.uuid})
 
-    def amount_as_cents(self):
-        """
-        secupay requires a cent amount
-        """
-        return self.amount.amount * 100
-
     def make_payment(self, user):
         """
         Primary make payment interface returns the iframe url
@@ -114,7 +108,7 @@ class Order(models.Model):
 
             sp = SecuPay(settings=settings)
 
-            amount = str(self.amount_as_cents())
+            amount = str(self.amount.amount)
             logger.info('make_payment: {order} {amount} {type}'.format(order=self, amount=amount, type=self.payment_type))
 
             resp = sp.payment().make_payment(amount=amount,

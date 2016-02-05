@@ -1,0 +1,12 @@
+{% load i18n humanize djmoney %}
+{% if user.is_authenticated %}
+<h3>{% trans 'Previous Orders' %}</h3>
+<ul class="list-unstyled">
+  {% for order in order_list %}
+  <li>
+    <a href="{% url 'order:detail' order.project.slug order.uuid %}">{% money_localize order.amount %} {{ order.created_at|naturaltime }} for {{ order.customer_name }}</a>
+  </li>
+  {% empty %}
+  {% endfor %}
+</ul>
+{% endif %}
