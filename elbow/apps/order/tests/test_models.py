@@ -19,7 +19,8 @@ class OrderModelTest(BaseTestCase):
         mail.outbox = []
         self.order = mommy.make('order.Order',
                                    status='processing',  # Must be in processing
-                                   transaction_id=None)  # AND must NOT have a transaction_id
+                                   transaction_id=None,
+                                   amount=250.25)  # AND must NOT have a transaction_id
         self.order.user.email = 'bob@example.com'  # Set the email of the order User
 
     def test_can_send_payment(self):
@@ -65,8 +66,28 @@ class OrderModelTest(BaseTestCase):
         self.assertEqual(self.order.transaction_id, 'tujevzgobryk3303')
         self.assertEqual(self.order.data, {u'iframe_url': u'https://api.secupay.ag/payment/tujevzgobryk3303', u'hash': u'tujevzgobryk3303'})
 
-    def test_invalid_payment_type_make_payment(self):
-        self.order.payment_type = self.order.ORDER_PAYMENT_TYPE.manual_bank_tx
+    @httpretty.activate
+    def test_prepay_payment_type(self):
+        expected_response = {
+          "status": "ok",
+          "errors": None,
+          "data": {
+            "iframe_url": "https://api-dist.secupay-ag.de/payment/yvxsekbprziw962155",
+            "hash": "yvxsekbprziw962155",
+            "purpose": "TA 6082993",
+            "payment_data": {
+              "bankcode": "30050000",
+              "accountowner": "secupay AG",
+              "iban": "DE88300500000001747013",
+              "bic": "WELADEDDXXX",
+              "accountnumber": "1747013"
+            }
+          }
+        }
+        httpretty.register_uri(httpretty.POST, "https://api-dist.secupay-ag.de/payment/init",
+                               body=json.dumps(expected_response),
+                               content_type="application/json")
+        self.order.payment_type = self.order.ORDER_PAYMENT_TYPE.prepay
         self.order.save(update_fields=['payment_type'])
 
         with self.settings(DEBUG=True):
@@ -75,8 +96,18 @@ class OrderModelTest(BaseTestCase):
         self.assertTrue(type(resp) is tuple)
         self.assertTrue(len(resp) is 2)
         self.assertTrue(resp[0].__class__.__name__ == 'Order')
-        self.assertTrue(resp[1] is None)
+        self.assertTrue(type(resp[1]) is dict)
 
-        self.assertEqual(self.order.transaction_id, None)
-        self.assertEqual(self.order.data, {})
+        self.assertEqual(self.order.transaction_id, 'yvxsekbprziw962155')
+        self.assertEqual(self.order.data, {"hash": "yvxsekbprziw962155",
+                                           "iframe_url": "https://api-dist.secupay-ag.de/payment/yvxsekbprziw962155",
+                                           "payment_data": {
+                                             "accountnumber": "1747013",
+                                             "accountowner": "secupay AG",
+                                             "bankcode": "30050000",
+                                             "bic": "WELADEDDXXX",
+                                             "iban": "DE88300500000001747013"
+                                           },
+                                           "purpose": "TA 6082993"
+                                          })
 

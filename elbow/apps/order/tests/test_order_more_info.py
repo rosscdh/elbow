@@ -21,7 +21,7 @@ class OrderMoreInfoViewTest(BaseTestCase):
         self.user = mommy.make('auth.User', **user_dict)
 
         self.initial = {
-            'junk': 'fdsafdafds'
+            'has_provided_additional_data': True
         }
 
     def test_form_redirects_to_large_sum_agreements_page_on_success(self):
@@ -54,7 +54,7 @@ class OrderMoreInfoFormTest(TestCase):
         self.order = mommy.make('order.Order', project=self.project, amount=250.00, user=self.user)
 
         self.initial = {
-            'junk': 'fdasfsd'
+            'has_provided_additional_data': True
         }
         mail.outbox = []
 

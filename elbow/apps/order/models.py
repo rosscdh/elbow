@@ -104,29 +104,26 @@ class Order(models.Model):
         """
         resp = None
 
-        if self.payment_type in [ORDER_PAYMENT_TYPE.debit]:
+        sp = SecuPay(settings=settings)
 
-            sp = SecuPay(settings=settings)
+        amount = str(self.amount.amount)
+        logger.info('make_payment: {order} {amount} {type}'.format(order=self, amount=amount, type=self.payment_type))
 
-            amount = str(self.amount.amount)
-            logger.info('make_payment: {order} {amount} {type}'.format(order=self, amount=amount, type=self.payment_type))
+        resp = sp.payment().make_payment(amount=amount,
+                                         payment_type=self.payment_type,
+                                         url_success=self.url_success,
+                                         url_failure=self.url_failure,
+                                         url_push=self.url_webhook)
+        log(
+            user=user,
+            action="order.lifecycle.payment.make_payment",
+            obj=self,
+            extra=resp
+        )
 
-            resp = sp.payment().make_payment(amount=amount,
-                                             payment_type=self.payment_type,
-                                             url_success=self.url_success,
-                                             url_failure=self.url_failure,
-                                             url_push=self.url_webhook)
-            log(
-                user=user,
-                action="order.lifecycle.payment.make_payment",
-                obj=self,
-                extra=resp
-            )
-
-            self.transaction_id = resp.get('data', {}).get('hash')
-            self.data['iframe_url'] = resp.get('data', {}).get('iframe_url', None)
-            self.data['hash'] = resp.get('data', {}).get('hash', None)
-            self.save(update_fields=['transaction_id', 'data'])
+        self.transaction_id = resp.get('data', {}).get('hash')
+        self.data = resp.get('data', {})
+        self.save(update_fields=['transaction_id', 'data'])
 
         return self, resp
 

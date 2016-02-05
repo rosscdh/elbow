@@ -83,7 +83,7 @@ class OrderAdmin(admin.ModelAdmin):
             action="order.lifecycle.reset",
             obj=order,
             extra={
-                "note": "%s Reset the manual_bank_tx Order" % request.user
+                "note": "%s Reset the Order" % request.user
             }
         )
         resp = {}

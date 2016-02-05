@@ -57,7 +57,7 @@
               <!-- <button class="">{% trans 'Add Note' %}</button> -->
               {% if order.status == 'pending' and order.status != 'failed' %}
                 <!-- {% if order.payment_type == 'bank_transfer' %}<a href="javascript:;" class="order-lifecycle-event" data-url="{% url 'admin:order_send_for_payment' uuid=order.uuid %}">{% trans 'Send for Payment' %}</a><br/>{% endif %} -->
-                {% if order.payment_type == 'manual_bank_tx' %}<a href="javascript:;" class="order-lifecycle-event" data-url="{% url 'admin:order_marked_as_paid' uuid=order.uuid %}">{% trans 'Mark as Paid' %}</a><br/>{% endif %}
+                {% if order.payment_type == 'prepay' %}<a href="javascript:;" class="order-lifecycle-event" data-url="{% url 'admin:order_marked_as_paid' uuid=order.uuid %}">{% trans 'Mark as Paid' %}</a><br/>{% endif %}
               {% endif %}
               {% if order.status != 'cancelled' and order.status != 'paid' %}
               <a href="javascript:;" class="order-lifecycle-event" data-url="{% url 'admin:order_cancel' uuid=order.uuid %}">{% trans 'Cancel Order' %}</a><br/>

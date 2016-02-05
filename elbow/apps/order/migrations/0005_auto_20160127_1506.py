@@ -19,6 +19,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='order',
             name='payment_type',
-            field=models.CharField(choices=[(b'bank_transfer', 'Bank transfer'), (b'manual_bank_tx', 'Manual bank transfer')], db_index=True, default=b'bank_transfer', max_length=24),
+            field=models.CharField(choices=[(b'bank_transfer', 'Bank transfer'), (b'prepay', 'Manual bank transfer')], db_index=True, default=b'bank_transfer', max_length=24),
         ),
     ]
