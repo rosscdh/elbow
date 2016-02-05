@@ -81,7 +81,6 @@ class OrderMoreInfo(LoginRequiredMixin, FormView):
             'order': self.order,
             'user': self.request.user,
             'project': self.project,
-            'document': self.order.documents.filter(document_type='order').first(),
             'data': self.request.POST if self.request.method.lower() in ['post'] else None,
         })
         return context

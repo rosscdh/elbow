@@ -1,5 +1,5 @@
 projectKey=elbow:crowdfunding
 serverUrl=http://192.168.99.100:32791
 dashboardUrl=http://192.168.99.100:32791/dashboard/index/elbow:crowdfunding
-ceTaskId=AVKwqd5fys9bO_7lj1eH
-ceTaskUrl=http://192.168.99.100:32791/api/ce/task?id=AVKwqd5fys9bO_7lj1eH
+ceTaskId=AVKwwvTnys9bO_7lj1eW
+ceTaskUrl=http://192.168.99.100:32791/api/ce/task?id=AVKwwvTnys9bO_7lj1eW
