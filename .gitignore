@@ -11,7 +11,7 @@ templates/dashboard/*
 /media/*
 *.pyc
 
-secupay/
+secupay
 
 # ignore the locally generated dash as its uploaded seperately
 dj_paymill

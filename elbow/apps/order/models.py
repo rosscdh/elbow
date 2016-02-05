@@ -17,6 +17,9 @@ from .managers import OrderManager
 
 from shortuuidfield import ShortUUIDField
 
+import logging
+logger = logging.getLogger('django.request')
+
 
 class Order(models.Model):
     ORDER_STATUS = ORDER_STATUS
@@ -55,6 +58,8 @@ class Order(models.Model):
     expiration = models.DateField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    documents = models.ManyToManyField('document.Document')
 
     objects = OrderManager()
 
@@ -99,11 +104,14 @@ class Order(models.Model):
         """
         resp = None
 
-        if self.payment_type in [ORDER_PAYMENT_TYPE.creditcard,
-                                 ORDER_PAYMENT_TYPE.debit]:
+        if self.payment_type in [ORDER_PAYMENT_TYPE.debit]:
 
             sp = SecuPay(settings=settings)
-            resp = sp.payment().make_payment(amount=str(self.amount.amount),
+
+            amount = str(self.amount.amount)
+            logger.info('make_payment: {order} {amount} {type}'.format(order=self, amount=amount, type=self.payment_type))
+
+            resp = sp.payment().make_payment(amount=amount,
                                              payment_type=self.payment_type,
                                              url_success=self.url_success,
                                              url_failure=self.url_failure,

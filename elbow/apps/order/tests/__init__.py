@@ -3,7 +3,7 @@ from django.test import TestCase, Client
 
 
 VALID_ORDER_POST_DATA = {
-    'amount': 250,
+    'amount': 2500,
     'customer_name': 'Bob Dylan Inc.',
     'phone': '555-55-55',
     'address': '46a BismarkStrasse Mönchengladbach, NRW',

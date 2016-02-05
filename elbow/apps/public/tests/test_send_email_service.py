@@ -33,7 +33,7 @@ class SendForPaymentServiceTest(BaseTestCase):
             self.assertEqual(email.subject, 'TodayCapital.de - Investment Payment, Success')
 
         email = mail.outbox[0]  # 0 should be to the Founders
-        self.assertEqual(email.recipients(), ['founders@todaycapital.de'])
+        self.assertEqual(email.recipients(), ['post@todaycapital.de'])
 
         email = mail.outbox[1]  # 1 should be to the Customers
         self.assertEqual(email.recipients(), [self.order.user.email])
@@ -46,5 +46,5 @@ class SendForPaymentServiceTest(BaseTestCase):
         self.assertEqual(result, [('founders', 1)])
         email = mail.outbox[0]
         self.assertEqual(email.subject, 'TodayCapital.de - Investment Payment, Failure')
-        self.assertEqual(email.recipients(), ['founders@todaycapital.de'])
+        self.assertEqual(email.recipients(), ['post@todaycapital.de'])
 

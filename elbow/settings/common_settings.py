@@ -82,7 +82,7 @@ HELPER_APPS = (
     'embed_video',
     #  'django_rq',
     'easy_thumbnails',
-    'webodt',
+    'easy_pdf',
 )
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + HELPER_APPS
@@ -324,7 +324,8 @@ languages = list(PAGE_LANGUAGES)
 LANGUAGES = languages
 
 SECUPAY_TOKEN = 'testToken'
-
+SECUPAY_DEVELOPMENT = True
+SECUPAY_DEMO = True
 
 WEBODT_CONVERTER = 'webodt.converters.abiword.AbiwordODFConverter'
 WEBODT_TEMPLATE_PATH = os.path.join(BASE_DIR, 'templates', 'webodt')

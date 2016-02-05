@@ -19,7 +19,7 @@ ORDER_STATUS = get_namedtuple_choices('ORDER_STATUS', (
 
 ORDER_PAYMENT_TYPE = get_namedtuple_choices('ORDER_PAYMENT_TYPE', (
     ('manual_bank_tx', 'manual_bank_tx', _('Manual bank transfer')),
-    ('creditcard', 'creditcard', _('Credit card')),
+    #('creditcard', 'creditcard', _('Credit card')),
     ('debit', 'debit', _('Bank debit')),
 ))
 

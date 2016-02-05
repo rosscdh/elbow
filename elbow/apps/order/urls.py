@@ -2,6 +2,8 @@
 from django.conf.urls import patterns, url
 
 from .views import (OrderCreate,
+                    OrderMoreInfo,
+                    OrderLargeSumAgreement,
                     OrderPayment,
                     OrderDetail,
                     OrderWebhook)
@@ -10,6 +12,14 @@ urlpatterns = patterns('',
                        url(r'^(?P<project_slug>[\w-]+)/order/$',
                            OrderCreate.as_view(),
                            name='create'),
+
+                       url(r'^(?P<project_slug>[\w-]+)/order/(?P<uuid>[\w-]+)/more-info/$',
+                           OrderMoreInfo.as_view(),
+                           name='more_info'),
+
+                       url(r'^(?P<project_slug>[\w-]+)/order/(?P<uuid>[\w-]+)/large-sum-agreement/$',
+                           OrderMoreInfo.as_view(),
+                           name='large_sum_agreement'),
 
                        url(r'^(?P<project_slug>[\w-]+)/order/(?P<uuid>.*)/payment/$',
                            OrderPayment.as_view(),

@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMultiAlternatives
 from django.utils.translation import ugettext_lazy as _
 
 from elbow.utils import HTML2TextEmailMessageService
@@ -17,7 +17,7 @@ class SendEmailService(object):
         self._messages = []
 
     def send_order_created_email(self, user_list):
-        logger.debug('Payment Success')
+        logger.debug('Order Created')
         send_success = []
         html2text = HTML2TextEmailMessageService(template_name='order/email/order_created.html',
                                                  order=self.order,
@@ -26,7 +26,7 @@ class SendEmailService(object):
         subject = _('TodayCapital.de - Investment order created')
         message = html2text.plain_text
         from_email = 'application@todaycapital.de'
-        recipient_list = ['founders@todaycapital.de']
+        recipient_list = ['post@todaycapital.de']
         logger.debug('Send founders email')
         send_success.append(('founders', send_mail(subject=subject,
                                                    message=message,
@@ -52,6 +52,48 @@ class SendEmailService(object):
                                                        html_message=html2text.html)))
         return send_success
 
+    def send_order_more_info_email(self, user_list):
+        logger.debug('Order More Info')
+        send_success = []
+
+        document = self.order.documents.filter(document_type='order').first()
+
+        html2text = HTML2TextEmailMessageService(template_name='order/email/order_more_info.html',
+                                                 order=self.order,
+                                                 recipients=user_list)
+        # Send Admin Email
+        subject = _('TodayCapital.de - Investment order provided more information')
+        from_email = 'application@todaycapital.de'
+        recipient_list = ['post@todaycapital.de']
+
+        logger.debug('Send founders email')
+
+        msg = EmailMultiAlternatives(subject, html2text.plain_text, from_email, recipient_list)
+        msg.attach_alternative(html2text.html, "text/html")
+        if document:
+            msg.attach_file(document.document.path)
+
+        send_success.append(('founders', msg.send()))
+
+        # Send Customer Email
+        subject = _('TodayCapital.de - Your Investment Order Info, Attached Agreement')
+        from_email = 'application@todaycapital.de'
+
+        for user in user_list:
+            logger.debug('Send user %s email' % user)
+            html2text = HTML2TextEmailMessageService(template_name='order/email/order_more_info_customer.html',
+                                                     user=user,
+                                                     order=self.order)
+
+            msg = EmailMultiAlternatives(subject, html2text.plain_text, from_email, [user.email])
+            msg.attach_alternative(html2text.html, "text/html")
+            if document:
+                msg.attach_file(document.document.path)
+
+            send_success.append(('customer', msg.send()))
+
+        return send_success
+
     def send_success_email(self, user_list):
         logger.debug('Payment Success')
         send_success = []
@@ -62,7 +104,7 @@ class SendEmailService(object):
         subject = _('TodayCapital.de - Investment Payment, Success')
         message = html2text.plain_text
         from_email = 'application@todaycapital.de'
-        recipient_list = ['founders@todaycapital.de']
+        recipient_list = ['post@todaycapital.de']
         logger.debug('Send founders email')
         send_success.append(('founders', send_mail(subject=subject,
                                                    message=message,
@@ -98,7 +140,7 @@ class SendEmailService(object):
         subject = _('TodayCapital.de - Investment Payment, Failure')
         message = html2text.plain_text
         from_email = 'application@todaycapital.de'
-        recipient_list = ['founders@todaycapital.de']
+        recipient_list = ['post@todaycapital.de']
 
         send_success.append(('founders', send_mail(subject=subject,
                                                    message=message,

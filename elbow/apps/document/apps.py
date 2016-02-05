@@ -5,6 +5,11 @@ from django.apps import AppConfig
 from elbow.utils import get_namedtuple_choices
 
 
+DOCUMENT_TYPES = get_namedtuple_choices('DOCUMENT_TYPES', (
+    ('project', 'project', 'Project Document'),
+    ('order', 'order', 'Order Document'),
+))
+
 DOCUMENT_STATUS = get_namedtuple_choices('DOCUMENT_STATUS', (
     ('active', 'active', 'Active'),
     ('inactive', 'inactive', 'Inactive'),

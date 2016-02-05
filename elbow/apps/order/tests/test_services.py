@@ -4,6 +4,7 @@ from django.core import mail
 from model_mommy import mommy
 
 from elbow.apps.order.models import Order
+from elbow.apps.order.services import CreateMoreInfoAgreementPDFService
 from . import BaseTestCase
 
 
@@ -44,3 +45,26 @@ class SendForPaymentServiceInvalidTest(BaseTestCase):
                               transaction_id='abc123ABC')
 
         self.assertTrue(order.can_send_payment is False)
+
+
+class CreateMoreInfoAgreementPDFServiceTest(BaseTestCase):
+    def setUp(self):
+        user_dict = {'first_name': 'Test', 'last_name': 'User', 'email': 'test@example.com'}
+        self.user = mommy.make('auth.User', **user_dict)
+
+        self.order = mommy.make('order.Order',
+                                status=Order.ORDER_STATUS.processing,  # Must be in processing
+                                transaction_id=None)  # AND must NOT have a transaction_id
+        self.subject = CreateMoreInfoAgreementPDFService
+
+    def test_order_doc_is_created(self):
+        s = self.subject(order=self.order,
+                         user=self.user)
+        s.process()
+
+        order_documents = self.order.documents.filter(document_type='order')
+
+        self.assertEqual(len(order_documents), 1)
+        doc = order_documents.first()
+        self.assertTrue(doc.document)
+

@@ -12,10 +12,8 @@ from model_mommy import mommy
 
 class OrderCreateViewTest(BaseTestCase):
     """
-    Test basic model methods
+    Test basic view flow
     """
-    fixtures = ['project.json']
-
     def setUp(self):
         super(OrderCreateViewTest, self).setUp()
         self.project = mommy.make('project.Project', name='My Basic Test Project')
@@ -44,7 +42,7 @@ class OrderCreateViewTest(BaseTestCase):
         self.assertEqual(resp.context['form'].fields['customer_name'].initial, '%s %s' % (self.user.first_name, self.user.last_name))
 
     @httpretty.activate
-    def test_form_redirects_to_payments_page_on_success(self):
+    def test_form_redirects_to_more_info_page_on_success(self):
         expected_response = {
             "status": "ok",
             "data": {
@@ -62,12 +60,17 @@ class OrderCreateViewTest(BaseTestCase):
             resp = self.c.post(self.url, self.initial)
 
         self.assertEqual(resp.status_code, 302)
+        #
+        # Redirected to more info page
+        #
+        self.assertTrue(len(self.project.order_set.all()) == 1)
+        order = self.project.order_set.all().first()
+        self.assertEqual(resp.url, '/de/orders/my-basic-test-project/order/%s/more-info/' % order.uuid)
 
 
 class OrderFormTest(TestCase):
     def setUp(self):
         self.project = mommy.make('project.Project', name='My Basic Test Project')
-        self.url = reverse('order:create', kwargs={'project_slug': self.project.slug})
 
         user_dict = {'first_name': 'Test', 'last_name': 'User', 'email': 'test@example.com'}
         self.user = mommy.make('auth.User', **user_dict)
@@ -116,9 +119,8 @@ class OrderFormTest(TestCase):
         self.assertEqual(2, len(mail.outbox))
         email = mail.outbox[0]
         self.assertEqual(unicode(email.subject), u'TodayCapital.de - Investment order created')
-        self.assertEqual(email.recipients(), ['founders@todaycapital.de'])
+        self.assertEqual(email.recipients(), ['post@todaycapital.de'])
 
         email = mail.outbox[1]
         self.assertEqual(unicode(email.subject), u'TodayCapital.de - Your Investment Order has been created')
         self.assertEqual(email.recipients(), [self.user.email])
-

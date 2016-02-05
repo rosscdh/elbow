@@ -536,6 +536,7 @@ def repos():
 
 @task
 def chores():
+    sudo('apt-get update')
     inst = lambda pkglist: sudo('aptitude --assume-yes install %s' % pkglist)
 
     #sudo("aptitude update")
@@ -545,7 +546,7 @@ def chores():
     inst('build-essential apache2-utils libjpeg8 libjpeg62-dev libfreetype6 libfreetype6-dev')
     inst('libtidy-dev postgresql-server-dev-all postgresql-client libpq-dev libxml2-dev libxslt1-dev')
 
-    inst('python-setuptools python-dev uwsgi-plugin-python python-psycopg2')
+    inst('python-setuptools python-dev uwsgi-plugin-python python-psycopg2 python-lxml')
 
     #inst('default-jre default-jre-headless default-jdk')  # java stuff
 

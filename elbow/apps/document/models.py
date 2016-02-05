@@ -8,18 +8,21 @@ from elbow.utils import CustomManagedStorage
 
 from shortuuidfield import ShortUUIDField
 
-from .apps import DOCUMENT_STATUS
+from .apps import DOCUMENT_STATUS, DOCUMENT_TYPES
 
 import os
 
 
 def _document_upload_path(instance, filename):
     filename, file_extension = os.path.splitext(filename)
-    return 'document/%s-%s.%s' % (instance.uuid, slugify(filename), file_extension)
+    document_type = instance.document_type
+    return 'document/%s-%s%s' % (document_type, slugify(filename), file_extension)
 
 
 class Document(models.Model):
+
     DOCUMENT_STATUS = DOCUMENT_STATUS
+    DOCUMENT_TYPES = DOCUMENT_TYPES
 
     uuid = ShortUUIDField(db_index=True, blank=False)
 
@@ -28,6 +31,11 @@ class Document(models.Model):
     document = models.FileField(upload_to=_document_upload_path,
                                 storage=CustomManagedStorage(),
                                 blank=True, null=True)
+
+    document_type = models.CharField(choices=DOCUMENT_TYPES.get_choices(),
+                                     default=DOCUMENT_TYPES.project,
+                                     max_length=64,
+                                     db_index=True)
 
     status = models.CharField(choices=DOCUMENT_STATUS.get_choices(),
                               default=DOCUMENT_STATUS.active,

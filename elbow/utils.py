@@ -111,7 +111,7 @@ def CustomManagedStorage():
 
     if settings.PROJECT_ENVIRONMENT in ['test']:
         # return OverwriteStorage()
-        return InMemoryStorage()
+        return FileSystemStorage()
 
     else:
         #return S3BotoStorage()

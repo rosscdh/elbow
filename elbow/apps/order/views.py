@@ -8,14 +8,14 @@ from pinax.eventlog.models import log
 from elbow.mixins import LoginRequiredMixin
 from elbow.apps.project.models import Project
 
-from .forms import CreateOrderForm
+from .forms import CreateOrderForm, OrderMoreInfoForm, OrderLargeSumAgreementForm
 from .models import Order
 
 
 class OrderCreate(LoginRequiredMixin, FormView):
     project = None
-    template_name = 'order/order-create.html'
     form_class = CreateOrderForm
+    template_name = 'order/order-create.html'
 
     def dispatch(self, request, *args, **kwargs):
         self.project = Project.objects.get(slug=self.kwargs.get('project_slug'))
@@ -27,7 +27,7 @@ class OrderCreate(LoginRequiredMixin, FormView):
         return super(OrderCreate, self).form_valid(form=form)
 
     def get_success_url(self):
-        return reverse('order:payment', kwargs={'project_slug': self.project.slug, 'uuid': self.order.uuid})
+        return reverse('order:more_info', kwargs={'project_slug': self.project.slug, 'uuid': self.order.uuid})
 
     def get_context_data(self, *args, **kwargs):
         context = super(OrderCreate, self).get_context_data(*args, **kwargs)
@@ -42,6 +42,48 @@ class OrderCreate(LoginRequiredMixin, FormView):
             'project': self.project,
             'data': self.request.POST if self.request.method.lower() in ['post'] else None,
         }
+
+
+class OrderMoreInfo(LoginRequiredMixin, FormView):
+    form_class = OrderMoreInfoForm
+    template_name = 'order/order-moreinfo.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.project = Project.objects.get(slug=self.kwargs.get('project_slug'))
+        self.order = Order.objects.get(uuid=self.kwargs.get('uuid'))
+        return super(OrderMoreInfo, self).dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        self.order = form.save()
+        return super(OrderMoreInfo, self).form_valid(form=form)
+
+    def get_success_url(self):
+        """
+        If the user wants to pay more than 1k then by law they must sign and agree
+        to the large sum agreement form terms
+        """
+        if self.order.amount.amount <= 1000:
+            return reverse('order:payment', kwargs={'project_slug': self.project.slug, 'uuid': self.order.uuid})
+        else:
+            return reverse('order:large_sum_agreement', kwargs={'project_slug': self.project.slug, 'uuid': self.order.uuid})
+
+    def get_form_kwargs(self):
+        context = super(OrderMoreInfo, self).get_form_kwargs()
+        context.update({
+            'order': self.order,
+            'user': self.request.user,
+            'project': self.project,
+            'data': self.request.POST if self.request.method.lower() in ['post'] else None,
+        })
+        return context
+
+
+class OrderLargeSumAgreement(OrderMoreInfo):
+    form_class = OrderLargeSumAgreementForm
+    template_name = 'order/order-large_sum_agreement.html'
+
+    def get_success_url(self):
+        return reverse('order:payment', kwargs={'project_slug': self.project.slug, 'uuid': self.order.uuid})
 
 
 class OrderPayment(LoginRequiredMixin, DetailView):
