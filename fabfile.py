@@ -120,7 +120,7 @@ def proceed(msg='Proceed? (y,n)', color='yellow', terminate=True):
 
 @task
 def virtualenv(cmd, **kwargs):
-    sudo("source %sbin/activate; %s" % (env.virtualenv_path, cmd,), user=env.application_user, **kwargs)
+    run("source %sbin/activate; %s" % (env.virtualenv_path, cmd,), **kwargs)
 
 @task
 def pip_install():
