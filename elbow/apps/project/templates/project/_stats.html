@@ -2,8 +2,11 @@
 {% comment %}
 This is view is deliberately without a outer div, allows you to define the project _stats width col-sm-2 or col-sm-7
 {% endcomment %}
+
 <a href="{{ project.url }}"><img src="{% get_media_prefix %}{{ project.image }}" class="img img-responsive center-block" alt="" title="" /></a>
+
 <div class="">
+
   <div class="col-md-12 text-center">
     <p><b>{% trans "Investment Goal:" %}</b> {% money_localize project.amount %}</p>
   </div>
@@ -23,10 +26,12 @@ This is view is deliberately without a outer div, allows you to define the proje
   {% if project.percent > 0 %}
   <div class="col-md-12">
     <div class="col-sm-6 well well-sm text-center">
-      {% trans "Backers" %}<br/><span class="badge">{{ project.num_backers }}</span>
+      <span class="badge">{{ project.num_backers }}</span>
+      <br/><i class="glyphicon glyphicon-king" title="{% trans "Backers" %}"></i> {% trans "Backers" %}
     </div>
     <div class="col-sm-6 well well-sm text-center">
-      {% trans "Revenue" %}<br/><span class="badge">{% money_localize project.revenue %}</span>
+      <span class="badge">{% money_localize project.revenue %}</span>
+      <br/><i class="glyphicon glyphicon-euro" title="{% trans "Revenue" %}"></i> {% trans "Revenue" %}
     </div>
   </div>
   {% endif %}
