@@ -302,6 +302,8 @@ DEFAULT_CURRENCY_SYMBOL = '€'
 CRISPY_FAIL_SILENTLY = False
 
 # CMS settings
+PAGE_CONTENT_REVISION = False  # Dont keep revisions
+PAGE_CONTENT_REVISION_DEPTH = 1
 PAGE_DEFAULT_TEMPLATE = 'pages/70_30.html'
 PAGE_TEMPLATES = (
     ('pages/home_page.html', 'Homepage'),
