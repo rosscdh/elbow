@@ -22,7 +22,8 @@ logger = logging.getLogger('django.request')
 
 
 class Order(models.Model):
-    BASE_URL = 'https://14ca093c.ngrok.com'
+    BASE_URL = getattr(settings, 'BASE_URL', 'http://localhost:8009/')
+
     ORDER_STATUS = ORDER_STATUS
     ORDER_PAYMENT_TYPE = ORDER_PAYMENT_TYPE
 
