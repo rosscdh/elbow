@@ -113,6 +113,15 @@ class Order(models.Model):
         return self.status in [self.ORDER_STATUS.processing] and self.transaction_id in [None, '']
 
     @property
+    def can_continue_process(self):
+        """
+        If the user has not completed their investment process allow them to continue via this check
+        """
+        return self.status in [self.ORDER_STATUS.created,
+                               self.ORDER_STATUS.large_sum_agreement,
+                               self.ORDER_STATUS.more_info,] and self.transaction_id in [None, '']
+
+    @property
     def content_type(self):
         return ContentType.objects.filter(app_label='order', model='order').first()
 

@@ -34,7 +34,8 @@
       </div>
       <div class="col-xs-2">{{ order.status }}</div>
       <div class="col-xs-2">
-        {% if order.status == 'pending' %}<a href="" class="btn btn-sm btn-danger">Cancel Investment</a>{% endif %}
+        {% if order.can_continue_process %}<a href="{{ order.url }}" class="btn btn-sm btn-info">Continue Investment</a>{% endif %}
+        {% if order.status == 'pending' %}<a href="{{ order.url }}" class="btn btn-sm btn-danger">Cancel Investment</a>{% endif %}
       </div>
     </div>
 

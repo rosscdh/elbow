@@ -316,7 +316,7 @@ gettext_noop = lambda s: s
 
 PAGE_LANGUAGES = LANGUAGES = (
     ('de', gettext_noop('German')),
-    ('en-gb', gettext_noop('English')),
+    # ('en-gb', gettext_noop('English')),
 )
 
 # copy PAGE_LANGUAGES
