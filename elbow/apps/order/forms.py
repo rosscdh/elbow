@@ -159,8 +159,9 @@ class OrderMoreInfoForm(forms.Form):
         """
         has_provided_additional_data = self.cleaned_data.pop('has_provided_additional_data')
 
+        self.order.status = self.order.ORDER_STATUS.more_info
         self.order.data['has_provided_additional_data'] = has_provided_additional_data
-        self.order.save(update_fields=['data'])
+        self.order.save(update_fields=['status', 'data'])
 
         #
         # Create PDF and associate with Order
@@ -229,8 +230,9 @@ class OrderLargeSumAgreementForm(forms.Form):
 
         # email_service = SendEmailService(order=self.order)
         # email_service.send_order_created_email(user_list=[self.user])
+        self.order.status = self.order.ORDER_STATUS.large_sum_agreement
         self.order.data['has_agreed_to_large_sum_investment'] = has_agreed_to_large_sum_investment
-        self.order.save(update_fields=['data'])
+        self.order.save(update_fields=['status', 'data'])
 
         log(
             user=self.user,

@@ -70,10 +70,10 @@ class OrderMoreInfo(LoginRequiredMixin, FormView):
         If the user wants to pay more than 1k then by law they must sign and agree
         to the large sum agreement form terms
         """
-        if self.order.amount.amount <= 1000:
-            return reverse('order:payment', kwargs={'project_slug': self.project.slug, 'uuid': self.order.uuid})
-        else:
-            return reverse('order:large_sum_agreement', kwargs={'project_slug': self.project.slug, 'uuid': self.order.uuid})
+        #
+        # model does url resolving
+        #
+        return self.order.url
 
     def get_form_kwargs(self):
         context = super(OrderMoreInfo, self).get_form_kwargs()

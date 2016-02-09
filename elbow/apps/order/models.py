@@ -39,7 +39,7 @@ class Order(models.Model):
     country = models.CharField(max_length=64, blank=True, null=True)
 
     status = models.CharField(choices=ORDER_STATUS.get_choices(),
-                              default=ORDER_STATUS.pending,
+                              default=ORDER_STATUS.created,
                               max_length=64,
                               db_index=True)
 
@@ -67,6 +67,41 @@ class Order(models.Model):
         verbose_name = _('Order')
         verbose_name_plural = _('Orders')
         ordering = ('-created_at',)
+
+    @property
+    def url(self):
+        """
+        Basic State-Machine need to integrate
+        """
+        url_kwargs = {'project_slug': self.project.slug, 'uuid': self.uuid}
+
+        if self.status in [self.ORDER_STATUS.paid, self.ORDER_STATUS.processing]:
+            return reverse('order:detail', kwargs=url_kwargs)
+
+        if self.status == self.ORDER_STATUS.created:
+            #
+            # Has only completed step 1 needs to complete the rest
+            #
+            return reverse('order:more_info', kwargs=url_kwargs)
+
+        if self.status == self.ORDER_STATUS.more_info:
+            #
+            # Has completed more info step but needs to agree to large sum agreement
+            #
+            if self.amount.amount <= 1000:
+                return reverse('order:payment', kwargs=url_kwargs)
+            else:
+                return reverse('order:large_sum_agreement', kwargs=url_kwargs)
+
+        if self.status == self.ORDER_STATUS.large_sum_agreement:
+            #
+            # Completed the steps but needs to pay
+            #
+            return reverse('order:payment', kwargs=url_kwargs)
+        #
+        # Default out to show order detail page
+        #
+        return reverse('order:detail', kwargs=url_kwargs)
 
     @property
     def can_send_payment(self):
@@ -102,12 +137,14 @@ class Order(models.Model):
         """
         Primary make payment interface returns the iframe url
         """
-        resp = None
+        resp = {}
 
         sp = SecuPay(settings=settings)
 
         amount = str(self.amount.amount)
-        logger.info('make_payment: {order} {amount} {type}'.format(order=self, amount=amount, type=self.payment_type))
+        logger.info('make_payment: {order} {amount} {type}'.format(order=self,
+                                                                   amount=amount,
+                                                                   type=self.payment_type))
 
         resp = sp.payment().make_payment(amount=amount,
                                          payment_type=self.payment_type,

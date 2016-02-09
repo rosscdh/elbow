@@ -27,7 +27,7 @@ class SendForPaymentServiceTest(BaseTestCase):
 
 class SendForPaymentServiceInvalidTest(BaseTestCase):
     def test_invalid_status_payment_not_sent(self):
-        for status in [Order.ORDER_STATUS.pending,
+        for status in [Order.ORDER_STATUS.created,
                        Order.ORDER_STATUS.paid,
                        Order.ORDER_STATUS.failed,
                        Order.ORDER_STATUS.cancelled]:

@@ -38,8 +38,30 @@ class OrderModelTest(BaseTestCase):
     def test_url_failure(self):
         self.assertEqual(self.order.url_failure, u'/de/orders/%s/order/%s/payment/failure/' % (self.order.project.slug, self.order.uuid))
 
-    def test_url_failure(self):
+    def test_url_webhooks(self):
         self.assertEqual(self.order.url_webhook, u'/de/orders/%s/order/%s/payment/webhook/' % (self.order.project.slug, self.order.uuid))
+
+    def test_url(self):
+        self.order.status = self.order.ORDER_STATUS.paid
+        self.assertEqual(self.order.url, u'/de/orders/%s/order/%s/' % (self.order.project.slug, self.order.uuid))
+
+        self.order.status = self.order.ORDER_STATUS.processing
+        self.assertEqual(self.order.url, u'/de/orders/%s/order/%s/' % (self.order.project.slug, self.order.uuid))
+
+        # If we have a large amount to pay then take us to the large-sum-agreement page
+        self.order.status = self.order.ORDER_STATUS.more_info
+        self.order.amount = 250000.00
+        self.assertEqual(self.order.url, u'/de/orders/%s/order/%s/large-sum-agreement/' % (self.order.project.slug, self.order.uuid))
+
+        # If we have only a small amount to pay then take us direct to payment
+        self.order.status = self.order.ORDER_STATUS.more_info
+        self.order.amount = 250.00
+        self.assertEqual(self.order.url, u'/de/orders/%s/order/%s/payment/' % (self.order.project.slug, self.order.uuid))
+
+        self.order.status = self.order.ORDER_STATUS.large_sum_agreement
+        self.assertEqual(self.order.url, u'/de/orders/%s/order/%s/payment/' % (self.order.project.slug, self.order.uuid))
+
+
 
     @httpretty.activate
     def test_valid_make_payment(self):

@@ -75,7 +75,7 @@ class OrderAdmin(admin.ModelAdmin):
 
     def reset_order(self, request, uuid):
         order = self.get_order(uuid=uuid)
-        order.status = order.ORDER_STATUS.pending
+        order.status = order.ORDER_STATUS.created
         order.save(update_fields=['status'])
 
         log(

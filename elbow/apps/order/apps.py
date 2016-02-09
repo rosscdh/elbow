@@ -9,8 +9,10 @@ from .handlers import post_save_send_payment_request
 
 
 ORDER_STATUS = get_namedtuple_choices('ORDER_STATUS', (
-    ('pending', 'pending', _('Pending')),
-    ('processing', 'processing', _('Send for Processing')),
+    ('created', 'created', _('Order Created (1/4)')),
+    ('large_sum_agreement', 'large_sum_agreement', _('Large sum agreement (2/4)')),
+    ('more_info', 'more_info', _('More Info (3/4)')),
+    ('processing', 'processing', _('Send for Payment  (4/4)')),
     ('paid', 'paid', _('Paid')),
     ('paid_manually', 'paid_manually', _('Manually Paid')),
     ('failed', 'failed', _('Payment Failed')),
@@ -19,7 +21,7 @@ ORDER_STATUS = get_namedtuple_choices('ORDER_STATUS', (
 
 ORDER_PAYMENT_TYPE = get_namedtuple_choices('ORDER_PAYMENT_TYPE', (
     ('prepay', 'prepay', _('Manual bank transfer')),
-    #('creditcard', 'creditcard', _('Credit card')),
+    #('creditcard', 'creditcard', _('Credit card')),  # We dont support credit-cards transactions
     ('debit', 'debit', _('Bank debit')),
 ))
 
