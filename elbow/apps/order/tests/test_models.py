@@ -18,9 +18,9 @@ class OrderModelTest(BaseTestCase):
         super(OrderModelTest, self).setUp()
         mail.outbox = []
         self.order = mommy.make('order.Order',
-                                   status='processing',  # Must be in processing
-                                   transaction_id=None,
-                                   amount=250.25)  # AND must NOT have a transaction_id
+                                status='processing',  # Must be in processing
+                                transaction_id=None,
+                                amount=250.25)  # AND must NOT have a transaction_id
         self.order.user.email = 'bob@example.com'  # Set the email of the order User
 
     def test_can_send_payment(self):
