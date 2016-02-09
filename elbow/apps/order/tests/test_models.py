@@ -61,8 +61,6 @@ class OrderModelTest(BaseTestCase):
         self.order.status = self.order.ORDER_STATUS.large_sum_agreement
         self.assertEqual(self.order.url, u'/de/orders/%s/order/%s/payment/' % (self.order.project.slug, self.order.uuid))
 
-
-
     @httpretty.activate
     def test_valid_make_payment(self):
         expected_response = {

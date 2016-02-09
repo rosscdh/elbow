@@ -22,6 +22,7 @@ logger = logging.getLogger('django.request')
 
 
 class Order(models.Model):
+    BASE_URL = 'https://14ca093c.ngrok.com'
     ORDER_STATUS = ORDER_STATUS
     ORDER_PAYMENT_TYPE = ORDER_PAYMENT_TYPE
 
@@ -121,17 +122,17 @@ class Order(models.Model):
     @property
     def url_success(self):
         activate(settings.LANGUAGE_CODE)
-        return reverse('order:payment_success', kwargs={'project_slug': self.project.slug, 'uuid': self.uuid})
+        return '%s%s' % (self.BASE_URL, reverse('order:payment_success', kwargs={'project_slug': self.project.slug, 'uuid': self.uuid}))
 
     @property
     def url_failure(self):
         activate(settings.LANGUAGE_CODE)
-        return reverse('order:payment_failure', kwargs={'project_slug': self.project.slug, 'uuid': self.uuid})
+        return '%s%s' % (self.BASE_URL, reverse('order:payment_failure', kwargs={'project_slug': self.project.slug, 'uuid': self.uuid}))
 
     @property
     def url_webhook(self):
         activate(settings.LANGUAGE_CODE)
-        return reverse('order:payment_webhook', kwargs={'project_slug': self.project.slug, 'uuid': self.uuid})
+        return '%s%s' % (self.BASE_URL, reverse('order:payment_webhook', kwargs={'project_slug': self.project.slug, 'uuid': self.uuid}))
 
     def make_payment(self, user):
         """
@@ -145,7 +146,6 @@ class Order(models.Model):
         logger.info('make_payment: {order} {amount} {type}'.format(order=self,
                                                                    amount=amount,
                                                                    type=self.payment_type))
-
         resp = sp.payment().make_payment(amount=amount,
                                          payment_type=self.payment_type,
                                          url_success=self.url_success,
