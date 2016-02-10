@@ -25,6 +25,14 @@ ORDER_PAYMENT_TYPE = get_namedtuple_choices('ORDER_PAYMENT_TYPE', (
     ('debit', 'debit', _('Bank debit')),
 ))
 
+SECUPAY_BANK_DATA = {
+  "bankcode": "30050000",
+  "accountowner": "secupay AG",
+  "iban": "DE88300500000001747013",
+  "bic": "WELADEDDXXX",
+  "accountnumber": "1747013"
+}
+
 
 class OrderConfig(AppConfig):
     name = 'order'

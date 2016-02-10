@@ -331,3 +331,4 @@ SECUPAY_DEMO = True
 
 WEBODT_CONVERTER = 'webodt.converters.abiword.AbiwordODFConverter'
 WEBODT_TEMPLATE_PATH = os.path.join(BASE_DIR, 'templates', 'webodt')
+

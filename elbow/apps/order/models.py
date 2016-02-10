@@ -12,7 +12,7 @@ from jsonfield import JSONField
 from pinax.eventlog.models import log
 from djmoney.models.fields import MoneyField
 
-from .apps import ORDER_STATUS, ORDER_PAYMENT_TYPE
+from .apps import ORDER_STATUS, ORDER_PAYMENT_TYPE, SECUPAY_BANK_DATA
 from .managers import OrderManager
 
 from shortuuidfield import ShortUUIDField
@@ -28,6 +28,7 @@ class Order(models.Model):
     ORDER_PAYMENT_TYPE = ORDER_PAYMENT_TYPE
 
     SECUPAY = SecuPay(settings=settings)
+    SECUPAY_BANK_DATA = SECUPAY_BANK_DATA
 
     uuid = ShortUUIDField(db_index=True)
     user = models.ForeignKey('auth.User')
