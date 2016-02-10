@@ -21,24 +21,24 @@ class OrderAdminViewCallsTest(BaseTestCase):
         }
         self.user = mommy.make('auth.User', **user_dict)
 
-    def test_send_for_payment(self):
-        order = mommy.make('order.Order', project=self.project, status='new')
+    # def test_send_for_payment(self):
+    #     order = mommy.make('order.Order', project=self.project, status='new')
 
-        self.c.force_login(self.user)
-        url = reverse('admin:order_send_for_payment', kwargs={'uuid': order.uuid})
+    #     self.c.force_login(self.user)
+    #     url = reverse('admin:order_send_for_payment', kwargs={'uuid': order.uuid})
 
-        self.assertEqual(url, u'/de/admin/order/order/%s/send/' % order.uuid)
-        self.assertTrue(order.status is 'new')
+    #     self.assertEqual(url, u'/de/admin/order/order/%s/send/' % order.uuid)
+    #     self.assertTrue(order.status is 'new')
 
-        resp = self.c.post(url, {})
+    #     resp = self.c.post(url, {})
 
-        self.assertEqual(resp.status_code, 200)
-        self.assertEqual(resp.json(), {})
+    #     self.assertEqual(resp.status_code, 200)
+    #     self.assertEqual(resp.json(), {})
 
-        # refresh
-        order.refresh_from_db()
+    #     # refresh
+    #     order.refresh_from_db()
 
-        self.assertTrue(order.status == 'processing')
+    #     self.assertTrue(order.status == 'processing')
 
     def test_cancel_order(self):
         order = mommy.make('order.Order', project=self.project, status='new')

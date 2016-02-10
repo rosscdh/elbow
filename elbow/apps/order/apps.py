@@ -5,8 +5,6 @@ from django.utils.translation import ugettext_lazy as _
 
 from elbow.utils import get_namedtuple_choices
 
-from .handlers import post_save_send_payment_request
-
 
 ORDER_STATUS = get_namedtuple_choices('ORDER_STATUS', (
     ('created', 'created', _('Order Created (1/4)')),
@@ -20,23 +18,19 @@ ORDER_STATUS = get_namedtuple_choices('ORDER_STATUS', (
 ))
 
 ORDER_PAYMENT_TYPE = get_namedtuple_choices('ORDER_PAYMENT_TYPE', (
-    ('prepay', 'prepay', _('Manual bank transfer')),
     #('creditcard', 'creditcard', _('Credit card')),  # We dont support credit-cards transactions
     ('debit', 'debit', _('Bank debit')),
+    ('prepay', 'prepay', _('Manual bank transfer')),
 ))
 
 SECUPAY_BANK_DATA = {
-  "bankcode": "30050000",
-  "accountowner": "secupay AG",
-  "iban": "DE88300500000001747013",
-  "bic": "WELADEDDXXX",
-  "accountnumber": "1747013"
+    "bankcode": "30050000",
+    "accountowner": "secupay AG",
+    "iban": "DE88300500000001747013",
+    "bic": "WELADEDDXXX",
+    "accountnumber": "1747013"
 }
 
 
 class OrderConfig(AppConfig):
     name = 'order'
-
-    def ready(self):
-        post_save.connect(post_save_send_payment_request,
-                          dispatch_uid="order.post_save_send_payment_request")

@@ -7,7 +7,7 @@ from django.template.response import TemplateResponse
 from pinax.eventlog.models import log
 
 from .models import Order
-from .services import SendForPaymentService
+#from .services import SendForPaymentService
 
 
 class OrderAdmin(admin.ModelAdmin):
@@ -18,9 +18,9 @@ class OrderAdmin(admin.ModelAdmin):
     def get_urls(self):
         urls = super(OrderAdmin, self).get_urls()
         my_urls = [
-            url(r'^(?P<uuid>.*)/send/$',
-                self.admin_site.admin_view(self.send_for_payment),
-                name='order_send_for_payment'),
+            # url(r'^(?P<uuid>.*)/send/$',
+            #     self.admin_site.admin_view(self.send_for_payment),
+            #     name='order_send_for_payment'),
 
             url(r'^(?P<uuid>.*)/cancel/$',
                 self.admin_site.admin_view(self.cancel_order),
@@ -43,23 +43,23 @@ class OrderAdmin(admin.ModelAdmin):
     def get_order(self, uuid):
         return Order.objects.get(uuid=uuid)
 
-    def send_for_payment(self, request, uuid):
-        order = self.get_order(uuid=uuid)
-        order.status = order.ORDER_STATUS.processing
-        order.save(update_fields=['status'])
+    # def send_for_payment(self, request, uuid):
+    #     order = self.get_order(uuid=uuid)
+    #     order.status = order.ORDER_STATUS.processing
+    #     order.save(update_fields=['status'])
 
-        service = SendForPaymentService(order=order)
-        service.process()
-        log(
-            user=request.user,
-            action="order.lifecycle.sent_for_payment",
-            obj=order,
-            extra={
-                "note": "%s Sent the Order to secupay for payment" % request.user
-            }
-        )
-        resp = {}
-        return JsonResponse(resp)
+    #     service = SendForPaymentService(order=order)
+    #     service.process()
+    #     log(
+    #         user=request.user,
+    #         action="order.lifecycle.sent_for_payment",
+    #         obj=order,
+    #         extra={
+    #             "note": "%s Sent the Order to secupay for payment" % request.user
+    #         }
+    #     )
+    #     resp = {}
+    #     return JsonResponse(resp)
 
     def cancel_order(self, request, uuid):
         order = self.get_order(uuid=uuid)
