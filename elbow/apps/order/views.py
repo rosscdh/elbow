@@ -188,6 +188,9 @@ class OrderWebhook(View):
             if payment_status in ['accepted']:
                 order.status = order.ORDER_STATUS.paid
 
+            if payment_status in ['authorized']:
+                order.capture_authorized_payment(user=request.user)
+
             order.data['payment_status_description'] = status_description
             order.data['payment_extended_status_description'] = extended_status_description
             order.save()

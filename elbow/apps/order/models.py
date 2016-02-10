@@ -178,6 +178,21 @@ class Order(models.Model):
 
         return self, resp
 
+    def capture_authorized_payment(self, user):
+        resp = self.SECUPAY.payment().capture_preauthorized_payment(token=self.transaction_id)
+
+        log(
+            user=user,
+            action="order.lifecycle.payment.capture_authorized_payment",
+            obj=self,
+            extra=resp
+        )
+
+        self.data['capture'] = resp.get('data', {})
+        self.save(update_fields=['data'])
+
+        return self, resp
+
 
 class PaymentOption(models.Model):
     project = models.ForeignKey('project.Project', blank=True, null=True)

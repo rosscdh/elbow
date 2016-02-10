@@ -70,6 +70,7 @@ class SendEmailService(object):
 
         msg = EmailMultiAlternatives(subject, html2text.plain_text, from_email, recipient_list)
         msg.attach_alternative(html2text.html, "text/html")
+
         if document:
             msg.attach_file(document.document.path)
 
