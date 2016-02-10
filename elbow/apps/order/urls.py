@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.conf.urls import patterns, url
+from django.views.decorators.csrf import csrf_exempt
 
 from .views import (OrderCreate,
                     OrderMoreInfo,
@@ -38,13 +39,13 @@ urlpatterns = patterns('',
                        # Payment integration, All are webhooks
                        #
                        url(r'^(?P<project_slug>[\w-]+)/order/(?P<uuid>[\w-]+)/payment/successful/$',
-                           OrderWebhook.as_view(),
+                           OrderDetail.as_view(template_name='order/order-payment_success.html'),
                            name='payment_success'),
 
                        url(r'^(?P<project_slug>[\w-]+)/order/(?P<uuid>[\w-]+)/payment/failure/$',
-                           OrderWebhook.as_view(),
+                           OrderDetail.as_view(template_name='order/order-payment_failed.html'),
                            name='payment_failure'),
 
                        url(r'^(?P<project_slug>[\w-]+)/order/(?P<uuid>[\w-]+)/payment/webhook/$',
-                           OrderWebhook.as_view(),
+                           csrf_exempt(OrderWebhook.as_view()),
                            name='payment_webhook'),)

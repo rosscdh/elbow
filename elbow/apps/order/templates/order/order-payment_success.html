@@ -1,0 +1,23 @@
+{% extends 'order/base.html' %}{% load i18n static crispy_forms_tags djmoney embed_video_tags %}
+{% load crispy_forms_filters %}
+
+{% block page_title %}{{ project.name }} - Payment Succeeded{% endblock %}
+{% block page_description %}Payment succeeded for your investment in {{ project.name }}{% endblock %}
+
+
+{% block page_header %}
+<div class="page-header clearfix">
+  <h1>Payment succeeded {{ project.name }}</h1>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+
+  <div class="well well-lg">
+    <h3>Thank you for your investment.</h3>
+  </div>
+
+</div>
+{% endblock %}

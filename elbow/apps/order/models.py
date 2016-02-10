@@ -27,6 +27,8 @@ class Order(models.Model):
     ORDER_STATUS = ORDER_STATUS
     ORDER_PAYMENT_TYPE = ORDER_PAYMENT_TYPE
 
+    SECUPAY = SecuPay(settings=settings)
+
     uuid = ShortUUIDField(db_index=True)
     user = models.ForeignKey('auth.User')
     project = models.ForeignKey('project.Project')
@@ -153,17 +155,15 @@ class Order(models.Model):
         """
         resp = {}
 
-        sp = SecuPay(settings=settings)
-
         amount = str(self.amount.amount)
         logger.info('make_payment: {order} {amount} {type}'.format(order=self,
                                                                    amount=amount,
                                                                    type=self.payment_type))
-        resp = sp.payment().make_payment(amount=amount,
-                                         payment_type=self.payment_type,
-                                         url_success=self.url_success,
-                                         url_failure=self.url_failure,
-                                         url_push=self.url_webhook)
+        resp = self.SECUPAY.payment().make_payment(amount=amount,
+                                                   payment_type=self.payment_type,
+                                                   url_success=self.url_success,
+                                                   url_failure=self.url_failure,
+                                                   url_push=self.url_webhook)
         log(
             user=user,
             action="order.lifecycle.payment.make_payment",

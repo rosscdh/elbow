@@ -42,3 +42,6 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = '../media/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
+
+
+BASE_URL = 'http://localhost:8009'

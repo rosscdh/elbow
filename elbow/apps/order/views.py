@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.http import HttpResponse
 from django.core.urlresolvers import reverse
+from django.template.defaultfilters import slugify
 from django.views.generic import FormView, ListView, DetailView, View
 
 from pinax.eventlog.models import log
@@ -139,14 +140,16 @@ class OrderWebhook(View):
         return self.model.objects.get(transaction_id=self.transaction_id)
 
     def post(self, request, *args, **kwargs):
+        data = request.POST.copy()
         self.transaction_id = request.POST.get('hash')
+
         try:
             order = self.get_object()
         except Order.DoesNotExist:
             order = None
             status_code = 400
-            request.POST.update(ack='Disapproved',
-                                error='Order with transaction_id of %s does not exist' % self.transaction_id)
+            data.update(ack='Disapproved',
+                        error='Order with transaction_id of %s does not exist' % self.transaction_id)
 
         if order:
             amount = request.POST.get('amount')
@@ -156,11 +159,12 @@ class OrderWebhook(View):
             apikey = request.POST.get('apikey')
             hint = request.POST.get('hint')
             payment_status = request.POST.get('payment_status')
-            simplifiedstatus = request.POST.get('simplifiedstatus')
+            extended_status_description = order.SECUPAY.status_id_description(status_id=status_id)
+            #simplifiedstatus = request.POST.get('simplifiedstatus')
 
             log(
                 user=request.user,
-                action="order.lifecycle.payment.webhook.%s" % simplifiedstatus,
+                action="order.lifecycle.payment.webhook.%s" % slugify(payment_status),
                 obj=order,
                 extra={
                     'transaction_id': self.transaction_id,
@@ -171,13 +175,27 @@ class OrderWebhook(View):
                     #'apikey': apikey, # Should not be TXing this at all
                     'hint': hint,
                     'payment_status': payment_status,
-                    'simplifiedstatus': simplifiedstatus,
+                    'status_description': extended_status_description,
+                    #'simplifiedstatus': simplifiedstatus, # Is not provided by api?
                 }
             )
             status_code = 200
-            request.POST.update(ack='Approved')
+            data.update(ack='Approved')  # Sigh.. no not necessariy approved but secupay needs this
 
-        content = request.POST.urlencode()
+            #
+            # update the order details
+            #
+            if payment_status in ['accepted']:
+                order.status = order.ORDER_STATUS.paid
+
+            order.data['payment_status_description'] = status_description
+            order.data['payment_extended_status_description'] = extended_status_description
+            order.save()
+
+        #
+        # re-urlencode the data for presentation back to secupay
+        #
+        content = data.urlencode()
 
         return HttpResponse(content, 'text/plain', status_code)
 

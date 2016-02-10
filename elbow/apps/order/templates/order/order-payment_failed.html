@@ -1,0 +1,23 @@
+{% extends 'order/base.html' %}{% load i18n static crispy_forms_tags djmoney embed_video_tags %}
+{% load crispy_forms_filters %}
+
+{% block page_title %}{{ project.name }} - Payment Failed{% endblock %}
+{% block page_description %}Payment failed for your investment {{ project.name }}{% endblock %}
+
+
+{% block page_header %}
+<div class="page-header clearfix">
+  <h1>Payment failed {{ project.name }}</h1>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+
+  <div class="well well-lg">
+    <h3>Could not process payment, please try again.</h3>
+  </div>
+
+</div>
+{% endblock %}
