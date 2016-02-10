@@ -1,6 +1,4 @@
 # -*- coding: UTF-8 -*-
-from django.core import mail
-
 from model_mommy import mommy
 
 from elbow.apps.order.models import Order
@@ -8,14 +6,13 @@ from elbow.apps.order.services import CreateMoreInfoAgreementPDFService
 from . import BaseTestCase
 
 
-class SendForPaymentServiceTest(BaseTestCase):
+class SendForPaymentMoreInfoAttachmentTest(BaseTestCase):
     """
     UnitTest the service methods, with a VALID order object
     """
 
     def setUp(self):
-        super(SendForPaymentServiceTest, self).setUp()
-        mail.outbox = []
+        super(SendForPaymentMoreInfoAttachmentTest, self).setUp()
         self.order = mommy.prepare('order.Order',
                                    status=Order.ORDER_STATUS.processing,  # Must be in processing
                                    transaction_id=None)  # AND must NOT have a transaction_id
@@ -25,7 +22,7 @@ class SendForPaymentServiceTest(BaseTestCase):
         self.assertTrue(self.order.can_send_payment is True)
 
 
-class SendForPaymentServiceInvalidTest(BaseTestCase):
+class SendForPaymentInvalidTest(BaseTestCase):
     def test_invalid_status_payment_not_sent(self):
         for status in [Order.ORDER_STATUS.created,
                        Order.ORDER_STATUS.paid,
@@ -67,4 +64,3 @@ class CreateMoreInfoAgreementPDFServiceTest(BaseTestCase):
         self.assertEqual(len(order_documents), 1)
         doc = order_documents.first()
         self.assertTrue(doc.document)
-

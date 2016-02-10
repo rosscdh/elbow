@@ -1,35 +1,44 @@
 {% extends "easy_pdf/base.html" %}{% load djmoney %}
 
 {% block content %}
-<p><strong><em>Projekt: {{ project.name }}</em></strong></p>
-<p><strong>Darlehensvertrag</strong></p>
-<p><strong>(Nachrangdarlehen mit qualifiziertem Rangrücktritt)</strong></p>
+<h2>Projekt: {{ project.name }}</h2>
+<h3>Darlehensvertrag<br/><small>(Nachrangdarlehen mit qualifiziertem Rangrücktritt)</small></h3>
 <p>zwischen <strong>TodaySystems GmbH</strong>, Windthorststr. 5-7, 41061 Mönchengladbach,</p>
 <blockquote>
 <p>eingetragen im Handelsregister des Amtsgerichts Mönchengladbach unter HRB ***, vertreten durch den einzelvertretungsberechtigten Geschäftsführer Harald Ebels,</p>
-<p>-nachstehend „Darlehensnehmer“ genannt-</p>
 </blockquote>
 <p>und</p>
+<blockquote style="padding:10px;background-color:#fafafa;color:#000;font-weight:bolder;">
+{{ order.customer_name }}<br/>
+{{ order.address }}<br/>
+{{ order.country }}<br/>
+</blockquote>
+<em>nachstehend „Darlehensnehmer“ genannt-<em>
 <p>wird folgende Vereinbarung getroffen:</p>
-<p><strong>Vorbemerkung </strong></p>
+<h3>Vorbemerkung</h3>
 <p>Der Darlehensnehmer <strong>TodaySystems GmbH</strong> realisiert das <strong>Projekt</strong> <strong>{{ project.name }}</strong> - neben dem Eigenkapital der Gesellschaft und eventuellen Bankfinanzierungen - durch die von der Internet-Plattform <strong>TodayCapital</strong> eingeworbenen Gelder von Darlehensgebern in Form des Crowdinvesting (auch „Schwarmfinanzierung“ genannt). TodayCapital ist lediglich Vermittler der sogenannten nachrangigen Darlehen mit qualifiziertem Rangrücktritt und erteilt keinerlei Beratung.</p>
 <p>Das einzuwerbende <strong>Kapital beträgt für dieses Projekt {% money_localize project.amount %}.</strong> Darlehensgeber können sich mit einer beliebigen Summe von 500,00 Euro bis 1.000,00 Euro am Projekt beteiligen. Ab 1.000,00 Euro bis maximal 10.000,00 Euro können Darlehensverträge nur geschlossen werden, wenn der spätere Darlehensgeber vor Abschluss des Darlehensvertrages eine Selbstauskunft der Internet-Plattform TodayCapital vorlegt, die den Anforderungen des § 2a des Vermögensanlagengesetzes entspricht.</p>
 <p>Die Einzahlung des vereinbarten Darlehensbetrages erfolgt nicht an den Darlehensnehmer <strong>TodaySystems GmbH</strong> direkt, sondern an <strong>SECUPAY AG</strong>, die im Auftrage des Darlehensgebers die vereinbarten Darlehensbeträge per Überweisung oder Lastschrift einsammelt und dann an den Darlehensnehmer weiterleitet.</p>
 <p><strong>§ 1 Beginn und Dauer des nachrangigen Darlehens </strong></p>
-<p>1. Der Darlehensgeber gewährt dem Darlehensnehmer ein nachrangiges Darlehen mit qualifiziertem Rangrücktritt – nachstehend auch nur „Darlehen“ genannt -in der Höhe eines Betrages von</p>
+<p><h4>1.</h4> Der Darlehensgeber gewährt dem Darlehensnehmer ein nachrangiges Darlehen mit qualifiziertem Rangrücktritt – nachstehend auch nur „Darlehen“ genannt -in der Höhe eines Betrages von</p>
+<blockquote style="padding:10px;background-color:#fafafa;color:#000;font-weight:bolder;">
+  {% money_localize project.amount %}
+</blockquote>
 <p>zu einem Festzins in der Höhe von 7 <strong>% des Darlehensbetrages p. a.</strong> Die Zinsen sind vom Darlehensnehmer endfällig zusammen mit der Rückzahlung des Darlehensbetrages zu zahlen.</p>
-<p>2. Das Darlehen wird ausschließlich für das <strong>Projekt {{ project.name }}</strong> verwendet, wie es auf der Internett-Plattform von TodayCapital aufgeführt worden ist, abzüglich der Vergütungen und Kostenerstattungen an die TodayCapital GmbH für ihre Vermittlungsleistungen sowie die Kosten für die Zahlungsabwicklungen durch SECUPAY AG.</p>
-<p>3. Das Darlehen hat eine Regellaufzeit von <strong>24 Monate.</strong> Der Darlehensnehmer kann mit schriftlicher Erklärung gegenüber dem Darlehensgeber bis spätestens 2 Monate vor Ende der Regellaufzeit eine Verlängerung der Darlehenslaufzeit um 6 Monate verlängern.</p>
-<p>4. Der Vertrag kommt erst zustande, wenn die Zahlung des vollständigen Darlehensbetrages durch den Darlehensgeber an den Darlehensnehmer oder im Fall der Beauftragung an die SECUPAY AG erfolgt ist. Sollte der Darlehensgeber den Darlehensbetrag 10 Tage nach Abschluss dieses Vertrages nicht gezahlt haben, so gilt die Bedingung als nicht eingetreten. Das gesetzliche Widerrufsrecht ist davon nicht betroffen.</p>
+<p><h4>2.</h4> Das Darlehen wird ausschließlich für das <strong>Projekt {{ project.name }}</strong> verwendet, wie es auf der Internett-Plattform von TodayCapital aufgeführt worden ist, abzüglich der Vergütungen und Kostenerstattungen an die TodayCapital GmbH für ihre Vermittlungsleistungen sowie die Kosten für die Zahlungsabwicklungen durch SECUPAY AG.</p>
+<p><h4>3.</h4> Das Darlehen hat eine Regellaufzeit von <strong>24 Monate.</strong> Der Darlehensnehmer kann mit schriftlicher Erklärung gegenüber dem Darlehensgeber bis spätestens 2 Monate vor Ende der Regellaufzeit eine Verlängerung der Darlehenslaufzeit um 6 Monate verlängern.</p>
+<p><h4>4.</h4> Der Vertrag kommt erst zustande, wenn die Zahlung des vollständigen Darlehensbetrages durch den Darlehensgeber an den Darlehensnehmer oder im Fall der Beauftragung an die SECUPAY AG erfolgt ist. Sollte der Darlehensgeber den Darlehensbetrag 10 Tage nach Abschluss dieses Vertrages nicht gezahlt haben, so gilt die Bedingung als nicht eingetreten. Das gesetzliche Widerrufsrecht ist davon nicht betroffen.</p>
 <p><strong>§ 2 Zahlung des Darlehensbetrag </strong></p>
 <p>1. Der Darlehensgeber zahlt den von auf der Internetplattform ausgewählten Darlehensbetrag in Euro. Der Darlehensbetrag muss mindestens 500,00 EUR betragen. Dieser Darlehensbetrag ist an die SECUPAY AG zu leisten.</p>
-<p>2. Hat der Darlehensgeber keinen Lastschriftauftrag erteilt, ist der Darlehensbetrag sofort das Konto von SECUPAY AG bei ***</p>
-<p>IBAN-Nummer: {{ order.SECUPAY_BANK_DATA.iban }}</p>
-<p>BIC-Nummer: {{ order.SECUPAY_BANK_DATA.bic }}</p>
+<p>2. Hat der Darlehensgeber keinen Lastschriftauftrag erteilt, ist der Darlehensbetrag sofort das Konto von SECUPAY AG bei </p>
+<blockquote style="padding:10px;background-color:#fafafa;color:#000;font-weight:bolder;">
+IBAN-Nummer: {{ order.SECUPAY_BANK_DATA.iban }}<br/>
+BIC-Nummer: {{ order.SECUPAY_BANK_DATA.bic }}
+</blockquote>
 <p>unter Angabe der persönlichen Darlehensnummer zu überweisen.</p>
 <p>3. TodaySystems GmbH stellt sicher, dass der Darlehensbetrag von der SECUPAY AG vollständig und kostenfrei an den Darlehensgeber zurückgezahlt wird, wenn der Darlehensvertrag aufgrund einer wirksamen Widerrufserklärung aufgelöst wird.</p>
 <p><strong>§ 3 Abruf des Darlehensbetrags bei der SECUPAY AG </strong></p>
-<p>1. TodaySystems GmbH kann die bei SECUPAY AG eingegangenen Darlehensbeträge abrufen, wenn die vorgegebene Fundingschwelle von ***Euro erreicht ist und die jeweiligen gesetzlichen Widerrufsfristen der betreffenden Darlehensgeber abgelaufen sind.</p>
+<p>1. TodaySystems GmbH kann die bei SECUPAY AG eingegangenen Darlehensbeträge abrufen, wenn die vorgegebene Fundingschwelle von {% money_localize project.amount %} erreicht ist und die jeweiligen gesetzlichen Widerrufsfristen der betreffenden Darlehensgeber abgelaufen sind.</p>
 <p>2. TodaySystems GmbH verpflichtet sich, dass der Darlehensbetrag ohne Kosten an den Darlehensgeber zurückgezahlt wird, wenn die vorgenannte Fundingschwelle nicht erreicht wird und TodaySystems GmbH dem Darlehensgeber nicht mitgeteilt hat, dass TodaySystems GmbH einen anderen Darlehensgeber für die Lücke zur Fundingschwelle gefunden hat, sowie wenn der Darlehensbetrag nicht innerhalb der ersten 12 Monate nach Einzahlung des Darlehensbetrages für das Projekt {{ project.name }} verwendet wurde.</p>
 <p><strong>§ 4 Stellung des Darlehensgebers </strong></p>
 <p>Der Darlehensgeber verfügt über keinerlei Mitwirkungsbefugnisse, Stimm- und Weisungsrechte hinsichtlich der Führung des Geschäftsbetriebs von TodaySystems GmbH. Zwischen der Gesellschaft und dem Darlehensgeber wird kein Gesellschaftsverhältnis begründet. Die Darlehensgewährung ist keine stille Beteiligung im Sinne der §§ 230 ff. HGB noch ein Genussrecht.</p>
@@ -80,5 +89,5 @@
 <p>1. Nebenabreden, Änderungen oder Ergänzungen dieses Darlehensvertrages bedürfen zu ihrer Wirksamkeit der Textform. Dies gilt auch für eine Vereinbarung, die den Verzicht auf die Textformerfordernis bestimmen soll. Mündliche Nebenabreden bestehen nicht. Es gilt deutsches Recht, die Vertragssprache ist Deutsch.</p>
 <p>2. Sollten einzelne Bestimmungen dieses Darlehensvertrages unwirksam oder undurchführbar sein oder der Darlehensvertrag Lücken enthalten, wird dadurch die Wirksamkeit der übrigen Bestimmungen nicht berührt. Die Vertragsparteien verpflichten sich, an Stelle der unwirksamen oder undurchführbaren Bestimmungen solche Bestimmungen zu treffen, die den mit den unwirksamen oder undurchführbaren Bestimmungen verfolgten wirtschaftlichen Zwecken in zulässiger Weise am nächsten kommen. Im Falle von Lücken verpflichten sich die Vertragsparteien, zur Aufnahme derjenigen Bestimmungen in den Darlehensvertrag hinzuwirken, die dem entspricht, was nach Sinn und Zweck dieses Darlehensvertrags vereinbart worden wäre, hätte man dies von vornherein bedacht.</p>
 <p>3. Für alle Streitigkeiten aus und in Zusammenhang mit diesem Darlehensvertrag ist, soweit gesetzlich zulässig, der Gerichtsstand der Sitz von TodaySystems GmbH.</p>
-<p>Mönchengladbach, den *** (hier: Version vom 8.12.2015)</p>
+<p>Mönchengladbach, den {{ order.created_at }} (hier: Version vom 8.12.2015)</p>
 {% endblock %}

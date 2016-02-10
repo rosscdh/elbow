@@ -7,13 +7,13 @@ from elbow.apps.order.models import Order
 from elbow.apps.public.services import SendEmailService
 
 
-class SendForPaymentServiceTest(BaseTestCase):
+class SendForPaymentEmailServiceTest(BaseTestCase):
     """
     UnitTest the service methods, with a VALID order object
     """
 
     def setUp(self):
-        super(SendForPaymentServiceTest, self).setUp()
+        super(SendForPaymentEmailServiceTest, self).setUp()
         mail.outbox = []
         self.order = mommy.prepare('order.Order',
                                    status=Order.ORDER_STATUS.processing,  # Must be in processing
