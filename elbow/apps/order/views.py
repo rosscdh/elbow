@@ -156,7 +156,7 @@ class OrderWebhook(View):
             status_id = request.POST.get('status_id')
             status_description = request.POST.get('status_description')
             changed = request.POST.get('changed')
-            apikey = request.POST.get('apikey')
+            #apikey = request.POST.get('apikey')
             hint = request.POST.get('hint')
             payment_status = request.POST.get('payment_status')
             extended_status_description = order.SECUPAY.status_id_description(status_id=status_id)
@@ -172,11 +172,11 @@ class OrderWebhook(View):
                     'status_id': status_id,
                     'status_description': status_description,
                     'changed': changed,
-                    #'apikey': apikey, # Should not be TXing this at all
+                    #  'apikey': apikey, # Should not be TXing this at all
                     'hint': hint,
                     'payment_status': payment_status,
                     'status_description': extended_status_description,
-                    #'simplifiedstatus': simplifiedstatus, # Is not provided by api?
+                    #  'simplifiedstatus': simplifiedstatus, # Is not provided by api?
                 }
             )
             status_code = 200
@@ -189,8 +189,14 @@ class OrderWebhook(View):
                 order.status = order.ORDER_STATUS.paid
 
             if payment_status in ['authorized']:
+                #
+                # IN the case of an authorized event (bank has allwed the tx)
+                # we need to manually capture the payment
+                #
                 order.capture_authorized_payment(user=request.user)
-
+            #
+            # Handle updating of info in data field
+            #
             order.data['payment_status_description'] = status_description
             order.data['payment_extended_status_description'] = extended_status_description
             order.save()

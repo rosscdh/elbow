@@ -187,9 +187,13 @@ class Order(models.Model):
             obj=self,
             extra=resp
         )
+        data = resp.get('data', {})
+        self.data['capture'] = data
 
-        self.data['capture'] = resp.get('data', {})
-        self.save(update_fields=['data'])
+        if data.get('status') == 'ok':
+            self.status = self.ORDER_STATUS.paid
+
+        self.save(update_fields=['status', 'data'])
 
         return self, resp
 

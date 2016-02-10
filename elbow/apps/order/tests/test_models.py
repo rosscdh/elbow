@@ -87,6 +87,30 @@ class OrderModelTest(BaseTestCase):
         self.assertEqual(self.order.data, {u'iframe_url': u'https://api.secupay.ag/payment/tujevzgobryk3303', u'hash': u'tujevzgobryk3303'})
 
     @httpretty.activate
+    def test_capture_authorized_payment(self):
+        self.order.transaction_id = 'yvxsekbprziw962155'
+        expected_response = {
+          "status": "ok",
+          "errors": None,
+          "data": {
+            "status": "ok"  # Were specifically looking for this value in order to mark as paid in the case of bank tx
+          }
+        }
+        httpretty.register_uri(httpretty.POST, "https://api-dist.secupay-ag.de/payment/%s/capture" % self.order.transaction_id,
+                               body=json.dumps(expected_response),
+                               content_type="application/json")
+        with self.settings(DEBUG=True):
+            resp = self.order.capture_authorized_payment(user=self.order.user)
+
+        self.assertTrue(type(resp) is tuple)
+        self.assertTrue(len(resp) is 2)
+        self.assertTrue(resp[0].__class__.__name__ == 'Order')
+        self.assertTrue(type(resp[1]) is dict)
+
+        self.assertEqual(self.order.data.keys(), [u'capture'])
+        self.assertEqual(self.order.status, self.order.ORDER_STATUS.paid)
+
+    @httpretty.activate
     def test_prepay_payment_type(self):
         expected_response = {
           "status": "ok",
