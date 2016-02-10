@@ -144,6 +144,9 @@ class Order(models.Model):
         activate(settings.LANGUAGE_CODE)
         return '%s%s' % (self.BASE_URL, reverse('order:payment_webhook', kwargs={'project_slug': self.project.slug, 'uuid': self.uuid}))
 
+    def __unicode__(self):
+        return '%s - %s (%s)' % (self.amount, self.transaction_id, self.payment_type)
+
     def make_payment(self, user):
         """
         Primary make payment interface returns the iframe url

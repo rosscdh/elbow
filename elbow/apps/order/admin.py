@@ -11,6 +11,10 @@ from .services import SendForPaymentService
 
 
 class OrderAdmin(admin.ModelAdmin):
+    list_display = ('uuid', 'user', 'project', 'transaction_id', 'payment_type', 'status')
+    list_filter = ('project','payment_type', 'status')
+    search_fields = ('uuid', 'user__email', 'user__first_name', 'user__last_name', 'project__name', 'transaction_id', 'payment_type', 'status')
+
     def get_urls(self):
         urls = super(OrderAdmin, self).get_urls()
         my_urls = [

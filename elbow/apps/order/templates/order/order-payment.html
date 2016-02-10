@@ -7,14 +7,8 @@
 
 {% block page_header %}
 <div class="page-header clearfix">
-  <h1>Payment Details {{ project.name }}</h1>
+  <h1>{% trans 'Payment Details' %} - {{ project.name }}</h1>
   <p>{{ project.proposition }}</p>
-  <div class="col-md-4">
-  &nbsp;
-  </div>
-  <div class="col-md-8 text-right">
-  &nbsp;
-  </div>
 </div>
 {% endblock %}
 
@@ -25,22 +19,22 @@
   {% if order.payment_type == 'prepay' %}
 
     <div class="col-md-12">
-      <h2>Please submit payment to</h2>
+      <h2>{% trans 'Please make payment out to' %}</h2>
       <div class="col-xs-12 well well-lg">
-        <b>Bankcode:</b> {{ order.data.payment_data.bankcode }}<br/>
-        <b>Account Owner:</b> {{ order.data.payment_data.accountowner }}<br/>
-        <b>IBAN:</b> {{ order.data.payment_data.iban }}<br/>
-        <b>BIC:</b> {{ order.data.payment_data.bic }}<br/>
-        <b>Account No.:</b> {{ order.data.payment_data.accountnumber }}<br/>
+        <b>{% trans 'Bankcode' %}:</b> {{ order.data.payment_data.bankcode }}<br/>
+        <b>{% trans 'Account' %} Owner:</b> {{ order.data.payment_data.accountowner }}<br/>
+        <b>{% trans 'IBAN' %}:</b> {{ order.data.payment_data.iban }}<br/>
+        <b>{% trans 'BIC' %}:</b> {{ order.data.payment_data.bic }}<br/>
+        <b>{% trans 'Account No.' %}:</b> {{ order.data.payment_data.accountnumber }}<br/>
         <hr/>
-        <p class="lead"><b><em>Please Quote:</em></b> {{ order.transaction_id }}</p>
+        <p class="lead"><b><em>{% trans 'Customer Reference' %}:</em></b> {{ order.transaction_id }}</p>
       </div>
     </div>
 
   {% else %}
 
     <div class="col-md-12">
-      <iframe src="{{ order.data.iframe_url }}" width="100%" height="420"></iframe>
+      <iframe id="secupay" src="{{ order.data.iframe_url }}" width="100%" height="420"></iframe>
     </div>
 
   {% endif %}
@@ -50,4 +44,16 @@
   </div>
 
 </div>
+{% endblock %}
+
+
+{% block css %}
+<style>
+iframe#secupay {
+  width:100%;
+  min-height:420px;
+  max-height:420px;
+  border:solid #ccc 0px;
+}
+</style>
 {% endblock %}

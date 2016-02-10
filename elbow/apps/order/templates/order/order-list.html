@@ -29,13 +29,16 @@
       </div>
       <div class="col-xs-3">
         <p><b>{{ order.customer_name }}</b></p>
-        <p>{{ order.address }}<br/>
-        {{ order.country }}</p>
+        <p>
+        {{ order.address }}<br/>
+        {{ order.country }}
+        </p>
       </div>
       <div class="col-xs-2">{{ order.status }}</div>
       <div class="col-xs-2">
-        {% if order.can_continue_process %}<a href="{{ order.url }}" class="btn btn-sm btn-info">Continue Investment</a>{% endif %}
-        {% if order.status == 'pending' %}<a href="{{ order.url }}" class="btn btn-sm btn-danger">Cancel Investment</a>{% endif %}
+        {% if order.can_continue_process %}<a href="{{ order.url }}" class="btn btn-sm btn-info">{% trans 'Continue' %}</a>{% endif %}
+        {% if order.can_continue_process or order.status == 'pending' %}<a href="javascript:;" data-url="{{ order.url }}" class="order-lifecycle-event btn btn-sm btn-warning">{% trans 'Cancel'  %}</a>{% endif %}
+        {% if order.status == 'cancelled' %}<a href="javascript:;" data-url="{{ order.url }}" class="order-lifecycle-event btn btn-sm btn-danger">{% trans 'Delete'  %}</a>{% endif %}
       </div>
     </div>
 
@@ -61,4 +64,47 @@
   margin-top:0px;
 }
 </style>
+{% endblock %}
+
+
+{% block javascript %}
+<script>
+'use strict';
+$( document ).ready(function( $ ) {
+
+      $('.order-lifecycle-event').on('click', function (event) {
+        event.preventDefault();
+        var button = $(this);
+        var url = button.data().url;
+        console.log(url);
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: JSON.stringify({
+            }),
+            dataType: 'json',
+            contentType: "application/json",
+            beforeSend: function (request) {
+                request.setRequestHeader("X-CSRFToken", '{{csrf_token}}');
+                // disable the button
+                button.prop('disabled', true);
+            },
+            error: function ( data ) {
+                var payload = data.responseJSON;
+                // enable the button again
+                button.prop('disabled', false);
+            },
+            success: function ( data ) {
+                //console.log(data)
+                if ( data.status == 200 ) {
+                }
+                button.prop('disabled', false);
+                document.location.reload();
+            }
+        });
+
+      });
+
+});
+</script>
 {% endblock %}
