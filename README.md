@@ -28,3 +28,23 @@ vim bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_bootstrap/_var
 
 You could use: http://www.lavishbootstrap.com/ and copy paste the variables
 
+
+
+## Setup translations
+
+
+```
+tx set --auto-local -r elbow.djangopo 'locale/<lang>/LC_MESSAGES/django.po' \
+--source-lang en --type PO --source-file locale/en/LC_MESSAGES/django.po
+```
+
+will output
+
+```
+Only printing the commands which will be run if the --execute switch is specified.
+
+tx set --source -r elbow.djangopo -l en locale/en/LC_MESSAGES/django.po
+
+tx set -r elbow.djangopo -l de locale/de/LC_MESSAGES/django.po
+tx set -r elbow.djangopo -l en locale/en/LC_MESSAGES/django.po
+```

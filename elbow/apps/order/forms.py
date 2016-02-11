@@ -13,7 +13,7 @@ from decimal import Decimal
 from moneyed import Money, EUR
 
 from elbow.apps.order.models import Order
-from elbow.apps.order.services import CreateMoreInfoAgreementPDFService
+from elbow.apps.order.services import LoanAgreementCreatePDFService
 
 from elbow.apps.public.services import SendEmailService
 from .apps import ORDER_PAYMENT_TYPE
@@ -38,7 +38,7 @@ class CreateOrderForm(forms.Form):
 
     payment_type = forms.ChoiceField(label=_('How to Pay'),
                                      choices=ORDER_PAYMENT_TYPE.get_choices(),
-                                     help_text=_(''))
+                                     help_text=_('Please select a payment type'))
 
     t_and_c = forms.BooleanField(label=_('Terms & Conditions'),
                                  help_text=_('I agree to the terms and conditions'),
@@ -165,7 +165,7 @@ class OrderMoreInfoForm(forms.Form):
         #
         # Create PDF and associate with Order
         #
-        pdf_service = CreateMoreInfoAgreementPDFService(order=self.order,
+        pdf_service = LoanAgreementCreatePDFService(order=self.order,
                                                         user=self.user)
         self.order = pdf_service.process()
 

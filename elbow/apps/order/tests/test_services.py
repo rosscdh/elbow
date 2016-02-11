@@ -2,7 +2,7 @@
 from model_mommy import mommy
 
 from elbow.apps.order.models import Order
-from elbow.apps.order.services import CreateMoreInfoAgreementPDFService
+from elbow.apps.order.services import LoanAgreementCreatePDFService
 from . import BaseTestCase
 
 
@@ -44,7 +44,7 @@ class SendForPaymentInvalidTest(BaseTestCase):
         self.assertTrue(order.can_send_payment is False)
 
 
-class CreateMoreInfoAgreementPDFServiceTest(BaseTestCase):
+class LoanAgreementCreatePDFServiceTest(BaseTestCase):
     def setUp(self):
         user_dict = {'first_name': 'Test', 'last_name': 'User', 'email': 'test@example.com'}
         self.user = mommy.make('auth.User', **user_dict)
@@ -52,7 +52,7 @@ class CreateMoreInfoAgreementPDFServiceTest(BaseTestCase):
         self.order = mommy.make('order.Order',
                                 status=Order.ORDER_STATUS.processing,  # Must be in processing
                                 transaction_id=None)  # AND must NOT have a transaction_id
-        self.subject = CreateMoreInfoAgreementPDFService
+        self.subject = LoanAgreementCreatePDFService
 
     def test_order_doc_is_created(self):
         s = self.subject(order=self.order,
