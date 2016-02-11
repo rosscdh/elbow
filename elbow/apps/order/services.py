@@ -24,14 +24,14 @@ class LoanAgreementCreatePDFService(object):
             'user': self.user
         })
 
-        pdf_bytes = render_to_pdf(template='order/documents/more_info_agreement.html',
+        pdf_bytes = render_to_pdf(template='order/documents/loan_agreement.html',
                                   context=kwargs,
                                   encoding=u'utf-8')
 
         doc = Document(name='Load Agreement - %s' % self.order.customer_name,
                        document_type=Document.DOCUMENT_TYPES.order)
 
-        doc.document.save(_document_upload_path(doc, 'info-agreement.pdf'), ContentFile(pdf_bytes))
+        doc.document.save(_document_upload_path(doc, 'loan-agreement.pdf'), ContentFile(pdf_bytes))
         doc.save()
 
         self.order.documents.add(doc)
