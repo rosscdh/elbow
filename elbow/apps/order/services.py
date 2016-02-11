@@ -28,7 +28,7 @@ class LoanAgreementCreatePDFService(object):
                                   context=kwargs,
                                   encoding=u'utf-8')
 
-        doc = Document(name='Load Agreement - %s' % self.order.customer_name,
+        doc = Document(name='Loan Agreement - %s' % self.order.customer_name,
                        document_type=Document.DOCUMENT_TYPES.order)
 
         doc.document.save(_document_upload_path(doc, 'loan-agreement.pdf'), ContentFile(pdf_bytes))
