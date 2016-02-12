@@ -26,6 +26,8 @@ class Document(models.Model):
 
     uuid = ShortUUIDField(db_index=True, blank=False)
 
+    user = models.ForeignKey('auth.User', blank=True, null=True)
+
     name = models.CharField(max_length=128)
 
     document = models.FileField(upload_to=_document_upload_path,

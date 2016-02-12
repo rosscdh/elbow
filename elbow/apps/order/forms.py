@@ -103,6 +103,13 @@ class CreateOrderForm(forms.Form):
 
         order = Order.objects.create(**self.cleaned_data)
 
+        #
+        # Create PDF and associate with Order
+        #
+        pdf_service = LoanAgreementCreatePDFService(order=order,
+                                                    user=self.user)
+        order = pdf_service.process()
+
         email_service = SendEmailService(order=order)
         email_service.send_order_created_email(user_list=[self.user])
 
@@ -118,8 +125,8 @@ class CreateOrderForm(forms.Form):
         return order
 
 
-class OrderMoreInfoForm(forms.Form):
-    has_provided_additional_data = forms.BooleanField(label=None, help_text=_('I have read and agree with the additional data agreement'), required=True)
+class OrderLoanAgreementForm(forms.Form):
+    has_agreed_to_loan_agreement_terms = forms.BooleanField(label=None, help_text=_('I agree to invest this large amount'), required=True)
 
     def __init__(self, *args, **kwargs):
         self.order = kwargs.pop('order', None)
@@ -133,76 +140,7 @@ class OrderMoreInfoForm(forms.Form):
         if self.project is None:
             raise Exception('project must be passed into the Form')
 
-        super(OrderMoreInfoForm, self).__init__(**kwargs)
-
-    @property
-    def helper(self):
-        helper = FormHelper(self)
-
-        helper.form_action = ''
-        helper.form_show_errors = True
-        helper.render_unmentioned_fields = True
-
-        helper.layout = Layout(
-                               Fieldset(_('Additional Investor Info'),
-                                        'has_provided_additional_data',
-                               ),
-                               ButtonHolder(
-                                    Submit('submit', _('Submit'), css_class='btn btn-success btn-lg')
-                               ))
-        return helper
-
-    def save(self, *args, **kwargs):
-        """
-        Artificial save here as forms.Form dont have a save method
-        """
-        has_provided_additional_data = self.cleaned_data.pop('has_provided_additional_data')
-
-        self.order.status = self.order.ORDER_STATUS.more_info
-        self.order.data['has_provided_additional_data'] = has_provided_additional_data
-        self.order.save(update_fields=['status', 'data'])
-
-        #
-        # Create PDF and associate with Order
-        #
-        pdf_service = LoanAgreementCreatePDFService(order=self.order,
-                                                        user=self.user)
-        self.order = pdf_service.process()
-
-        #
-        # Send email with PDF Attachment
-        #
-        email_service = SendEmailService(order=self.order)
-        email_service.send_order_more_info_email(user_list=[self.user])
-
-        log(
-            user=self.user,
-            action="order.lifecycle.customer_provided_more_info",
-            obj=self.order,
-            extra={
-                "note": "%s Created a new Order to Invest" % self.user
-            }
-        )
-
-        return self.order
-
-
-class OrderLargeSumAgreementForm(forms.Form):
-    has_agreed_to_large_sum_investment = forms.BooleanField(label=None, help_text=_('I agree to invest this large amount'), required=True)
-
-    def __init__(self, *args, **kwargs):
-        self.order = kwargs.pop('order', None)
-        self.user = kwargs.pop('user', None)
-        self.project = kwargs.pop('project', None)
-
-        if self.order is None:
-            raise Exception('order must be passed into the Form')
-        if self.user is None:
-            raise Exception('user must be passed into the Form')
-        if self.project is None:
-            raise Exception('project must be passed into the Form')
-
-        super(OrderLargeSumAgreementForm, self).__init__(**kwargs)
+        super(OrderLoanAgreementForm, self).__init__(**kwargs)
 
     @property
     def helper(self):
@@ -214,7 +152,7 @@ class OrderLargeSumAgreementForm(forms.Form):
 
         helper.layout = Layout(
                             Fieldset(_('Agreement for investing a large sum'),
-                                'has_agreed_to_large_sum_investment',
+                                'has_agreed_to_loan_agreement_terms',
                             ),
                             ButtonHolder(
                                 Submit('submit', _('Submit'), css_class='btn btn-success btn-lg')
@@ -225,17 +163,21 @@ class OrderLargeSumAgreementForm(forms.Form):
         """
         Artificial save here as forms.Form dont have a save method
         """
-        has_agreed_to_large_sum_investment = self.cleaned_data.pop('has_agreed_to_large_sum_investment')
+        has_agreed_to_loan_agreement_terms = self.cleaned_data.pop('has_agreed_to_loan_agreement_terms')
 
-        # email_service = SendEmailService(order=self.order)
-        # email_service.send_order_created_email(user_list=[self.user])
-        self.order.status = self.order.ORDER_STATUS.large_sum_agreement
-        self.order.data['has_agreed_to_large_sum_investment'] = has_agreed_to_large_sum_investment
+        self.order.status = self.order.ORDER_STATUS.loan_agreement
+        self.order.data['has_agreed_to_loan_agreement_terms'] = has_agreed_to_loan_agreement_terms
         self.order.save(update_fields=['status', 'data'])
+
+        #
+        # Send email with PDF Attachment
+        #
+        email_service = SendEmailService(order=self.order)
+        email_service.send_order_loan_agreement_email(user_list=[self.user])
 
         log(
             user=self.user,
-            action="order.lifecycle.large_sum_agreement.accepted",
+            action="order.lifecycle.loan_agreement.accepted",
             obj=self.order,
             extra={
                 "note": "%s Agreed to the large sum agreement" % self.user

@@ -52,12 +52,14 @@ class SendEmailService(object):
                                                        html_message=html2text.html)))
         return send_success
 
-    def send_order_more_info_email(self, user_list):
+    def send_order_loan_agreement_email(self, user_list):
         logger.debug('Order More Info')
         send_success = []
 
-        document = self.order.documents.filter(document_type='order').first()
-
+        document = self.order.documents.filter(document_type='order',
+                                               user=self.order.user)  \
+                                       .order_by('-id').first()
+        #import pdb;pdb.set_trace()
         html2text = HTML2TextEmailMessageService(template_name='order/email/order_more_info.html',
                                                  order=self.order,
                                                  recipients=user_list)

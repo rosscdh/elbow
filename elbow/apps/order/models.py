@@ -85,20 +85,16 @@ class Order(models.Model):
 
         if self.status == self.ORDER_STATUS.created:
             #
-            # Has only completed step 1 needs to complete the rest
-            #
-            return reverse('order:more_info', kwargs=url_kwargs)
-
-        if self.status == self.ORDER_STATUS.more_info:
-            #
-            # Has completed more info step but needs to agree to large sum agreement
+            # Has completed primary step but needs to agree to
+            # large sum agreement
+            # or not
             #
             if self.amount.amount <= 1000:
                 return reverse('order:payment', kwargs=url_kwargs)
             else:
-                return reverse('order:large_sum_agreement', kwargs=url_kwargs)
+                return reverse('order:loan_agreement', kwargs=url_kwargs)
 
-        if self.status == self.ORDER_STATUS.large_sum_agreement:
+        if self.status == self.ORDER_STATUS.loan_agreement:
             #
             # Completed the steps but needs to pay
             #
@@ -121,8 +117,7 @@ class Order(models.Model):
         If the user has not completed their investment process allow them to continue via this check
         """
         return self.status in [self.ORDER_STATUS.created,
-                               self.ORDER_STATUS.large_sum_agreement,
-                               self.ORDER_STATUS.more_info,] and self.transaction_id in [None, '']
+                               self.ORDER_STATUS.loan_agreement] and self.transaction_id in [None, '']
 
     @property
     def content_type(self):

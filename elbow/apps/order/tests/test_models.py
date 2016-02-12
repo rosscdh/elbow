@@ -48,17 +48,17 @@ class OrderModelTest(BaseTestCase):
         self.order.status = self.order.ORDER_STATUS.processing
         self.assertEqual(self.order.url, u'/de/orders/%s/order/%s/' % (self.order.project.slug, self.order.uuid))
 
-        # If we have a large amount to pay then take us to the large-sum-agreement page
-        self.order.status = self.order.ORDER_STATUS.more_info
+        # If we have a large amount to pay then take us to the loan-agreement page
+        self.order.status = self.order.ORDER_STATUS.created
         self.order.amount = 250000.00
-        self.assertEqual(self.order.url, u'/de/orders/%s/order/%s/large-sum-agreement/' % (self.order.project.slug, self.order.uuid))
+        self.assertEqual(self.order.url, u'/de/orders/%s/order/%s/loan-agreement/' % (self.order.project.slug, self.order.uuid))
 
         # If we have only a small amount to pay then take us direct to payment
-        self.order.status = self.order.ORDER_STATUS.more_info
+        self.order.status = self.order.ORDER_STATUS.created
         self.order.amount = 250.00
         self.assertEqual(self.order.url, u'/de/orders/%s/order/%s/payment/' % (self.order.project.slug, self.order.uuid))
 
-        self.order.status = self.order.ORDER_STATUS.large_sum_agreement
+        self.order.status = self.order.ORDER_STATUS.loan_agreement
         self.assertEqual(self.order.url, u'/de/orders/%s/order/%s/payment/' % (self.order.project.slug, self.order.uuid))
 
     @httpretty.activate

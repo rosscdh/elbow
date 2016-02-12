@@ -42,7 +42,7 @@ class OrderCreateViewTest(BaseTestCase):
         self.assertEqual(resp.context['form'].fields['customer_name'].initial, '%s %s' % (self.user.first_name, self.user.last_name))
 
     @httpretty.activate
-    def test_form_redirects_to_more_info_page_on_success(self):
+    def test_form_redirects_to_load_agreement_with_large_amount_page_on_success(self):
         expected_response = {
             "status": "ok",
             "data": {
@@ -55,17 +55,54 @@ class OrderCreateViewTest(BaseTestCase):
                                body=json.dumps(expected_response),
                                content_type="application/json")
 
+        # This is to ensure we redirect to the loan_agreement page
+        self.assertEqual(self.initial.get('amount'), 2500)
+
         with self.settings(DEBUG=True):
             self.c.force_login(self.user)
+            # initial amount is 2500
             resp = self.c.post(self.url, self.initial)
 
-        self.assertEqual(resp.status_code, 302)
+        self.assertTrue(len(self.project.order_set.all()) == 1)
+        order = self.project.order_set.all().first()
+
         #
         # Redirected to more info page
         #
+        self.assertEqual(resp.status_code, 302)
+        self.assertEqual(resp.url, '/de/orders/my-basic-test-project/order/%s/loan-agreement/' % order.uuid)
+
+    @httpretty.activate
+    def test_form_redirects_to_payment_with_small_amount_page_on_success(self):
+        expected_response = {
+            "status": "ok",
+            "data": {
+                "hash": "tujevzgobryk3303",
+                "iframe_url": "https://api.secupay.ag/payment/tujevzgobryk3303"
+            },
+            "errors": None
+        }
+        httpretty.register_uri(httpretty.POST, "https://api-dist.secupay-ag.de/payment/init",
+                               body=json.dumps(expected_response),
+                               content_type="application/json")
+
+        # This is to ensure we redirect to the loan_agreement page
+        self.initial['amount'] = 500
+        self.assertEqual(self.initial.get('amount'), 500)
+
+        with self.settings(DEBUG=True):
+            self.c.force_login(self.user)
+            # initial amount is 2500
+            resp = self.c.post(self.url, self.initial)
+
         self.assertTrue(len(self.project.order_set.all()) == 1)
         order = self.project.order_set.all().first()
-        self.assertEqual(resp.url, '/de/orders/my-basic-test-project/order/%s/more-info/' % order.uuid)
+
+        #
+        # Redirected to more info page
+        #
+        self.assertEqual(resp.status_code, 302)
+        self.assertEqual(resp.url, '/de/orders/my-basic-test-project/order/%s/payment/' % order.uuid)
 
 
 class OrderFormTest(TestCase):
@@ -114,6 +151,9 @@ class OrderFormTest(TestCase):
 
         self.assertEqual(order.user, self.user)
         self.assertEqual(order.project, self.project)
+
+        # Should create a document for the user if a large sum
+        self.assertEqual(order.documents.all().count(), 1)
 
         # Should have email to managers AND email to customer
         self.assertEqual(2, len(mail.outbox))

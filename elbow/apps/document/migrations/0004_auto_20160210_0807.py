@@ -15,6 +15,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='document',
             name='document_type',
-            field=models.CharField(choices=[('project', 'Project Document'), ('order', 'Order Document'), ('large_sum_agreement', 'Large Sum Agreement')], db_index=True, default='project', max_length=64),
+            field=models.CharField(choices=[('project', 'Project Document'), ('order', 'Order Document'), ('loan_agreement', 'Large Sum Agreement')], db_index=True, default='project', max_length=64),
         ),
     ]

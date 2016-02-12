@@ -3,40 +3,29 @@ from . import BaseTestCase, TestCase
 from django.core import mail
 from django.core.urlresolvers import reverse
 
-from elbow.apps.order.forms import OrderMoreInfoForm
+from elbow.apps.order.forms import OrderLoanAgreementForm
+from elbow.apps.order.services import LoanAgreementCreatePDFService
 
 from model_mommy import mommy
 
 import re
 
 
-class OrderMoreInfoViewTest(BaseTestCase):
+class OrderLoanAgreementViewTest(BaseTestCase):
     def setUp(self):
-        super(OrderMoreInfoViewTest, self).setUp()
+        super(OrderLoanAgreementViewTest, self).setUp()
         self.project = mommy.make('project.Project', name='My Basic Test Project')
         self.order = mommy.make('order.Order', project=self.project, amount=250.00)
-        self.url = reverse('order:more_info', kwargs={'project_slug': self.project.slug, 'uuid': self.order.uuid})
+        self.url = reverse('order:loan_agreement', kwargs={'project_slug': self.project.slug, 'uuid': self.order.uuid})
 
         user_dict = {'first_name': 'Test', 'last_name': 'User', 'email': 'test@example.com'}
         self.user = mommy.make('auth.User', **user_dict)
 
         self.initial = {
-            'has_provided_additional_data': True
+            'has_agreed_to_loan_agreement_terms': True
         }
 
-    def test_form_redirects_to_large_sum_agreements_page_on_success(self):
-        self.order.amount = 5500.00
-        self.order.save(update_fields=['amount'])
-        with self.settings(DEBUG=True):
-            self.c.force_login(self.user)
-            resp = self.c.post(self.url, self.initial)
-
-        self.assertEqual(resp.status_code, 302)
-        self.assertEqual(resp.url, '/de/orders/my-basic-test-project/order/%s/large-sum-agreement/' % self.order.uuid)
-
-    def test_form_redirects_to_payments_page_due_to_small_amount(self):
-        self.order.amount = 250.00
-        self.order.save(update_fields=['amount'])
+    def test_form_redirects_to_payment_page_on_success(self):
         with self.settings(DEBUG=True):
             self.c.force_login(self.user)
             resp = self.c.post(self.url, self.initial)
@@ -45,32 +34,44 @@ class OrderMoreInfoViewTest(BaseTestCase):
         self.assertEqual(resp.url, '/de/orders/my-basic-test-project/order/%s/payment/' % self.order.uuid)
 
 
-class OrderMoreInfoFormTest(TestCase):
+class OrderLoanAgreementFormTest(TestCase):
     def setUp(self):
         user_dict = {'first_name': 'Test', 'last_name': 'User', 'email': 'test@example.com'}
         self.user = mommy.make('auth.User', **user_dict)
 
         self.project = mommy.make('project.Project', name='My Basic Test Project')
-        self.order = mommy.make('order.Order', project=self.project, amount=250.00, user=self.user)
+        self.order = mommy.make('order.Order',
+                                project=self.project,
+                                amount=250.00,
+                                user=self.user)
 
         self.initial = {
-            'has_provided_additional_data': True
+            'has_agreed_to_loan_agreement_terms': True
         }
         mail.outbox = []
 
     def test_invalid_form(self):
         # Test no data
-        form = OrderMoreInfoForm(user=self.user, project=self.project, order=self.order)
+        form = OrderLoanAgreementForm(user=self.user, project=self.project, order=self.order)
         self.assertTrue(form.is_valid() is False)
 
     def test_valid_form(self):
         with self.settings(DEBUG=True):
 
+            #
+            # Create PDF and associate with Order, has to be done manually here
+            # as this event happens in the Create order step and not the form
+            # confirm validation step
+            #
+            pdf_service = LoanAgreementCreatePDFService(order=self.order,
+                                                        user=self.order.user)
+            pdf_service.process()
+
             # Test with data
-            form = OrderMoreInfoForm(user=self.user,
-                                     project=self.project,
-                                     order=self.order,
-                                     data=self.initial)
+            form = OrderLoanAgreementForm(user=self.user,
+                                          project=self.project,
+                                          order=self.order,
+                                          data=self.initial)
 
             self.assertTrue(form.is_valid())
             order = form.save()
@@ -86,7 +87,7 @@ class OrderMoreInfoFormTest(TestCase):
         self.assertEqual(order.project, self.project)
 
         # django adds a unique string to the attachement
-        attachment_filename_pattern = re.compile('order-documentorder-info-agreement_(.+?).pdf')
+        attachment_filename_pattern = re.compile('order-documentorder-loan-agreement_(.+?).pdf')
 
         # Should have email to managers AND email to customer
         self.assertEqual(2, len(mail.outbox))

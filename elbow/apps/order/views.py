@@ -9,7 +9,7 @@ from pinax.eventlog.models import log
 from elbow.mixins import LoginRequiredMixin
 from elbow.apps.project.models import Project
 
-from .forms import CreateOrderForm, OrderMoreInfoForm, OrderLargeSumAgreementForm
+from .forms import CreateOrderForm, OrderLoanAgreementForm
 from .models import Order
 
 
@@ -28,7 +28,7 @@ class OrderCreate(LoginRequiredMixin, FormView):
         return super(OrderCreate, self).form_valid(form=form)
 
     def get_success_url(self):
-        return reverse('order:more_info', kwargs={'project_slug': self.project.slug, 'uuid': self.order.uuid})
+        return self.order.url
 
     def get_context_data(self, *args, **kwargs):
         context = super(OrderCreate, self).get_context_data(*args, **kwargs)
@@ -45,17 +45,17 @@ class OrderCreate(LoginRequiredMixin, FormView):
         }
 
 
-class OrderMoreInfo(LoginRequiredMixin, FormView):
-    form_class = OrderMoreInfoForm
-    template_name = 'order/order-moreinfo.html'
+class OrderLargeSumAgreement(FormView):
+    form_class = OrderLoanAgreementForm
+    template_name = 'order/order-loan_agreement.html'
 
     def dispatch(self, request, *args, **kwargs):
         self.project = Project.objects.get(slug=self.kwargs.get('project_slug'))
         self.order = Order.objects.get(uuid=self.kwargs.get('uuid'))
-        return super(OrderMoreInfo, self).dispatch(request, *args, **kwargs)
+        return super(OrderLargeSumAgreement, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, *args, **kwargs):
-        context = super(OrderMoreInfo, self).get_context_data(*args, **kwargs)
+        context = super(OrderLargeSumAgreement, self).get_context_data(*args, **kwargs)
         context.update({
             'project': self.project,
             'order': self.order,
@@ -64,7 +64,7 @@ class OrderMoreInfo(LoginRequiredMixin, FormView):
 
     def form_valid(self, form):
         self.order = form.save()
-        return super(OrderMoreInfo, self).form_valid(form=form)
+        return super(OrderLargeSumAgreement, self).form_valid(form=form)
 
     def get_success_url(self):
         """
@@ -77,7 +77,7 @@ class OrderMoreInfo(LoginRequiredMixin, FormView):
         return self.order.url
 
     def get_form_kwargs(self):
-        context = super(OrderMoreInfo, self).get_form_kwargs()
+        context = super(OrderLargeSumAgreement, self).get_form_kwargs()
         context.update({
             'order': self.order,
             'user': self.request.user,
@@ -85,11 +85,6 @@ class OrderMoreInfo(LoginRequiredMixin, FormView):
             'data': self.request.POST if self.request.method.lower() in ['post'] else None,
         })
         return context
-
-
-class OrderLargeSumAgreement(OrderMoreInfo):
-    form_class = OrderLargeSumAgreementForm
-    template_name = 'order/order-large_sum_agreement.html'
 
     def get_success_url(self):
         return reverse('order:payment', kwargs={'project_slug': self.project.slug, 'uuid': self.order.uuid})
