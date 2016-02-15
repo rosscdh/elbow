@@ -59,7 +59,7 @@ class SendEmailService(object):
         document = self.order.documents.filter(document_type='order',
                                                user=self.order.user)  \
                                        .order_by('-id').first()
-        #import pdb;pdb.set_trace()
+
         html2text = HTML2TextEmailMessageService(template_name='order/email/order_more_info.html',
                                                  order=self.order,
                                                  recipients=user_list)
