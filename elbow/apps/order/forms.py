@@ -6,7 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 from pinax.eventlog.models import log
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit
+from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Field, HTML, Submit
 from crispy_forms.bootstrap import PrependedAppendedText
 
 from decimal import Decimal
@@ -151,8 +151,9 @@ class OrderLoanAgreementForm(forms.Form):
         helper.render_unmentioned_fields = True
 
         helper.layout = Layout(
-                            Fieldset(_('Agreement for investing a large sum'),
-                                'has_agreed_to_loan_agreement_terms',
+                            Fieldset(_('Load Agreement acceptance'),
+                                HTML(u'<p>Ich bestätige, dass ich entweder über ein frei verfügbares Vermögen in Form von Bankguthaben und Finanzinstrumenten von mindestens 100.000 € verfüge</p><p>ODER dass der Gesamtbetrag meiner Investition in dieses Projekt nicht das Zweifache meines durchschnittlichen mtl. Nettoeinkommens übersteigt.</p>'),
+                                Field('has_agreed_to_loan_agreement_terms'),
                             ),
                             ButtonHolder(
                                 Submit('submit', _('Submit'), css_class='btn btn-success btn-lg')

@@ -25,6 +25,14 @@ class OrderLoanAgreementViewTest(BaseTestCase):
             'has_agreed_to_loan_agreement_terms': True
         }
 
+    def test_form_shows_correct_html(self):
+        with self.settings(DEBUG=True):
+            self.c.force_login(self.user)
+            resp = self.c.get(self.url)
+
+        self.assertEqual(resp.status_code, 200)
+        self.assertTrue('<p>Ich bestätige, dass ich entweder über ein frei verfügbares Vermögen in Form von Bankguthaben und Finanzinstrumenten von mindestens 100.000 € verfüge</p><p>ODER dass der Gesamtbetrag meiner Investition in dieses Projekt nicht das Zweifache meines durchschnittlichen mtl. Nettoeinkommens übersteigt.</p>' in resp.content)
+
     def test_form_redirects_to_payment_page_on_success(self):
         with self.settings(DEBUG=True):
             self.c.force_login(self.user)

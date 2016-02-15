@@ -1,7 +1,7 @@
 {% extends "easy_pdf/base.html" %}{% load static djmoney pdf_tags %}
 
 {% block content %}
-<img src="{{ 'http://46.101.182.238/static/img/todaycapital-logo-white-bg-160.png' | get64 }}"/>
+<img src="{{ '/static/img/todaycapital-logo-white-bg-160.png' | get64 }}"/>
 <h2>Projekt: {{ project.name }}</h2>
 <h3>Darlehensvertrag<br/><small>(Nachrangdarlehen mit qualifiziertem Rangrücktritt)</small></h3>
 <p>zwischen <strong>TodaySystems GmbH</strong>, Windthorststr. 5-7, 41061 Mönchengladbach,</p>
