@@ -59,6 +59,34 @@ env.roledefs.update({
 
 
 @task
+def production():
+    from config.environments import production as config
+    env.application_user = env.user = 'django'
+
+    env.hosts = config.HOSTS if not env.hosts else env.hosts
+
+    env.environment = 'production'
+    env.environment_class = 'production'
+    env.newrelic_app_name = 'TodayCapital Production'
+
+    env.remote_project_path = '/home/django/apps/elbow-production/'
+    env.deploy_archive_path = '/home/django/apps/'
+    env.virtualenv_path = '/home/django/.virtualenvs/elbow-production/'
+    env.remote_dashboard_path = None
+
+    env.start_service = 'supervisorctl start elbow-production'
+    env.stop_service = 'supervisorctl stop elbow-production'
+    env.start_worker = None
+    env.stop_worker = None
+
+    env.roledefs.update({
+        'cron-actor': config.CRON_ACTOR,
+        'db-actor': config.DB_ACTOR,
+        'db': config.DB_HOST,
+    })
+
+
+@task
 def staging():
     from config.environments import staging as config
     env.application_user = env.user = 'django'
@@ -96,11 +124,11 @@ def mkvirtualenv():
 def put_confs():
     #sudo('rm /etc/nginx/sites-enabled/default')
     # nginx
-    put(local_path='./config/environments/{environment}/elbow-nginx'.format(environment=env.environment_class), remote_path='/etc/nginx/sites-enabled/', use_glob=False, use_sudo=True)
+    put(local_path='./config/environments/{environment}/elbow-nginx-{environment}'.format(environment=env.environment_class), remote_path='/etc/nginx/sites-enabled/', use_glob=False, use_sudo=True)
     # supervisord
-    put(local_path='./config/environments/{environment}/elbow.conf'.format(environment=env.environment_class), remote_path='/etc/supervisor/conf.d/', use_glob=False, use_sudo=True)
+    put(local_path='./config/environments/{environment}/elbow-{environment}.conf'.format(environment=env.environment_class), remote_path='/etc/supervisor/conf.d/', use_glob=False, use_sudo=True)
     # uwsgi
-    put(local_path='./config/environments/{environment}/elbow.ini'.format(environment=env.environment_class), remote_path='/etc/uwsgi/apps-enabled/', use_glob=False, use_sudo=True)
+    put(local_path='./config/environments/{environment}/elbow-{environment}.ini'.format(environment=env.environment_class), remote_path='/etc/uwsgi/apps-enabled/', use_glob=False, use_sudo=True)
 
 
 @task
@@ -575,10 +603,11 @@ def virtualenv_setup():
 
 @task
 def paths():
-    run('mkdir -p %s/static' % env.remote_project_path)
-    run('mkdir -p %s/media' % env.remote_project_path)
-    run('mkdir -p %s/versions/tmp' % env.remote_project_path)
-    run('ln -s %s/versions/tmp %s/current' % (env.remote_project_path, env.remote_project_path))
+    run('mkdir -p %sstatic' % env.remote_project_path)
+    run('mkdir -p %smedia' % env.remote_project_path)
+    run('mkdir -p %sversions/tmp' % env.remote_project_path)
+    run('ln -s %sversions/tmp %s/current' % (env.remote_project_path, env.remote_project_path))
+    run('mkvirtualenv elbow-%s' % env.environment)
     # pass
 
 @task
