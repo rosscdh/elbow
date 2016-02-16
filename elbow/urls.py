@@ -13,6 +13,8 @@ urlpatterns = i18n_patterns(
     url(r'^projects/', include('elbow.apps.project.urls', namespace='project')),
     # Orders
     url(r'^orders/', include('elbow.apps.order.urls', namespace='order')),
+    # Documents
+    url(r'^documents/', include('elbow.apps.document.urls', namespace='document')),
     # Paymill
     # url(r'^paymill/', include('dj_paymill.urls', namespace='paymill')),
     # User Auth

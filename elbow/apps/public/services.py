@@ -64,7 +64,7 @@ class SendEmailService(object):
                                                  order=self.order,
                                                  recipients=user_list)
         # Send Admin Email
-        subject = _('TodayCapital.de - Investment order provided more information')
+        subject = _('TodayCapital.de - Investment order agreed to Loan Agreement Terms')
         from_email = 'application@todaycapital.de'
         recipient_list = ['post@todaycapital.de']
 
@@ -79,7 +79,7 @@ class SendEmailService(object):
         send_success.append(('founders', msg.send()))
 
         # Send Customer Email
-        subject = _('TodayCapital.de - Your Investment Order Info, Attached Agreement')
+        subject = _('TodayCapital.de - Your Investment Order Loan Agreement is Attached')
         from_email = 'application@todaycapital.de'
 
         for user in user_list:

@@ -1,14 +1,14 @@
-{% extends 'order/base.html' %}{% load i18n static crispy_forms_tags djmoney embed_video_tags %}
+{% extends 'order/base.html' %}{% load i18n crispy_forms_tags %}
 {% load crispy_forms_filters %}
 
-{% block page_title %}{{ project.name }} - Large Sum Agreement{% endblock %}
+{% block page_title %}{{ project.name }} - Loan Agreement{% endblock %}
 {% block page_description %}Invest in {{ project.name }}{% endblock %}
 {% block page_keywords %}invest,project,and-development,development{% endblock %}
 
 {% block page_header %}
 <div class="page-header clearfix">
-  <h1>Large Investment amount Agreement for {{ project.name }}</h1>
-  <p>{{ project.proposition }}</p>
+  <h1>Loan Agreement</h1>
+  <p>{{ project.name }}, {{ project.proposition }}</p>
   <div class="col-md-4">
   &nbsp;
   </div>
@@ -19,11 +19,15 @@
 {% endblock %}
 
 {% block content %}
-
 <div class="row">
 
   <div class="col-md-12">
-    <p class="lead">{{ project.description }}</p>
+    <p>Ich bestätige, dass ich entweder über ein frei verfügbares Vermögen in Form von Bankguthaben und Finanzinstrumenten von mindestens 100.000 € verfüge</p>
+    <p>ODER dass der Gesamtbetrag meiner Investition in dieses Projekt nicht das Zweifache meines durchschnittlichen mtl. Nettoeinkommens übersteigt.</p>
+  </div>
+
+  <div class="col-md-12">
+    <a href="{{ document.url }}" target="_NEW" class="btn btn-lg btn-info">Darlehensvertrag Unterladen</a>
   </div>
 
   <div class="col-offset-1 col-sm-6">

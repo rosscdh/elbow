@@ -6,7 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 from pinax.eventlog.models import log
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Field, HTML, Submit
+from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Field, Submit
 from crispy_forms.bootstrap import PrependedAppendedText
 
 from decimal import Decimal
@@ -126,12 +126,16 @@ class CreateOrderForm(forms.Form):
 
 
 class OrderLoanAgreementForm(forms.Form):
-    has_agreed_to_loan_agreement_terms = forms.BooleanField(label=None, help_text=_('I agree to invest this large amount'), required=True)
+    has_agreed_to_loan_agreement_terms = forms.BooleanField(label='',
+                                                            help_text=_('I agree to the terms of the Loan Agreement'),
+                                                            required=True)
 
     def __init__(self, *args, **kwargs):
         self.order = kwargs.pop('order', None)
         self.user = kwargs.pop('user', None)
         self.project = kwargs.pop('project', None)
+
+        self.document = self.order.documents.filter(user=self.user).first()  # most recent
 
         if self.order is None:
             raise Exception('order must be passed into the Form')
@@ -148,16 +152,13 @@ class OrderLoanAgreementForm(forms.Form):
 
         helper.form_action = ''
         helper.form_show_errors = True
-        helper.render_unmentioned_fields = True
 
-        helper.layout = Layout(
-                            Fieldset(_('Load Agreement acceptance'),
-                                HTML(u'<p>Ich bestätige, dass ich entweder über ein frei verfügbares Vermögen in Form von Bankguthaben und Finanzinstrumenten von mindestens 100.000 € verfüge</p><p>ODER dass der Gesamtbetrag meiner Investition in dieses Projekt nicht das Zweifache meines durchschnittlichen mtl. Nettoeinkommens übersteigt.</p>'),
-                                Field('has_agreed_to_loan_agreement_terms'),
-                            ),
-                            ButtonHolder(
-                                Submit('submit', _('Submit'), css_class='btn btn-success btn-lg')
-                            ))
+        helper.layout = Layout(Fieldset('',
+                                   Field('has_agreed_to_loan_agreement_terms'),
+                               ),
+                               ButtonHolder(
+                                   Submit('submit', _('Submit'), css_class='btn btn-success btn-lg')
+                               ))
         return helper
 
     def save(self, *args, **kwargs):

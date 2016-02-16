@@ -3,7 +3,7 @@ from django.conf.urls import patterns, url
 from django.views.decorators.csrf import csrf_exempt
 
 from .views import (OrderCreate,
-                    OrderLargeSumAgreement,
+                    OrderLoanAgreementView,
                     OrderPayment,
                     UserOrderList,
                     OrderDetail,
@@ -19,7 +19,7 @@ urlpatterns = patterns('',
                            name='create'),
 
                        url(r'^(?P<project_slug>[\w-]+)/order/(?P<uuid>[\w-]+)/loan-agreement/$',
-                           OrderLargeSumAgreement.as_view(),
+                           OrderLoanAgreementView.as_view(),
                            name='loan_agreement'),
 
                        url(r'^(?P<project_slug>[\w-]+)/order/(?P<uuid>.*)/payment/$',

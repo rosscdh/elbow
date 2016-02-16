@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
 
 from elbow.utils import CustomManagedStorage
@@ -49,3 +50,8 @@ class Document(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    @property
+    def url(self):
+        url_kwargs = {'uuid': self.uuid}
+        return reverse('document:download', kwargs=url_kwargs)

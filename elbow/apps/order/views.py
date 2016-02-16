@@ -45,26 +45,27 @@ class OrderCreate(LoginRequiredMixin, FormView):
         }
 
 
-class OrderLargeSumAgreement(FormView):
+class OrderLoanAgreementView(FormView):
     form_class = OrderLoanAgreementForm
     template_name = 'order/order-loan_agreement.html'
 
     def dispatch(self, request, *args, **kwargs):
         self.project = Project.objects.get(slug=self.kwargs.get('project_slug'))
         self.order = Order.objects.get(uuid=self.kwargs.get('uuid'))
-        return super(OrderLargeSumAgreement, self).dispatch(request, *args, **kwargs)
+        return super(OrderLoanAgreementView, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, *args, **kwargs):
-        context = super(OrderLargeSumAgreement, self).get_context_data(*args, **kwargs)
+        context = super(OrderLoanAgreementView, self).get_context_data(*args, **kwargs)
         context.update({
             'project': self.project,
             'order': self.order,
+            'document': self.order.documents.filter(user=self.order.user).first(),
         })
         return context
 
     def form_valid(self, form):
         self.order = form.save()
-        return super(OrderLargeSumAgreement, self).form_valid(form=form)
+        return super(OrderLoanAgreementView, self).form_valid(form=form)
 
     def get_success_url(self):
         """
@@ -77,7 +78,7 @@ class OrderLargeSumAgreement(FormView):
         return self.order.url
 
     def get_form_kwargs(self):
-        context = super(OrderLargeSumAgreement, self).get_form_kwargs()
+        context = super(OrderLoanAgreementView, self).get_form_kwargs()
         context.update({
             'order': self.order,
             'user': self.request.user,

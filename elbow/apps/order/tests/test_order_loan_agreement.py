@@ -21,6 +21,15 @@ class OrderLoanAgreementViewTest(BaseTestCase):
         user_dict = {'first_name': 'Test', 'last_name': 'User', 'email': 'test@example.com'}
         self.user = mommy.make('auth.User', **user_dict)
 
+        #
+        # Create PDF and associate with Order, has to be done manually here
+        # as this event happens in the Create order step and not the form
+        # confirm validation step
+        #
+        pdf_service = LoanAgreementCreatePDFService(order=self.order,
+                                                    user=self.order.user)
+        pdf_service.process()
+
         self.initial = {
             'has_agreed_to_loan_agreement_terms': True
         }
@@ -31,6 +40,9 @@ class OrderLoanAgreementViewTest(BaseTestCase):
             resp = self.c.get(self.url)
 
         self.assertEqual(resp.status_code, 200)
+        button = '<a href="{document}" target="_NEW" class="btn btn-lg btn-info">Darlehensvertrag Unterladen</a>'.format(document=self.order.documents.filter(user=self.order.user).first().url)
+        button = 'Darlehensvertrag Unterladen'
+        self.assertTrue(button in resp.content)
         self.assertTrue('<p>Ich bestätige, dass ich entweder über ein frei verfügbares Vermögen in Form von Bankguthaben und Finanzinstrumenten von mindestens 100.000 € verfüge</p><p>ODER dass der Gesamtbetrag meiner Investition in dieses Projekt nicht das Zweifache meines durchschnittlichen mtl. Nettoeinkommens übersteigt.</p>' in resp.content)
 
     def test_form_redirects_to_payment_page_on_success(self):
@@ -100,7 +112,7 @@ class OrderLoanAgreementFormTest(TestCase):
         # Should have email to managers AND email to customer
         self.assertEqual(2, len(mail.outbox))
         email = mail.outbox[0]
-        self.assertEqual(unicode(email.subject), u'TodayCapital.de - Investment order provided more information')
+        self.assertEqual(unicode(email.subject), u'TodayCapital.de - Investment order agreed to Loan Agreement Terms')
         self.assertEqual(email.recipients(), ['post@todaycapital.de'])
 
         self.assertEqual(len(email.attachments), 1)
@@ -108,7 +120,7 @@ class OrderLoanAgreementFormTest(TestCase):
         self.assertEqual(email.attachments[0][2], 'application/pdf')
 
         email = mail.outbox[1]
-        self.assertEqual(unicode(email.subject), u'TodayCapital.de - Your Investment Order Info, Attached Agreement')
+        self.assertEqual(unicode(email.subject), u'TodayCapital.de - Your Investment Order Loan Agreement is Attached')
         self.assertEqual(email.recipients(), [self.user.email])
 
         self.assertEqual(len(email.attachments), 1)
