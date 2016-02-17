@@ -14,7 +14,7 @@ from autoslug import AutoSlugField
 from embed_video.fields import EmbedVideoField
 from elbow.utils import CustomManagedStorage
 
-from .apps import PROJECT_STATUS, USE_PAYMENTOPTIONS
+from .apps import PROJECT_STATUS, USE_PAYMENTOPTIONS, INTEREST_TYPE
 from .managers import ProjectManager
 
 import os
@@ -31,14 +31,24 @@ class Project(models.Model):
     """
     PROJECT_STATUS = PROJECT_STATUS
     USE_PAYMENTOPTIONS = USE_PAYMENTOPTIONS
+    INTEREST_TYPE = INTEREST_TYPE
 
     slug = AutoSlugField(populate_from='name')
     name = models.CharField(max_length=255)
 
     amount = MoneyField(max_digits=10, decimal_places=2, default_currency='EUR')
+    minimum_investment = MoneyField(max_digits=10, decimal_places=2, default=500, default_currency='EUR')
+    interest_type = models.CharField(choices=INTEREST_TYPE.get_choices(),
+                                     default=INTEREST_TYPE.a,
+                                     max_length=64,
+                                     db_index=True)
 
     proposition = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
+
+    building_type = models.CharField(max_length=255, blank=True, null=True)
+    building_status = models.CharField(max_length=255, blank=True, null=True)
+    location = models.CharField(max_length=255, blank=True, null=True)
 
     documents = models.ManyToManyField('document.Document')
 

@@ -15,6 +15,10 @@ USE_PAYMENTOPTIONS = get_namedtuple_choices('USE_PAYMENTOPTIONS', (
     ('no', 'no', 'No'),
 ))
 
+INTEREST_TYPE = get_namedtuple_choices('INTEREST_TYPE', (
+    ('a', 'a', 'Yes'),
+    ('b', 'b', 'No'),
+))
 
 class ProjectConfig(AppConfig):
     name = 'project'
