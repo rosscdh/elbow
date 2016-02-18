@@ -52,21 +52,24 @@
   </div>
 
   <div class="col-offset-1 col-sm-6">
+    <h3>{% trans 'Investment Overview' %}</h3>
     <p class="">{{ project.description }}</p>
     <p class="">minimum_investment: {{ project.minimum_investment }}</p>
     <p class="">interest_type: {{ project.interest_type }}</p>
     <p class="">interest_rate: {{ project.interest_rate }}%</p>
-    <p class="">interest_length: {{ project.interest_length }}</p>
+    <p class="">interest_term: {{ project.interest_length }}</p>
   </div>
 </div>
 
 <div class="row">
   <div class="col-sm-6">
+    <h3>{% trans 'Building Details' %}</h3>
     <p class="">building_type: {{ project.building_type }}</p>
     <p class="">building_status: {{ project.building_status }}</p>
+    <p class="">building_location: {{ project.building_location }}</p>
   </div>
   <div class="col-sm-6">
-    <p class="">building_location: {{ project.building_location }}</p>
+    <h3>{% trans 'Map' %}</h3>
     {% leaflet_map 'location_map' callback="window.map_init_basic" %}
   </div>
 </div>
@@ -75,7 +78,8 @@
   <div class="col-sm-6">
     <h3>{% trans 'F.A.Q' %}</h3>
   </div>
-</div>>
+</div>
+
 {% endblock %}
 
 {% block css %}
