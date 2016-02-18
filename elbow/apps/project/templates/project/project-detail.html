@@ -1,4 +1,4 @@
-{% extends 'project/base.html' %}{% load i18n static djmoney embed_video_tags %}
+{% extends 'project/base.html' %}{% load i18n static djmoney embed_video_tags leaflet_tags %}
 
 {% block page_title %}{{ project.name }} - Project Detail{% endblock %}
 {% block page_description %}A list of available projects{% endblock %}
@@ -43,7 +43,6 @@
 
 {% block content %}
 <div class="row">
-
   <div class="col-sm-5">
     {% if project.video %}
       {% video project.video as project_video %}
@@ -54,12 +53,34 @@
 
   <div class="col-offset-1 col-sm-6">
     <p class="">{{ project.description }}</p>
+    <p class="">minimum_investment: {{ project.minimum_investment }}</p>
+    <p class="">interest_type: {{ project.interest_type }}</p>
+    <p class="">interest_rate: {{ project.interest_rate }}%</p>
+    <p class="">interest_length: {{ project.interest_length }}</p>
   </div>
-
 </div>
+
+<div class="row">
+  <div class="col-sm-6">
+    <p class="">building_type: {{ project.building_type }}</p>
+    <p class="">building_status: {{ project.building_status }}</p>
+  </div>
+  <div class="col-sm-6">
+    <p class="">building_location: {{ project.building_location }}</p>
+    {% leaflet_map 'location_map' callback="window.map_init_basic" %}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-6">
+    <h3>{% trans 'F.A.Q' %}</h3>
+  </div>
+</div>>
 {% endblock %}
 
 {% block css %}
+{{ block.super }}
+{% leaflet_css %}
 <style>
 .jumbotron{
     background: url("{% get_media_prefix %}{{ project.image }}") no-repeat center center fixed;
@@ -79,4 +100,16 @@
     color:#555555 !important; border-radius: 15px; background-color: rgba(244, 240, 245, 0.8); color: rgba(244, 240, 245, 1);
 }
 </style>
+{% endblock %}
+
+{% block javascript %}
+  {{ block.super }}
+  {% leaflet_js %}
+
+  <script type="text/javascript">
+      function map_init_basic (map, options) {
+          map.setView(new L.LatLng('{{ object.lat_long.latitude }}', '{{ object.lat_long.longitude }}'), 9);
+          L.marker(['{{ object.lat_long.latitude }}', '{{ object.lat_long.longitude }}']).addTo(map);
+      }
+  </script>
 {% endblock %}

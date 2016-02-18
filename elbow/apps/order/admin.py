@@ -31,7 +31,7 @@ class OrderAdmin(admin.ModelAdmin):
 
             url(r'^(?P<uuid>.*)/log/$',
                 self.admin_site.admin_view(self.log_event),
-                name='order_add_log'),
+                name='order_logs'),
         ]
         return my_urls + urls
 

@@ -36,6 +36,7 @@ django-extensions
 django-extra-fields
 django-filter
 django-geoposition
+django-leaflet
 django-hstore
 django-inmemorystorage
 boto

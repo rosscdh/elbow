@@ -3,6 +3,41 @@
 
 
 {% block after_related_objects %}
+    <!-- PROJECT LOG -->
+    <h1>{% trans 'Project News' %}</h1>
+    <a href="{% url 'admin:add_project_news' pk=original.pk %}" target="_NEW">{% trans 'Add News' %}</a><br/>
+   <table>
+    <thead>
+    <tr>
+        <th class="required">Date</th>
+        <th class="required">Note</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+
+     <tbody>
+     {% for news in original.news_history %}
+        <tr class="form-row {% cycle "row1" "row2" %}">
+            <td class="field-timestamp">
+                <b>{% trans 'Date:' %}</b> <a title="{{ news.timestamp }}">{{ news.timestamp|naturaltime }}</a><br/>
+            </td>
+            <td class="field-note">
+                <b>{% trans 'Note:' %}</b> {{ news.extra.note }}<br/>
+            </td>
+            <td class="action buttons">
+              <a href="javascript:;" class="order-lifecycle-event" data-url="{% url 'admin:project_delete_news' project_pk=original.pk pk=news.pk %}">{% trans 'Delete' %}</a><br/>
+            </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="3" class="action buttons">
+          No Records Found
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+
     <!-- CUSTOM ORDERS -->
    <h1>{% trans 'Project Orders' %}</h1>
    <table>
@@ -54,9 +89,7 @@
                 {{ order.status }}
             </td>
             <td class="action buttons">
-              <!-- <button class="">{% trans 'Add Note' %}</button> -->
               {% if order.status == 'pending' and order.status != 'failed' %}
-                <!-- {% if order.payment_type == 'bank_transfer' %}<a href="javascript:;" class="order-lifecycle-event" data-url="{% url 'admin:order_send_for_payment' uuid=order.uuid %}">{% trans 'Send for Payment' %}</a><br/>{% endif %} -->
                 {% if order.payment_type == 'prepay' %}<a href="javascript:;" class="order-lifecycle-event" data-url="{% url 'admin:order_marked_as_paid' uuid=order.uuid %}">{% trans 'Mark as Paid' %}</a><br/>{% endif %}
               {% endif %}
               {% if order.status != 'cancelled' and order.status != 'paid' %}
@@ -65,7 +98,7 @@
               {% if order.status == 'cancelled' or order.status == 'processing' %}
               <a href="javascript:;" class="order-lifecycle-event" data-url="{% url 'admin:order_reset' uuid=order.uuid %}">{% trans 'Reset Order' %}</a>
               {% endif %}
-              <br/><a href="{% url 'admin:order_add_log' uuid=order.uuid %}" target="_NEW" class="view-order-logs" data-url="{% url 'admin:order_add_log' uuid=order.uuid %}">{% trans 'View Logs' %}</a>
+              <br/><a href="{% url 'admin:order_logs' uuid=order.uuid %}" target="_NEW" class="view-order-logs" data-url="{% url 'admin:order_logs' uuid=order.uuid %}">{% trans 'View Logs' %}</a>
             </td>
         </tr>
      {% empty %}

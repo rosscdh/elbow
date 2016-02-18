@@ -74,7 +74,9 @@ HELPER_APPS = (
 
     'pinax.eventlog',
 
-    #'geoposition',
+    'geoposition',
+    'leaflet',
+
     'pages', # cms
     'mptt',  # for cms
     'rulez',
@@ -332,3 +334,10 @@ SECUPAY_DEMO = True
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, '../', 'locale')
 ]
+
+LEAFLET_CONFIG = {
+    'DEFAULT_CENTER': (51.1655111, 6.2737308),
+    'DEFAULT_ZOOM': 9,
+    # 'MIN_ZOOM': 3,
+    # 'MAX_ZOOM': 18,
+}

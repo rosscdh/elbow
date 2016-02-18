@@ -7,8 +7,10 @@ from moneyed import Money
 from django.db import models
 from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
+from django.contrib.contenttypes.models import ContentType
 
 from djmoney.models.fields import MoneyField
+from geoposition.fields import GeopositionField
 
 from autoslug import AutoSlugField
 from embed_video.fields import EmbedVideoField
@@ -51,7 +53,9 @@ class Project(models.Model):
 
     building_type = models.CharField(max_length=255, blank=True, null=True)
     building_status = models.CharField(max_length=255, blank=True, null=True)
-    location = models.CharField(max_length=255, blank=True, null=True)
+    building_location = models.CharField(max_length=255, blank=True, null=True)
+
+    lat_long = GeopositionField(default=(51.1655111, 6.2737308))
 
     documents = models.ManyToManyField('document.Document')
 
@@ -105,3 +109,10 @@ class Project(models.Model):
         amount = self.order_set.paid().annotate(sum=models.Sum('amount')).aggregate(models.Sum('sum')).get('sum__sum')
         return Money(amount, 'EUR') if amount else Money(0, 'EUR')
 
+    @property
+    def content_type(self):
+        return ContentType.objects.filter(app_label='project', model='project').first()
+
+    @property
+    def news_history(self):
+        return self.content_type.log_set.filter(object_id=self.pk)

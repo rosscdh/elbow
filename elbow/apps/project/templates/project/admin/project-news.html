@@ -1,0 +1,46 @@
+{% extends "admin/base.html" %}{% load i18n admin_urls admin_static admin_modify humanize %}
+
+{% block content %}
+    <!-- CUSTOM ORDERS -->
+   <h1>{% trans 'Project News' %}</h1>
+   <div class="well"></div>
+
+   <table>
+    <thead>
+    <tr>
+        <th class="required">Date</th>
+        <th class="required">Note</th>
+    </tr>
+    </thead>
+
+     <tbody>
+     {% for log in object_list %}
+        <tr class="form-row {% cycle "row1" "row2" %}">
+            <td class="field-timestamp">
+                {{ log.timestamp|naturaltime }}
+                <br/><small>{{ log.timestamp }}</small>
+            </td>
+            <td class="field-extra.note">
+              {{ log.extra.note }}
+            </td>
+        </tr>
+     {% empty %}
+         <tr class="form-row {% cycle "row1" "row2" %}">
+             <td colspan="10"><b>{% trans 'No logs found' %}</b></td>
+         </tr>
+     {% endfor %}
+     </tbody>
+   </table>
+   <!-- END CUSTOM ORDERS -->
+    {{ block.super }}
+{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <script type="text/javascript">
+    'use strict';
+    (function($) {
+
+    })(django.jQuery);
+    </script>
+{% endblock %}
