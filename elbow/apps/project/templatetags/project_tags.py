@@ -18,3 +18,12 @@ def project_stats(project):
     return {
         'project': project,
     }
+
+
+@register.inclusion_tag('project/_docs.html', takes_context=True)
+def project_docs(context, project):
+    is_logged_in = context.get('user').is_authenticated
+    return {
+        'documents': project.documents.all,
+        'is_logged_in': is_logged_in
+    }
