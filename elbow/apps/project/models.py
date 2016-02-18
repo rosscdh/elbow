@@ -55,7 +55,7 @@ class Project(models.Model):
     building_status = models.CharField(max_length=255, blank=True, null=True)
     building_location = models.CharField(max_length=255, blank=True, null=True)
 
-    lat_long = GeopositionField(default=(51.1655111, 6.2737308))
+    lat_long = GeopositionField(default='51.1655111, 6.2737308')
 
     documents = models.ManyToManyField('document.Document')
 
