@@ -6,6 +6,7 @@ from django.template.response import TemplateResponse
 
 from pinax.eventlog.models import log
 
+from elbow.apps.document.models import Document
 from .models import Project
 
 
@@ -14,6 +15,12 @@ class ProjectAdmin(admin.ModelAdmin):
     list_filter = ('status',)
     search_fields = ('slug', 'name', 'order__transaction_id', 'order__user__email')
     change_form_template = 'order/admin/order_change_form.html'
+
+    def get_form(self, request, obj=None, **kwargs):
+        form = super(ProjectAdmin, self).get_form(request, obj=obj, **kwargs)
+        # Show only project documents
+        form.base_fields['documents'].queryset = Document.objects.filter(document_type__in=[Document.DOCUMENT_TYPES.project])
+        return form
 
     def get_urls(self):
         urls = super(ProjectAdmin, self).get_urls()
