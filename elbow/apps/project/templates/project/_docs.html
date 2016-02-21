@@ -1,13 +1,14 @@
 {% load i18n %}
 <ul class="list-unstyled">
   {% for row in documents %}
+    {% if row.login_required == False or row.login_required and is_logged_in %}
     <li>
       <span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span>
-      {% if row.login_required == False or row.login_required and is_logged_in %}<a href="{{ MEDIA_URL }}{{ row.document }}" target="_NEW" class="">{% else %}<a href="">{% endif %}
+      <a href="{{ MEDIA_URL }}{{ row.document }}" target="_NEW" class="">
         {{ row.name }}
         </a>
-        {% if row.login_required and is_logged_in == False %}<span class="glyphicon glyphicon-lock" aria-hidden="true" title="{% trans 'Please login' %}"></span>{% endif %}
     </li>
+    {% endif %}
   {% empty %}
     <li>No Documents</li>
   {% endfor %}

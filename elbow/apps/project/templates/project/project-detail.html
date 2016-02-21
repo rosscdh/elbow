@@ -42,50 +42,79 @@
 {% endblock %}
 
 {% block content %}
-<div class="row">
-  <div class="col-sm-5">
-    {% if project.video %}
-      {% video project.video as project_video %}
-        {% video project_video "small" %}
-      {% endvideo %}
-    {% endif %}
+<ul id="project-tabs" class="nav nav-tabs" role="tablist">
+  <li role="presentation" class="active"><a href="#project-description" aria-controls="home" role="tab" data-toggle="tab">{% trans 'Project description' %}</a></li>
+  <li role="presentation"><a href="#project-participation" aria-controls="profile" role="tab" data-toggle="tab">{% trans 'Participation Model' %}</a></li>
+  <li role="presentation"><a href="#project-faq" aria-controls="messages" role="tab" data-toggle="tab">{% trans 'F.A.Q' %}</a></li>
+  <li role="presentation"><a href="#project-news" aria-controls="messages" role="tab" data-toggle="tab">{% trans 'News' %}</a></li>
+  <li role="presentation"><a href="#project-documents" aria-controls="messages" role="tab" data-toggle="tab">{% trans 'Documents' %}</a></li>
+</ul>
+
+<div class="tab-content">
+  <div id="project-description" role="tabpanel" class="tab-pane fade in active">
+    <div class="row">
+      <div class="col-sm-6">
+        <h3>{% trans 'Investment Overview' %}</h3>
+        <p class="">{{ project.description }}</p>
+        <p class="">minimum_investment: {{ project.minimum_investment }}</p>
+        <p class="">interest_type: {{ project.interest_type }}</p>
+        <p class="">interest_rate: {{ project.interest_rate }}%</p>
+        <p class="">interest_term: {{ project.interest_length }}</p>
+      </div>
+      <div class="col-sm-5">
+        {% if project.video %}
+          {% video project.video as project_video %}
+            {% video project_video "small" %}
+          {% endvideo %}
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <h3>{% trans 'Building Details' %}</h3>
+        <p class="">building_type: {{ project.building_type }}</p>
+        <p class="">building_status: {{ project.building_status }}</p>
+        <p class="">building_location: {{ project.building_location }}</p>
+      </div>
+      <div class="col-sm-6">
+        <h3>{% trans 'Map' %}</h3>
+        {% leaflet_map 'location_map' callback="window.map_init_basic" %}
+      </div>
+    </div>
+
   </div>
 
-  <div class="col-offset-1 col-sm-6">
-    <h3>{% trans 'Investment Overview' %}</h3>
-    <p class="">{{ project.description }}</p>
-    <p class="">minimum_investment: {{ project.minimum_investment }}</p>
-    <p class="">interest_type: {{ project.interest_type }}</p>
-    <p class="">interest_rate: {{ project.interest_rate }}%</p>
-    <p class="">interest_term: {{ project.interest_length }}</p>
+  <div id="project-participation" role="tabpanel" class="tab-pane fade">
+    <div class="col-sm-12">
+      <img src="{% get_static_prefix %}img/sharing-model.png" class="img img-responsive" title="" alt="" />
+    </div>
   </div>
-</div>
 
-<div class="row">
-  <div class="col-sm-6">
-    <h3>{% trans 'Building Details' %}</h3>
-    <p class="">building_type: {{ project.building_type }}</p>
-    <p class="">building_status: {{ project.building_status }}</p>
-    <p class="">building_location: {{ project.building_location }}</p>
+  <div id="project-faq" role="tabpanel" class="tab-pane fade">
+    <div class="col-sm-12">
+      <h3>{% trans 'F.A.Q' %}</h3>
+      <p>Please provide FAQ content</p>
+    </div>
   </div>
-  <div class="col-sm-6">
-    <h3>{% trans 'Map' %}</h3>
-    {% leaflet_map 'location_map' callback="window.map_init_basic" %}
-  </div>
-</div>
 
-<div class="row">
-  <div class="col-sm-4">
-    <h3>{% trans 'F.A.Q' %}</h3>
+  <div id="project-news" role="tabpanel" class="tab-pane fade">
+    <div class="col-sm-12">
+      <h3>{% trans 'News' %}</h3>
+      <p>News to be shown from marketing website, please provide some news to stefano</p>
+    </div>
   </div>
-  <div class="col-sm-4">
-    <h3>{% trans 'Documents' %}</h3>
-    {% project_docs project %}
+
+  <div id="project-documents" role="tabpanel" class="tab-pane fade">
+    <div class="col-sm-12">
+      <h3>{% trans 'Documents' %}</h3>
+      {% project_docs project %}
+    </div>
   </div>
-  <div class="col-sm-4">
-    <h3>{% trans 'News' %}</h3>
-  </div>
-</div>
+
+</div><!-- End tabs -->
+
+
 
 {% endblock %}
 
@@ -116,11 +145,16 @@
 {% block javascript %}
   {{ block.super }}
   {% leaflet_js %}
-
   <script type="text/javascript">
       function map_init_basic (map, options) {
           map.setView(new L.LatLng('{{ object.lat_long.latitude }}', '{{ object.lat_long.longitude }}'), 9);
           L.marker(['{{ object.lat_long.latitude }}', '{{ object.lat_long.longitude }}']).addTo(map);
       }
+  </script>
+  <script type="text/javascript">
+  $('#project-tabs a').click(function (e) {
+    e.preventDefault()
+    $(this).tab('show')
+  })
   </script>
 {% endblock %}
