@@ -46,8 +46,6 @@
   <li role="presentation" class="active"><a href="#project-description" aria-controls="home" role="tab" data-toggle="tab">{% trans 'Project description' %}</a></li>
   <li role="presentation"><a href="#project-participation" aria-controls="profile" role="tab" data-toggle="tab">{% trans 'Participation Model' %}</a></li>
   <li role="presentation"><a href="#project-faq" aria-controls="messages" role="tab" data-toggle="tab">{% trans 'F.A.Q' %}</a></li>
-  <li role="presentation"><a href="#project-news" aria-controls="messages" role="tab" data-toggle="tab">{% trans 'News' %}</a></li>
-  <li role="presentation"><a href="#project-documents" aria-controls="messages" role="tab" data-toggle="tab">{% trans 'Documents' %}</a></li>
 </ul>
 
 <div class="tab-content">
@@ -98,24 +96,52 @@
     </div>
   </div>
 
-  <div id="project-news" role="tabpanel" class="tab-pane fade">
-    <div class="col-sm-12">
-      <h3>{% trans 'News' %}</h3>
-      <p>News to be shown from marketing website, please provide some news to stefano</p>
-    </div>
-  </div>
-
-  <div id="project-documents" role="tabpanel" class="tab-pane fade">
-    <div class="col-sm-12">
-      <h3>{% trans 'Documents' %}</h3>
-      {% project_docs project %}
-    </div>
-  </div>
-
 </div><!-- End tabs -->
 
 
+<div class="row">
+  <!-- Button trigger modal -->
+  <button type="button" style="width:100%;" class="btn btn-primary btn-lg" data-title="{% trans 'News' %}" data-source="project-news" data-toggle="modal" data-target="#tc-modal">
+    {% trans 'News' %}
+  </button>
+</div>
+<br/><br/>
+<div class="row">
+  <!-- Button trigger modal -->
+  <button type="button" style="width:100%;" class="btn btn-primary btn-lg" data-title="{% trans 'Documents' %}" data-source="project-documents" data-toggle="modal" data-target="#tc-modal">
+    {% trans 'Documents' %}
+  </button>
+</div>
 
+<div id="project-news" class="hide">
+  <div class="col-sm-12 clearfix">
+    <p>News to be shown from marketing website, please provide some news to stefano</p>
+  </div>
+</div>
+
+<div id="project-documents" class="hide">
+  <div class="col-sm-12 clearfix">
+    {% project_docs project %}
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal fade" id="tc-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="modal-label"></h4>
+      </div>
+      <div id="modal-body" class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END MODAL -->
 {% endblock %}
 
 {% block css %}
@@ -155,6 +181,13 @@
   $('#project-tabs a').click(function (e) {
     e.preventDefault()
     $(this).tab('show')
+  });
+  $('#tc-modal').on('show.bs.modal', function (e) {
+    // load appropriate content
+    var source = $(e.relatedTarget);
+    var data_source = $('#'+ source.data().source);
+    $('#modal-label').html(source.data().title);
+    $('#modal-body').html(data_source.html());
   })
   </script>
 {% endblock %}
