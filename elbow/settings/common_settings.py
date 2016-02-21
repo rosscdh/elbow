@@ -273,6 +273,7 @@ PIPELINE = {
             'source_filenames': (
                 'jquery/dist/jquery.js',
                 'bootstrap-sass/assets/javascripts/bootstrap.js',
+                'js/jquery.rss.js',
             ),
             'output_filename': 'dist/base.js',
         }
@@ -283,7 +284,7 @@ BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, '../')
 
 BOWER_INSTALLED_APPS = (
     "bootstrap-sass#3.3.6",
-    'famfamfam-flags#0.5.0',
+    'famfamfam-flags#0.5.0'
 )
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'

@@ -178,16 +178,20 @@
       }
   </script>
   <script type="text/javascript">
-  $('#project-tabs a').click(function (e) {
-    e.preventDefault()
-    $(this).tab('show')
+  $( document ).ready(function() {
+    $('#project-tabs a').click(function (e) {
+      e.preventDefault()
+      $(this).tab('show')
+    });
+    $('#tc-modal').on('show.bs.modal', function (e) {
+      // load appropriate content
+      var source = $(e.relatedTarget);
+      var data_source = $('#'+ source.data().source);
+      $('#modal-label').html(source.data().title);
+      $('#modal-body').html(data_source.html());
+    });
+    // rss
+    $("#project-news").rss("http://sektor-m.com/feed")
   });
-  $('#tc-modal').on('show.bs.modal', function (e) {
-    // load appropriate content
-    var source = $(e.relatedTarget);
-    var data_source = $('#'+ source.data().source);
-    $('#modal-label').html(source.data().title);
-    $('#modal-body').html(data_source.html());
-  })
   </script>
 {% endblock %}
