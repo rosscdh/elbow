@@ -24,7 +24,7 @@ import os
 
 def _image_upload_path(instance, filename):
     filename, file_extension = os.path.splitext(filename)
-    return 'project/%s-%s.%s' % (instance.uuid, slugify(filename), file_extension)
+    return 'project/%s-%s.%s' % (instance.slug, slugify(filename), file_extension)
 
 
 class Project(models.Model):
@@ -92,6 +92,10 @@ class Project(models.Model):
     @property
     def url(self):
         return reverse('project:detail', kwargs={'slug': self.slug})
+
+    @property
+    def running_time(self):
+        return '?'
 
     @property
     def num_backers(self):
