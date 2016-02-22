@@ -110,7 +110,7 @@
 </div><!-- End tabs -->
 
 
-<div class="row" style="margin-top:25px;">
+<div id="project-news-container" class="row hide" style="margin-top:25px;">
   <div class="col-sm-12">
     <!-- Button trigger modal -->
     <button type="button" style="width:100%;" class="btn btn-info btn-lg" data-title="{% trans 'News' %}" data-source="project-news" data-toggle="modal" data-target="#tc-modal">
@@ -175,19 +175,23 @@
 
 {% block javascript %}
   {{ block.super }}
+
   {% leaflet_js %}
+
   <script type="text/javascript">
       function map_init_basic (map, options) {
           map.setView(new L.LatLng('{{ object.lat_long.latitude }}', '{{ object.lat_long.longitude }}'), 9);
           L.marker(['{{ object.lat_long.latitude }}', '{{ object.lat_long.longitude }}']).addTo(map);
       }
   </script>
+
   <script type="text/javascript">
   $( document ).ready(function() {
     $('#project-tabs a').click(function (e) {
       e.preventDefault()
       $(this).tab('show')
     });
+
     $('#tc-modal').on('show.bs.modal', function (e) {
       // load appropriate content
       var source = $(e.relatedTarget);
@@ -198,10 +202,16 @@
 
     // rss
     $("#project-news").rss("http://sektor-m.com/feed", {
-      layoutTemplate: '<ul>{entries}</ul>',
-      entryTemplate: '<li><a target="_NEW" href="{url}">{title}</a><br/>{shortBodyPlain}</li>',
-    }, function () {
-
+      limit: 6,
+      dateFormat: 'MMMM Do, YYYY',
+      dateLocale: 'de',
+      dateFormatFunction: function (datePublished) {
+        return moment(datePublished).format('MMMM Do YYYY');
+      },
+      layoutTemplate: '<div class="list-group">{entries}</div>',
+      entryTemplate: '<a target="_NEW" href="{url}" class="list-group-item"><b>{title}</b><br/><em>{date}</em><br/>{shortBodyPlain}</a>',
+    }, function (a,b,com) {
+      $('#project-news-container').removeClass('hide');
     });
 
   });

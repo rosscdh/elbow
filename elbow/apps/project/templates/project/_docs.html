@@ -1,15 +1,13 @@
 {% load i18n %}
-<ul class="list-unstyled">
+<div class="list-group">
   {% for row in documents %}
     {% if row.login_required == False or row.login_required and is_logged_in %}
-    <li>
-      <span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span>
-      <a href="{{ MEDIA_URL }}{{ row.document }}" target="_NEW" class="">
+      <a href="{{ MEDIA_URL }}{{ row.document }}" target="_NEW" class="list-group-item">
         {{ row.name }}
+        <span class="glyphicon glyphicon-save-file"></span>
         </a>
-    </li>
     {% endif %}
   {% empty %}
-    <li>No Documents</li>
+    <b>No Documents</b>
   {% endfor %}
-</ul>
+</div>
