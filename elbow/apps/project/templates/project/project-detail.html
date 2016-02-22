@@ -104,6 +104,14 @@
     <div class="col-sm-12">
       <h3>{% trans 'F.A.Q' %}</h3>
       <p>Please provide FAQ content</p>
+
+      <div class="list-group">
+        <a href="javascript:;" target="_NEW" class="list-group-item faq">
+          <p><b>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b></p>
+          <div class="answer collapse">Ut sodales maximus mi vitae facilisis. Pellentesque a egestas quam. Nam quis lorem velit. Phasellus tincidunt faucibus sodales. Donec lacinia sem justo, ac feugiat magna interdum a. Nunc a elementum tortor. Donec condimentum, erat a vestibulum commodo, nunc ex mattis enim, a efficitur ex sem a nulla. Mauris sodales, quam et vestibulum congue, arcu risus consectetur leo, eu fringilla ipsum enim id magna. Aliquam gravida convallis orci. Vivamus eu tempus ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc laoreet varius metus vitae bibendum. Nullam id nisl at magna efficitur vehicula. Phasellus mollis risus ut diam bibendum rutrum. Sed porttitor augue at pharetra viverra.</div>
+        </a>
+      </div>
+
     </div>
   </div>
 
@@ -199,6 +207,12 @@
       $('#modal-label').html(source.data().title);
       $('#modal-body').html(data_source.html());
     });
+
+    $('.faq').on('click', function (e) {
+      e.preventDefault();
+      console.log($($(this).find('.answer')))
+      $($(this).find('.answer')).collapse('toggle');
+    })
 
     // rss
     $("#project-news").rss("http://sektor-m.com/feed", {
