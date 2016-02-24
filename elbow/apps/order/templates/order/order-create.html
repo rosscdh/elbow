@@ -1,4 +1,4 @@
-{% extends 'order/base.html' %}{% load i18n static crispy_forms_tags djmoney embed_video_tags %}
+{% extends 'order/base.html' %}{% load i18n static crispy_forms_tags djmoney embed_video_tags project_tags %}
 {% load crispy_forms_filters %}
 
 {% block page_title %}{{ project.name }} - Invest Now{% endblock %}
@@ -27,52 +27,21 @@
   </div>
 
   <div class="col-sm-5">
-    {% if project.video %}
-      {% video project.video as project_video %}
-        {% video project_video "small" %}
-      {% endvideo %}
-    {% else %}
+    <div class="col-md-12" style="margin-bottom:20px;">
       <img src="{% get_media_prefix %}{{ project.image }}" class="img img-responsive" alt="" title="" />
-    {% endif %}
+    </div>
 
     <div class="col-md-12">
-      <p><b>Investment:</b> {% money_localize project.amount %}</p>
-
-      <div class="col-md-12">
-        {% if project.percent > 0 %}
-        <div class="progress">
-          <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="{{ project.percent }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ project.percent }}%">
-            {{ row.percent }}%
-          </div>
-        </div>
-        {% else %}
-          <div class="alert alert-success" role="alert"><b>NB</b> Be one of the first to invest in this opportunity</div>
-        {% endif %}
+      <div class="col-sm-4 well well-sm text-center">
+        {% trans "Backers" %}<br/><span class="badge">{{ project.num_backers }}</span>
       </div>
-
-      <div class="col-md-12">
-        <div class="col-sm-4 well well-sm text-center">
-          {% trans "Backers" %}<br/><span class="badge">{{ project.num_backers }}</span>
-        </div>
-        <div class="col-sm-4 well well-sm text-center">
-          {% trans "Revenue" %}<br/><span class="badge">{% money_localize project.revenue %}</span>
-        </div>
+      <div class="col-sm-4 well well-sm text-center">
+        {% trans "Revenue" %}<br/><span class="badge">{% money_localize project.revenue %}</span>
       </div>
-
-    </div><!-- End investment row -->
+    </div>
 
     <div class="col-md-12">
-      <ul class="list-unstyled">
-        {% for row in project.documents.all %}
-          <li>
-            <a href="{{ MEDIA_URL }}{{ row.document }}" target="_NEW" class="btn btn-primary btn-lg">
-              <span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span>
-              {{ row.name }}
-            </a>
-          </li>
-        {% empty %}
-          <li>No Documents</li>
-        {% endfor %}
+      {% project_docs project %}
       </ul>
     </div>
 

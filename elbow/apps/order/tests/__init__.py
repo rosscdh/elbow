@@ -6,8 +6,12 @@ VALID_ORDER_POST_DATA = {
     'amount': 2500,
     'customer_name': 'Bob Dylan Inc.',
     'phone': '555-55-55',
-    'address': '46a BismarkStrasse Mönchengladbach, NRW',
+    'address_1': '46a BismarkStrasse',
+    'address_2': None,
+    'postcode': '41069',
+    'city': 'Mönchengladbach',
     'country': 'Germany',
+    'tax_number': '1234567',
     'payment_type': 'debit',
     't_and_c': True,
     'has_read_contract': True

@@ -48,6 +48,8 @@ class Order(models.Model):
     city = models.CharField(max_length=24, blank=True, null=True)
     country = models.CharField(max_length=64, blank=True, null=True)
 
+    tax_number = models.CharField(max_length=64, blank=True, null=True)
+
     status = models.CharField(choices=ORDER_STATUS.get_choices(),
                               default=ORDER_STATUS.created,
                               max_length=64,
@@ -150,11 +152,11 @@ class Order(models.Model):
     @property
     def address(self):
         return loader.render_to_string('order/_address.html', {
-                'address_1': address_1,
-                'address_2': address_2,
-                'postcode': postcode,
-                'city': city,
-                'country': country,
+                'address_1': self.address_1,
+                'address_2': self.address_2,
+                'postcode': self.postcode,
+                'city': self.city,
+                'country': self.country,
         })
 
     def __unicode__(self):

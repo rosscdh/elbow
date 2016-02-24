@@ -34,7 +34,7 @@ class CreateOrderForm(forms.Form):
 
     phone = forms.CharField(label=_('Telephone'), required=True)
     address_1 = forms.CharField(label=_('Address'), help_text=_('Line 1 of address'), required=True)
-    address_2 = forms.CharField(label='', help_text=_('Line 2 of address'), required=True)
+    address_2 = forms.CharField(label='', help_text=_('Line 2 of address'), required=False)
     postcode = forms.CharField(label=_('Post code'), required=True)
     city = forms.CharField(label=_('City'), required=True)
     country = forms.CharField(label=_('Country'), required=True)

@@ -46,7 +46,7 @@ class OrderAdminViewCallsTest(BaseTestCase):
         self.assertEqual(len(order.log_history), 0)
 
         self.c.force_login(self.user)
-        url = reverse('admin:order_add_log', kwargs={'uuid': order.uuid})
+        url = reverse('admin:order_logs', kwargs={'uuid': order.uuid})
 
         self.assertEqual(url, u'/de/admin/order/order/%s/log/' % order.uuid)
 
