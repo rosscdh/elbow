@@ -9,29 +9,20 @@
 <div class="page-header clearfix">
   <h1>Invest in {{ project.name }}</h1>
   <p>{{ project.proposition }}</p>
-  <div class="col-md-4">
-  &nbsp;
-  </div>
-  <div class="col-md-8 text-right">
-  &nbsp;
-  </div>
 </div>
+<div class="clearfix"></div>
 {% endblock %}
 
 {% block content %}
-
 <div class="row">
 
-  <div class="col-md-12">
-    <p class="lead">{{ project.description }}</p>
-  </div>
-
   <div class="col-sm-5">
-    <div class="col-md-12" style="margin-bottom:20px;">
+
+    <div class="col-md-12" style="margin-bottom:20px;padding:0px;">
       <img src="{% get_media_prefix %}{{ project.image }}" class="img img-responsive" alt="" title="" />
     </div>
 
-    <div class="col-md-12">
+    <div class="col-sm-12" style="padding:0px;">
       <div class="col-sm-4 well well-sm text-center">
         {% trans "Backers" %}<br/><span class="badge">{{ project.num_backers }}</span>
       </div>
@@ -40,14 +31,15 @@
       </div>
     </div>
 
-    <div class="col-md-12">
+    <div class="col-sm-12" style="padding:0px;">
       {% project_docs project %}
       </ul>
     </div>
 
   </div>
 
-  <div class="col-offset-1 col-sm-6">
+  <div class="col-sm-7">
+    <!-- <p>{{ project.description }}</p> -->
     {% crispy form %}
   </div>
 
