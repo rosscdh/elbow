@@ -1,7 +1,8 @@
 # -*- coding: UTF-8 -*-
 from __future__ import unicode_literals
-from django.conf import settings
 from django.db import models
+from django.conf import settings
+from django.template import loader
 from django.core.urlresolvers import reverse
 from django.utils.translation import activate
 from django.utils.translation import ugettext_lazy as _
@@ -40,7 +41,11 @@ class Order(models.Model):
     phone = models.CharField(max_length=128, blank=True, null=True)
 
     customer_name = models.CharField(max_length=255, blank=True, null=True)
-    address = models.TextField(blank=True, null=True)
+
+    address_1 = models.CharField(max_length=255, blank=True, null=True)
+    address_2 = models.CharField(max_length=255, blank=True, null=True)
+    postcode = models.CharField(max_length=24, blank=True, null=True)
+    city = models.CharField(max_length=24, blank=True, null=True)
     country = models.CharField(max_length=64, blank=True, null=True)
 
     status = models.CharField(choices=ORDER_STATUS.get_choices(),
@@ -141,6 +146,16 @@ class Order(models.Model):
     def url_webhook(self):
         activate(settings.LANGUAGE_CODE)
         return '%s%s' % (self.BASE_URL, reverse('order:payment_webhook', kwargs={'project_slug': self.project.slug, 'uuid': self.uuid}))
+
+    @property
+    def address(self):
+        return loader.render_to_string('order/_address.html', {
+                'address_1': address_1,
+                'address_2': address_2,
+                'postcode': postcode,
+                'city': city,
+                'country': country,
+        })
 
     def __unicode__(self):
         return '%s - %s (%s)' % (self.amount, self.transaction_id, self.payment_type)
