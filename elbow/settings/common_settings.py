@@ -274,6 +274,7 @@ PIPELINE = {
                 'jquery/dist/jquery.js',
                 'bootstrap-sass/assets/javascripts/bootstrap.js',
                 'js/jquery.rss.js',
+                'accruejs/jquery.accrue.js', # interst calc
                 'moment/moment.js',
                 'moment/locale/de.js',
             ),
@@ -288,6 +289,7 @@ BOWER_INSTALLED_APPS = (
     "bootstrap-sass#3.3.6",
     'famfamfam-flags#0.5.0',
     'moment#2.9.0',
+    'accruejs#0.0.1',
 )
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'

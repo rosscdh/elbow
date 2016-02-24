@@ -6,7 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 from pinax.eventlog.models import log
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Field, Submit
+from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Field, Submit, HTML
 from crispy_forms.bootstrap import PrependedAppendedText
 
 from decimal import Decimal
@@ -76,6 +76,9 @@ class CreateOrderForm(forms.Form):
         helper.layout = Layout(
                                Fieldset(_('Investment Amount'),
                                         PrependedAppendedText('amount', DEFAULT_CURRENCY_SYMBOL, '.00'),
+                                        HTML('<div class="input-group"><label for="" class="control-label">%s:</label>&nbsp;<span id="interest_rate_pa"></span></div>' % (_('Interest Rate p.a'),)),
+                                        HTML('<div class="input-group"><label for="" class="control-label">%s:</label>&nbsp;<span id="interest_term"></span></div>' % (_('Interest Term'),)),
+                                        HTML('<div id="accrue-target"></div>'),
                                ),
                                Fieldset(_('Investor Details'),
                                         'customer_name',

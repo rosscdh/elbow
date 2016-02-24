@@ -45,8 +45,8 @@ class Project(models.Model):
                                      max_length=64,
                                      db_index=True)
 
-    interest_rate = models.IntegerField(default=6.0)
-    interest_term = models.CharField(max_length=24, blank=True, null=True)
+    interest_rate = models.DecimalField(default=6.0, max_digits=6, decimal_places=2)
+    interest_term = models.CharField(max_length=24, help_text=_('Format: 12m, 36m, 3y, 7y'), blank=True, null=True)
 
     proposition = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
