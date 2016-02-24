@@ -60,10 +60,9 @@
 
   <script type="text/javascript">
   $( document ).ready(function() {
-      var interest_rate_pa = '{{ project.interest_rate }}';
+      var interest_rate_pa = '{{ project.interest_rate }}'.replace(',', '.');
       $('#interest_rate_pa').html(interest_rate_pa+'%');
-      var interest_term = '{{ project.interest_term }}';
-      var display_interest_term = interest_term.replace('m', ' {% trans "Months" %}')
+      var display_interest_term = '{{ project.interest_term }}'.replace('m', ' {% trans "Months" %}')
       display_interest_term = display_interest_term.replace('y', ' {% trans "Years" %}')
       $('#interest_term').html(display_interest_term);
 
@@ -72,28 +71,11 @@
         operation: "keyup",
         default_values: {
           amount: "0",
-          rate: "{{ project.interest_rate }}%",
+          rate: "{{ project.interest_rate }}%".replace(',', '.'),
           rate_compare: "1.49%",
-          term: interest_term,
+          term: "{{ project.interest_term }}",
         },
-        field_titles: {
-          amount: "Loan Amount",
-          rate: "Rate (APR)",
-          rate_compare: "Comparison Rate",
-          term: "Term"
-        },
-        button_label: "Calculate",
-        field_comments: {
-          amount: "",
-          rate: "",
-          rate_compare: "",
-          term: "Format: 12m, 36m, 3y, 7y"
-        },
-        response_output_div: ".results",
         response_basic:
-          // '<p><strong>Monthly Payment:</strong><br>$%payment_amount%</p>'+
-          // '<p><strong>Number of Payments:</strong><br>%num_payments%</p>'+
-          // '<p><strong>Total Payments:</strong><br>$%total_payments%</p>'+
           '<p><strong>Total Interest:</strong>&nbsp;€%total_interest%</p>',
         response_compare: "Save $%savings% in interest!",
         error_text: null,
