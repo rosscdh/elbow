@@ -40,7 +40,10 @@ class Order(models.Model):
 
     phone = models.CharField(max_length=128, blank=True, null=True)
 
+    title = models.CharField(max_length=24, blank=True, null=True)
     customer_name = models.CharField(max_length=255, blank=True, null=True)
+    dob = models.DateField(auto_now=False, auto_now_add=False, blank=True, null=True)
+
 
     address_1 = models.CharField(max_length=255, blank=True, null=True)
     address_2 = models.CharField(max_length=255, blank=True, null=True)

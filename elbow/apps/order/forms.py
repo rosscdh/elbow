@@ -33,7 +33,7 @@ class CreateOrderForm(forms.Form):
     customer_name = forms.CharField(label=_('Name of Investor Person/Company'),
                                     required=True)
 
-    dob = forms.DateField()
+    dob = forms.DateField(widget=forms.SelectDateWidget())
     phone = forms.CharField(label=_('Telephone'), required=True)
     address_1 = forms.CharField(label=_('Address'), help_text=_('Line 1 of address'), required=True)
     address_2 = forms.CharField(label='', help_text=_('Line 2 of address'), required=False)
@@ -115,13 +115,13 @@ class CreateOrderForm(forms.Form):
         t_and_c = self.cleaned_data.pop('t_and_c')
         has_read_contract = self.cleaned_data.pop('has_read_contract')
 
-        title = self.cleaned_data.pop('title')
-        dob = self.cleaned_data.pop('dob')
+        # title = self.cleaned_data.pop('title')
+        # dob = self.cleaned_data.pop('dob')
 
-        address_1 = self.cleaned_data.pop('address_1')
-        address_2 = self.cleaned_data.pop('address_2')
-        postcode = self.cleaned_data.pop('postcode')
-        city = self.cleaned_data.pop('city')
+        # address_1 = self.cleaned_data.pop('address_1')
+        # address_2 = self.cleaned_data.pop('address_2')
+        # postcode = self.cleaned_data.pop('postcode')
+        # city = self.cleaned_data.pop('city')
 
         amount = self.cleaned_data['amount']
         self.cleaned_data['amount'] = Money(Decimal(amount), EUR)
