@@ -18,8 +18,14 @@ from elbow.apps.order.services import LoanAgreementCreatePDFService
 from elbow.apps.public.services import SendEmailService
 from .apps import ORDER_PAYMENT_TYPE
 
+import datetime
+from dateutil.relativedelta import relativedelta
 
 DEFAULT_CURRENCY_SYMBOL = getattr(settings, 'DEFAULT_CURRENCY_SYMBOL', '€')
+DATE_18_YEARS_AGO = datetime.datetime.today() - relativedelta(years=18)
+DEFAULT_DATE = datetime.datetime.today() - relativedelta(years=25)
+
+YEARS = [year for year in xrange(1930, DATE_18_YEARS_AGO.year -1)]
 
 
 class CreateOrderForm(forms.Form):
@@ -33,7 +39,9 @@ class CreateOrderForm(forms.Form):
     customer_name = forms.CharField(label=_('Name of Investor Person/Company'),
                                     required=True)
 
-    dob = forms.DateField(widget=forms.SelectDateWidget())
+    dob = forms.DateField(label=_('Date of Birth'),
+                          initial=DEFAULT_DATE.date,
+                          widget=forms.SelectDateWidget(years=YEARS))
     phone = forms.CharField(label=_('Telephone'), required=True)
     address_1 = forms.CharField(label=_('Address'), help_text=_('Line 1 of address'), required=True)
     address_2 = forms.CharField(label='', help_text=_('Line 2 of address'), required=False)
