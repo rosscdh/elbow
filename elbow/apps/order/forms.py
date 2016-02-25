@@ -29,9 +29,11 @@ class CreateOrderForm(forms.Form):
                                 min_value=250,
                                 required=True)
 
+    title = forms.ChoiceField(label=_('Title'), choices=(('Mr','Mr'),('Mrs','Mrs'),('Dr','Dr'),('Prof','Prof'),))
     customer_name = forms.CharField(label=_('Name of Investor Person/Company'),
                                     required=True)
 
+    dob = forms.DateField()
     phone = forms.CharField(label=_('Telephone'), required=True)
     address_1 = forms.CharField(label=_('Address'), help_text=_('Line 1 of address'), required=True)
     address_2 = forms.CharField(label='', help_text=_('Line 2 of address'), required=False)
@@ -39,7 +41,7 @@ class CreateOrderForm(forms.Form):
     city = forms.CharField(label=_('City'), required=True)
     country = forms.CharField(label=_('Country'), required=True)
 
-    tax_number = forms.CharField(label=_('Tax number'), required=True)
+    tax_number = forms.CharField(label=_('Tax number'), required=False)
 
     payment_type = forms.ChoiceField(label=_('How to pay'),
                                      choices=ORDER_PAYMENT_TYPE.get_choices(),
@@ -81,7 +83,9 @@ class CreateOrderForm(forms.Form):
                                         HTML('<div id="accrue-target"></div>'),
                                ),
                                Fieldset(_('Investor Details'),
+                                        'title',
                                         'customer_name',
+                                        'dob',
                                         'phone',
                                 ),
                                Fieldset(_('Postal Address'),
@@ -110,6 +114,9 @@ class CreateOrderForm(forms.Form):
         """
         t_and_c = self.cleaned_data.pop('t_and_c')
         has_read_contract = self.cleaned_data.pop('has_read_contract')
+
+        title = self.cleaned_data.pop('title')
+        dob = self.cleaned_data.pop('dob')
 
         address_1 = self.cleaned_data.pop('address_1')
         address_2 = self.cleaned_data.pop('address_2')
