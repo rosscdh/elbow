@@ -35,7 +35,7 @@ class CreateOrderForm(forms.Form):
                                 min_value=250,
                                 required=True)
 
-    title = forms.ChoiceField(label=_('Title'), choices=(('Mr','Mr'),('Mrs','Mrs'),('Dr','Dr'),('Prof','Prof'),))
+    title = forms.ChoiceField(label=_('Title'), choices=(('Mr', _('Mr')),('Mrs',_('Mrs')),('Dr',_('Dr')),('Prof',_('Prof')),))
     customer_name = forms.CharField(label=_('Name of Investor Person/Company'),
                                     required=True)
 

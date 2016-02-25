@@ -15,6 +15,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='order',
             name='status',
-            field=models.CharField(choices=[(b'created', 'Order Created (1/3)'), (b'loan_agreement', 'Load Agreement (2/3)'), (b'processing', 'Processing Payment  (3/3)'), (b'paid', 'Paid'), (b'paid_manually', 'Manually Paid'), (b'failed', 'Payment Failed'), (b'cancelled', 'Payment Cancelled')], db_index=True, default=b'created', max_length=64),
+            field=models.CharField(choices=[(b'created', 'Order Created (1/3)'), (b'loan_agreement', 'Loan Agreement (2/3)'), (b'processing', 'Processing Payment  (3/3)'), (b'paid', 'Paid'), (b'paid_manually', 'Manually Paid'), (b'failed', 'Payment Failed'), (b'cancelled', 'Payment Cancelled')], db_index=True, default=b'created', max_length=64),
         ),
     ]

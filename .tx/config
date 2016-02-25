@@ -1,5 +1,6 @@
 [main]
 host = https://www.transifex.com
+lang_map = en: en-GB, de: de-DE
 
 [todaycapital-gmbh.elbow-crowdsourced-investment]
 source_file = locale/en/LC_MESSAGES/django.po

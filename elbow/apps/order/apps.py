@@ -8,7 +8,7 @@ from elbow.utils import get_namedtuple_choices
 
 ORDER_STATUS = get_namedtuple_choices('ORDER_STATUS', (
     ('created', 'created', _('Order Created (1/3)')),
-    ('loan_agreement', 'loan_agreement', _('Load Agreement (2/3)')),
+    ('loan_agreement', 'loan_agreement', _('Loan Agreement (2/3)')),
     ('processing', 'processing', _('Processing Payment  (3/3)')),
     ('paid', 'paid', _('Paid')),
     ('paid_manually', 'paid_manually', _('Manually Paid')),
