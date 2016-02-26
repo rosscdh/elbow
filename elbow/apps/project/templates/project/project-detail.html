@@ -1,4 +1,4 @@
-{% extends 'project/base.html' %}{% load i18n static djmoney embed_video_tags leaflet_tags project_tags %}
+{% extends 'project/base.html' %}{% load pipeline i18n static djmoney embed_video_tags leaflet_tags project_tags %}
 
 {% block page_title %}{{ project.name }} - Project Detail{% endblock %}
 {% block page_description %}A list of available projects{% endblock %}
@@ -179,8 +179,11 @@
 </style>
 {% endblock %}
 
+
 {% block javascript %}
   {{ block.super }}
+
+  {% javascript 'project' %}
 
   {% leaflet_js %}
 

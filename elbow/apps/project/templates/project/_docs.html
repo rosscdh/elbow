@@ -5,6 +5,10 @@
       <a href="{{ MEDIA_URL }}{{ row.document }}" target="_NEW" class="list-group-item">
         <span class="glyphicon glyphicon-save-file"></span>&nbsp;{{ row.name }}
       </a>
+    {% else %}
+      <a href="javascript:;" class="require-logged-in list-group-item">
+        <span class="glyphicon glyphicon-save-file"></span>&nbsp;{{ row.name }}<span class="pull-right glyphicon glyphicon-lock"></span>
+      </a>
     {% endif %}
   {% empty %}
     <b>No Documents</b>
