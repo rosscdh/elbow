@@ -1,1 +1,9 @@
-payment_admin_success
+<p>[Betreff] Zahlung ist eingegangen</p>
+
+<p>Wir haben einen erfolgreichen Zahlungseingang.</p>
+
+<p><b>Name:</b> {{ order.customer_name }}</p>
+<p><b>Investmentbetrag:</b> {{ order.amount }}</p>
+<p><b>Projektbezeichnung:</b> {{ order.project }}</p>
+<p><b>Order ID.</b> {{ order.uuid }}</p>
+<p><b>Secupay NO.</b> {{ order.transaction_id }}</p>

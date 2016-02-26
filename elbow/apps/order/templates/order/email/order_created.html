@@ -1,1 +1,10 @@
-order_created
+<p>[Betreff] Order is created</p>
+
+<p>Wir haben einen neuen Bestellung.</p>
+
+<p><b>Name:</b> {{ order.customer_name }}</p>
+<p><b>Investmentbetrag:</b> {{ order.amount }}</p>
+<p><b>Projektbezeichnung:</b> {{ order.project }}</p>
+<p><b>Order ID.</b> {{ order.uuid }}</p>
+
+{% include 'email/_footer.html' %}
