@@ -19,7 +19,7 @@ class EmailsSentOnNewSignupTest(BaseTestCase):
     """
 
     def setUp(self):
-        super(SendForPaymentEmailServiceTest, self).setUp()
+        super(EmailsSentOnNewSignupTest, self).setUp()
         mail.outbox = []
 
     def test_signup_sends_admin_email(self):
@@ -34,7 +34,6 @@ class EmailsSentOnNewSignupTest(BaseTestCase):
         email = mail.outbox[0]  # Admin Email
         self.assertEqual(unicode(email.subject), 'TodayCapital.de - New sign-up')
         self.assertEqual(email.recipients(), ['post@todaycapital.de'])
-
 
         email = mail.outbox[1]  # Customer Email
         self.assertEqual(email.subject, '[example.com] Please Confirm Your E-mail Address')
