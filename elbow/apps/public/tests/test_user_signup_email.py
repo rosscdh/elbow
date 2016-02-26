@@ -13,9 +13,9 @@ SIGNUP_DATA = {
 }
 
 
-class SendForPaymentEmailServiceTest(BaseTestCase):
+class EmailsSentOnNewSignupTest(BaseTestCase):
     """
-    UnitTest the service methods, with a VALID order object
+    Test the right number of emails go out when a new user signs up
     """
 
     def setUp(self):
