@@ -252,10 +252,11 @@ ACCOUNT_LOGOUT_ON_GET = True
 LOGIN_REDIRECT_URL = '/'
 
 PIPELINE = {
-    'PIPELINE_ENABLED': True,
+    'PIPELINE_ENABLED': False if DJANGO_ENV in ['development'] else True,
+    'PIPELINE_COLLECTOR_ENABLED': False if DJANGO_ENV in ['development'] else True,
     'CSS_COMPRESSOR': 'pipeline.compressors.cssmin.CSSMinCompressor',
-    'CSSMIN_BINARY': 'cssmin',
     'JS_COMPRESSOR': 'pipeline.compressors.slimit.SlimItCompressor',
+    'CSSMIN_BINARY': 'cssmin',
     'COMPILERS': ('pipeline.compilers.sass.SASSCompiler',),
     'STYLESHEETS': {
         'base': {
