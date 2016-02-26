@@ -16,6 +16,24 @@ class SendEmailService(object):
         self.order = order
         self._messages = []
 
+    @staticmethod
+    def send_user_signedup_admin_email(user_list):
+        logger.debug('Order Created')
+        send_success = []
+        html2text = HTML2TextEmailMessageService(template_name='public/email/send_user_signedup_admin.html',
+                                                 recipients=user_list)
+        # Send Admin Email
+        subject = _('TodayCapital.de - New sign-up')
+        message = html2text.plain_text
+        from_email = 'application@todaycapital.de'
+        recipient_list = ['post@todaycapital.de']
+        logger.debug('Send founders email')
+        send_success.append(('founders', send_mail(subject=subject,
+                                                   message=message,
+                                                   from_email=from_email,
+                                                   recipient_list=recipient_list,
+                                                   html_message=html2text.html)))
+
     def send_order_created_email(self, user_list):
         logger.debug('Order Created')
         send_success = []

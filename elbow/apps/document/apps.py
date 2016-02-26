@@ -18,4 +18,4 @@ DOCUMENT_STATUS = get_namedtuple_choices('DOCUMENT_STATUS', (
 
 
 class DocumentConfig(AppConfig):
-    name = 'document'
+    name = 'elbow.apps.document'

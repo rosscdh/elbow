@@ -32,4 +32,4 @@ SECUPAY_BANK_DATA = {
 
 
 class OrderConfig(AppConfig):
-    name = 'order'
+    name = 'elbow.apps.order'

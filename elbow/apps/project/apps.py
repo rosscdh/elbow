@@ -21,4 +21,4 @@ INTEREST_TYPE = get_namedtuple_choices('INTEREST_TYPE', (
 ))
 
 class ProjectConfig(AppConfig):
-    name = 'project'
+    name = 'elbow.apps.project'
