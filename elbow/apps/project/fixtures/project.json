@@ -21,7 +21,7 @@
       "created_at": "2016-01-15T12:16:26.725Z",
       "updated_at": "2016-01-15T12:16:37.840Z",
       "documents": [
-        1
+        1,3,4,5,6
       ]
     }
   },
@@ -47,7 +47,7 @@
       "created_at": "2016-01-15T12:16:26.725Z",
       "updated_at": "2016-01-15T12:16:37.840Z",
       "documents": [
-        1
+        1,2,4,5,6
       ]
     }
   },
@@ -56,11 +56,89 @@
     "pk": 1,
     "fields": {
       "uuid": "p4hKN5sjp2SpiVRzMY3TPb",
+      "user": null,
       "name": "Vertrags Dokument",
       "document": "document/p4hKN5sjp2SpiVRzMY3TPb-kendo-gear.pdf",
+      "document_type": "project",
       "status": "active",
+      "login_required": false,
       "created_at": "2016-01-15T12:16:20.854Z",
       "updated_at": "2016-01-15T12:16:20.854Z"
+    }
+  },
+  {
+    "model": "document.document",
+    "pk": 2,
+    "fields": {
+      "uuid": "JLqr82hxTbBXRMomzzE2cX",
+      "user": null,
+      "name": "Expose - Rhydt",
+      "document": "",
+      "document_type": "project",
+      "status": "active",
+      "login_required": false,
+      "created_at": "2016-02-18T10:14:19.992Z",
+      "updated_at": "2016-02-18T10:14:19.992Z"
+    }
+  },
+  {
+    "model": "document.document",
+    "pk": 3,
+    "fields": {
+      "uuid": "ELqr82hxTbBXRMomzzE2cX",
+      "user": null,
+      "name": "Expose - Mönchengladbach",
+      "document": "",
+      "document_type": "project",
+      "status": "active",
+      "login_required": false,
+      "created_at": "2016-02-18T10:14:19.992Z",
+      "updated_at": "2016-02-18T10:14:19.992Z"
+    }
+  },
+  {
+    "model": "document.document",
+    "pk": 4,
+    "fields": {
+      "uuid": "cHXKPs472TgT626HbySheS",
+      "user": null,
+      "name": "Daten uber den Entwickler",
+      "document": "",
+      "document_type": "project",
+      "status": "active",
+      "login_required": false,
+      "created_at": "2016-02-18T10:14:36.712Z",
+      "updated_at": "2016-02-18T10:14:36.712Z"
+    }
+  },
+  {
+    "model": "document.document",
+    "pk": 5,
+    "fields": {
+      "uuid": "BwWUZjZQoBjkEKSLjWvRWQ",
+      "user": null,
+      "name": "Verbraucherinformationsblatt",
+      "document": "",
+      "document_type": "project",
+      "status": "active",
+      "login_required": true,
+      "created_at": "2016-02-18T10:20:35.193Z",
+      "updated_at": "2016-02-18T10:25:07.632Z"
+    }
+  },
+  {
+    "model": "document.document",
+    "pk": 6,
+    "fields": {
+      "uuid": "JpFXBf6NfgAR45W5UiiRBA",
+      "user": null,
+      "name": "Finanzkennzahlen",
+      "document": "",
+      "document_type": "project",
+      "status": "active",
+      "login_required": true,
+      "created_at": "2016-02-18T10:20:47.641Z",
+      "updated_at": "2016-02-18T10:25:04.051Z"
     }
   }
 ]
