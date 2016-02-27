@@ -4,9 +4,11 @@
   $( document ).ready(function() {
 
     $('.require-logged-in').on('click', function (e) {
-      $(this).addClass('alert alert-warning')
+      var notice = $($(this).parents().find('.notice:first'));
+      notice.removeClass('hide');
+      notice.fadeIn().delay(5000).fadeOut();
     });
 
-  });
+ });
 
 })(jQuery);

@@ -72,10 +72,13 @@
 <ul id="project-tabs" class="nav nav-tabs" role="tablist">
   <li role="presentation" class="active"><a href="#project-description" aria-controls="home" role="tab" data-toggle="tab">{% trans 'Project description' %}</a></li>
   <li role="presentation"><a href="#project-participation" aria-controls="profile" role="tab" data-toggle="tab">{% trans 'Participation Model' %}</a></li>
+  <li role="presentation"><a href="#project-documents" aria-controls="messages" role="tab" data-toggle="tab">{% trans 'Documents' %}</a></li>
+  <li role="presentation"><a href="#project-news" aria-controls="messages" role="tab" data-toggle="tab">{% trans 'Latest News' %}</a></li>
   <li role="presentation"><a href="#project-faq" aria-controls="messages" role="tab" data-toggle="tab">{% trans 'F.A.Q' %}</a></li>
 </ul>
 
 <div class="tab-content">
+
   <div id="project-description" role="tabpanel" class="tab-pane fade in active">
     <div class="row">
       <div class="col-sm-6">
@@ -89,13 +92,22 @@
         {% leaflet_map 'location_map' callback="window.map_init_basic" %}
       </div>
     </div>
-
   </div>
 
   <div id="project-participation" role="tabpanel" class="tab-pane fade">
     <div class="col-sm-12">
       <img src="{% get_static_prefix %}img/sharing-model.png" class="img img-responsive" title="" alt="" />
     </div>
+  </div>
+
+  <div id="project-documents" role="tabpanel" class="tab-pane fade">
+    <div class="col-sm-12">
+      {% project_docs project %}
+    </div>
+  </div>
+
+  <div id="project-news" role="tabpanel" class="tab-pane fade">
+    <div class="col-sm-12"><!-- Loaded via js --></div>
   </div>
 
   <div id="project-faq" role="tabpanel" class="tab-pane fade">
@@ -116,39 +128,6 @@
 </div><!-- End tabs -->
 
 
-<div id="project-news-container" class="row hide" style="margin-top:25px;">
-  <div class="col-sm-12">
-    <!-- Button trigger modal -->
-    <button type="button" style="width:100%;" class="btn btn-info btn-lg" data-title="{% trans 'News' %}" data-source="project-news" data-toggle="modal" data-target="#tc-modal">
-      {% trans 'News' %}
-    </button>
-  </div>
-</div>
-<br/><br/>
-<div class="row">
-  <div class="col-sm-12">
-    <!-- Button trigger modal -->
-    <button type="button" style="width:100%;" class="btn btn-info btn-lg" data-title="{% trans 'Documents' %}" data-source="project-documents" data-toggle="modal" data-target="#tc-modal">
-      {% trans 'Documents' %}
-    </button>
-  </div>
-</div>
-
-<div id="project-news" class="hide">
-  <div class="row">
-    <div class="col-sm-12">
-    <p>News to be shown from marketing website, please provide some news to Stefano (Currently reading from sektorm)</p>
-    </div>
-  </div>
-</div>
-
-<div id="project-documents" class="hide">
-  <div class="row">
-    <div class="col-sm-12">
-      {% project_docs project %}
-    </div>
-  </div>
-</div>
 
 <!-- MODAL -->
 <div class="modal fade" id="tc-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -188,10 +167,12 @@
   {% leaflet_js %}
 
   <script type="text/javascript">
+  $( document ).ready(function() {
       function map_init_basic (map, options) {
           map.setView(new L.LatLng('{{ object.lat_long.latitude }}', '{{ object.lat_long.longitude }}'), 9);
           L.marker(['{{ object.lat_long.latitude }}', '{{ object.lat_long.longitude }}']).addTo(map);
       }
+  });
   </script>
 
   <script type="text/javascript">
@@ -225,7 +206,7 @@
       layoutTemplate: '<div class="list-group">{entries}</div>',
       entryTemplate: '<a target="_NEW" href="{url}" class="list-group-item"><b>{title}</b><br/><em>{date}</em><br/>{shortBodyPlain}</a>',
     }, function (a,b,com) {
-      $('#project-news-container').removeClass('hide');
+      //$('#project-news-container').removeClass('hide');
     });
 
   });

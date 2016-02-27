@@ -1,5 +1,8 @@
 {% load i18n %}
-<div class="list-group">
+<div class="doc-list list-group">
+  <div class="notice alert alert-warning hide" role="alert">
+    <b>{% trans 'Please login to view the selected document.' %}</b>
+  </div>
   {% for row in documents %}
     {% if row.login_required == False or row.login_required and is_logged_in %}
       <a href="{{ MEDIA_URL }}{{ row.document }}" target="_NEW" class="list-group-item">
@@ -11,6 +14,6 @@
       </a>
     {% endif %}
   {% empty %}
-    <b>No Documents</b>
+    <b>{% trans 'No documents found' %}</b>
   {% endfor %}
 </div>
