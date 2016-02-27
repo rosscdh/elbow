@@ -149,13 +149,13 @@
 {% endblock %}
 
 {% block css %}
-{{ block.super }}
-{% leaflet_css %}
-<style>
-.well {
-  margin-bottom:10px;
-}
-</style>
+  {{ block.super }}
+  {% leaflet_css %}
+  <style>
+  .well {
+    margin-bottom:10px;
+  }
+  </style>
 {% endblock %}
 
 
@@ -205,8 +205,6 @@
       },
       layoutTemplate: '<div class="list-group">{entries}</div>',
       entryTemplate: '<a target="_NEW" href="{url}" class="list-group-item"><b>{title}</b><br/><em>{date}</em><br/>{shortBodyPlain}</a>',
-    }, function (a,b,com) {
-      //$('#project-news-container').removeClass('hide');
     });
 
   });

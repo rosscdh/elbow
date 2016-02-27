@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-25 15:46+0000\n"
+"POT-Creation-Date: 2016-02-27 21:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -325,6 +325,14 @@ msgstr ""
 msgid "Projects"
 msgstr ""
 
+#: elbow/apps/project/templates/project/_docs.html:4
+msgid "Please login to view the selected document."
+msgstr ""
+
+#: elbow/apps/project/templates/project/_docs.html:17
+msgid "No documents found"
+msgstr ""
+
 #: elbow/apps/project/templates/project/_preview.html:8
 msgid "Details"
 msgstr ""
@@ -355,53 +363,55 @@ msgid "Participation Model"
 msgstr ""
 
 #: elbow/apps/project/templates/project/project-detail.html:75
-#: elbow/apps/project/templates/project/project-detail.html:103
-msgid "F.A.Q"
-msgstr ""
-
-#: elbow/apps/project/templates/project/project-detail.html:82
-msgid "Building Details"
-msgstr ""
-
-#: elbow/apps/project/templates/project/project-detail.html:88
-msgid "Map"
-msgstr ""
-
-#: elbow/apps/project/templates/project/project-detail.html:122
-#: elbow/apps/project/templates/project/project-detail.html:123
-msgid "News"
-msgstr ""
-
-#: elbow/apps/project/templates/project/project-detail.html:131
-#: elbow/apps/project/templates/project/project-detail.html:132
 msgid "Documents"
 msgstr ""
 
-#: elbow/apps/public/services.py:26
-msgid "TodayCapital.de - Investment order created"
+#: elbow/apps/project/templates/project/project-detail.html:76
+msgid "Latest News"
 msgstr ""
 
-#: elbow/apps/public/services.py:38
+#: elbow/apps/project/templates/project/project-detail.html:77
+#: elbow/apps/project/templates/project/project-detail.html:115
+msgid "F.A.Q"
+msgstr ""
+
+#: elbow/apps/project/templates/project/project-detail.html:85
+msgid "Building Details"
+msgstr ""
+
+#: elbow/apps/project/templates/project/project-detail.html:91
+msgid "Map"
+msgstr ""
+
+#: elbow/apps/public/services.py:26
+msgid "TodayCapital.de - New sign-up"
+msgstr ""
+
+#: elbow/apps/public/services.py:44
+msgid "TodayCapital.de - a new order has been created"
+msgstr ""
+
+#: elbow/apps/public/services.py:56
 msgid "TodayCapital.de - Your Investment Order has been created"
 msgstr ""
 
-#: elbow/apps/public/services.py:67
-msgid "TodayCapital.de - Investment order agreed to Loan Agreement Terms"
+#: elbow/apps/public/services.py:85
+msgid "TodayCapital.de - Ihr Investment auf TodayCapital"
 msgstr ""
 
-#: elbow/apps/public/services.py:82
+#: elbow/apps/public/services.py:100
 msgid "TodayCapital.de - Your Investment Order Loan Agreement is Attached"
 msgstr ""
 
-#: elbow/apps/public/services.py:107 elbow/apps/public/services.py:119
+#: elbow/apps/public/services.py:125 elbow/apps/public/services.py:137
 msgid "TodayCapital.de - Investment Payment, Success"
 msgstr ""
 
-#: elbow/apps/public/services.py:143
+#: elbow/apps/public/services.py:161
 msgid "TodayCapital.de - Investment Payment, Failure"
 msgstr ""
 
-#: elbow/settings/common_settings.py:326
+#: elbow/settings/common_settings.py:294
 msgid "German"
 msgstr ""
 
