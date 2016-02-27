@@ -41,14 +41,15 @@ except ImportError:
     pass
 
 #
-# Comes last
-#
-from .logging_settings import *
-
-#
 # Check for test settings
 #
 for test_app in ['testserver', 'test', 'jenkins']:
     if test_app in sys.argv[1:2]:
         PROJECT_ENVIRONMENT = 'test'
         from test_settings import *
+
+#
+# Comes last
+#
+from .environment_settings import *
+from .logging_settings import *

@@ -41,7 +41,7 @@ class SendEmailService(object):
                                                  order=self.order,
                                                  recipients=user_list)
         # Send Admin Email
-        subject = _('TodayCapital.de - Investment order created')
+        subject = _('TodayCapital.de - a new order has been created')
         message = html2text.plain_text
         from_email = 'application@todaycapital.de'
         recipient_list = ['post@todaycapital.de']
@@ -82,7 +82,7 @@ class SendEmailService(object):
                                                  order=self.order,
                                                  recipients=user_list)
         # Send Admin Email
-        subject = _('TodayCapital.de - Investment order agreed to Loan Agreement Terms')
+        subject = _('TodayCapital.de - Ihr Investment auf TodayCapital')
         from_email = 'application@todaycapital.de'
         recipient_list = ['post@todaycapital.de']
 
