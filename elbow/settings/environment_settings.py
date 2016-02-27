@@ -2,7 +2,7 @@ from . import PROJECT_ENVIRONMENT
 
 
 PIPELINE = {
-    'PIPELINE_ENABLED': False,#False if PROJECT_ENVIRONMENT in ['development'] else True,
+    'PIPELINE_ENABLED': True,#False if PROJECT_ENVIRONMENT in ['development'] else True,
     #'PIPELINE_COLLECTOR_ENABLED': False if DJANGO_ENV in ['development'] else True,
     'CSS_COMPRESSOR': 'pipeline.compressors.cssmin.CSSMinCompressor',
     'JS_COMPRESSOR': 'pipeline.compressors.slimit.SlimItCompressor',
