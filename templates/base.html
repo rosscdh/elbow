@@ -90,6 +90,16 @@
       <p>&copy; 2016 TodayCapital.de, GmBH. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
     </footer>
 
+    <script type="text/javascript">
+      window.STATIC_URL = '{% get_static_prefix %}';
+      window.MEDIA_URL = '{% get_media_prefix %}';
+
+      window.embedLoadingAnimation = function (target) {
+        var animated_svg = '<object class="loading" data="'+ window.STATIC_URL +'img/ring-alt.svg" width="45" height="45" style="margin: 0 auto;width:100%;" type="image/svg+xml"> <img src="'+ window.STATIC_URL +'img/ring-alt.gif" width="45" height="45" alt="Please wait" /></object>';
+        target.html(animated_svg);
+      }
+
+    </script>
     {% javascript 'base' %}
     {% block javascript %}{% endblock %}
   </body>

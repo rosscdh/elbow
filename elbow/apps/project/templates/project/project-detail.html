@@ -95,12 +95,14 @@
   </div>
 
   <div id="project-participation" role="tabpanel" class="tab-pane fade">
+    <h3>{% trans 'How it works' %}</h3>
     <div class="col-sm-12">
       <img src="{% get_static_prefix %}img/sharing-model.png" class="img img-responsive" title="" alt="" />
     </div>
   </div>
 
   <div id="project-documents" role="tabpanel" class="tab-pane fade">
+    <h3>{% trans 'Documents' %}</h3>
     <div class="col-sm-12">
       {% project_docs project %}
     </div>
@@ -196,6 +198,8 @@
     })
 
     // rss
+    window.embedLoadingAnimation($("#project-news"));
+
     $("#project-news").rss("http://sektor-m.com/feed", {
       limit: 6,
       dateFormat: 'MMMM Do, YYYY',
@@ -203,8 +207,10 @@
       dateFormatFunction: function (datePublished) {
         return moment(datePublished).format('MMMM Do YYYY');
       },
-      layoutTemplate: '<div class="list-group">{entries}</div>',
+      layoutTemplate: '<h3>{% trans "Latest News" %}</h3><div class="list-group">{entries}</div>',
       entryTemplate: '<a target="_NEW" href="{url}" class="list-group-item"><b>{title}</b><br/><em>{date}</em><br/>{shortBodyPlain}</a>',
+    }, function () {
+      $('.loading').remove();
     });
 
   });
