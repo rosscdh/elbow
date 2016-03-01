@@ -1,4 +1,6 @@
 <!doctype html>{% load pipeline i18n pages_tags static flags %}{% load_pages %}
+{% get_pages_with_tag "main" as pages_main %}
+{% get_pages_with_tag "footer" as pages_footer %}
 {% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}{% get_available_languages as LANGUAGES %}
 {% get_language_info for LANGUAGE_CODE as current_lang %}
 <html lang="{{ LANGUAGE_CODE|default:"de" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
@@ -37,7 +39,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <!-- <li class="active"><a href="/{{ current_lang.code }}/">{% trans 'Home' %}</a></li> -->
-            {% for page in pages_navigation %}
+            {% for page in pages_main %}
                 {% pages_menu page %}
             {% endfor %}
             <!-- Languages -->
@@ -87,7 +89,12 @@
     <!-- FOOTER -->
     <footer class="container">
       <p class="pull-right"><a href="#">Back to top</a></p>
-      <p>&copy; 2016 TodayCapital.de, GmBH. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+      <p>&copy; 2016 TodayCapital.de, GmBH. &middot;</p>
+      <ul class="nav navbar-nav">
+      {% for page in pages_footer %}
+          {% pages_menu page %}
+      {% endfor %}
+      </ul>
     </footer>
 
     <script type="text/javascript">

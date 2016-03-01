@@ -170,20 +170,26 @@
 
   <script type="text/javascript">
   $( document ).ready(function() {
-      function map_init_basic (map, options) {
-          map.setView(new L.LatLng('{{ object.lat_long.latitude }}', '{{ object.lat_long.longitude }}'), 9);
-          L.marker(['{{ object.lat_long.latitude }}', '{{ object.lat_long.longitude }}']).addTo(map);
-      }
-  });
-  </script>
+    'use strict';
+    //
+    // Map handler
+    //
+    function map_init_basic (map, options) {
+        map.setView(new L.LatLng('{{ object.lat_long.latitude }}', '{{ object.lat_long.longitude }}'), 9);
+        L.marker(['{{ object.lat_long.latitude }}', '{{ object.lat_long.longitude }}']).addTo(map);
+    }
 
-  <script type="text/javascript">
-  $( document ).ready(function() {
+    //
+    // Handle tabs
+    //
     $('#project-tabs a').click(function (e) {
       e.preventDefault()
       $(this).tab('show')
     });
 
+    //
+    // Modal Window loaders and settings
+    //
     $('#tc-modal').on('show.bs.modal', function (e) {
       // load appropriate content
       var source = $(e.relatedTarget);
@@ -192,12 +198,17 @@
       $('#modal-body').html(data_source.html());
     });
 
+    //
+    // F.A.Q collapsable setting
+    //
     $('.faq').on('click', function (e) {
       e.preventDefault();
       $($(this).find('.answer')).collapse('toggle');
     })
 
-    // rss
+    //
+    // RSS and News loader
+    //
     window.embedLoadingAnimation($("#project-news"));
 
     $("#project-news").rss("http://sektor-m.com/feed", {
@@ -212,7 +223,6 @@
     }, function () {
       $('.loading').remove();
     });
-
   });
   </script>
 {% endblock %}

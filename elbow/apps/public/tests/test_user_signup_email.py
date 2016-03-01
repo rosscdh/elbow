@@ -10,6 +10,7 @@ SIGNUP_DATA = {
     'email': 'test+user@example.com',
     'password1': 'test2007',
     'password2': 'test2007',
+    'has_aggeed_t_and_c': True,
 }
 
 

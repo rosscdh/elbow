@@ -60,6 +60,11 @@
 
   <script type="text/javascript">
   $( document ).ready(function() {
+      'use strict';
+
+      //
+      // Interest calculator
+      //
       var interest_rate_pa = '{{ project.interest_rate }}'.replace(',', '.');
       $('#interest_rate_pa').html(interest_rate_pa+'%');
       var display_interest_term = '{{ project.interest_term }}'.replace('m', ' {% trans "Months" %}')
@@ -83,6 +88,17 @@
           amount: $('#id_amount')
         }
       });
+
+      //
+      // Amount checker
+      //
+      // $('#id_amount').on('change keyup', function (event) {
+      //   var amount = parseInt($(this).val());
+      //   if (amount > 1000) {
+      //     // if the user wants more than 1k invested he needs a darllensvertrag
+      //     $('#agree_contract').fadeIn()
+      //   }
+      // });
   });
   </script>
 {% endblock %}

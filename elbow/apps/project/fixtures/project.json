@@ -38,7 +38,7 @@
       "payment_description": "Invest in land in Rhydt, NRW",
       "use_payment_options": "no",
       "interest_rate": 7.6,
-      "interest_term": "7y",
+      "interest_term": "120m",
       "image": "project/example-project-2.jpg",
       "video": "https://vimeo.com/7031482",
       "lat_long": "51.1655111, 6.2737308",

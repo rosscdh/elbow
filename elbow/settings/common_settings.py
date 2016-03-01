@@ -78,6 +78,7 @@ HELPER_APPS = (
     'leaflet',
 
     'pages', # cms
+    'taggit', # cms
     'mptt',  # for cms
     'rulez',
     'djmoney',
@@ -277,8 +278,13 @@ DEFAULT_CURRENCY_SYMBOL = '€'
 
 CRISPY_FAIL_SILENTLY = False
 
+ACCOUNT_FORMS = {
+    'signup': 'elbow.apps.public.forms.SignUpForm',
+}
+
 # CMS settings
 PAGE_CONTENT_REVISION = False  # Dont keep revisions
+PAGE_TAGGING = True  # Allow for footer and page tagging
 PAGE_CONTENT_REVISION_DEPTH = 1
 PAGE_DEFAULT_TEMPLATE = 'pages/70_30.html'
 PAGE_TEMPLATES = (

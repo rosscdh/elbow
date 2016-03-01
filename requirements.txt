@@ -113,6 +113,7 @@ django-money
 -e git+https://github.com/rosscdh/django-templated-email.git@fd2eabd4afa0da520d5e8ffb3dc07a397a2cfbd3#egg=templated_email
 django-countries
 -e git+https://github.com/batiste/django-page-cms.git@fd94430ee8e1877acb285a54060397b8c08bb8a4#egg=pages
+django-taggit
 html2text
 coverage
 # PDF Rendering
