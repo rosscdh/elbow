@@ -10,7 +10,7 @@ SIGNUP_DATA = {
     'email': 'test+user@example.com',
     'password1': 'test2007',
     'password2': 'test2007',
-    'has_aggeed_t_and_c': True,
+    'has_aggeed_t_and_c': 'on',
 }
 
 
@@ -29,6 +29,6 @@ class SignupCreatesUserProfileTest(BaseTestCase):
         self.assertEqual(user.userprofile.__class__.__name__, 'UserProfile')
         # Test it has data
         self.assertEqual(user.userprofile.data, {
-            u'has_aggeed_t_and_c': u'True',  # Hmm String True .. weird investigate
+            u'has_aggeed_t_and_c': u'on',
             u'send_news_and_info': None
         })
