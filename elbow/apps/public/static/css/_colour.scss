@@ -1,5 +1,7 @@
 .navbar {
   background-color:#fff;
+  border:solid $brand-primary 0px!important;
+  border-bottom:solid $brand-primary 10px!important;
 
   .navbar-brand {
     padding:5px 0px 0px 0px;

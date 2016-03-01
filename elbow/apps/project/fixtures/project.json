@@ -61,7 +61,7 @@
       "document": "document/p4hKN5sjp2SpiVRzMY3TPb-kendo-gear.pdf",
       "document_type": "project",
       "status": "active",
-      "login_required": false,
+      "login_required": true,
       "created_at": "2016-01-15T12:16:20.854Z",
       "updated_at": "2016-01-15T12:16:20.854Z"
     }

@@ -78,6 +78,8 @@
       </div>
     </nav>
 
+    {% block outer_content %}{% endblock %}
+
     <div id="outer-wrapper" class="container" style="margin-top:45px;">
         {% block page_header %}{% endblock %}
         {% for message in messages %}
@@ -101,9 +103,19 @@
       window.STATIC_URL = '{% get_static_prefix %}';
       window.MEDIA_URL = '{% get_media_prefix %}';
 
+      /**
+      * Embed our loading animation into the targets html
+      */
       window.embedLoadingAnimation = function (target) {
-        var animated_svg = '<object class="loading" data="'+ window.STATIC_URL +'img/ring-alt.svg" width="45" height="45" style="margin: 0 auto;width:100%;" type="image/svg+xml"> <img src="'+ window.STATIC_URL +'img/ring-alt.gif" width="45" height="45" alt="Please wait" /></object>';
+        var animated_svg = '<object class="loading" data="'+ window.STATIC_URL +'img/ring-alt.svg" width="45" height="45" style="margin: 0 auto;width:100%;" type="image/svg+xml"> <img src="'+ window.STATIC_URL +'img/ring-alt.gif" width="45" height="45" alt="{% trans 'Please wait' %}" /></object>';
         target.html(animated_svg);
+      }
+      /**
+      * Remove the targets loading animation
+      * used from promise and callbacks
+      */
+      window.removeEmbedLoadingAnimation = function (target) {
+        target.find('.loading').remove();
       }
 
     </script>

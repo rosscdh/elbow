@@ -221,7 +221,7 @@
       layoutTemplate: '<h3>{% trans "Latest News" %}</h3><div class="list-group">{entries}</div>',
       entryTemplate: '<a target="_NEW" href="{url}" class="list-group-item"><b>{title}</b><br/><em>{date}</em><br/>{shortBodyPlain}</a>',
     }, function () {
-      $('.loading').remove();
+      window.removeEmbedLoadingAnimation($("#project-news"));
     });
   });
   </script>
