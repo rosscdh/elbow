@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-27 21:24+0000\n"
+"POT-Creation-Date: 2016-03-01 06:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -260,15 +260,15 @@ msgstr ""
 msgid "Revenue"
 msgstr ""
 
-#: elbow/apps/order/templates/order/order-create.html:65
+#: elbow/apps/order/templates/order/order-create.html:70
 msgid "Months"
 msgstr ""
 
-#: elbow/apps/order/templates/order/order-create.html:66
+#: elbow/apps/order/templates/order/order-create.html:71
 msgid "Years"
 msgstr ""
 
-#: elbow/apps/order/templates/order/order-list.html:10 templates/base.html:68
+#: elbow/apps/order/templates/order/order-list.html:10 templates/base.html:70
 msgid "Investment History"
 msgstr ""
 
@@ -363,15 +363,17 @@ msgid "Participation Model"
 msgstr ""
 
 #: elbow/apps/project/templates/project/project-detail.html:75
+#: elbow/apps/project/templates/project/project-detail.html:105
 msgid "Documents"
 msgstr ""
 
 #: elbow/apps/project/templates/project/project-detail.html:76
+#: elbow/apps/project/templates/project/project-detail.html:221
 msgid "Latest News"
 msgstr ""
 
 #: elbow/apps/project/templates/project/project-detail.html:77
-#: elbow/apps/project/templates/project/project-detail.html:115
+#: elbow/apps/project/templates/project/project-detail.html:117
 msgid "F.A.Q"
 msgstr ""
 
@@ -381,6 +383,19 @@ msgstr ""
 
 #: elbow/apps/project/templates/project/project-detail.html:91
 msgid "Map"
+msgstr ""
+
+#: elbow/apps/project/templates/project/project-detail.html:98
+msgid "How it works"
+msgstr ""
+
+#: elbow/apps/public/forms.py:9
+msgid ""
+"I have read & agree to the Terms & Conditions and Data Protection agreement"
+msgstr ""
+
+#: elbow/apps/public/forms.py:13
+msgid "I would like to receive occasional news and information"
 msgstr ""
 
 #: elbow/apps/public/services.py:26
@@ -411,7 +426,7 @@ msgstr ""
 msgid "TodayCapital.de - Investment Payment, Failure"
 msgstr ""
 
-#: elbow/settings/common_settings.py:294
+#: elbow/settings/common_settings.py:300
 msgid "German"
 msgstr ""
 
@@ -649,7 +664,7 @@ msgstr ""
 #: templates/account/password_reset_from_key.html:4
 #: templates/account/password_reset_from_key.html:7
 #: templates/account/password_reset_from_key_done.html:4
-#: templates/account/password_reset_from_key_done.html:7 templates/base.html:65
+#: templates/account/password_reset_from_key_done.html:7 templates/base.html:67
 msgid "Change Password"
 msgstr ""
 
@@ -774,30 +789,30 @@ msgid ""
 "mail address</a>."
 msgstr ""
 
-#: templates/base.html:39
+#: templates/base.html:41
 msgid "Home"
 msgstr ""
 
-#: templates/base.html:56
+#: templates/base.html:58
 msgid "Login"
 msgstr ""
 
-#: templates/base.html:57
+#: templates/base.html:59
 msgid "Register"
 msgstr ""
 
-#: templates/base.html:60
+#: templates/base.html:62
 msgid "Settings"
 msgstr ""
 
-#: templates/base.html:64
+#: templates/base.html:66
 msgid "Email Settings"
 msgstr ""
 
-#: templates/base.html:66
+#: templates/base.html:68
 msgid "Cancel Account"
 msgstr ""
 
-#: templates/base.html:70
+#: templates/base.html:72
 msgid "Logout"
 msgstr ""
