@@ -29,7 +29,9 @@
         </div>
       </div>
       {% else %}
-        <div class="alert alert-success" role="alert">{% trans "<b>NB</b> Be one of the first to invest in this opportunity" %}</div>
+      <div class="row">
+        <div class="col-sm-12 alert alert-success" role="alert">{% trans "<b>NB</b> Be one of the first to invest in this opportunity" %}</div>
+      </div>
       {% endif %}
     </div>
 
@@ -50,12 +52,12 @@
     {% endif %} -->
   </div>
   <div class="col-sm-7">
-    <div class="row">
-      <div class="col-sm-3 well well-sm text-center">Interest rate: {{ project.interest_rate }}%</div>
-      <div class="col-sm-3 col-sm-push-1 well well-sm text-center">Running Time: {{ project.running_time }}</div>
+
+      <div class="col-sm-5 well well-sm text-center">Interest rate: {{ project.interest_rate }}%</div>
+      <div class="col-sm-5 col-sm-push-2 well well-sm text-center">Running Time: {{ project.running_time }}</div>
       <div class="clearfix"></div>
       <div class="col-sm-12">
-        <h3>{% trans 'Investment Overview' %}</h3>
+        <h3>{% trans 'Overview' %}</h3>
         <p class="">{{ project.description }}</p>
         <p class="">minimum_investment: {{ project.minimum_investment }}</p>
         <p class="">target amount: {% money_localize project.amount %}</p>
@@ -63,9 +65,7 @@
         <p class="">Type of Interest rate: {{ project.interest_type }}</p>
         <p class="">Funding ends: {{ project.expiration }}</p>
       </div>
-      <div class="clearfix"></div>
-      <!-- <div class="col-sm-2 col-xs-push-5 well well-sm text-center">{{ project.percent }}%</div> -->
-    </div>
+
   </div>
 
 </div><!-- End row -->
@@ -81,7 +81,7 @@
   <div class="alert alert-success" role="alert">{% trans "<b>NB</b> Be one of the first to invest in this opportunity" %}</div>
 {% endif %}
 </div> -->
-
+<hr/>
 <ul id="project-tabs" class="nav nav-tabs" role="tablist">
   <li role="presentation" class="active"><a href="#project-description" aria-controls="home" role="tab" data-toggle="tab">{% trans 'Project description' %}</a></li>
   <li role="presentation"><a href="#project-participation" aria-controls="profile" role="tab" data-toggle="tab">{% trans 'Participation Model' %}</a></li>

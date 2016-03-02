@@ -52,6 +52,13 @@
   #accrue-target div.form {
     display:none;
   }
+  .selectdatewidget {
+    width:25%;
+    display:inline-flex;
+  }
+  .buttonHolder {
+    text-align:center;
+  }
   </style>style>
 {% endblock %}
 
@@ -92,13 +99,16 @@
       //
       // Amount checker
       //
-      // $('#id_amount').on('change keyup', function (event) {
-      //   var amount = parseInt($(this).val());
-      //   if (amount > 1000) {
-      //     // if the user wants more than 1k invested he needs a darllensvertrag
-      //     $('#agree_contract').fadeIn()
-      //   }
-      // });
+      $('#id_amount').on('change keyup', function (event) {
+        var amount = parseInt($(this).val());
+        console.log(amount)
+        if (amount > 1000) {
+          // if the user wants more than 1k invested he needs a darllensvertrag
+          $('#loan-contract').removeClass('hide').fadeIn();
+        } else {
+          $('#loan-contract').addClass('hide');
+        }
+      });
   });
   </script>
 {% endblock %}

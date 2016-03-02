@@ -35,7 +35,15 @@ class CreateOrderForm(forms.Form):
                                 min_value=250,
                                 required=True)
 
-    title = forms.ChoiceField(label=_('Title'), choices=(('Mr', _('Mr')),('Mrs',_('Mrs')),('Dr',_('Dr')),('Prof',_('Prof')),))
+    title = forms.ChoiceField(label=_('Title'), choices=(
+                                                            ('Mr', _('Mr')),
+                                                            ('Mrs', _('Mrs')),
+                                                            ('Mz', _('Mz')),
+                                                            ('Miss', _('Miss')),
+                                                            ('Dr', _('Dr')),
+                                                            ('Prof', _('Prof')),
+                                                            ('Hnr', _('Hnr')),
+                                                        ))
     customer_name = forms.CharField(label=_('Name of Investor Person/Company'),
                                     required=True)
 
@@ -89,6 +97,7 @@ class CreateOrderForm(forms.Form):
                                         HTML('<div class="input-group"><label for="" class="control-label">%s:</label>&nbsp;<span id="interest_rate_pa"></span></div>' % (_('Interest Rate p.a'),)),
                                         HTML('<div class="input-group"><label for="" class="control-label">%s:</label>&nbsp;<span id="interest_term"></span></div>' % (_('Interest Term'),)),
                                         HTML('<div id="accrue-target"></div>'),
+                                        HTML('<div id="loan-contract" class="hide alert alert-warning clearfix">{text}</div>'.format(text='You have invested more than &euro;1000.00 and must agree to the loan contract, which follows in the next step')),
                                ),
                                Fieldset(_('Investor Details'),
                                         'title',
@@ -106,13 +115,13 @@ class CreateOrderForm(forms.Form):
                                Fieldset(_('Tax information'),
                                         'tax_number',
                                ),
-                               Fieldset(_('Payment, Terms & Download Contract'),
+                               Fieldset(_('Payment'),
                                         'payment_type',
                                         't_and_c',
                                         'has_read_contract',
                                ),
                                ButtonHolder(
-                                            Submit('submit', _('Submit'), css_class='btn btn-success btn-lg')
+                                    Submit('submit', _('Invest Now'), css_class='btn btn-success btn-lg'),
                                ))
         return helper
 
