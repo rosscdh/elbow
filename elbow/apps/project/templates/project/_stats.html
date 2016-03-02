@@ -1,4 +1,4 @@
-{% load i18n static djmoney %}
+{% load i18n l10n static djmoney %}
 {% comment %}
 This is view is deliberately without a outer div, allows you to define the project _stats width col-sm-2 or col-sm-7
 {% endcomment %}
@@ -14,8 +14,8 @@ This is view is deliberately without a outer div, allows you to define the proje
   <div class="col-md-12">
     {% if project.percent > 0 %}
     <div class="row progress">
-      <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="{{ project.percent }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ project.percent }}%">
-        {{ project.percent }}%
+      <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="{{ project.percent|unlocalize }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ project.percent|unlocalize }}%">
+        <b>{{ project.percent }}%</b>
       </div>
     </div>
     {% else %}

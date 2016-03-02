@@ -42,8 +42,13 @@
         {% if order.status == 'cancelled' %}<a href="javascript:;" data-url="{{ order.url }}" class="order-lifecycle-event btn btn-sm btn-danger">{% trans 'Delete'  %}</a>{% endif %}
       </div>
     </div>
-
   {% empty %}
+    <div class="row clearfix">
+      <div class="col-xs-12">
+        <p><b>{% trans 'No investments found' %}</b></p>
+        <p><a href="{% url 'project:list' %}" class="btn btn-primary">{% trans 'Invest now' %}</a></p>
+      </div>
+    </div>
   {% endfor %}
   </div>
 

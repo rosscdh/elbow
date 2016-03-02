@@ -1,4 +1,4 @@
-{% extends 'project/base.html' %}{% load pipeline i18n static djmoney embed_video_tags leaflet_tags project_tags %}
+{% extends 'project/base.html' %}{% load pipeline i18n l10n static djmoney embed_video_tags leaflet_tags project_tags %}
 
 {% block page_title %}{{ project.name }} - Project Detail{% endblock %}
 {% block page_description %}A list of available projects{% endblock %}
@@ -20,6 +20,19 @@
 {% block content %}
 <div class="row">
   <div class="col-sm-5">
+
+    <div class="col-sm-12">
+      {% if project.percent > 0 %}
+      <div class="row progress">
+        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="{{ project.percent|unlocalize }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ project.percent|unlocalize }}%">
+          <b>{{ project.percent|unlocalize }}%</b>
+        </div>
+      </div>
+      {% else %}
+        <div class="alert alert-success" role="alert">{% trans "<b>NB</b> Be one of the first to invest in this opportunity" %}</div>
+      {% endif %}
+    </div>
+
     <img src="{% get_media_prefix %}{{ project.image }}" class="img img-responsive" alt="" title="" />
     <div class="clearfix" style="margin-top:15px;"></div>
     <div class="col-sm-6 well well-sm text-center">
@@ -51,7 +64,7 @@
         <p class="">Funding ends: {{ project.expiration }}</p>
       </div>
       <div class="clearfix"></div>
-      <div class="col-sm-12 well well-sm text-center">Funding status {{ project.percent }}%</div>
+      <!-- <div class="col-sm-2 col-xs-push-5 well well-sm text-center">{{ project.percent }}%</div> -->
     </div>
   </div>
 

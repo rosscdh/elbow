@@ -1,20 +1,19 @@
-{% extends 'project/base.html' %}
+{% extends 'project/base.html' %}{% load i18n static project_tags %}
 
 {% block page_title %}List of Projects{% endblock %}
 {% block page_description %}A list of available projects{% endblock %}
 {% block page_keywords %}list,projects{% endblock %}
 
-{% block content %}
-<div class="row">
-{% for row in object_list %}
-  <div class="col-sm-4">
-    <h3><a href="{{ row.url }}">{{ row.name }}</a></h3>
-    <p><small>{{ row.proposition }}</small></p>
-  </div>
-{% empty %}
-  <div class="col-sm-4">
-    <h3>No Projects Found</h3>
-  </div>
-{% endfor %}
+{% block page_header %}
+<div class="page-header clearfix">
+    <div class="col-md-6" style="padding:0px;">
+      <h1>{% trans 'Current Projects' %}</h1>
+      {% blocktrans %}A list of our current projects{% endblocktrans %}
+    </div>
 </div>
+<div class="clearfix"></div>
+{% endblock %}
+
+{% block content %}
+{% project_preview project_list %}
 {% endblock %}
