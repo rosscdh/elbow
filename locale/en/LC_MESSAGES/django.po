@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-01 07:30+0000\n"
+"POT-Creation-Date: 2016-03-03 15:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,7 +53,7 @@ msgstr ""
 msgid "Manual bank transfer"
 msgstr ""
 
-#: elbow/apps/order/forms.py:32 elbow/apps/order/forms.py:87
+#: elbow/apps/order/forms.py:32 elbow/apps/order/forms.py:95
 msgid "Investment Amount"
 msgstr ""
 
@@ -61,116 +61,133 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
-#: elbow/apps/order/forms.py:38
+#: elbow/apps/order/forms.py:39
 msgid "Mr"
 msgstr ""
 
-#: elbow/apps/order/forms.py:38
+#: elbow/apps/order/forms.py:40
 msgid "Mrs"
 msgstr ""
 
-#: elbow/apps/order/forms.py:38
-msgid "Dr"
-msgstr ""
-
-#: elbow/apps/order/forms.py:38
-msgid "Prof"
-msgstr ""
-
-#: elbow/apps/order/forms.py:39
-msgid "Name of Investor Person/Company"
+#: elbow/apps/order/forms.py:41
+msgid "Mz"
 msgstr ""
 
 #: elbow/apps/order/forms.py:42
-msgid "Date of Birth"
+msgid "Miss"
+msgstr ""
+
+#: elbow/apps/order/forms.py:43
+msgid "Dr"
+msgstr ""
+
+#: elbow/apps/order/forms.py:44
+msgid "Prof"
 msgstr ""
 
 #: elbow/apps/order/forms.py:45
-msgid "Telephone"
-msgstr ""
-
-#: elbow/apps/order/forms.py:46
-msgid "Address"
-msgstr ""
-
-#: elbow/apps/order/forms.py:46
-msgid "Line 1 of address"
+msgid "Hnr"
 msgstr ""
 
 #: elbow/apps/order/forms.py:47
-msgid "Line 2 of address"
-msgstr ""
-
-#: elbow/apps/order/forms.py:48
-msgid "Post code"
-msgstr ""
-
-#: elbow/apps/order/forms.py:49
-msgid "City"
+msgid "Name of Investor Person/Company"
 msgstr ""
 
 #: elbow/apps/order/forms.py:50
-msgid "Country"
+msgid "Date of Birth"
 msgstr ""
 
-#: elbow/apps/order/forms.py:52
-msgid "Tax number"
+#: elbow/apps/order/forms.py:53
+msgid "Telephone"
 msgstr ""
 
 #: elbow/apps/order/forms.py:54
-msgid "How to pay"
+msgid "Address"
+msgstr ""
+
+#: elbow/apps/order/forms.py:54
+msgid "Line 1 of address"
+msgstr ""
+
+#: elbow/apps/order/forms.py:55
+msgid "Line 2 of address"
 msgstr ""
 
 #: elbow/apps/order/forms.py:56
-msgid "Please select a payment type"
+msgid "Post code"
+msgstr ""
+
+#: elbow/apps/order/forms.py:57
+msgid "City"
 msgstr ""
 
 #: elbow/apps/order/forms.py:58
-msgid "Terms & Conditions"
+msgid "Country"
 msgstr ""
 
-#: elbow/apps/order/forms.py:59
-msgid "I agree to the terms and conditions"
+#: elbow/apps/order/forms.py:60
+msgid "Tax number"
 msgstr ""
 
 #: elbow/apps/order/forms.py:62
+msgid "How to pay"
+msgstr ""
+
+#: elbow/apps/order/forms.py:64
+msgid "Please select a payment type"
+msgstr ""
+
+#: elbow/apps/order/forms.py:66
+msgid "Terms & Conditions"
+msgstr ""
+
+#: elbow/apps/order/forms.py:67
+msgid "I agree to the terms and conditions"
+msgstr ""
+
+#: elbow/apps/order/forms.py:70
 msgid "I have read the contract"
 msgstr ""
 
-#: elbow/apps/order/forms.py:63
+#: elbow/apps/order/forms.py:71
 msgid "I agree to be bound to the terms of the contract."
 msgstr ""
 
-#: elbow/apps/order/forms.py:89
+#: elbow/apps/order/forms.py:97
 msgid "Interest Rate p.a"
 msgstr ""
 
-#: elbow/apps/order/forms.py:90
+#: elbow/apps/order/forms.py:98
 msgid "Interest Term"
 msgstr ""
 
-#: elbow/apps/order/forms.py:93
+#: elbow/apps/order/forms.py:102
 msgid "Investor Details"
 msgstr ""
 
-#: elbow/apps/order/forms.py:99
+#: elbow/apps/order/forms.py:108
 msgid "Postal Address"
 msgstr ""
 
-#: elbow/apps/order/forms.py:106
+#: elbow/apps/order/forms.py:115
 msgid "Tax information"
 msgstr ""
 
-#: elbow/apps/order/forms.py:109
-msgid "Payment, Terms & Download Contract"
+#: elbow/apps/order/forms.py:118
+msgid "Payment"
 msgstr ""
 
-#: elbow/apps/order/forms.py:115 elbow/apps/order/forms.py:196
-msgid "Submit"
+#: elbow/apps/order/forms.py:124
+#: elbow/apps/project/templates/project/project-detail.html:13
+msgid "Invest Now"
 msgstr ""
 
-#: elbow/apps/order/forms.py:166
+#: elbow/apps/order/forms.py:175
 msgid "I agree to the terms of the Loan Agreement"
+msgstr ""
+
+#: elbow/apps/order/forms.py:205
+msgid "Submit"
 msgstr ""
 
 #: elbow/apps/order/models.py:82
@@ -250,21 +267,21 @@ msgstr ""
 
 #: elbow/apps/order/templates/order/order-create.html:27
 #: elbow/apps/project/templates/project/_stats.html:30
-#: elbow/apps/project/templates/project/project-detail.html:26
+#: elbow/apps/project/templates/project/project-detail.html:41
 msgid "Backers"
 msgstr ""
 
 #: elbow/apps/order/templates/order/order-create.html:30
 #: elbow/apps/project/templates/project/_stats.html:34
-#: elbow/apps/project/templates/project/project-detail.html:29
+#: elbow/apps/project/templates/project/project-detail.html:44
 msgid "Revenue"
 msgstr ""
 
-#: elbow/apps/order/templates/order/order-create.html:70
+#: elbow/apps/order/templates/order/order-create.html:77
 msgid "Months"
 msgstr ""
 
-#: elbow/apps/order/templates/order/order-create.html:71
+#: elbow/apps/order/templates/order/order-create.html:78
 msgid "Years"
 msgstr ""
 
@@ -278,6 +295,14 @@ msgstr ""
 
 #: elbow/apps/order/templates/order/order-list.html:41
 msgid "Cancel"
+msgstr ""
+
+#: elbow/apps/order/templates/order/order-list.html:48
+msgid "No investments found"
+msgstr ""
+
+#: elbow/apps/order/templates/order/order-list.html:49
+msgid "Invest now"
 msgstr ""
 
 #: elbow/apps/order/templates/order/order-payment.html:10
@@ -346,60 +371,89 @@ msgid "Investment Goal:"
 msgstr ""
 
 #: elbow/apps/project/templates/project/_stats.html:22
-#: elbow/apps/project/templates/project/project-detail.html:68
+#: elbow/apps/project/templates/project/project-detail.html:33
+#: elbow/apps/project/templates/project/project-detail.html:81
 msgid "<b>NB</b> Be one of the first to invest in this opportunity"
 msgstr ""
 
-#: elbow/apps/project/templates/project/project-detail.html:13
-msgid "Invest Now"
+#: elbow/apps/project/templates/project/project-detail.html:60
+msgid "Overview"
 msgstr ""
 
-#: elbow/apps/project/templates/project/project-detail.html:45
-msgid "Investment Overview"
-msgstr ""
-
-#: elbow/apps/project/templates/project/project-detail.html:73
+#: elbow/apps/project/templates/project/project-detail.html:86
 msgid "Project description"
 msgstr ""
 
-#: elbow/apps/project/templates/project/project-detail.html:74
+#: elbow/apps/project/templates/project/project-detail.html:87
 msgid "Participation Model"
 msgstr ""
 
-#: elbow/apps/project/templates/project/project-detail.html:75
-#: elbow/apps/project/templates/project/project-detail.html:105
+#: elbow/apps/project/templates/project/project-detail.html:88
+#: elbow/apps/project/templates/project/project-detail.html:118
 msgid "Documents"
 msgstr ""
 
-#: elbow/apps/project/templates/project/project-detail.html:76
-#: elbow/apps/project/templates/project/project-detail.html:221
+#: elbow/apps/project/templates/project/project-detail.html:89
+#: elbow/apps/project/templates/project/project-detail.html:234
 msgid "Latest News"
 msgstr ""
 
-#: elbow/apps/project/templates/project/project-detail.html:77
-#: elbow/apps/project/templates/project/project-detail.html:117
+#: elbow/apps/project/templates/project/project-detail.html:90
+#: elbow/apps/project/templates/project/project-detail.html:130
 msgid "F.A.Q"
 msgstr ""
 
-#: elbow/apps/project/templates/project/project-detail.html:85
+#: elbow/apps/project/templates/project/project-detail.html:98
 msgid "Building Details"
 msgstr ""
 
-#: elbow/apps/project/templates/project/project-detail.html:91
+#: elbow/apps/project/templates/project/project-detail.html:104
 msgid "Map"
 msgstr ""
 
-#: elbow/apps/project/templates/project/project-detail.html:98
+#: elbow/apps/project/templates/project/project-detail.html:111
 msgid "How it works"
 msgstr ""
 
-#: elbow/apps/public/forms.py:9
+#: elbow/apps/project/templates/project/project-list.html:10
+msgid "Current Projects"
+msgstr ""
+
+#: elbow/apps/project/templates/project/project-list.html:11
+msgid "A list of our current projects"
+msgstr ""
+
+#: elbow/apps/public/forms.py:13
+msgid "First name"
+msgstr ""
+
+#: elbow/apps/public/forms.py:14
+msgid "Last name"
+msgstr ""
+
+#: elbow/apps/public/forms.py:17
 msgid ""
 "I have read & agree to the Terms & Conditions and Data Protection agreement"
 msgstr ""
 
-#: elbow/apps/public/forms.py:13
+#: elbow/apps/public/forms.py:21
 msgid "I would like to receive occasional news and information"
+msgstr ""
+
+#: elbow/apps/public/forms.py:33
+msgid "Personal Details"
+msgstr ""
+
+#: elbow/apps/public/forms.py:37
+msgid "Login Information"
+msgstr ""
+
+#: elbow/apps/public/forms.py:42
+msgid "Agreement & Newsletter"
+msgstr ""
+
+#: elbow/apps/public/forms.py:47 templates/base.html.py:59
+msgid "Register"
 msgstr ""
 
 #: elbow/apps/public/services.py:26
@@ -729,8 +783,7 @@ msgstr ""
 msgid "Sign up"
 msgstr ""
 
-#: templates/account/signup.html:7 templates/account/signup.html.py:17
-#: templates/account/signup.html:26
+#: templates/account/signup.html:7
 msgid "Sign Up"
 msgstr ""
 
@@ -801,10 +854,6 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
-#: templates/base.html:59
-msgid "Register"
-msgstr ""
-
 #: templates/base.html:62
 msgid "Settings"
 msgstr ""
@@ -819,4 +868,8 @@ msgstr ""
 
 #: templates/base.html:72
 msgid "Logout"
+msgstr ""
+
+#: templates/base.html:110
+msgid "Please wait"
 msgstr ""
