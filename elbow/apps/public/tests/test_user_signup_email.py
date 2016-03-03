@@ -7,6 +7,8 @@ from model_mommy import mommy
 
 
 SIGNUP_DATA = {
+    'first_name': 'Bob',
+    'last_name': 'Tester',
     'email': 'test+user@example.com',
     'password1': 'test2007',
     'password2': 'test2007',

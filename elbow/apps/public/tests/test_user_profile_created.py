@@ -7,6 +7,8 @@ from django.contrib.auth import get_user_model
 
 
 SIGNUP_DATA = {
+    'first_name': 'Bob',
+    'last_name': 'Tester',
     'email': 'test+user@example.com',
     'password1': 'test2007',
     'password2': 'test2007',

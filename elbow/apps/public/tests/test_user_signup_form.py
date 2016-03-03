@@ -18,5 +18,7 @@ class SignupCreatesUserProfileTest(BaseTestCase):
                                               'password1',
                                               'password2',
                                               'confirmation_key',
+                                              'first_name',
+                                              'last_name',
                                               'has_aggeed_t_and_c',
                                               'send_news_and_info'])
