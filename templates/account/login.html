@@ -33,15 +33,17 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
   {% include "socialaccount/snippets/login_extra.html" %}
 
   {% else %}
-  <p>{% blocktrans %}If you have not created an account yet, then please
-  <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
-  {% endif %}
+  <div class="col-sm-6">
+    <p>{% blocktrans %}If you have not created an account yet, then please
+    <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+    {% endif %}
 
-  {% crispy form %}
-  <button type="button" class="btn btn-success btn-lg" aria-label="Left Align" onClick="window.signin()">
-    <span class="glyphicon glyphicon-check" aria-hidden="true"></span>
-    {% trans "Sign In" %}
-  </button>
+    {% crispy form %}
+    <button type="button" class="btn btn-success btn-lg" aria-label="Left Align" onClick="window.signin()">
+      <span class="glyphicon glyphicon-check" aria-hidden="true"></span>
+      {% trans "Sign In" %}
+    </button>
+  </div>
 
 <!--   <form class="login" method="POST" action="{% url 'account_login' %}">
     {% csrf_token %}

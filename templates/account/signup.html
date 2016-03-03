@@ -9,19 +9,8 @@
 {% endblock %}
 
 {% block content %}
-
-  <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
-  {% crispy form %}
-
-{% endblock %}
-
-
-{% block javascript %}
-<script>
-$( document ).ready(function( $ ) {
-window.signup = function () {
-  $('form').submit();
-}
-});
-</script>
+  <div class="col-sm-6">
+    <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+    {% crispy form %}
+  </div>
 {% endblock %}
