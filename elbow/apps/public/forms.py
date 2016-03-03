@@ -3,8 +3,7 @@ from django import forms
 from django.utils.translation import ugettext_lazy as _
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Field, Submit, HTML
-from crispy_forms.bootstrap import PrependedAppendedText
+from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Field, Submit
 
 from allauth.account.forms import SignupForm as AllAuthSignupForm
 
@@ -29,21 +28,15 @@ class SignUpForm(AllAuthSignupForm):
         helper.form_show_errors = True
         helper.render_unmentioned_fields = True
 
-        helper.layout = Layout(
-                               Fieldset(_('Personal Details'),
-                                  Field('first_name', css_class='col-sm-6'),
-                                  Field('last_name', css_class='col-sm-6'),
-                               ),
+        helper.layout = Layout(Fieldset(_('Personal Details'),
+                                        Field('first_name', css_class='col-sm-6'),
+                                        Field('last_name', css_class='col-sm-6'),),
                                Fieldset(_('Login Information'),
-                                  Field('email'),
-                                  Field('password1'),
-                                  Field('password2'),
-                               ),
+                                        Field('email'),
+                                        Field('password1'),
+                                        Field('password2'),),
                                Fieldset(_('Agreement & Newsletter'),
-                                  Field('has_aggeed_t_and_c'),
-                                  Field('send_news_and_info'),
-                               ),
-                               ButtonHolder(
-                                    Submit('submit', _('Register'), css_class='btn btn-success btn-lg'),
-                               ))
+                                        Field('has_aggeed_t_and_c'),
+                                        Field('send_news_and_info'),),
+                               ButtonHolder(Submit('submit', _('Register'), css_class='btn btn-success btn-lg'),))
         return helper
