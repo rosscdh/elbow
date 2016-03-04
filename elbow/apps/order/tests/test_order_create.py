@@ -63,6 +63,8 @@ class OrderCreateViewTest(BaseTestCase):
             # initial amount is 2500
             resp = self.c.post(self.url, self.initial)
 
+        self.assertEqual(resp.status_code, 302)
+
         self.assertTrue(len(self.project.order_set.all()) == 1)
         order = self.project.order_set.all().first()
 

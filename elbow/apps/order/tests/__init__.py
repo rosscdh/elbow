@@ -4,6 +4,7 @@ from django.test import TestCase, Client
 
 VALID_ORDER_POST_DATA = {
     'amount': 2500,
+    'has_agreed_to_loan_agreement_terms': True,
     'title': 'Mr',
     'customer_name': 'Bob Dylan Inc.',
     'dob': '1979-03-30',

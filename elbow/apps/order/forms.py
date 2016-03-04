@@ -151,6 +151,7 @@ class CreateOrderForm(forms.Form):
         """
         Artificial save here as forms.Form dont have a save method
         """
+        has_agreed_to_loan_agreement_terms = self.cleaned_data.pop('has_agreed_to_loan_agreement_terms')
         t_and_c = self.cleaned_data.pop('t_and_c')
         has_read_contract = self.cleaned_data.pop('has_read_contract')
 
