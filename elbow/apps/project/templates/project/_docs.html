@@ -2,6 +2,7 @@
 <div class="doc-list list-group">
   <div class="notice alert alert-warning hide" role="alert">
     <b>{% trans 'Please login to view the selected document.' %}</b>
+    <p><a href="{% url 'account_login' %}" class="btn btn-primary">{% trans 'Login' %}</a></p>
   </div>
   {% for row in documents %}
     {% if row.login_required == False or row.login_required and is_logged_in %}
