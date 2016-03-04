@@ -63,6 +63,10 @@ class CreateOrderForm(forms.Form):
                                      choices=ORDER_PAYMENT_TYPE.get_choices(),
                                      help_text=_('Please select a payment type'))
 
+    has_agreed_to_loan_agreement_terms = forms.BooleanField(label='',
+                                                            help_text=_('I agree to the terms of the Loan Agreement'),
+                                                            required=False)
+
     t_and_c = forms.BooleanField(label=_('Terms & Conditions'),
                                  help_text=_('I agree to the terms and conditions'),
                                  widget=forms.CheckboxInput)
@@ -91,13 +95,19 @@ class CreateOrderForm(forms.Form):
         helper.form_show_errors = True
         helper.render_unmentioned_fields = True
 
+        show_has_agreed_to_loan_agreement_terms = 'hide'
+        if self.is_large_sum is True:
+            show_has_agreed_to_loan_agreement_terms = ''
+
         helper.layout = Layout(
                                Fieldset(_('Investment Amount'),
                                         PrependedAppendedText('amount', DEFAULT_CURRENCY_SYMBOL, '.00'),
                                         HTML('<div class="input-group"><label for="" class="control-label">%s:</label>&nbsp;<span id="interest_rate_pa"></span></div>' % (_('Interest Rate p.a'),)),
                                         HTML('<div class="input-group"><label for="" class="control-label">%s:</label>&nbsp;<span id="interest_term"></span></div>' % (_('Interest Term'),)),
                                         HTML('<div id="accrue-target"></div>'),
-                                        HTML('<div id="loan-contract" class="hide alert alert-warning clearfix">{text}</div>'.format(text='You have invested more than &euro;1000.00 and must agree to the loan contract, which follows in the next step')),
+                                        HTML('<div id="loan-contract" class="{show_has_agreed_to_loan_agreement_terms} alert alert-warning clearfix"><p>{text}</p>'.format(show_has_agreed_to_loan_agreement_terms=show_has_agreed_to_loan_agreement_terms, text='You want to invest &euro;1000.00 or more and therefore, must agree to the loan contract in order to proceed')),
+                                        Field('has_agreed_to_loan_agreement_terms'),
+                                        HTML('</div>'),
                                ),
                                Fieldset(_('Investor Details'),
                                         'title',
@@ -124,6 +134,18 @@ class CreateOrderForm(forms.Form):
                                     Submit('submit', _('Invest Now'), css_class='btn btn-success btn-lg'),
                                ))
         return helper
+
+    @property
+    def is_large_sum(self):
+        return self.cleaned_data['amount'] >= 1000
+
+    def clean_has_agreed_to_loan_agreement_terms(self, *args, **kwargs):
+        if self.is_large_sum is True:
+            if self.cleaned_data['has_agreed_to_loan_agreement_terms'] is False:
+                raise forms.ValidationError(
+                                _('You must agree to the terms of the loan agreement'),
+                                code='must_agree_to_terms_of_loan_agreement',)
+        return self.cleaned_data['has_agreed_to_loan_agreement_terms']
 
     def save(self, *args, **kwargs):
         """
