@@ -96,7 +96,7 @@ class CreateOrderForm(forms.Form):
         helper.render_unmentioned_fields = True
 
         show_has_agreed_to_loan_agreement_terms = 'hide'
-        if self.is_large_sum is True:
+        if self.is_large_sum() is True:
             show_has_agreed_to_loan_agreement_terms = ''
 
         helper.layout = Layout(
@@ -104,7 +104,7 @@ class CreateOrderForm(forms.Form):
                                         PrependedAppendedText('amount', DEFAULT_CURRENCY_SYMBOL, '.00'),
                                         HTML('<div class="input-group"><label for="" class="control-label">%s:</label>&nbsp;<span id="interest_rate_pa"></span></div>' % (_('Interest Rate p.a'),)),
                                         HTML('<div class="input-group"><label for="" class="control-label">%s:</label>&nbsp;<span id="interest_term"></span></div>' % (_('Interest Term'),)),
-                                        HTML('<div id="accrue-target"></div>'),
+                                        HTML('<span id="accrue-target" class=""></span>'),
                                         HTML('<div id="loan-contract" class="{show_has_agreed_to_loan_agreement_terms} alert alert-warning clearfix"><p>{text}</p>'.format(show_has_agreed_to_loan_agreement_terms=show_has_agreed_to_loan_agreement_terms, text='You want to invest &euro;1000.00 or more and therefore, must agree to the loan contract in order to proceed')),
                                         Field('has_agreed_to_loan_agreement_terms'),
                                         HTML('</div>'),
@@ -135,9 +135,10 @@ class CreateOrderForm(forms.Form):
                                ))
         return helper
 
-    @property
     def is_large_sum(self):
-        return self.cleaned_data['amount'] >= 1000
+        if hasattr(self, 'cleaned_data') is True:
+            return self.cleaned_data['amount'] >= 1000
+        return False
 
     def clean_has_agreed_to_loan_agreement_terms(self, *args, **kwargs):
         if self.is_large_sum is True:
