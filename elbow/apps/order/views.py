@@ -36,6 +36,9 @@ class OrderCreate(LoginRequiredMixin, FormView):
                     'error': unicode(e),
                 }
             )
+            # Raise so that rollbar catches it and alerts us
+            raise e
+
         return super(OrderCreate, self).form_valid(form=form)
 
     def get_success_url(self):
