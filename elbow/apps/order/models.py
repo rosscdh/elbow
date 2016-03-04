@@ -95,14 +95,11 @@ class Order(models.Model):
 
         if self.status == self.ORDER_STATUS.created:
             #
-            # Has completed primary step but needs to agree to
-            # large sum agreement
-            # or not
+            # Has completed primary step but may need to agree to
+            # large sum agreement, either way they must ahve the opportunity
+            # to download the load agreement or not
             #
-            if self.amount.amount <= 1000:
-                return reverse('order:payment', kwargs=url_kwargs)
-            else:
-                return reverse('order:loan_agreement', kwargs=url_kwargs)
+            return reverse('order:loan_agreement', kwargs=url_kwargs)
 
         if self.status == self.ORDER_STATUS.loan_agreement:
             #
@@ -113,6 +110,13 @@ class Order(models.Model):
         # Default out to show order detail page
         #
         return reverse('order:detail', kwargs=url_kwargs)
+
+    @property
+    def is_large_amount(self):
+        """
+        In order to be sent to secupay, we must be in "processing" status AND have a None for transaction_id
+        """
+        return self.amount.amount >= 1000
 
     @property
     def can_send_payment(self):

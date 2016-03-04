@@ -99,10 +99,10 @@ class OrderCreateViewTest(BaseTestCase):
         order = self.project.order_set.all().first()
 
         #
-        # Redirected to more info page
+        # Redirected to more loan-agreement page as well so they have opportunity to DL agreement
         #
         self.assertEqual(resp.status_code, 302)
-        self.assertEqual(resp.url, '/de/orders/my-basic-test-project/order/%s/payment/' % order.uuid)
+        self.assertEqual(resp.url, '/de/orders/my-basic-test-project/order/%s/loan-agreement/' % order.uuid)
 
 
 class OrderFormTest(TestCase):

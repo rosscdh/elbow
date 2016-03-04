@@ -24,7 +24,18 @@ class OrderCreate(LoginRequiredMixin, FormView):
 
     def form_valid(self, form):
         self.order = form.save()
-        self.order, payment_api_response = self.order.make_payment(user=self.request.user)
+        try:
+            self.order, payment_api_response = self.order.make_payment(user=self.request.user)
+        except Exception as e:
+            log(
+                user=self.request.user,
+                action="order.lifecycle.payment.attempt.failed",
+                obj=self.order,
+                extra={
+                    'order.make_payment failed'
+                    'error': unicode(e),
+                }
+            )
         return super(OrderCreate, self).form_valid(form=form)
 
     def get_success_url(self):
@@ -54,6 +65,20 @@ class OrderLoanAgreementView(FormView):
         self.order = Order.objects.get(uuid=self.kwargs.get('uuid'))
         return super(OrderLoanAgreementView, self).dispatch(request, *args, **kwargs)
 
+    def get_form_kwargs(self):
+        context = super(OrderLoanAgreementView, self).get_form_kwargs()
+        context.update({
+            'order': self.order,
+            'user': self.request.user,
+            'project': self.project,
+            'data': self.request.POST if self.request.method.lower() in ['post'] else None,
+        })
+        return context
+
+    def form_valid(self, form):
+        self.order = form.save()
+        return super(OrderLoanAgreementView, self).form_valid(form=form)
+
     def get_context_data(self, *args, **kwargs):
         context = super(OrderLoanAgreementView, self).get_context_data(*args, **kwargs)
         context.update({
@@ -62,10 +87,6 @@ class OrderLoanAgreementView(FormView):
             'document': self.order.documents.filter(user=self.order.user).first(),
         })
         return context
-
-    def form_valid(self, form):
-        self.order = form.save()
-        return super(OrderLoanAgreementView, self).form_valid(form=form)
 
     def get_success_url(self):
         """
@@ -76,16 +97,6 @@ class OrderLoanAgreementView(FormView):
         # model does url resolving
         #
         return self.order.url
-
-    def get_form_kwargs(self):
-        context = super(OrderLoanAgreementView, self).get_form_kwargs()
-        context.update({
-            'order': self.order,
-            'user': self.request.user,
-            'project': self.project,
-            'data': self.request.POST if self.request.method.lower() in ['post'] else None,
-        })
-        return context
 
     def get_success_url(self):
         return reverse('order:payment', kwargs={'project_slug': self.project.slug, 'uuid': self.order.uuid})

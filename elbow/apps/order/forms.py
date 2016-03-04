@@ -155,15 +155,18 @@ class CreateOrderForm(forms.Form):
                                                     user=self.user)
         order = pdf_service.process()
 
-        email_service = SendEmailService(order=order)
-        email_service.send_order_created_email(user_list=[self.user])
+        if order.is_large_amount is False:
+            email_service = SendEmailService(order=order)
+            email_service.send_order_created_email(user_list=[self.user])
 
         log(
             user=self.user,
             action="order.lifecycle.created",
             obj=order,
             extra={
-                "note": "%s Created a new Order to Invest" % self.user
+                "note": "%s Created a new Order to Invest" % self.user,
+                "is_large_amount": order.is_large_amount,
+                "amount": unicode(order.amount),
             }
         )
 
@@ -191,6 +194,14 @@ class OrderLoanAgreementForm(forms.Form):
 
         super(OrderLoanAgreementForm, self).__init__(**kwargs)
 
+        #
+        # Hide the has_agreed_to_loan_agreement_terms field if the user
+        # is not investing more than 1k
+        #
+        if self.order.is_large_amount is False:
+            self.fields['has_agreed_to_loan_agreement_terms'].required = False
+            self.fields['has_agreed_to_loan_agreement_terms'].widget = forms.HiddenInput()
+
     @property
     def helper(self):
         helper = FormHelper(self)
@@ -199,11 +210,9 @@ class OrderLoanAgreementForm(forms.Form):
         helper.form_show_errors = True
 
         helper.layout = Layout(Fieldset('',
-                                   Field('has_agreed_to_loan_agreement_terms'),
-                               ),
+                                        Field('has_agreed_to_loan_agreement_terms'),),
                                ButtonHolder(
-                                   Submit('submit', _('Submit'), css_class='btn btn-success btn-lg')
-                               ))
+                                   Submit('submit', _('Continue'), css_class='btn btn-success btn-lg'),))
         return helper
 
     def save(self, *args, **kwargs):
@@ -219,16 +228,19 @@ class OrderLoanAgreementForm(forms.Form):
         #
         # Send email with PDF Attachment
         #
-        email_service = SendEmailService(order=self.order)
-        email_service.send_order_loan_agreement_email(user_list=[self.user])
+        if self.order.is_large_amount is True:
+            email_service = SendEmailService(order=self.order)
+            email_service.send_order_created_email(user_list=[self.user])
 
-        log(
-            user=self.user,
-            action="order.lifecycle.loan_agreement.accepted",
-            obj=self.order,
-            extra={
-                "note": "%s Agreed to the large sum agreement" % self.user
-            }
-        )
+            log(
+                user=self.user,
+                action="order.lifecycle.loan_agreement.accepted",
+                obj=self.order,
+                extra={
+                    "note": "%s Agreed to the large sum agreement" % self.user,
+                    "is_large_amount": self.order.is_large_amount,
+                    "amount": unicode(self.order.amount),
+                }
+            )
 
         return self.order

@@ -53,10 +53,10 @@ class OrderModelTest(BaseTestCase):
         self.order.amount = 250000.00
         self.assertEqual(self.order.url, u'/de/orders/%s/order/%s/loan-agreement/' % (self.order.project.slug, self.order.uuid))
 
-        # If we have only a small amount to pay then take us direct to payment
+        # If we have only a small amount to pay then they are also taken to the agreement page
         self.order.status = self.order.ORDER_STATUS.created
         self.order.amount = 250.00
-        self.assertEqual(self.order.url, u'/de/orders/%s/order/%s/payment/' % (self.order.project.slug, self.order.uuid))
+        self.assertEqual(self.order.url, u'/de/orders/%s/order/%s/loan-agreement/' % (self.order.project.slug, self.order.uuid))
 
         self.order.status = self.order.ORDER_STATUS.loan_agreement
         self.assertEqual(self.order.url, u'/de/orders/%s/order/%s/payment/' % (self.order.project.slug, self.order.uuid))

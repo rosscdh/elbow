@@ -22,6 +22,10 @@ class SendForPaymentEmailServiceTest(BaseTestCase):
 
         self.subject = SendEmailService(order=self.order)
 
+    def test_required_project_docs(self):
+        self.assertEqual(self.subject.required_project_docs, ['Verbraucherinformationsblatt',
+                                                              'Finanzkennzahlen'])
+
     def test_send_success_email(self):
         result = self.subject.send_success_email(user_list=[self.order.user])  # Send the email
         # Should have email to managers AND email to customer

@@ -2,13 +2,20 @@
 from . import BaseTestCase, TestCase
 from django.core import mail
 from django.core.urlresolvers import reverse
+from django.core.files.base import ContentFile
+from django.template.defaultfilters import slugify
 
+from elbow.apps.project.models import Project
 from elbow.apps.order.forms import OrderLoanAgreementForm
 from elbow.apps.order.services import LoanAgreementCreatePDFService
+from elbow.apps.document.models import _document_upload_path
 
 from model_mommy import mommy
 
+import os
 import re
+
+FIXTURES_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'fixtures')
 
 
 class OrderLoanAgreementViewTest(BaseTestCase):
@@ -55,14 +62,24 @@ class OrderLoanAgreementViewTest(BaseTestCase):
 
 
 class OrderLoanAgreementFormTest(TestCase):
+    fixtures = ['project.json']
+
     def setUp(self):
         user_dict = {'first_name': 'Test', 'last_name': 'User', 'email': 'test@example.com'}
         self.user = mommy.make('auth.User', **user_dict)
 
-        self.project = mommy.make('project.Project', name='My Basic Test Project')
+        self.project = Project.objects.get(slug='gladbach-project')
+
+        with open('%s/fake-doc.pdf' % FIXTURES_DIR) as doc_file:
+            pdf_bytes = doc_file.read()
+
+        for doc in self.project.documents.all():
+            doc.document.save(_document_upload_path(doc, 'test-%s.pdf' % slugify(doc.name)), ContentFile(pdf_bytes))
+            doc.save()
+
         self.order = mommy.make('order.Order',
                                 project=self.project,
-                                amount=250.00,
+                                amount=2500.00,
                                 user=self.user)
 
         self.initial = {
@@ -101,6 +118,7 @@ class OrderLoanAgreementFormTest(TestCase):
         assert order.uuid
         assert order.pk
 
+        self.assertEqual(order.is_large_amount, True)
         self.assertEqual(order.amount.__class__.__name__, 'MoneyPatched')
 
         self.assertEqual(order.user, self.user)
@@ -112,15 +130,22 @@ class OrderLoanAgreementFormTest(TestCase):
         # Should have email to managers AND email to customer
         self.assertEqual(2, len(mail.outbox))
         email = mail.outbox[0]
-        self.assertEqual(unicode(email.subject), u'TodayCapital.de - Ihr Investment auf TodayCapital')
+        self.assertEqual(unicode(email.subject), u'TodayCapital.de - a new order has been created')
         self.assertEqual(email.recipients(), ['post@todaycapital.de'])
 
-        self.assertEqual(len(email.attachments), 1)
+        #
+        # Test Attachments
+        #
+        self.assertEqual(len(email.attachments), 3)
         self.assertTrue(attachment_filename_pattern.match(email.attachments[0][0]))
-        self.assertEqual(email.attachments[0][2], 'application/pdf')
+        # Test all are pdfs
+        for attachment in email.attachments:
+            self.assertEqual(attachment[2], 'application/pdf')
+        self.assertTrue('test-verbraucherinformationsblatt' in email.attachments[1][0])
+        self.assertTrue('test-finanzkennzahlen' in email.attachments[2][0])
 
         email = mail.outbox[1]
-        self.assertEqual(unicode(email.subject), u'TodayCapital.de - Your Investment Order Loan Agreement is Attached')
+        self.assertEqual(unicode(email.subject), u'TodayCapital.de - Your Investment Order has been created')
         self.assertEqual(email.recipients(), [self.user.email])
 
         self.assertEqual(len(email.attachments), 1)
