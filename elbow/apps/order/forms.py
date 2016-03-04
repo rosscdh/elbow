@@ -141,7 +141,7 @@ class CreateOrderForm(forms.Form):
         return False
 
     def clean_has_agreed_to_loan_agreement_terms(self, *args, **kwargs):
-        if self.is_large_sum is True:
+        if self.is_large_sum() is True:
             if self.cleaned_data['has_agreed_to_loan_agreement_terms'] is False:
                 raise forms.ValidationError(
                                 _('You must agree to the terms of the loan agreement'),
