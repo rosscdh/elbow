@@ -129,7 +129,6 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '../', 'media')
 MEDIA_URL = '/media/'
 
-
 ROOT_URLCONF = 'elbow.urls'
 
 TEMPLATES = [
@@ -147,12 +146,12 @@ TEMPLATES = [
                 "django.template.context_processors.static",
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
-                'pages.context_processors.media'
+                "pages.context_processors.media",
+                "elbow.context_processors.elbow_globals",
             ],
         },
     },
 ]
-
 
 WSGI_APPLICATION = 'elbow.wsgi.application'
 

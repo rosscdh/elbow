@@ -16,6 +16,25 @@
 
 <div class="row">
 
+  {% if SECUPAY_DEMO %}
+  <div class="col-md-12">
+    <div class="alert alert-danger">
+      <p><b>Secupay DEMO MODE</b>: No actual payment will take place.</p>
+      <p>Please use the following IBAN numbers for testing<br/><a href="http://www.iban-bic.com/sample_accounts.html" target="_NEW">source</a></p>
+
+      <p><b>CORRECT:</b><br/>
+      <b>Nationale Kontonummer:</b> 0648489890<br/>
+      <b>BLZ:</b> 50010517<br/>
+      <b>IBAN:</b> DE12500105170648489890</p>
+      <p>&nbsp;</p>
+      <p><b>INCORRECT:</b><br/>
+      <b>Nationale Kontonummer:</b> 064847930<br/>
+      <b>BLZ:</b> 50010517<br/>
+      <b>IBAN:</b> DE1206484793050010517</p>
+    </div>
+  </div>
+  {% endif %}
+
   {% if order.payment_type == 'prepay' %}
 
     <div class="col-md-12">
