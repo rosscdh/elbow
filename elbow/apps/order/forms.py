@@ -156,14 +156,6 @@ class CreateOrderForm(forms.Form):
         t_and_c = self.cleaned_data.pop('t_and_c')
         has_read_contract = self.cleaned_data.pop('has_read_contract')
 
-        # title = self.cleaned_data.pop('title')
-        # dob = self.cleaned_data.pop('dob')
-
-        # address_1 = self.cleaned_data.pop('address_1')
-        # address_2 = self.cleaned_data.pop('address_2')
-        # postcode = self.cleaned_data.pop('postcode')
-        # city = self.cleaned_data.pop('city')
-
         amount = self.cleaned_data['amount']
         self.cleaned_data['amount'] = Money(Decimal(amount), EUR)
 
