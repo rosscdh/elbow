@@ -69,7 +69,8 @@
 <script type="text/javascript" id="elbow-list_products" type="text/javascript">
 $(document).ready(function () {
     $( "#projects_list" ).list_projects({
-      source: $('#project-detail').html()
+      source: $('#project-detail').html(),
+      endpoint: '{{ BASE_URL }}/api/v1/projects/'
     });
 });
 </script>
