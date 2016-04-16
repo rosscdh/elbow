@@ -184,6 +184,7 @@ class Order(models.Model):
                                                    url_success=self.url_success,
                                                    url_failure=self.url_failure,
                                                    url_push=self.url_webhook)
+
         log(
             user=user,
             action="order.lifecycle.payment.make_payment",

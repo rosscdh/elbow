@@ -50,6 +50,7 @@ DJANGO_APPS = (
 )
 
 PROJECT_APPS = (
+    'elbow.apps.api',
     'elbow.apps.public',
     'elbow.apps.project',
     'elbow.apps.document',
@@ -76,6 +77,9 @@ HELPER_APPS = (
 
     'geoposition',
     'leaflet',
+
+    'corsheaders',
+    'rest_framework',
 
     'pages', # cms
     'taggit', # cms
@@ -211,7 +215,7 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.AllowAny',
-        #'beer.apps.api.permissions.ApiObjectPermission',
+        #'elbow.apps.api.permissions.ApiObjectPermission',
     ),
     'DEFAULT_MODEL_SERIALIZER_CLASS':
         'rest_framework.serializers.ModelSerializer',

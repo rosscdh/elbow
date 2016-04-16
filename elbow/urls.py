@@ -9,6 +9,8 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = i18n_patterns(
     url(r'^admin/', admin.site.urls),
+    url(r'^api/v1/', include('elbow.apps.api.urls', namespace='api')),
+
     # Projects
     url(r'^projects/', include('elbow.apps.project.urls', namespace='project')),
     # Orders

@@ -45,3 +45,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
 
 
 BASE_URL = 'http://localhost:8009'
+
+SECUPAY_TOKEN = 'testToken'
+SECUPAY_DEVELOPMENT = True
+SECUPAY_DEMO = True
