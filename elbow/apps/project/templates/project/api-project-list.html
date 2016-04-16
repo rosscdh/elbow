@@ -24,13 +24,13 @@
 {% verbatim %}
 <div class="row featurette">
 <div class="col-md-7 col-md-push-3">
-  <h3 class="featurette-heading"><a href="/de/projects/gladbach-project/">{{ name }}</a><br><small><span class="text-muted">{{ proposition }}</span></small></h3>
+  <h3 class="featurette-heading"><a href="{{ urls.invest_now }}">{{ name }}</a><br><small><span class="text-muted">{{ proposition }}</span></small></h3>
   <p class="lead">{{ description }}</p>
-  <p><a href="/de/projects/gladbach-project/">Details</a></p>
+  <p><a href="{{ urls.invest_now }}">Invest Now</a></p>
 </div>
 <div class="col-md-3 col-md-pull-7">
 
-  <a href="/de/projects/gladbach-project/"><img src="{{ image }}" class="img img-responsive center-block" alt="" title=""></a>
+  <a href="{{ urls.invest_now }}"><img src="{{ image }}" class="img img-responsive center-block" alt="" title=""></a>
   <div class="">
     <div class="col-md-12 text-center">
       <p><b>Investment Goal:</b> {{ amount.amount }} €</p>
