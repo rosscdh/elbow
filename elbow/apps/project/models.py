@@ -94,6 +94,10 @@ class Project(models.Model):
         return reverse('project:detail', kwargs={'slug': self.slug})
 
     @property
+    def invest_now_url(self):
+        return reverse('order:create', kwargs={'project_slug': self.slug})
+
+    @property
     def running_time(self):
         return '?'
 

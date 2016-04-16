@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.conf import settings
 from rest_framework import serializers
 
 from ..models import Project
@@ -6,6 +7,7 @@ from elbow.apps.document.api.serializers import DocumentSerializer
 
 
 class ProjectSerializer(serializers.ModelSerializer):
+    urls = serializers.SerializerMethodField()
     amount = serializers.SerializerMethodField()
     minimum_investment = serializers.SerializerMethodField()
     interest_rate = serializers.SerializerMethodField()
@@ -18,6 +20,12 @@ class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
         exclude = ('amount_currency', 'minimum_investment_currency',)
+
+    def get_urls(self, obj):
+        return {
+            'detail': '%s%s' % (getattr(settings, 'BASE_URL', None), obj.url),
+            'invest_now': '%s%s' % (getattr(settings, 'BASE_URL', None), obj.invest_now_url),
+        }
 
     def get_amount(self, obj):
         return {
