@@ -1,0 +1,76 @@
+{% extends 'project/base.html' %}{% load i18n static project_tags %}
+
+{% block page_title %}List of Projects{% endblock %}
+{% block page_description %}A list of available projects{% endblock %}
+{% block page_keywords %}list,projects{% endblock %}
+
+{% block page_header %}
+<div class="page-header clearfix">
+    <div class="col-md-6" style="padding:0px;">
+      <h1>Current Projects (from api)</h1>
+    </div>
+</div>
+<div class="clearfix"></div>
+{% endblock %}
+
+{% block content %}
+<div id="projects_list"></div>
+{% endblock %}
+
+
+{% block javascript %}
+
+<script id="project-detail" type="text/x-handlebars-template">
+{% verbatim %}
+<div class="row featurette">
+<div class="col-md-7 col-md-push-3">
+  <h3 class="featurette-heading"><a href="/de/projects/gladbach-project/">{{ name }}</a><br><small><span class="text-muted">{{ proposition }}</span></small></h3>
+  <p class="lead">{{ description }}</p>
+  <p><a href="/de/projects/gladbach-project/">Details</a></p>
+</div>
+<div class="col-md-3 col-md-pull-7">
+
+  <a href="/de/projects/gladbach-project/"><img src="{{ image }}" class="img img-responsive center-block" alt="" title=""></a>
+  <div class="">
+    <div class="col-md-12 text-center">
+      <p><b>Investment Goal:</b> {{ amount.amount }} €</p>
+    </div>
+    <div class="col-md-12">
+
+      <div class="row progress">
+        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="{{ percent }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ percent }}%">
+          <b>{{ percent }}%</b>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-md-12">
+      <div class="col-sm-6 well well-sm text-center">
+        <span class="badge">{{ num_backers }}</span>
+        <br><i class="glyphicon glyphicon-king" title="Backers"></i> Backers
+      </div>
+      <div class="col-sm-6 well well-sm text-center">
+        <span class="badge">{{ revenue.amount }} €</span>
+        <br><i class="glyphicon glyphicon-euro" title="Revenue"></i> Revenue
+      </div>
+    </div>
+
+    </div><!-- End investment row -->
+  </div>
+
+</div>
+{% endverbatim %}
+</script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+<script type="text/javascript" src="{% static 'js/jquery.plugin.elbow.projects.js' %}"></script>
+<script type="text/javascript" id="elbow-list_products" type="text/javascript">
+$(document).ready(function () {
+    $( "#projects_list" ).list_projects({
+      source: $('#project-detail').html()
+    });
+});
+</script>
+{% endblock %}

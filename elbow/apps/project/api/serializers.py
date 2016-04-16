@@ -10,6 +10,10 @@ class ProjectSerializer(serializers.ModelSerializer):
     minimum_investment = serializers.SerializerMethodField()
     interest_rate = serializers.SerializerMethodField()
     documents = DocumentSerializer(many=True)
+    num_backers = serializers.SerializerMethodField()
+    percent = serializers.SerializerMethodField()
+    revenue = serializers.SerializerMethodField()
+    news_history = serializers.SerializerMethodField()
 
     class Meta:
         model = Project
@@ -30,6 +34,17 @@ class ProjectSerializer(serializers.ModelSerializer):
     def get_interest_rate(self, obj):
         return obj.interest_rate.to_eng_string()
 
-    # def get_documents(self, obj):
-    #     import pdb;pdb.set_trace()
-    #     return [obj.documents.all()]
+    def get_num_backers(self, obj):
+        return obj.num_backers
+
+    def get_percent(self, obj):
+        return obj.percent
+
+    def get_revenue(self, obj):
+        return {
+            'amount': obj.revenue.amount,
+            'currency': str(obj.revenue.currency)
+        }
+
+    def get_news_history(self, obj):
+        return obj.news_history
