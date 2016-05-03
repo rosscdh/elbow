@@ -57,11 +57,12 @@ class SendEmailService(object):
         msg = EmailMultiAlternatives(subject, html2text.plain_text, from_email, recipient_list)
         msg.attach_alternative(html2text.html, "text/html")
 
-        if document:
+        if document.document:
             msg.attach_file(document.document.path)
 
         for doc in self.order.project.documents.filter(name__in=self.required_project_docs):
-            msg.attach_file(doc.document.path)
+            if doc.document:
+                msg.attach_file(doc.document.path)
 
         send_success.append(('founders', msg.send()))
 
