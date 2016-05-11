@@ -5,7 +5,7 @@
 {% block after_related_objects %}
     <!-- PROJECT LOG -->
     <h1>{% trans 'Project News' %}</h1>
-    <a href="{% url 'admin:add_project_news' pk=original.pk %}" target="_NEW">{% trans 'Add News' %}</a><br/>
+    {% if original.pk %}<a href="{% url 'admin:add_project_news' pk=original.pk %}" target="_NEW">{% trans 'Add News' %}</a><br/>{% endif %}
    <table>
     <thead>
     <tr>

@@ -611,6 +611,10 @@ def paths():
     # pass
 
 @task
+def compile_messages():
+    manage(cmd='compile_messages')
+
+@task
 def upload_db():
     put('db.sqlite3', '/home/ubuntu/apps/elbow/')
 #-------
@@ -634,6 +638,7 @@ def deploy(is_predeploy='False',full='False',db='False',search='False'):
     relink()
     requirements()
     update_env_conf()
+    compile_messages()
     migrate()
     assets()
     clean_start()
