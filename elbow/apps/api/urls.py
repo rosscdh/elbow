@@ -2,12 +2,15 @@
 from django.conf.urls import url
 from django.views.decorators.csrf import csrf_exempt
 
-from elbow.apps.project.api.views import ProjectListAPIView
+from rest_framework import routers
+
+from elbow.apps.project.api.views import ProjectListAPIViewset
+
+router = routers.SimpleRouter()
+
+router.register(r'projects', ProjectListAPIViewset)
 
 #
 # Standard URLS
 #
-urlpatterns = [
-    # Projects
-    url(r'^projects/$', csrf_exempt(ProjectListAPIView.as_view()), name='projects'),
-]
+urlpatterns = router.urls
