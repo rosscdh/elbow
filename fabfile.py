@@ -612,7 +612,7 @@ def paths():
 
 @task
 def compile_messages():
-    manage(cmd='compile_messages')
+    manage(cmd='compilemessages')
 
 @task
 def upload_db():
