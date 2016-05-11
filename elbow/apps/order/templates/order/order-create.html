@@ -1,13 +1,13 @@
 {% extends 'order/base.html' %}{% load i18n static crispy_forms_tags djmoney embed_video_tags project_tags %}
 {% load crispy_forms_filters %}
 
-{% block page_title %}{{ project.name }} - Invest Now{% endblock %}
-{% block page_description %}Invest in {{ project.name }}{% endblock %}
+{% block page_title %}{% blocktrans with project=project.name %}{{ project }} - Invest Now{% endblocktrans %}{% endblock %}
+{% block page_description %}{% blocktrans with project=project.name %}Invest in {{ project }}{% endblocktrans %}{% endblock %}
 {% block page_keywords %}invest,project,and-development,development{% endblock %}
 
 {% block page_header %}
 <div class="page-header clearfix">
-  <h1>Invest in {{ project.name }}</h1>
+  <h1>{% blocktrans with project=project.name %}Invest in {{ project }}{% endblocktrans %}</h1>
   <p>{{ project.proposition }}</p>
 </div>
 <div class="clearfix"></div>
