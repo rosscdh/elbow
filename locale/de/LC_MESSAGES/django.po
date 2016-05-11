@@ -3,554 +3,483 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-03 15:28+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2016-02-25 15:46+0000\n"
+"PO-Revision-Date: 2016-03-09 11:39+0100\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"X-Generator: Poedit 1.8.7\n"
+"Language: de\n"
 
 #: elbow/apps/order/apps.py:10
 msgid "Order Created (1/3)"
-msgstr ""
+msgstr "Auftragsbestätigung"
 
 #: elbow/apps/order/apps.py:11
 msgid "Loan Agreement (2/3)"
-msgstr ""
+msgstr "Darlehensvertrag"
 
 #: elbow/apps/order/apps.py:12
 msgid "Processing Payment  (3/3)"
-msgstr ""
+msgstr "Zahlungsmethode"
 
 #: elbow/apps/order/apps.py:13
 msgid "Paid"
-msgstr ""
+msgstr "Bezahlt"
 
 #: elbow/apps/order/apps.py:14
 msgid "Manually Paid"
-msgstr ""
+msgstr "Überweisung"
 
 #: elbow/apps/order/apps.py:15
 msgid "Payment Failed"
-msgstr ""
+msgstr "Zahlung fehlgeschlagen"
 
 #: elbow/apps/order/apps.py:16
 msgid "Payment Cancelled"
-msgstr ""
+msgstr "Zahlung storniert"
 
 #: elbow/apps/order/apps.py:21
 msgid "Bank debit"
-msgstr ""
+msgstr "Lastschrift"
 
 #: elbow/apps/order/apps.py:22
 msgid "Manual bank transfer"
-msgstr ""
+msgstr "Überweisung"
 
-#: elbow/apps/order/forms.py:32 elbow/apps/order/forms.py:95
+#: elbow/apps/order/forms.py:32 elbow/apps/order/forms.py:87
 msgid "Investment Amount"
-msgstr ""
+msgstr "Investitionssumme"
 
 #: elbow/apps/order/forms.py:38
 msgid "Title"
-msgstr ""
+msgstr "Titel"
+
+#: elbow/apps/order/forms.py:38
+msgid "Mr"
+msgstr "Herr"
+
+#: elbow/apps/order/forms.py:38
+msgid "Mrs"
+msgstr "Frau"
+
+#: elbow/apps/order/forms.py:38
+msgid "Dr"
+msgstr "Dr."
+
+#: elbow/apps/order/forms.py:38
+msgid "Prof"
+msgstr "Prof."
 
 #: elbow/apps/order/forms.py:39
-msgid "Mr"
-msgstr ""
-
-#: elbow/apps/order/forms.py:40
-msgid "Mrs"
-msgstr ""
-
-#: elbow/apps/order/forms.py:41
-msgid "Mz"
-msgstr ""
+msgid "Name of Investor Person/Company"
+msgstr "Vorname Nachname ODER Firma"
 
 #: elbow/apps/order/forms.py:42
-msgid "Miss"
-msgstr ""
-
-#: elbow/apps/order/forms.py:43
-msgid "Dr"
-msgstr ""
-
-#: elbow/apps/order/forms.py:44
-msgid "Prof"
-msgstr ""
+msgid "Date of Birth"
+msgstr "Geburtsdatum"
 
 #: elbow/apps/order/forms.py:45
-msgid "Hnr"
-msgstr ""
+msgid "Telephone"
+msgstr "Telefon"
+
+#: elbow/apps/order/forms.py:46
+msgid "Address"
+msgstr "Adresse"
+
+#: elbow/apps/order/forms.py:46
+msgid "Line 1 of address"
+msgstr "Straße Hausnummer"
 
 #: elbow/apps/order/forms.py:47
-msgid "Name of Investor Person/Company"
-msgstr ""
+msgid "Line 2 of address"
+msgstr "Adresszusatz"
+
+#: elbow/apps/order/forms.py:48
+msgid "Post code"
+msgstr "Postleitzahl"
+
+#: elbow/apps/order/forms.py:49
+msgid "City"
+msgstr "Stadt"
 
 #: elbow/apps/order/forms.py:50
-msgid "Date of Birth"
-msgstr ""
+msgid "Country"
+msgstr "Land"
 
-#: elbow/apps/order/forms.py:53
-msgid "Telephone"
-msgstr ""
-
-#: elbow/apps/order/forms.py:54
-msgid "Address"
-msgstr ""
+#: elbow/apps/order/forms.py:52
+msgid "Tax number"
+msgstr "Steuernummer"
 
 #: elbow/apps/order/forms.py:54
-msgid "Line 1 of address"
-msgstr ""
-
-#: elbow/apps/order/forms.py:55
-msgid "Line 2 of address"
-msgstr ""
+msgid "How to pay"
+msgstr "Zahlungsmethode"
 
 #: elbow/apps/order/forms.py:56
-msgid "Post code"
-msgstr ""
-
-#: elbow/apps/order/forms.py:57
-msgid "City"
-msgstr ""
+msgid "Please select a payment type"
+msgstr "Bitte wählen Sie eine Zahlungsweise aus"
 
 #: elbow/apps/order/forms.py:58
-msgid "Country"
-msgstr ""
+msgid "Terms & Conditions"
+msgstr "Allgemeine Geschäftsbedingungen"
 
-#: elbow/apps/order/forms.py:60
-msgid "Tax number"
-msgstr ""
+#: elbow/apps/order/forms.py:59
+msgid "I agree to the terms and conditions"
+msgstr "Ich habe die AGBs gelesen und stimme zu."
 
 #: elbow/apps/order/forms.py:62
-msgid "How to pay"
-msgstr ""
-
-#: elbow/apps/order/forms.py:64
-msgid "Please select a payment type"
-msgstr ""
-
-#: elbow/apps/order/forms.py:66
-msgid "Terms & Conditions"
-msgstr ""
-
-#: elbow/apps/order/forms.py:67
-msgid "I agree to the terms and conditions"
-msgstr ""
-
-#: elbow/apps/order/forms.py:70
 msgid "I have read the contract"
-msgstr ""
+msgstr "Vertragsunterlagen"
 
-#: elbow/apps/order/forms.py:71
+#: elbow/apps/order/forms.py:63
 msgid "I agree to be bound to the terms of the contract."
-msgstr ""
+msgstr "Ich habe den Darlehensvertrag gelesen und stimme zu."
 
-#: elbow/apps/order/forms.py:97
+#: elbow/apps/order/forms.py:89
 msgid "Interest Rate p.a"
-msgstr ""
+msgstr "Zinsen p.a."
 
-#: elbow/apps/order/forms.py:98
+#: elbow/apps/order/forms.py:90
 msgid "Interest Term"
-msgstr ""
+msgstr "Laufzeit"
 
-#: elbow/apps/order/forms.py:102
+#: elbow/apps/order/forms.py:93
 msgid "Investor Details"
-msgstr ""
+msgstr "Persönliche Daten"
 
-#: elbow/apps/order/forms.py:108
+#: elbow/apps/order/forms.py:99
 msgid "Postal Address"
-msgstr ""
+msgstr "Anschrift"
 
-#: elbow/apps/order/forms.py:115
+#: elbow/apps/order/forms.py:106
 msgid "Tax information"
-msgstr ""
+msgstr "Steuerinformationen"
 
-#: elbow/apps/order/forms.py:118
-msgid "Payment"
-msgstr ""
+# context?
+#: elbow/apps/order/forms.py:109
+msgid "Payment, Terms & Download Contract"
+msgstr "Zahlung, Bedingungen & Download des Vertrags"
 
-#: elbow/apps/order/forms.py:124
-#: elbow/apps/project/templates/project/project-detail.html:13
-msgid "Invest Now"
-msgstr ""
-
-#: elbow/apps/order/forms.py:175
-msgid "I agree to the terms of the Loan Agreement"
-msgstr ""
-
-#: elbow/apps/order/forms.py:205
+# context?
+#: elbow/apps/order/forms.py:115 elbow/apps/order/forms.py:196
 msgid "Submit"
-msgstr ""
+msgstr "Unterbreiten"
+
+#: elbow/apps/order/forms.py:166
+msgid "I agree to the terms of the Loan Agreement"
+msgstr "Ich stimme dem Darlehensvertrag zu."
 
 #: elbow/apps/order/models.py:82
 msgid "Order"
-msgstr ""
+msgstr "Investment"
 
 #: elbow/apps/order/models.py:83
 msgid "Orders"
-msgstr ""
+msgstr "Investments"
 
 #: elbow/apps/order/templates/order/_user_orders_for_project.html:3
 msgid "Previous Orders"
-msgstr ""
+msgstr "Vorherige Investments"
 
+# context?
 #: elbow/apps/order/templates/order/admin/order-logs.html:5
 msgid "Order Logs"
 msgstr ""
 
+# context?
 #: elbow/apps/order/templates/order/admin/order-logs.html:38
 #: elbow/apps/project/templates/project/admin/project-news.html:29
 msgid "No logs found"
-msgstr ""
+msgstr "Keine Aufträge gefunden"
 
 #: elbow/apps/order/templates/order/admin/order_change_form.html:7
 #: elbow/apps/project/templates/project/admin/project-news.html:5
 msgid "Project News"
-msgstr ""
+msgstr "Projekt-News"
 
 #: elbow/apps/order/templates/order/admin/order_change_form.html:8
 msgid "Add News"
-msgstr ""
+msgstr "News hinzufügen"
 
 #: elbow/apps/order/templates/order/admin/order_change_form.html:22
 msgid "Date:"
-msgstr ""
+msgstr "Datum:"
 
 #: elbow/apps/order/templates/order/admin/order_change_form.html:25
 msgid "Note:"
-msgstr ""
+msgstr "Notiz:"
 
 #: elbow/apps/order/templates/order/admin/order_change_form.html:28
 #: elbow/apps/order/templates/order/order-list.html:42
 msgid "Delete"
-msgstr ""
+msgstr "Löschen"
 
 #: elbow/apps/order/templates/order/admin/order_change_form.html:42
 msgid "Project Orders"
-msgstr ""
+msgstr "Projektaufträge"
 
 #: elbow/apps/order/templates/order/admin/order_change_form.html:64
 msgid "Created:"
-msgstr ""
+msgstr "Erstellt:"
 
 #: elbow/apps/order/templates/order/admin/order_change_form.html:65
 msgid "Updated:"
-msgstr ""
+msgstr "Aktualisierung:"
 
 #: elbow/apps/order/templates/order/admin/order_change_form.html:93
 msgid "Mark as Paid"
-msgstr ""
+msgstr "Als bezahlt markieren"
 
 #: elbow/apps/order/templates/order/admin/order_change_form.html:96
 msgid "Cancel Order"
-msgstr ""
+msgstr "Auftrag stornieren"
 
 #: elbow/apps/order/templates/order/admin/order_change_form.html:99
 msgid "Reset Order"
-msgstr ""
+msgstr "Auftrag zurücksetzen"
 
 #: elbow/apps/order/templates/order/admin/order_change_form.html:101
 msgid "View Logs"
-msgstr ""
+msgstr "Aufträge ansehen"
 
 #: elbow/apps/order/templates/order/admin/order_change_form.html:106
 msgid "No orders found"
-msgstr ""
+msgstr "Keine Aufträge gefunden"
 
 #: elbow/apps/order/templates/order/order-create.html:27
 #: elbow/apps/project/templates/project/_stats.html:30
-#: elbow/apps/project/templates/project/project-detail.html:41
+#: elbow/apps/project/templates/project/project-detail.html:26
 msgid "Backers"
-msgstr ""
+msgstr "Anzahl der Investoren"
 
 #: elbow/apps/order/templates/order/order-create.html:30
 #: elbow/apps/project/templates/project/_stats.html:34
-#: elbow/apps/project/templates/project/project-detail.html:44
+#: elbow/apps/project/templates/project/project-detail.html:29
 msgid "Revenue"
-msgstr ""
+msgstr "Bereits investiert"
 
-#: elbow/apps/order/templates/order/order-create.html:77
+#: elbow/apps/order/templates/order/order-create.html:65
 msgid "Months"
-msgstr ""
+msgstr "Monate"
 
-#: elbow/apps/order/templates/order/order-create.html:78
+#: elbow/apps/order/templates/order/order-create.html:66
 msgid "Years"
-msgstr ""
+msgstr "Jahre"
 
-#: elbow/apps/order/templates/order/order-list.html:10 templates/base.html:70
+#: elbow/apps/order/templates/order/order-list.html:10 templates/base.html:68
 msgid "Investment History"
-msgstr ""
+msgstr "Investmentübersicht"
 
 #: elbow/apps/order/templates/order/order-list.html:40
 msgid "Continue"
-msgstr ""
+msgstr "Weiter"
 
 #: elbow/apps/order/templates/order/order-list.html:41
 msgid "Cancel"
-msgstr ""
-
-#: elbow/apps/order/templates/order/order-list.html:48
-msgid "No investments found"
-msgstr ""
-
-#: elbow/apps/order/templates/order/order-list.html:49
-msgid "Invest now"
-msgstr ""
+msgstr "Abbrechen"
 
 #: elbow/apps/order/templates/order/order-payment.html:10
 msgid "Payment Details"
-msgstr ""
+msgstr "Zahlungsdetails"
 
 #: elbow/apps/order/templates/order/order-payment.html:22
 msgid "Please make payment out to"
-msgstr ""
+msgstr "Zahlungsempfänger"
 
 #: elbow/apps/order/templates/order/order-payment.html:24
-msgid "Bank Name"
-msgstr ""
+msgid "Bankcode"
+msgstr "Bankverbindung"
 
 #: elbow/apps/order/templates/order/order-payment.html:25
-msgid "Bankcode"
-msgstr ""
-
-#: elbow/apps/order/templates/order/order-payment.html:26
 #: templates/account/email.html:5
 msgid "Account"
-msgstr ""
+msgstr "Konto"
+
+#: elbow/apps/order/templates/order/order-payment.html:26
+msgid "IBAN"
+msgstr "IBAN"
 
 #: elbow/apps/order/templates/order/order-payment.html:27
-msgid "IBAN"
-msgstr ""
+msgid "BIC"
+msgstr "BIC"
 
 #: elbow/apps/order/templates/order/order-payment.html:28
-msgid "BIC"
-msgstr ""
-
-#: elbow/apps/order/templates/order/order-payment.html:29
 msgid "Account No."
-msgstr ""
+msgstr "Kontonummer"
 
-#: elbow/apps/order/templates/order/order-payment.html:31
+#: elbow/apps/order/templates/order/order-payment.html:30
 msgid "Customer Reference"
-msgstr ""
+msgstr "Kundennummer"
 
+# ?
 #: elbow/apps/project/models.py:49
 msgid "Format: 12m, 36m, 3y, 7y"
 msgstr ""
 
 #: elbow/apps/project/models.py:86
 msgid "Project"
-msgstr ""
+msgstr "Projekt"
 
 #: elbow/apps/project/models.py:87
 msgid "Projects"
-msgstr ""
-
-#: elbow/apps/project/templates/project/_docs.html:4
-msgid "Please login to view the selected document."
-msgstr ""
-
-#: elbow/apps/project/templates/project/_docs.html:17
-msgid "No documents found"
-msgstr ""
+msgstr "Projekte"
 
 #: elbow/apps/project/templates/project/_preview.html:8
 msgid "Details"
-msgstr ""
+msgstr "Mehr Informationen"
 
 #: elbow/apps/project/templates/project/_stats.html:11
 msgid "Investment Goal:"
-msgstr ""
+msgstr "Fundingziel:"
 
+# > an welcher Stelle steht das?
 #: elbow/apps/project/templates/project/_stats.html:22
-#: elbow/apps/project/templates/project/project-detail.html:33
-#: elbow/apps/project/templates/project/project-detail.html:81
+#: elbow/apps/project/templates/project/project-detail.html:68
 msgid "<b>NB</b> Be one of the first to invest in this opportunity"
 msgstr ""
+"<b>NB</b> Investieren Sie als einer der Ersten in ein vielseitiges Projekt"
 
-#: elbow/apps/project/templates/project/project-detail.html:60
-msgid "Overview"
-msgstr ""
+#: elbow/apps/project/templates/project/project-detail.html:13
+msgid "Invest Now"
+msgstr "Jetzt investieren"
 
-#: elbow/apps/project/templates/project/project-detail.html:86
+#: elbow/apps/project/templates/project/project-detail.html:45
+msgid "Investment Overview"
+msgstr "Investmentübersicht"
+
+#: elbow/apps/project/templates/project/project-detail.html:73
 msgid "Project description"
-msgstr ""
+msgstr "Projektbeschreibung"
 
-#: elbow/apps/project/templates/project/project-detail.html:87
+#: elbow/apps/project/templates/project/project-detail.html:74
 msgid "Participation Model"
-msgstr ""
+msgstr "Investmentmodell"
+
+#: elbow/apps/project/templates/project/project-detail.html:75
+#: elbow/apps/project/templates/project/project-detail.html:103
+msgid "F.A.Q"
+msgstr "Häufig gestellte Fragen"
+
+#: elbow/apps/project/templates/project/project-detail.html:82
+msgid "Building Details"
+msgstr "Objektbeschreibung"
 
 #: elbow/apps/project/templates/project/project-detail.html:88
-#: elbow/apps/project/templates/project/project-detail.html:118
-msgid "Documents"
-msgstr ""
-
-#: elbow/apps/project/templates/project/project-detail.html:89
-#: elbow/apps/project/templates/project/project-detail.html:234
-msgid "Latest News"
-msgstr ""
-
-#: elbow/apps/project/templates/project/project-detail.html:90
-#: elbow/apps/project/templates/project/project-detail.html:130
-msgid "F.A.Q"
-msgstr ""
-
-#: elbow/apps/project/templates/project/project-detail.html:98
-msgid "Building Details"
-msgstr ""
-
-#: elbow/apps/project/templates/project/project-detail.html:104
 msgid "Map"
-msgstr ""
+msgstr "Karte"
 
-#: elbow/apps/project/templates/project/project-detail.html:111
-msgid "How it works"
-msgstr ""
+#: elbow/apps/project/templates/project/project-detail.html:122
+#: elbow/apps/project/templates/project/project-detail.html:123
+msgid "News"
+msgstr "News"
 
-#: elbow/apps/project/templates/project/project-list.html:10
-msgid "Current Projects"
-msgstr ""
-
-#: elbow/apps/project/templates/project/project-list.html:11
-msgid "A list of our current projects"
-msgstr ""
-
-#: elbow/apps/public/forms.py:13
-msgid "First name"
-msgstr ""
-
-#: elbow/apps/public/forms.py:14
-msgid "Last name"
-msgstr ""
-
-#: elbow/apps/public/forms.py:17
-msgid ""
-"I have read & agree to the Terms & Conditions and Data Protection agreement"
-msgstr ""
-
-#: elbow/apps/public/forms.py:21
-msgid "I would like to receive occasional news and information"
-msgstr ""
-
-#: elbow/apps/public/forms.py:33
-msgid "Personal Details"
-msgstr ""
-
-#: elbow/apps/public/forms.py:37
-msgid "Login Information"
-msgstr ""
-
-#: elbow/apps/public/forms.py:42
-msgid "Agreement & Newsletter"
-msgstr ""
-
-#: elbow/apps/public/forms.py:47 templates/base.html.py:59
-msgid "Register"
-msgstr ""
+#: elbow/apps/project/templates/project/project-detail.html:131
+#: elbow/apps/project/templates/project/project-detail.html:132
+msgid "Documents"
+msgstr "Dokumente"
 
 #: elbow/apps/public/services.py:26
-msgid "TodayCapital.de - New sign-up"
-msgstr ""
+msgid "TodayCapital.de - Investment order created"
+msgstr "TodayCapital.de - Ihr Investment auf TodayCapital"
 
-#: elbow/apps/public/services.py:44
-msgid "TodayCapital.de - a new order has been created"
-msgstr ""
-
-#: elbow/apps/public/services.py:56
+#: elbow/apps/public/services.py:38
 msgid "TodayCapital.de - Your Investment Order has been created"
-msgstr ""
+msgstr "TodayCapital.de - Ihr Investment auf TodayCapital"
 
-#: elbow/apps/public/services.py:85
-msgid "TodayCapital.de - Ihr Investment auf TodayCapital"
-msgstr ""
+# zu klären
+#: elbow/apps/public/services.py:67
+msgid "TodayCapital.de - Investment order agreed to Loan Agreement Terms"
+msgstr "TodayCapital.de - Sie haben dem Darlehensvertrag zugestimmt"
 
-#: elbow/apps/public/services.py:100
+# zu klären
+#: elbow/apps/public/services.py:82
 msgid "TodayCapital.de - Your Investment Order Loan Agreement is Attached"
-msgstr ""
+msgstr "TodayCapital.de - Ihr Darlehensvertrag"
 
-#: elbow/apps/public/services.py:125 elbow/apps/public/services.py:137
+#: elbow/apps/public/services.py:107 elbow/apps/public/services.py:119
 msgid "TodayCapital.de - Investment Payment, Success"
-msgstr ""
+msgstr "TodayCapital.de - Ihre Zahlung ist eingegangen"
 
-#: elbow/apps/public/services.py:161
+#: elbow/apps/public/services.py:143
 msgid "TodayCapital.de - Investment Payment, Failure"
-msgstr ""
+msgstr "TodayCapital.de - Offener Zahlungseingang zu Ihrem Investment"
 
-#: elbow/settings/common_settings.py:300
+#: elbow/settings/common_settings.py:326
 msgid "German"
-msgstr ""
+msgstr "Deutsch"
 
 #: templates/account/account_inactive.html:5
 #: templates/account/account_inactive.html:8
 msgid "Account Inactive"
-msgstr ""
+msgstr "Benutzerkonto nicht aktiv"
 
 #: templates/account/account_inactive.html:10
 msgid "This account is inactive."
-msgstr ""
+msgstr "Dieses Benutzerkonto ist nicht aktiv"
 
 #: templates/account/email.html:9
 msgid "E-mail Addresses"
-msgstr ""
+msgstr "E-Mail-Adresse"
 
 #: templates/account/email.html:17
 msgid "The following e-mail addresses are associated with your account:"
-msgstr ""
+msgstr "Die folgende E-Mail-Adresse ist mit Ihrem Benutzerkonto verbunden:"
 
 #: templates/account/email.html:29
 msgid "Verified"
-msgstr ""
+msgstr "Bestätigt"
 
 #: templates/account/email.html:31
 msgid "Unverified"
-msgstr ""
+msgstr "Nicht bestätigt"
 
 #: templates/account/email.html:33
 msgid "Primary"
-msgstr ""
+msgstr "Haupt-Mailadresse"
 
 #: templates/account/email.html:37
 msgid "Make Primary"
-msgstr ""
+msgstr "Als Haupt-Mailadresse markieren"
 
 #: templates/account/email.html:38
 msgid "Re-send Verification"
-msgstr ""
+msgstr "Bestätigung erneut senden"
 
 #: templates/account/email.html:39
 msgid "Remove"
-msgstr ""
+msgstr "Entfernen"
 
 #: templates/account/email.html:46
 msgid "Warning:"
-msgstr ""
+msgstr "Warnung:"
 
 #: templates/account/email.html:46
 msgid ""
 "You currently do not have any e-mail address set up. You should really add "
 "an e-mail address so you can receive notifications, reset your password, etc."
 msgstr ""
+"Sie haben noch keine E-Mail-Adresse angegeben. Bitte tragen Sie eine E-Mail-"
+"Adresse ein, um Benachrichtigungen zu erhalten, Passwort-Einstellungen "
+"vorzunehmen etc."
 
 #: templates/account/email.html:51
 msgid "Add E-mail Address"
-msgstr ""
+msgstr "E-Mail-Adresse hinzufügen"
 
 #: templates/account/email.html:55
 msgid "Add E-mail"
-msgstr ""
+msgstr "E-Mail hinzufügen"
 
 #: templates/account/email.html:66
 msgid "Do you really want to remove the selected e-mail address?"
-msgstr ""
+msgstr "Möchten Sie die E-Mail-Adresse wirklich entfernen?"
 
 #: templates/account/email/email_confirmation_message.txt:1
 #, python-format
@@ -563,6 +492,13 @@ msgid ""
 "\n"
 "To confirm this is correct, go to %(activate_url)s\n"
 msgstr ""
+"Willkommen bei %(site_name)s!\n"
+"\n"
+"Sie erhalten diese E-Mail, weil der Nutzer %(user_display)s auf der Webseite "
+"%(site_domain)s diese E-Mail-Adresse mit seinem Benutzerkonto verbunden "
+"hat.\n"
+"\n"
+"Zum bestätigen klicken Sie bitte den folgenden Link %(activate_url)s\n"
 
 #: templates/account/email/email_confirmation_message.txt:7
 #, python-format
@@ -570,11 +506,14 @@ msgid ""
 "Thank you from %(site_name)s!\n"
 "%(site_domain)s"
 msgstr ""
+"Vielen Dank sagt %(site_name)s!\n"
+"%(site_domain)s"
 
 #: templates/account/email/email_confirmation_subject.txt:3
 msgid "Please Confirm Your E-mail Address"
-msgstr ""
+msgstr "Bitte bestätigen Sie Ihre E-Mail-Adresse"
 
+# > zu klären, brauche den genauen Kontext
 #: templates/account/email/password_reset_key_message.txt:1
 #, python-format
 msgid ""
@@ -585,11 +524,17 @@ msgid ""
 "It can be safely ignored if you did not request a password reset. Click the "
 "link below to reset your password."
 msgstr ""
+"Willkommen bei %(site_name)s!\n"
+"\n"
+"Sie erhalten diese E-Mail, weil Sie oder eine dritte Person ein Passwort für "
+"Ihr Benutzerkonto auf %(site_domain)s angefordert haben.\n"
+"Bitte ignorieren Sie diese E-Mail, wenn Sie nicht Ihr Passwort zurücksetzen "
+"möchten. Bitte klicken Sie den Link, um Ihr Passwort zurückzusetzen ."
 
 #: templates/account/email/password_reset_key_message.txt:8
 #, python-format
 msgid "In case you forgot, your username is %(username)s."
-msgstr ""
+msgstr "Ihr Benutzername lautet %(username)s."
 
 #: templates/account/email/password_reset_key_message.txt:10
 #, python-format
@@ -597,17 +542,19 @@ msgid ""
 "Thank you for using %(site_name)s!\n"
 "%(site_domain)s"
 msgstr ""
+"Vielen Dank, dass Sie %(site_name)s besucht haben.\n"
+"%(site_domain)s"
 
 #: templates/account/email/password_reset_key_subject.txt:3
 msgid "Password Reset E-mail"
-msgstr ""
+msgstr "Passwort zurücksetzen"
 
 #: templates/account/email_confirm.html:6
 #: templates/account/email_confirm.html:10
 #: templates/account/email_confirmed.html:6
 #: templates/account/email_confirmed.html:11
 msgid "Confirm E-mail Address"
-msgstr ""
+msgstr "E-Mail-Adresse bestätigen"
 
 #: templates/account/email_confirm.html:16
 #, python-format
@@ -615,10 +562,12 @@ msgid ""
 "Please confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an e-mail "
 "address for user %(user_display)s."
 msgstr ""
+"Bitte bestätigen Sie, dass <a href=\"mailto:%(email)s\">%(email)s</a> zu "
+"folgendem Nutzer gehört %(user_display)s."
 
 #: templates/account/email_confirm.html:20
 msgid "Confirm"
-msgstr ""
+msgstr "Bestätigen"
 
 #: templates/account/email_confirm.html:27
 #, python-format
@@ -626,6 +575,8 @@ msgid ""
 "This e-mail confirmation link expired or is invalid. Please <a href="
 "\"%(email_url)s\">issue a new e-mail confirmation request</a>."
 msgstr ""
+"Dieser E-Mail-Bestätigungslink ist abgelaufen oder nicht mehr aktiv. Bitte "
+"fordern Sie eine neue Bestätigung an <a href=\"%(email_url)s\"></a>."
 
 #: templates/account/email_confirmed.html:15
 #, python-format
@@ -633,12 +584,15 @@ msgid ""
 "You have confirmed that <a href=\"mailto:%(email)s\">%(email)s</a> is an e-"
 "mail address for user %(user_display)s."
 msgstr ""
+"Sie haben die E-Mail-Adresse <a href=\"mailto:%(email)s\">%(email)s</a> für "
+"den Benutzer %(user_display)s bestätigt."
 
 #: templates/account/login.html:3 templates/account/login.html.py:7
 #: templates/account/login.html:43 templates/account/login.html.py:53
 msgid "Sign In"
-msgstr ""
+msgstr "Eintragen"
 
+# > context? Account einer dritten Person?
 #: templates/account/login.html:17
 #, python-format
 msgid ""
@@ -647,10 +601,14 @@ msgid ""
 "up</a>\n"
 "for a %(site_name)s account and sign in below:"
 msgstr ""
+"Bitte tragen Sie sich mit einem\n"
+"of your existing third party accounts. Or, <a href=\"%(signup_url)s\">sign "
+"up</a>\n"
+"for a %(site_name)s account and sign in below:"
 
 #: templates/account/login.html:29
 msgid "or"
-msgstr ""
+msgstr "oder"
 
 #: templates/account/login.html:36
 #, python-format
@@ -658,64 +616,66 @@ msgid ""
 "If you have not created an account yet, then please\n"
 "  <a href=\"%(signup_url)s\">sign up</a> first."
 msgstr ""
+"Wenn Sie noch kein Benutzerkonto haben, können Sie es hier anlegen.\n"
+"  <a href=\"%(signup_url)s\">anlegen</a> erstmalig."
 
 #: templates/account/login.html:52
 msgid "Forgot Password?"
-msgstr ""
+msgstr "Passwort vergessen?"
 
 #: templates/account/logout.html:5 templates/account/logout.html.py:8
 #: templates/account/logout.html:17
 msgid "Sign Out"
-msgstr ""
+msgstr "Abmelden"
 
 #: templates/account/logout.html:10
 msgid "Are you sure you want to sign out?"
-msgstr ""
+msgstr "Wollen Sie sich wirklich abmelden?"
 
 #: templates/account/messages/cannot_delete_primary_email.txt:2
 #, python-format
 msgid "You cannot remove your primary e-mail address (%(email)s)."
-msgstr ""
+msgstr "Sie können die Haupt-Mailadresse (%(email)s) nicht entfernen."
 
 #: templates/account/messages/email_confirmation_sent.txt:2
 #, python-format
 msgid "Confirmation e-mail sent to %(email)s."
-msgstr ""
+msgstr "Eine E-Mail-Bestätigung wurde an %(email)s gesendet."
 
 #: templates/account/messages/email_confirmed.txt:2
 #, python-format
 msgid "You have confirmed %(email)s."
-msgstr ""
+msgstr "Sie haben die E-Mail-Adresse %(email)s bestätigt. Vielen Dank!"
 
 #: templates/account/messages/email_deleted.txt:2
 #, python-format
 msgid "Removed e-mail address %(email)s."
-msgstr ""
+msgstr "Sie haben die E-Mail-Adresse %(email)s zurückgesetzt."
 
 #: templates/account/messages/logged_in.txt:4
 #, python-format
 msgid "Successfully signed in as %(name)s."
-msgstr ""
+msgstr "Sie sind erfolgreich angemeldet als %(name)s."
 
 #: templates/account/messages/logged_out.txt:2
 msgid "You have signed out."
-msgstr ""
+msgstr "Sie sind jetzt abgemeldet."
 
 #: templates/account/messages/password_changed.txt:2
 msgid "Password successfully changed."
-msgstr ""
+msgstr "Das Passwort wurde erfolgreich geändert."
 
 #: templates/account/messages/password_set.txt:2
 msgid "Password successfully set."
-msgstr ""
+msgstr "Das Passwort wurde erfolgreich erstellt."
 
 #: templates/account/messages/primary_email_set.txt:2
 msgid "Primary e-mail address set."
-msgstr ""
+msgstr "Die Haupt-Mailadresse wurde erstellt."
 
 #: templates/account/messages/unverified_primary_email.txt:2
 msgid "Your primary e-mail address must be verified."
-msgstr ""
+msgstr "Bitte bestätigen Sie die Haupt-Mailadresse."
 
 #: templates/account/password_change.html:5
 #: templates/account/password_change.html:9
@@ -723,40 +683,47 @@ msgstr ""
 #: templates/account/password_reset_from_key.html:4
 #: templates/account/password_reset_from_key.html:7
 #: templates/account/password_reset_from_key_done.html:4
-#: templates/account/password_reset_from_key_done.html:7 templates/base.html:67
+#: templates/account/password_reset_from_key_done.html:7 templates/base.html:65
 msgid "Change Password"
-msgstr ""
+msgstr "Passwort ändern"
 
 #: templates/account/password_reset.html:6
 #: templates/account/password_reset.html:10
 #: templates/account/password_reset_done.html:6
 #: templates/account/password_reset_done.html:9
 msgid "Password Reset"
-msgstr ""
+msgstr "Passwort zurücksetzen"
 
 #: templates/account/password_reset.html:15
 msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll send you "
 "an e-mail allowing you to reset it."
 msgstr ""
+"Sie haben Ihr Passwort vergessen? Bitte tragen Sie unten Ihre E-Mail-Adresse "
+"ein und wir senden Ihnen eine E-Mail, mit der Sie das Passwort zurücksetzen "
+"können."
 
 #: templates/account/password_reset.html:20
 msgid "Reset My Password"
-msgstr ""
+msgstr "Mein Passwort zurücksetzen"
 
 #: templates/account/password_reset.html:23
 msgid "Please contact us if you have any trouble resetting your password."
 msgstr ""
+"Bitte wenden Sie sich an uns, wenn Probleme beim zurücksetzen des Passworts "
+"auftreten."
 
 #: templates/account/password_reset_done.html:15
 msgid ""
 "We have sent you an e-mail. Please contact us if you do not receive it "
 "within a few minutes."
 msgstr ""
+"Wir haben Ihnen eine E-Mail zugesendet. Bitte wenden Sie sich an uns, wenn "
+"Sie die E-Mail nicht innerhalb der nächsten Minuten empfangen."
 
 #: templates/account/password_reset_from_key.html:7
 msgid "Bad Token"
-msgstr ""
+msgstr "Schlechtes Zeichen"
 
 #: templates/account/password_reset_from_key.html:11
 #, python-format
@@ -765,59 +732,68 @@ msgid ""
 "used.  Please request a <a href=\"%(passwd_reset_url)s\">new password reset</"
 "a>."
 msgstr ""
+"Leider ist ein Problem beim zurücksetzen des Passworts aufgetreten. "
+"Möglicherweise wurde der Link bereits genutzt. Bitte fordern Sie einen neuen "
+"Link an, um das Passwort zurückzusetzen <a href=\"%(passwd_reset_url)s\"></"
+"a>."
 
 #: templates/account/password_reset_from_key.html:17
 msgid "change password"
-msgstr ""
+msgstr "Passwort ändern"
 
 #: templates/account/password_reset_from_key.html:20
 #: templates/account/password_reset_from_key_done.html:8
 msgid "Your password is now changed."
-msgstr ""
+msgstr "Ihr Passwort wurde geändert."
 
 #: templates/account/password_set.html:5 templates/account/password_set.html:8
 #: templates/account/password_set.html:13
 msgid "Set Password"
-msgstr ""
+msgstr "Passwort erstellen"
 
 #: templates/account/signup.html:3
 msgid "Sign up"
-msgstr ""
+msgstr "Anmelden"
 
-#: templates/account/signup.html:7
+#: templates/account/signup.html:7 templates/account/signup.html.py:17
+#: templates/account/signup.html:26
 msgid "Sign Up"
-msgstr ""
+msgstr "Anmelden"
 
 #: templates/account/signup.html:13
 #, python-format
 msgid ""
 "Already have an account? Then please <a href=\"%(login_url)s\">sign in</a>."
 msgstr ""
+"Sie haben sich bereits registriert? Hier können Sie sich anmelden <a href="
+"\"%(login_url)s\"></a>."
 
 #: templates/account/signup_closed.html:5
 #: templates/account/signup_closed.html:8
 msgid "Sign Up Closed"
-msgstr ""
+msgstr "Anmeldung gesperrt"
 
 #: templates/account/signup_closed.html:10
 msgid "We are sorry, but the sign up is currently closed."
 msgstr ""
+"Es tut uns leid, die Anmeldung ist momentan gesperrt. Bitte versuchen Sie es "
+"zu einem späteren Zeitpunkt nochmal."
 
 #: templates/account/snippets/already_logged_in.html:5
 msgid "Note"
-msgstr ""
+msgstr "Bemerkung"
 
 #: templates/account/snippets/already_logged_in.html:5
 #, python-format
 msgid "you are already logged in as %(user_display)s."
-msgstr ""
+msgstr "Sie sind angemeldet als %(user_display)s."
 
 #: templates/account/verification_sent.html:5
 #: templates/account/verification_sent.html:8
 #: templates/account/verified_email_required.html:5
 #: templates/account/verified_email_required.html:8
 msgid "Verify Your E-mail Address"
-msgstr ""
+msgstr "E-Mail-Adresse bestätigen"
 
 #: templates/account/verification_sent.html:10
 msgid ""
@@ -825,6 +801,9 @@ msgid ""
 "finalize the signup process. Please contact us if you do not receive it "
 "within a few minutes."
 msgstr ""
+"Wir haben Ihnen Bestätigungsmail zugesendet. Bitte prüfen Sie Ihre E-Mails, "
+"um Ihr Benutzerkonto zu aktivieren. Sollten Sie innerhalb der nächsten "
+"Minuten keine Bestätigungsmail empfangen, wenden Sie sich bitte an uns."
 
 #: templates/account/verified_email_required.html:12
 msgid ""
@@ -832,6 +811,9 @@ msgid ""
 "you are who you claim to be. For this purpose, we require that you\n"
 "verify ownership of your e-mail address. "
 msgstr ""
+"An dieser Stelle müssen wir Ihre Person prüfen.\n"
+"Für diesem Fall benötigen wir einen Nachweis,\n"
+"dass Sie Inhaber der E-Mail-Adresse sind. "
 
 #: templates/account/verified_email_required.html:16
 msgid ""
@@ -839,6 +821,10 @@ msgid ""
 "verification. Please click on the link inside this e-mail. Please\n"
 "contact us if you do not receive it within a few minutes."
 msgstr ""
+"Wir haben Ihnen eine Bestätigungsmail zugesendet.\n"
+"Bitte prüfen Sie Ihre E-Mails, um Ihr Benutzerkonto zu aktivieren.\n"
+"Sollten Sie innerhalb der nächsten Minuten keine Bestätigungsmail empfangen, "
+"wenden Sie sich bitte an uns."
 
 #: templates/account/verified_email_required.html:20
 #, python-format
@@ -846,31 +832,33 @@ msgid ""
 "<strong>Note:</strong> you can still <a href=\"%(email_url)s\">change your e-"
 "mail address</a>."
 msgstr ""
+"<strong>Bemerkung:</strong> Sie können weiterhin <a href=\"%(email_url)s"
+"\">Ihre E-Mail-Adresse ändern</a>."
 
-#: templates/base.html:41
+#: templates/base.html:39
 msgid "Home"
-msgstr ""
+msgstr "Home"
 
-#: templates/base.html:58
+#: templates/base.html:56
 msgid "Login"
-msgstr ""
+msgstr "Anmelden"
 
-#: templates/base.html:62
+#: templates/base.html:57
+msgid "Register"
+msgstr "Verzeichnis"
+
+#: templates/base.html:60
 msgid "Settings"
-msgstr ""
+msgstr "Einstellungen"
+
+#: templates/base.html:64
+msgid "Email Settings"
+msgstr "E-Mail-Einstellungen"
 
 #: templates/base.html:66
-msgid "Email Settings"
-msgstr ""
-
-#: templates/base.html:68
 msgid "Cancel Account"
-msgstr ""
+msgstr "Mein Benutzerkonto löschen"
 
-#: templates/base.html:72
+#: templates/base.html:70
 msgid "Logout"
-msgstr ""
-
-#: templates/base.html:110
-msgid "Please wait"
-msgstr ""
+msgstr "Abmelden"

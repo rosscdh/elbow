@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-03 15:28+0000\n"
+"POT-Creation-Date: 2016-05-11 11:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,7 +53,7 @@ msgstr ""
 msgid "Manual bank transfer"
 msgstr ""
 
-#: elbow/apps/order/forms.py:32 elbow/apps/order/forms.py:95
+#: elbow/apps/order/forms.py:32 elbow/apps/order/forms.py:103
 msgid "Investment Amount"
 msgstr ""
 
@@ -137,57 +137,62 @@ msgstr ""
 msgid "Please select a payment type"
 msgstr ""
 
-#: elbow/apps/order/forms.py:66
-msgid "Terms & Conditions"
-msgstr ""
-
-#: elbow/apps/order/forms.py:67
-msgid "I agree to the terms and conditions"
+#: elbow/apps/order/forms.py:67 elbow/apps/order/forms.py:192
+msgid "I agree to the terms of the Loan Agreement"
 msgstr ""
 
 #: elbow/apps/order/forms.py:70
-msgid "I have read the contract"
+msgid "Terms & Conditions"
 msgstr ""
 
 #: elbow/apps/order/forms.py:71
+msgid "I agree to the terms and conditions"
+msgstr ""
+
+#: elbow/apps/order/forms.py:74
+msgid "I have read the contract"
+msgstr ""
+
+#: elbow/apps/order/forms.py:75
 msgid "I agree to be bound to the terms of the contract."
 msgstr ""
 
-#: elbow/apps/order/forms.py:97
+#: elbow/apps/order/forms.py:105
 msgid "Interest Rate p.a"
 msgstr ""
 
-#: elbow/apps/order/forms.py:98
+#: elbow/apps/order/forms.py:106
 msgid "Interest Term"
 msgstr ""
 
-#: elbow/apps/order/forms.py:102
+#: elbow/apps/order/forms.py:112
 msgid "Investor Details"
 msgstr ""
 
-#: elbow/apps/order/forms.py:108
+#: elbow/apps/order/forms.py:118
 msgid "Postal Address"
 msgstr ""
 
-#: elbow/apps/order/forms.py:115
+#: elbow/apps/order/forms.py:125
 msgid "Tax information"
 msgstr ""
 
-#: elbow/apps/order/forms.py:118
+#: elbow/apps/order/forms.py:128
 msgid "Payment"
 msgstr ""
 
-#: elbow/apps/order/forms.py:124
+#: elbow/apps/order/forms.py:134
 #: elbow/apps/project/templates/project/project-detail.html:13
 msgid "Invest Now"
 msgstr ""
 
-#: elbow/apps/order/forms.py:175
-msgid "I agree to the terms of the Loan Agreement"
+#: elbow/apps/order/forms.py:145
+msgid "You must agree to the terms of the loan agreement"
 msgstr ""
 
-#: elbow/apps/order/forms.py:205
-msgid "Submit"
+#: elbow/apps/order/forms.py:229
+#: elbow/apps/order/templates/order/order-list.html:40
+msgid "Continue"
 msgstr ""
 
 #: elbow/apps/order/models.py:82
@@ -285,12 +290,9 @@ msgstr ""
 msgid "Years"
 msgstr ""
 
-#: elbow/apps/order/templates/order/order-list.html:10 templates/base.html:70
+#: elbow/apps/order/templates/order/order-list.html:10
+#: templates/navigation.html:44
 msgid "Investment History"
-msgstr ""
-
-#: elbow/apps/order/templates/order/order-list.html:40
-msgid "Continue"
 msgstr ""
 
 #: elbow/apps/order/templates/order/order-list.html:41
@@ -309,36 +311,36 @@ msgstr ""
 msgid "Payment Details"
 msgstr ""
 
-#: elbow/apps/order/templates/order/order-payment.html:22
+#: elbow/apps/order/templates/order/order-payment.html:41
 msgid "Please make payment out to"
 msgstr ""
 
-#: elbow/apps/order/templates/order/order-payment.html:24
+#: elbow/apps/order/templates/order/order-payment.html:43
 msgid "Bank Name"
 msgstr ""
 
-#: elbow/apps/order/templates/order/order-payment.html:25
+#: elbow/apps/order/templates/order/order-payment.html:44
 msgid "Bankcode"
 msgstr ""
 
-#: elbow/apps/order/templates/order/order-payment.html:26
+#: elbow/apps/order/templates/order/order-payment.html:45
 #: templates/account/email.html:5
 msgid "Account"
 msgstr ""
 
-#: elbow/apps/order/templates/order/order-payment.html:27
+#: elbow/apps/order/templates/order/order-payment.html:46
 msgid "IBAN"
 msgstr ""
 
-#: elbow/apps/order/templates/order/order-payment.html:28
+#: elbow/apps/order/templates/order/order-payment.html:47
 msgid "BIC"
 msgstr ""
 
-#: elbow/apps/order/templates/order/order-payment.html:29
+#: elbow/apps/order/templates/order/order-payment.html:48
 msgid "Account No."
 msgstr ""
 
-#: elbow/apps/order/templates/order/order-payment.html:31
+#: elbow/apps/order/templates/order/order-payment.html:50
 msgid "Customer Reference"
 msgstr ""
 
@@ -358,7 +360,12 @@ msgstr ""
 msgid "Please login to view the selected document."
 msgstr ""
 
-#: elbow/apps/project/templates/project/_docs.html:17
+#: elbow/apps/project/templates/project/_docs.html:5
+#: templates/navigation.html:32
+msgid "Login"
+msgstr ""
+
+#: elbow/apps/project/templates/project/_docs.html:18
 msgid "No documents found"
 msgstr ""
 
@@ -423,68 +430,60 @@ msgstr ""
 msgid "A list of our current projects"
 msgstr ""
 
-#: elbow/apps/public/forms.py:13
+#: elbow/apps/public/forms.py:12
 msgid "First name"
 msgstr ""
 
-#: elbow/apps/public/forms.py:14
+#: elbow/apps/public/forms.py:13
 msgid "Last name"
 msgstr ""
 
-#: elbow/apps/public/forms.py:17
+#: elbow/apps/public/forms.py:16
 msgid ""
 "I have read & agree to the Terms & Conditions and Data Protection agreement"
 msgstr ""
 
-#: elbow/apps/public/forms.py:21
+#: elbow/apps/public/forms.py:20
 msgid "I would like to receive occasional news and information"
 msgstr ""
 
-#: elbow/apps/public/forms.py:33
+#: elbow/apps/public/forms.py:31
 msgid "Personal Details"
 msgstr ""
 
-#: elbow/apps/public/forms.py:37
+#: elbow/apps/public/forms.py:34
 msgid "Login Information"
 msgstr ""
 
-#: elbow/apps/public/forms.py:42
+#: elbow/apps/public/forms.py:38
 msgid "Agreement & Newsletter"
 msgstr ""
 
-#: elbow/apps/public/forms.py:47 templates/base.html.py:59
+#: elbow/apps/public/forms.py:41 templates/navigation.html.py:33
 msgid "Register"
 msgstr ""
 
-#: elbow/apps/public/services.py:26
+#: elbow/apps/public/services.py:29
 msgid "TodayCapital.de - New sign-up"
 msgstr ""
 
-#: elbow/apps/public/services.py:44
+#: elbow/apps/public/services.py:51
 msgid "TodayCapital.de - a new order has been created"
 msgstr ""
 
-#: elbow/apps/public/services.py:56
+#: elbow/apps/public/services.py:70
 msgid "TodayCapital.de - Your Investment Order has been created"
 msgstr ""
 
-#: elbow/apps/public/services.py:85
-msgid "TodayCapital.de - Ihr Investment auf TodayCapital"
-msgstr ""
-
-#: elbow/apps/public/services.py:100
-msgid "TodayCapital.de - Your Investment Order Loan Agreement is Attached"
-msgstr ""
-
-#: elbow/apps/public/services.py:125 elbow/apps/public/services.py:137
+#: elbow/apps/public/services.py:96 elbow/apps/public/services.py:108
 msgid "TodayCapital.de - Investment Payment, Success"
 msgstr ""
 
-#: elbow/apps/public/services.py:161
+#: elbow/apps/public/services.py:132
 msgid "TodayCapital.de - Investment Payment, Failure"
 msgstr ""
 
-#: elbow/settings/common_settings.py:300
+#: elbow/settings/common_settings.py:303
 msgid "German"
 msgstr ""
 
@@ -634,7 +633,7 @@ msgid ""
 msgstr ""
 
 #: templates/account/login.html:3 templates/account/login.html.py:7
-#: templates/account/login.html:43 templates/account/login.html.py:53
+#: templates/account/login.html:44 templates/account/login.html.py:55
 msgid "Sign In"
 msgstr ""
 
@@ -651,14 +650,14 @@ msgstr ""
 msgid "or"
 msgstr ""
 
-#: templates/account/login.html:36
+#: templates/account/login.html:37
 #, python-format
 msgid ""
 "If you have not created an account yet, then please\n"
-"  <a href=\"%(signup_url)s\">sign up</a> first."
+"    <a href=\"%(signup_url)s\">sign up</a> first."
 msgstr ""
 
-#: templates/account/login.html:52
+#: templates/account/login.html:54
 msgid "Forgot Password?"
 msgstr ""
 
@@ -722,7 +721,8 @@ msgstr ""
 #: templates/account/password_reset_from_key.html:4
 #: templates/account/password_reset_from_key.html:7
 #: templates/account/password_reset_from_key_done.html:4
-#: templates/account/password_reset_from_key_done.html:7 templates/base.html:67
+#: templates/account/password_reset_from_key_done.html:7
+#: templates/navigation.html:41
 msgid "Change Password"
 msgstr ""
 
@@ -846,30 +846,26 @@ msgid ""
 "mail address</a>."
 msgstr ""
 
-#: templates/base.html:41
+#: templates/base.html:51
+msgid "Please wait"
+msgstr ""
+
+#: templates/navigation.html:15
 msgid "Home"
 msgstr ""
 
-#: templates/base.html:58
-msgid "Login"
-msgstr ""
-
-#: templates/base.html:62
+#: templates/navigation.html:36
 msgid "Settings"
 msgstr ""
 
-#: templates/base.html:66
+#: templates/navigation.html:40
 msgid "Email Settings"
 msgstr ""
 
-#: templates/base.html:68
+#: templates/navigation.html:42
 msgid "Cancel Account"
 msgstr ""
 
-#: templates/base.html:72
+#: templates/navigation.html:46
 msgid "Logout"
-msgstr ""
-
-#: templates/base.html:110
-msgid "Please wait"
 msgstr ""
