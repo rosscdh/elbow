@@ -170,7 +170,7 @@ msgstr "Laufzeit"
 msgid ""
 "You want to invest &euro;1000.00 or more and therefore, must agree to the "
 "loan contract in order to proceed"
-msgstr "Sie wollen 1.000,00 € oder mehr zu investieren und daher muss der Darlehensvertrag zustimmen, um fortzufahren"
+msgstr "Sie wollen 1.000,00 &euro; oder mehr zu investieren und daher muss der Darlehensvertrag zustimmen, um fortzufahren"
 
 #: elbow/apps/order/forms.py:112
 msgid "Investor Details"
