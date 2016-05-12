@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-12 07:42+0000\n"
+"POT-Creation-Date: 2016-05-12 07:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -162,6 +162,12 @@ msgstr ""
 
 #: elbow/apps/order/forms.py:106
 msgid "Interest Term"
+msgstr ""
+
+#: elbow/apps/order/forms.py:108
+msgid ""
+"You want to invest &euro;1000.00 or more and therefore, must agree to the "
+"loan contract in order to proceed"
 msgstr ""
 
 #: elbow/apps/order/forms.py:112
