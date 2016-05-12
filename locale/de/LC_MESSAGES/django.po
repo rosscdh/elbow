@@ -196,10 +196,8 @@ msgid "Invest Now"
 msgstr "Jetzt investieren"
 
 #: elbow/apps/order/forms.py:145
-#, fuzzy
-#| msgid "I agree to the terms of the Loan Agreement"
 msgid "You must agree to the terms of the loan agreement"
-msgstr "Ich stimme dem Darlehensvertrag zu."
+msgstr "Sie müssen den Bedingungen der Darlehensvertrag zustimmen."
 
 #: elbow/apps/order/forms.py:229
 #: elbow/apps/order/templates/order/order-list.html:40
