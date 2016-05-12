@@ -21,6 +21,7 @@ SECRET_KEY = '2=il^vfe7b_(q&qloc5mzju$l=#-8%*@__%=5yhah0obaie!^_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
 ALLOWED_HOSTS = ['*']
 
 # Internationalization
@@ -105,7 +106,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'django.middleware.clickjacking.XFrameOptionsMiddleware', # Not required as we load allot from 3rd party sites in iframe
     # Language
     'django.middleware.locale.LocaleMiddleware',
     # Minify
