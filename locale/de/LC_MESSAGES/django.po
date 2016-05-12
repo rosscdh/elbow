@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-11 13:01+0000\n"
-"PO-Revision-Date: 2016-03-09 11:39+0100\n"
+"POT-Creation-Date: 2016-05-12 07:36+0000\n"
+"PO-Revision-Date: 2016-05-12 09:39+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -522,7 +522,7 @@ msgstr "TodayCapital.de - Ihre Zahlung ist eingegangen"
 msgid "TodayCapital.de - Investment Payment, Failure"
 msgstr "TodayCapital.de - Offener Zahlungseingang zu Ihrem Investment"
 
-#: elbow/settings/common_settings.py:303
+#: elbow/settings/common_settings.py:304
 msgid "German"
 msgstr "Deutsch"
 
@@ -722,16 +722,13 @@ msgid "or"
 msgstr "oder"
 
 #: templates/account/login.html:37
-#, fuzzy, python-format
-#| msgid ""
-#| "If you have not created an account yet, then please\n"
-#| "  <a href=\"%(signup_url)s\">sign up</a> first."
+#, python-format
 msgid ""
-"Wenn Sie noch kein Konto erstellt haben, dann wenden Sie sich bitte\n"
-"    <a href=\"%(signup_url)s\">sign up</a> zuerst."
+"If you have not created an account yet, then please\n"
+"    <a href=\"%(signup_url)s\">sign up</a> first."
 msgstr ""
-"Wenn Sie noch kein Benutzerkonto haben, können Sie es hier anlegen.\n"
-"  <a href=\"%(signup_url)s\">anlegen</a> erstmalig."
+"Sie haben sich bereits registriert?\n"
+"Hier können Sie sich <a href=\"%(signup_url)s\">anmelden</a>."
 
 #: templates/account/login.html:54
 msgid "Forgot Password?"
@@ -972,6 +969,17 @@ msgstr "Mein Benutzerkonto löschen"
 #: templates/navigation.html:46
 msgid "Logout"
 msgstr "Abmelden"
+
+#, fuzzy
+#~| msgid ""
+#~| "If you have not created an account yet, then please\n"
+#~| "  <a href=\"%(signup_url)s\">sign up</a> first."
+#~ msgid ""
+#~ "Wenn Sie noch kein Konto erstellt haben, dann wenden Sie sich bitte\n"
+#~ "    <a href=\"%(signup_url)s\">sign up</a> zuerst."
+#~ msgstr ""
+#~ "Wenn Sie noch kein Benutzerkonto haben, können Sie es hier anlegen.\n"
+#~ "  <a href=\"%(signup_url)s\">anlegen</a> erstmalig."
 
 # context?
 #~ msgid "Payment, Terms & Download Contract"
