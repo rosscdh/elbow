@@ -131,7 +131,7 @@ class CreateOrderForm(forms.Form):
                                         'has_read_contract',
                                ),
                                ButtonHolder(
-                                    Submit('submit', _('Invest Now'), css_class='btn btn-success btn-lg'),
+                                    Submit('submit', _('Invest Now'), css_class='btn btn-lg'),
                                ))
         return helper
 
