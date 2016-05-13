@@ -31,6 +31,5 @@ class DocumentDownloadViewTest(BaseTestCase):
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(resp.__class__.__name__, 'FileResponse')
         self.assertEqual(resp.items(), [('Vary', 'Accept-Encoding, Cookie'),
-                                        ('X-Frame-Options', 'SAMEORIGIN'),
                                         ('Content-Type', 'application/pdf'),
                                         ('Content-Language', 'de')])

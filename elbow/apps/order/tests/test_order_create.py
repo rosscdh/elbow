@@ -164,5 +164,5 @@ class OrderFormTest(TestCase):
         self.assertEqual(email.recipients(), ['post@todaycapital.de'])
 
         email = mail.outbox[1]
-        self.assertEqual(unicode(email.subject), u'TodayCapital.de - Your Investment Order has been created')
+        self.assertEqual(unicode(email.subject), u'TodayCapital.de - Ihr Investment auf TodayCapital')
         self.assertEqual(email.recipients(), [self.user.email])

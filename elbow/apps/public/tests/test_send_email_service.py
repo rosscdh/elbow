@@ -34,7 +34,7 @@ class SendForPaymentEmailServiceTest(BaseTestCase):
         self.assertEqual(result, [('founders', 1), ('customer', 1)])
 
         for email in mail.outbox:
-            self.assertEqual(email.subject, 'TodayCapital.de - Investment Payment, Success')
+            self.assertEqual(unicode(email.subject), u'TodayCapital.de - Ihre Zahlung ist eingegangen')
 
         email = mail.outbox[0]  # 0 should be to the Founders
         self.assertEqual(email.recipients(), ['post@todaycapital.de'])
@@ -49,6 +49,6 @@ class SendForPaymentEmailServiceTest(BaseTestCase):
         self.assertEqual(type(result), list)
         self.assertEqual(result, [('founders', 1)])
         email = mail.outbox[0]
-        self.assertEqual(email.subject, 'TodayCapital.de - Investment Payment, Failure')
+        self.assertEqual(unicode(email.subject), 'TodayCapital.de - Offener Zahlungseingang zu Ihrem Investment')
         self.assertEqual(email.recipients(), ['post@todaycapital.de'])
 
