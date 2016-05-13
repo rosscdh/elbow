@@ -38,5 +38,5 @@ class SignUpForm(AllAuthSignupForm):
                                Fieldset(_('Agreement & Newsletter'),
                                         Field('has_aggeed_t_and_c'),
                                         Field('send_news_and_info'),),
-                               ButtonHolder(Submit('submit', _('Register'), css_class='btn btn-success btn-lg'),))
+                               ButtonHolder(Submit('submit', _('Register'), css_class='btn btn-primary btn-lg'),))
         return helper

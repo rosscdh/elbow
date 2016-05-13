@@ -39,7 +39,7 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
     {% endif %}
 
     {% crispy form %}
-    <button type="button" class="btn btn-success btn-lg" aria-label="Left Align" onClick="window.signin()">
+    <button type="submit" class="btn btn-primary btn-lg" aria-label="Left Align" onClick="window.signin()">
       <span class="glyphicon glyphicon-check" aria-hidden="true"></span>
       {% trans "Sign In" %}
     </button>
@@ -62,9 +62,15 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
 <script>
 'use strict';
 $( document ).ready(function( $ ) {
-window.signin = function () {
-  $('form').submit();
-}
+  window.signin = function () {
+    $('form').submit();
+  }
+  $('form').on('keyup', function(e, key) {
+      if (e.keyCode === 13) {
+        // pressed return
+        window.signin();
+      }
+  });
 });
 </script>
 {% endblock %}

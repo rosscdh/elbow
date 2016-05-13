@@ -226,7 +226,7 @@ class OrderLoanAgreementForm(forms.Form):
         helper.layout = Layout(Fieldset('',
                                         Field('has_agreed_to_loan_agreement_terms'),),
                                ButtonHolder(
-                                   Submit('submit', _('Continue'), css_class='btn btn-success btn-lg'),))
+                                   Submit('submit', _('Continue'), css_class='btn btn-primary btn-lg'),))
         return helper
 
     def save(self, *args, **kwargs):
