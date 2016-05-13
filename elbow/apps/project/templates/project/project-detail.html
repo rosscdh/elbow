@@ -6,10 +6,10 @@
 
 {% block page_header %}
 <div class="page-header clearfix">
-    <div class="col-md-6" style="padding:0px;">
+    <div class="col-md-10" style="padding:0px;">
       <h1>{{ project.name }}<br/><small>{{ project.proposition }}</small></h1>
     </div>
-    <div class="col-md-6 text-center" style="padding-top:35px;">
+    <div class="col-md-2 text-center" style="padding-top:35px;">
       <a href="{% url 'order:create' project_slug=project.slug %}" class="btn btn-primary btn-lg" name="" id="">{% trans "Invest Now" %}</a>
     </div>
 </div>
