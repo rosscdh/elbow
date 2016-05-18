@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from django.conf import settings
+from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
 from pinax.eventlog.models import log
@@ -32,7 +33,7 @@ class CreateOrderForm(forms.Form):
     amount = forms.DecimalField(label=_('Investment Amount'),
                                 max_digits=8,
                                 decimal_places=2,
-                                min_value=250,
+                                min_value=500,
                                 required=True)
 
     title = forms.ChoiceField(label=_('Title'), choices=(
@@ -87,6 +88,26 @@ class CreateOrderForm(forms.Form):
         super(CreateOrderForm, self).__init__(**kwargs)
         self.fields['customer_name'].initial = '%s %s' % (self.user.first_name, self.user.last_name)
 
+        #
+        # Setup minimum and max investment if the project has it
+        # Order is important
+        #
+        if self.project.minimum_investment:
+            self.fields['amount'].min_value = self.project.minimum_investment.amount
+
+        if self.project.maximum_investment:
+            self.fields['amount'].max_value = self.project.maximum_investment.amount
+
+        #
+        # Setup help text in the case of min and max investment
+        # Order is important
+        #
+        if self.project.minimum_investment:
+            self.fields['amount'].help_text = _(u'A minimum of &euro;{minimum} is required'.format(minimum=self.project.minimum_investment.amount))
+
+        if self.project.maximum_investment:
+            self.fields['amount'].help_text = _(u'A minimum of &euro;{minimum} and a maximum of &euro;{maximum}, is required'.format(minimum=self.project.minimum_investment.amount, maximum=self.project.maximum_investment.amount))
+
     @property
     def helper(self):
         helper = FormHelper(self)
@@ -137,8 +158,21 @@ class CreateOrderForm(forms.Form):
 
     def is_large_sum(self):
         if hasattr(self, 'cleaned_data') is True:
-            return self.cleaned_data['amount'] >= 1000
+            return self.cleaned_data.get('amount', None) >= 1000
         return False
+
+    def clean_amount(self, *args, **kwargs):
+        amount = self.data.get('amount', None)
+
+        if amount and self.project.minimum_investment and \
+           Decimal(amount) <= self.project.minimum_investment.amount:
+            raise forms.ValidationError(mark_safe(_(u'The minimum investment amount is &euro;{minimum}'.format(minimum=self.project.minimum_investment.amount))),
+                                        code='minimum_investment_amount_not_met',)
+        if amount and self.project.maximum_investment and \
+           Decimal(amount) > self.project.maximum_investment.amount:
+            raise forms.ValidationError(mark_safe(_(u'The maximum investment amount is &euro;{maximum}'.format(maximum=self.project.maximum_investment.amount))),
+                                        code='maximum_investment_amount_not_met',)
+        return self.cleaned_data['amount']
 
     def clean_has_agreed_to_loan_agreement_terms(self, *args, **kwargs):
         if self.is_large_sum() is True and self.cleaned_data['has_agreed_to_loan_agreement_terms'] is False:
