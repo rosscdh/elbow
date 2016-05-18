@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-12 07:47+0000\n"
+"POT-Creation-Date: 2016-05-18 13:11+0000\n"
 "PO-Revision-Date: 2016-05-12 09:43+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -54,152 +54,175 @@ msgstr "Lastschrift"
 msgid "Manual bank transfer"
 msgstr "Überweisung"
 
-#: elbow/apps/order/forms.py:32 elbow/apps/order/forms.py:103
+#: elbow/apps/order/forms.py:33 elbow/apps/order/forms.py:124
 msgid "Investment Amount"
 msgstr "Investitionssumme"
 
-#: elbow/apps/order/forms.py:38
+#: elbow/apps/order/forms.py:39
 msgid "Title"
 msgstr "Titel"
 
-#: elbow/apps/order/forms.py:39
+#: elbow/apps/order/forms.py:40
 msgid "Mr"
 msgstr "Herr"
 
-#: elbow/apps/order/forms.py:40
+#: elbow/apps/order/forms.py:41
 msgid "Mrs"
 msgstr "Frau"
 
-#: elbow/apps/order/forms.py:41
+#: elbow/apps/order/forms.py:42
 msgid "Mz"
 msgstr ""
 
-#: elbow/apps/order/forms.py:42
+#: elbow/apps/order/forms.py:43
 msgid "Miss"
 msgstr ""
 
-#: elbow/apps/order/forms.py:43
+#: elbow/apps/order/forms.py:44
 msgid "Dr"
 msgstr "Dr."
 
-#: elbow/apps/order/forms.py:44
+#: elbow/apps/order/forms.py:45
 msgid "Prof"
 msgstr "Prof."
 
-#: elbow/apps/order/forms.py:45
+#: elbow/apps/order/forms.py:46
 msgid "Hnr"
 msgstr ""
 
-#: elbow/apps/order/forms.py:47
+#: elbow/apps/order/forms.py:48
 msgid "Name of Investor Person/Company"
 msgstr "Vorname Nachname ODER Firma"
 
-#: elbow/apps/order/forms.py:50
+#: elbow/apps/order/forms.py:51
 msgid "Date of Birth"
 msgstr "Geburtsdatum"
 
-#: elbow/apps/order/forms.py:53
+#: elbow/apps/order/forms.py:54
 msgid "Telephone"
 msgstr "Telefon"
 
-#: elbow/apps/order/forms.py:54
+#: elbow/apps/order/forms.py:55
 msgid "Address"
 msgstr "Adresse"
 
-#: elbow/apps/order/forms.py:54
+#: elbow/apps/order/forms.py:55
 msgid "Line 1 of address"
 msgstr "Straße Hausnummer"
 
-#: elbow/apps/order/forms.py:55
+#: elbow/apps/order/forms.py:56
 msgid "Line 2 of address"
 msgstr "Adresszusatz"
 
-#: elbow/apps/order/forms.py:56
+#: elbow/apps/order/forms.py:57
 msgid "Post code"
 msgstr "Postleitzahl"
 
-#: elbow/apps/order/forms.py:57
+#: elbow/apps/order/forms.py:58
 msgid "City"
 msgstr "Stadt"
 
-#: elbow/apps/order/forms.py:58
+#: elbow/apps/order/forms.py:59
 msgid "Country"
 msgstr "Land"
 
-#: elbow/apps/order/forms.py:60
+#: elbow/apps/order/forms.py:61
 msgid "Tax number"
 msgstr "Steuernummer"
 
-#: elbow/apps/order/forms.py:62
+#: elbow/apps/order/forms.py:63
 msgid "How to pay"
 msgstr "Zahlungsmethode"
 
-#: elbow/apps/order/forms.py:64
+#: elbow/apps/order/forms.py:65
 msgid "Please select a payment type"
 msgstr "Bitte wählen Sie eine Zahlungsweise aus"
 
-#: elbow/apps/order/forms.py:67 elbow/apps/order/forms.py:192
+#: elbow/apps/order/forms.py:68 elbow/apps/order/forms.py:226
 msgid "I agree to the terms of the Loan Agreement"
 msgstr "Ich stimme dem Darlehensvertrag zu."
 
-#: elbow/apps/order/forms.py:70
+#: elbow/apps/order/forms.py:71
 msgid "Terms & Conditions"
 msgstr "Allgemeine Geschäftsbedingungen"
 
-#: elbow/apps/order/forms.py:71
+#: elbow/apps/order/forms.py:72
 msgid "I agree to the terms and conditions"
 msgstr "Ich habe die AGBs gelesen und stimme zu."
 
-#: elbow/apps/order/forms.py:74
+#: elbow/apps/order/forms.py:75
 msgid "I have read the contract"
 msgstr "Vertragsunterlagen"
 
-#: elbow/apps/order/forms.py:75
+#: elbow/apps/order/forms.py:76
 msgid "I agree to be bound to the terms of the contract."
 msgstr "Ich habe den Darlehensvertrag gelesen und stimme zu."
 
-#: elbow/apps/order/forms.py:105
+#: elbow/apps/order/forms.py:106
+#, python-brace-format
+msgid "A minimum of &euro;{minimum} is required"
+msgstr ""
+
+#: elbow/apps/order/forms.py:109
+#, python-brace-format
+msgid ""
+"A minimum of &euro;{minimum} and a maximum of &euro;{maximum}, is required"
+msgstr ""
+
+#: elbow/apps/order/forms.py:126
 msgid "Interest Rate p.a"
 msgstr "Zinsen p.a."
 
-#: elbow/apps/order/forms.py:106
+#: elbow/apps/order/forms.py:127
 msgid "Interest Term"
 msgstr "Laufzeit"
 
-#: elbow/apps/order/forms.py:108
+#: elbow/apps/order/forms.py:129
 msgid ""
 "You want to invest &euro;1000.00 or more and therefore, must agree to the "
 "loan contract in order to proceed"
-msgstr "Sie wollen 1.000,00 &euro; oder mehr zu investieren und daher muss der Darlehensvertrag zustimmen, um fortzufahren"
+msgstr ""
+"Sie wollen 1.000,00 &euro; oder mehr zu investieren und daher muss der "
+"Darlehensvertrag zustimmen, um fortzufahren"
 
-#: elbow/apps/order/forms.py:112
+#: elbow/apps/order/forms.py:133
 msgid "Investor Details"
 msgstr "Persönliche Daten"
 
-#: elbow/apps/order/forms.py:118
+#: elbow/apps/order/forms.py:139
 msgid "Postal Address"
 msgstr "Anschrift"
 
-#: elbow/apps/order/forms.py:125
+#: elbow/apps/order/forms.py:146
 msgid "Tax information"
 msgstr "Steuerinformationen"
 
-#: elbow/apps/order/forms.py:128
+#: elbow/apps/order/forms.py:149
 #, fuzzy
 #| msgid "Payment Failed"
 msgid "Payment"
 msgstr "Zahlung fehlgeschlagen"
 
-#: elbow/apps/order/forms.py:134
+#: elbow/apps/order/forms.py:155
 #: elbow/apps/project/templates/project/project-detail.html:13
 msgid "Invest Now"
 msgstr "Jetzt investieren"
 
-#: elbow/apps/order/forms.py:145
+#: elbow/apps/order/forms.py:169
+#, python-brace-format
+msgid "The minimum investment amount is &euro;{minimum}"
+msgstr ""
+
+#: elbow/apps/order/forms.py:173
+#, python-brace-format
+msgid "The maximum investment amount is &euro;{maximum}"
+msgstr ""
+
+#: elbow/apps/order/forms.py:179
 msgid "You must agree to the terms of the loan agreement"
 msgstr "Sie müssen den Bedingungen der Darlehensvertrag zustimmen."
 
-#: elbow/apps/order/forms.py:229
+#: elbow/apps/order/forms.py:263
 #: elbow/apps/order/templates/order/order-list.html:40
 msgid "Continue"
 msgstr "Weiter"
@@ -373,15 +396,15 @@ msgid "Customer Reference"
 msgstr "Kundennummer"
 
 # ?
-#: elbow/apps/project/models.py:49
+#: elbow/apps/project/models.py:50
 msgid "Format: 12m, 36m, 3y, 7y"
 msgstr ""
 
-#: elbow/apps/project/models.py:86
+#: elbow/apps/project/models.py:87
 msgid "Project"
 msgstr "Projekt"
 
-#: elbow/apps/project/models.py:87
+#: elbow/apps/project/models.py:88
 msgid "Projects"
 msgstr "Projekte"
 
