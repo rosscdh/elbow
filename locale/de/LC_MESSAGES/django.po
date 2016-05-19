@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-19 13:28+0000\n"
-"PO-Revision-Date: 2016-05-19 15:36+0200\n"
+"POT-Creation-Date: 2016-05-19 13:54+0000\n"
+"PO-Revision-Date: 2016-05-19 16:01+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -123,23 +123,18 @@ msgid "Please select a payment type"
 msgstr "Bitte wählen Sie eine Zahlungsweise aus"
 
 #: elbow/apps/order/forms.py:78
-#, fuzzy
-#| msgid "I agree to the terms and conditions"
 msgid "I have read and agree to the Terms & Conditions"
-msgstr "Ich habe die AGBs gelesen und stimme zu."
+msgstr "Ich habe die AGB gelesen und stimme zu."
 
 #: elbow/apps/order/forms.py:81
-#, fuzzy
-#| msgid "I agree to be bound to the terms of the contract."
 msgid ""
 "I have read and agree to be bound to the terms of the investment contract."
-msgstr "Ich habe den Darlehensvertrag gelesen und stimme zu."
+msgstr ""
+"Ich habe das Vermfigensanlageninformationsblatt (VIB) gelesen und stimme zu."
 
 #: elbow/apps/order/forms.py:84
-#, fuzzy
-#| msgid "I agree to the terms of the Loan Agreement"
 msgid "I have read and agree to the terms of the loan agreement."
-msgstr "Ich stimme dem Darlehensvertrag zu."
+msgstr "Ich habe den Muster-Darlehensvertrag gelesen und stimme zu."
 
 #: elbow/apps/order/forms.py:115
 #, python-brace-format
@@ -167,8 +162,12 @@ msgid ""
 "You want to invest &euro;1000.00 or more and therefore, must agree to the "
 "loan contract in order to proceed"
 msgstr ""
-"Sie wollen 1.000,00 &euro; oder mehr zu investieren und daher muss der "
-"Darlehensvertrag zustimmen, um fortzufahren"
+"Da ich über 1.000 € investieren möchte, bestätige ich hiermit, dass mein "
+"lnvestitionsbetrag den zweifachen Betrag\n"
+"meines durchschnittlichen monatlichen Nettoeinkommens nicht übersteigt oder "
+"dass ich über ein frei verfügbares\n"
+"Vermögen in Form von Bankguthaben und Finanzinstrumenten in H6he von "
+"mindestens 100.000 € verfüge."
 
 #: elbow/apps/order/forms.py:141
 msgid "Investor Details"
@@ -353,6 +352,7 @@ msgid "Loan Agreement"
 msgstr "Darlehensvertrag"
 
 #: elbow/apps/order/templates/order/order-loan_agreement.html:25
+#, python-format
 msgid ""
 "<p>I confirm that I have a freely available assets in the form of bank "
 "deposits and financial instruments of at least %(minimum)s € either</p><p>OR "
@@ -729,7 +729,7 @@ msgstr ""
 "den Benutzer %(user_display)s bestätigt."
 
 #: templates/account/login.html:3 templates/account/login.html.py:7
-#: templates/account/login.html:44 templates/account/login.html.py:55
+#: templates/account/login.html:44 templates/account/login.html.py:57
 msgid "Sign In"
 msgstr "Eintragen"
 
@@ -760,7 +760,7 @@ msgstr ""
 "Sie haben sich bereits registriert?\n"
 "Hier können Sie sich <a href=\"%(signup_url)s\">anmelden</a>."
 
-#: templates/account/login.html:54
+#: templates/account/login.html:47 templates/account/login.html.py:56
 msgid "Forgot Password?"
 msgstr "Passwort vergessen?"
 
@@ -845,11 +845,11 @@ msgstr ""
 "ein und wir senden Ihnen eine E-Mail, mit der Sie das Passwort zurücksetzen "
 "können."
 
-#: templates/account/password_reset.html:20
+#: templates/account/password_reset.html:22
 msgid "Reset My Password"
 msgstr "Mein Passwort zurücksetzen"
 
-#: templates/account/password_reset.html:23
+#: templates/account/password_reset.html:26
 msgid "Please contact us if you have any trouble resetting your password."
 msgstr ""
 "Bitte wenden Sie sich an uns, wenn Probleme beim zurücksetzen des Passworts "

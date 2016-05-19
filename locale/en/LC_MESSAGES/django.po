@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-19 13:28+0000\n"
+"POT-Creation-Date: 2016-05-19 13:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -333,6 +333,7 @@ msgid "Loan Agreement"
 msgstr ""
 
 #: elbow/apps/order/templates/order/order-loan_agreement.html:25
+#, python-format
 msgid ""
 "<p>I confirm that I have a freely available assets in the form of bank "
 "deposits and financial instruments of at least %(minimum)s € either</p><p>OR "
@@ -658,7 +659,7 @@ msgid ""
 msgstr ""
 
 #: templates/account/login.html:3 templates/account/login.html.py:7
-#: templates/account/login.html:44 templates/account/login.html.py:55
+#: templates/account/login.html:44 templates/account/login.html.py:57
 msgid "Sign In"
 msgstr ""
 
@@ -682,7 +683,7 @@ msgid ""
 "    <a href=\"%(signup_url)s\">sign up</a> first."
 msgstr ""
 
-#: templates/account/login.html:54
+#: templates/account/login.html:47 templates/account/login.html.py:56
 msgid "Forgot Password?"
 msgstr ""
 
@@ -764,11 +765,11 @@ msgid ""
 "an e-mail allowing you to reset it."
 msgstr ""
 
-#: templates/account/password_reset.html:20
+#: templates/account/password_reset.html:22
 msgid "Reset My Password"
 msgstr ""
 
-#: templates/account/password_reset.html:23
+#: templates/account/password_reset.html:26
 msgid "Please contact us if you have any trouble resetting your password."
 msgstr ""
 
