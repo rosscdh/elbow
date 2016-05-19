@@ -43,6 +43,8 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
       <span class="glyphicon glyphicon-check" aria-hidden="true"></span>
       {% trans "Sign In" %}
     </button>
+
+    <a class="btn btn-lg btn-default" href="{% url 'account_reset_password' %}">{% trans 'Forgot Password?' %}</a>
   </div>
 
 <!--   <form class="login" method="POST" action="{% url 'account_login' %}">
