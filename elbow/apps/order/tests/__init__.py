@@ -5,8 +5,13 @@ from django.test import TestCase, Client
 VALID_ORDER_POST_DATA = {
     'amount': 2500,
     'has_agreed_to_loan_agreement_terms': True,
+    't_and_c': True,
+    'has_read_investment_contract': True,
+    'has_read_loan_agreement_contract': True,
     'title': 'Mr',
-    'customer_name': 'Bob Dylan Inc.',
+    'customer_first_name': 'Bob',
+    'customer_last_name': 'Dylan Inc.',
+    'company_name': 'BDylan Inc.',
     'dob': '1979-03-30',
     'phone': '555-55-55',
     'address_1': '46a BismarkStrasse',
@@ -16,8 +21,6 @@ VALID_ORDER_POST_DATA = {
     'country': 'Germany',
     'tax_number': '1234567',
     'payment_type': 'debit',
-    't_and_c': True,
-    'has_read_contract': True
 }
 
 

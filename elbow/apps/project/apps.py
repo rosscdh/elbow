@@ -8,6 +8,7 @@ PROJECT_STATUS = get_namedtuple_choices('PROJECT_STATUS', (
     ('pending', 'pending', 'Pending'),
     ('active', 'active', 'Available'),
     ('complete', 'complete', 'Complete'),
+    ('removed', 'removed', 'Removed'),
 ))
 
 USE_PAYMENTOPTIONS = get_namedtuple_choices('USE_PAYMENTOPTIONS', (

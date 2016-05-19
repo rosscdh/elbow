@@ -1,5 +1,5 @@
 {% load i18n pages_tags static flags %}{% load_pages %}
-<nav class="navbar navbar-fixed-top navbar-fixed">
+<nav class="navbar">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -8,14 +8,16 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/{{ current_lang.code }}/p/start"><img class="img img-responsive" style="height:48px;" src="{% get_static_prefix %}img/todaycapital-logo-white-bg-160.png" alt="" title="" /></a>
+      <a class="navbar-brand" href="/{{ current_lang.code }}/p/start"><img class="img img-responsive" style="height:42px;" src="{% get_static_prefix %}img/todaycapital-logo-white-bg-160.png" alt="" title="" /></a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <!-- <li class="active"><a href="/{{ current_lang.code }}/">{% trans 'Home' %}</a></li> -->
+        {% comment %}
         {% for page in pages_main %}
             {% pages_menu page %}
         {% endfor %}
+        {% endcomment %}
         <!-- Languages -->
 <!--             <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{% famfamfam_flag_icon current_lang %}{{ current_lang.name_translated }} <span class="caret"></span></a>
@@ -37,7 +39,7 @@
           <ul class="dropdown-menu">
             <li class="text-center">{{ user.first_name|default:user.email|default:user.username }}</li>
             <li role="separator" class="divider"></li>
-            <li><a href="{% url 'account_email' %}">{% trans 'Email Settings' %}</a></li>
+            <!-- <li><a href="{% url 'account_email' %}">{% trans 'Email Settings' %}</a></li> -->
             <li><a href="{% url 'account_change_password' %}">{% trans 'Change Password' %}</a></li>
             <!-- <li><a href="{% url 'account_inactive' %}">{% trans 'Cancel Account' %}</a></li> -->
             <li role="separator" class="divider"></li>

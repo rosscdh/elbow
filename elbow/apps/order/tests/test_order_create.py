@@ -39,7 +39,8 @@ class OrderCreateViewTest(BaseTestCase):
         self.assertEqual(resp.context['project'], self.project)
         self.assertEqual(type(resp.context['form']), CreateOrderForm)
         # Default sets the current usres name
-        self.assertEqual(resp.context['form'].fields['customer_name'].initial, '%s %s' % (self.user.first_name, self.user.last_name))
+        self.assertEqual(resp.context['form'].fields['customer_first_name'].initial, self.user.first_name)
+        self.assertEqual(resp.context['form'].fields['customer_last_name'].initial, self.user.last_name)
 
     @httpretty.activate
     def test_form_redirects_to_load_agreement_with_large_amount_page_on_success(self):
@@ -89,8 +90,8 @@ class OrderCreateViewTest(BaseTestCase):
                                content_type="application/json")
 
         # This is to ensure we redirect to the loan_agreement page
-        self.initial['amount'] = 500
-        self.assertEqual(self.initial.get('amount'), 500)
+        self.initial['amount'] = 501
+        self.assertEqual(self.initial.get('amount'), 501)
 
         with self.settings(DEBUG=True):
             self.c.force_login(self.user)
@@ -140,7 +141,6 @@ class OrderFormTest(TestCase):
 
             # Test with data
             form = CreateOrderForm(user=self.user, project=self.project, data=self.initial)
-
             self.assertTrue(form.is_valid())
             order = form.save()
 

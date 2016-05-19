@@ -39,7 +39,7 @@
       <div class="col-xs-2">
         {% if order.can_continue_process %}<a href="{{ order.url }}" class="btn btn-sm btn-info">{% trans 'Continue' %}</a>{% endif %}
         {% if order.can_continue_process or order.status == 'pending' %}<a href="javascript:;" data-url="{{ order.url }}" class="order-lifecycle-event btn btn-sm btn-warning">{% trans 'Cancel'  %}</a>{% endif %}
-        {% if order.status == 'cancelled' %}<a href="javascript:;" data-url="{{ order.url }}" class="order-lifecycle-event btn btn-sm btn-danger">{% trans 'Delete'  %}</a>{% endif %}
+        <!-- {% if order.status == 'cancelled' %}<a href="javascript:;" data-url="{{ order.url }}" class="order-lifecycle-event btn btn-sm btn-danger">{% trans 'Delete'  %}</a>{% endif %} -->
       </div>
     </div>
   {% empty %}

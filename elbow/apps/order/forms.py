@@ -36,45 +36,53 @@ class CreateOrderForm(forms.Form):
                                 min_value=500,
                                 required=True)
 
-    title = forms.ChoiceField(label=_('Title'), choices=(
-                                                            ('Mr', _('Mr')),
-                                                            ('Mrs', _('Mrs')),
-                                                            ('Mz', _('Mz')),
-                                                            ('Miss', _('Miss')),
-                                                            ('Dr', _('Dr')),
-                                                            ('Prof', _('Prof')),
-                                                            ('Hnr', _('Hnr')),
-                                                        ))
-    customer_name = forms.CharField(label=_('Name of Investor Person/Company'),
-                                    required=True)
+    title = forms.ChoiceField(label=_('Title'), choices=(('Mr', _('Mr')), ('Mrs', _('Mrs')),))
+
+    customer_first_name = forms.CharField(label=_('First name'),
+                                          required=True)
+
+    customer_last_name = forms.CharField(label=_('Last name'),
+                                         required=True)
+
+    company_name = forms.CharField(label=_('Name of Company'),
+                                   help_text=_('If applicable'),
+                                   required=False)
 
     dob = forms.DateField(label=_('Date of Birth'),
                           initial=DEFAULT_DATE.date,
                           widget=forms.SelectDateWidget(years=YEARS))
-    phone = forms.CharField(label=_('Telephone'), required=True)
-    address_1 = forms.CharField(label=_('Address'), help_text=_('Line 1 of address'), required=True)
-    address_2 = forms.CharField(label='', help_text=_('Line 2 of address'), required=False)
-    postcode = forms.CharField(label=_('Post code'), required=True)
-    city = forms.CharField(label=_('City'), required=True)
-    country = forms.CharField(label=_('Country'), required=True)
 
-    tax_number = forms.CharField(label=_('Tax number'), required=False)
+    address_1 = forms.CharField(label=_('Address'),
+                                help_text=_('Line 1 of address'),
+                                required=True)
+
+    address_2 = forms.CharField(label='',
+                                help_text=_('Line 2 of address'),
+                                required=False)
+
+    postcode = forms.CharField(label=_('Post code'),
+                               required=True)
+
+    city = forms.CharField(label=_('City'),
+                           required=True)
+
+    country = forms.CharField(label=_('Country'),
+                              required=True)
 
     payment_type = forms.ChoiceField(label=_('How to pay'),
+                                     initial=ORDER_PAYMENT_TYPE.prepay,
                                      choices=ORDER_PAYMENT_TYPE.get_choices(),
-                                     help_text=_('Please select a payment type'))
+                                     help_text=_('Please select a payment type'),
+                                     widget=forms.RadioSelect)
 
-    has_agreed_to_loan_agreement_terms = forms.BooleanField(label='',
-                                                            help_text=_('I agree to the terms of the Loan Agreement'),
-                                                            required=False)
-
-    t_and_c = forms.BooleanField(label=_('Terms & Conditions'),
-                                 help_text=_('I agree to the terms and conditions'),
+    t_and_c = forms.BooleanField(label=_('I have read and agree to the Terms & Conditions'),
                                  widget=forms.CheckboxInput)
 
-    has_read_contract = forms.BooleanField(label=_('I have read the contract'),
-                                           help_text=_('I agree to be bound to the terms of the contract.'),
-                                           widget=forms.CheckboxInput)
+    has_read_investment_contract = forms.BooleanField(label=_('I have read and agree to be bound to the terms of the investment contract.'),
+                                                      widget=forms.CheckboxInput)
+
+    has_read_loan_agreement_contract = forms.BooleanField(label=_('I have read and agree to the terms of the loan agreement.'),
+                                                          widget=forms.CheckboxInput)
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
@@ -86,7 +94,8 @@ class CreateOrderForm(forms.Form):
             raise Exception('project must be passed into the Form')
 
         super(CreateOrderForm, self).__init__(**kwargs)
-        self.fields['customer_name'].initial = '%s %s' % (self.user.first_name, self.user.last_name)
+        self.fields['customer_first_name'].initial = self.user.first_name
+        self.fields['customer_last_name'].initial = self.user.last_name
 
         #
         # Setup minimum and max investment if the project has it
@@ -127,15 +136,17 @@ class CreateOrderForm(forms.Form):
                                         HTML('<div class="input-group"><label for="" class="control-label">%s:</label>&nbsp;<span id="interest_term"></span></div>' % (_('Interest Term'),)),
                                         HTML('<span id="accrue-target" class=""></span>'),
                                         HTML('<div id="loan-contract" class="{show_has_agreed_to_loan_agreement_terms} alert alert-warning clearfix"><p>{text}</p>'.format(show_has_agreed_to_loan_agreement_terms=show_has_agreed_to_loan_agreement_terms, text=_('You want to invest &euro;1000.00 or more and therefore, must agree to the loan contract in order to proceed'))),
-                                        Field('has_agreed_to_loan_agreement_terms'),
                                         HTML('</div>'),
                                ),
                                Fieldset(_('Investor Details'),
                                         'title',
-                                        'customer_name',
+                                        'customer_first_name',
+                                        'customer_last_name',
                                         'dob',
-                                        'phone',
-                                ),
+                               ),
+                               Fieldset(_('Company Details'),
+                                        'company_name',
+                               ),
                                Fieldset(_('Postal Address'),
                                         'address_1',
                                         'address_2',
@@ -143,13 +154,11 @@ class CreateOrderForm(forms.Form):
                                         'city',
                                         'country',
                                ),
-                               Fieldset(_('Tax information'),
-                                        'tax_number',
-                               ),
                                Fieldset(_('Payment'),
                                         'payment_type',
                                         't_and_c',
-                                        'has_read_contract',
+                                        'has_read_investment_contract',
+                                        'has_read_loan_agreement_contract',
                                ),
                                ButtonHolder(
                                     Submit('submit', _('Invest Now'), css_class='btn btn-lg'),
@@ -174,22 +183,25 @@ class CreateOrderForm(forms.Form):
                                         code='maximum_investment_amount_not_met',)
         return self.cleaned_data['amount']
 
-    def clean_has_agreed_to_loan_agreement_terms(self, *args, **kwargs):
-        if self.is_large_sum() is True and self.cleaned_data['has_agreed_to_loan_agreement_terms'] is False:
+    def clean_has_read_loan_agreement_contract(self, *args, **kwargs):
+        if self.is_large_sum() is True and self.cleaned_data['has_read_loan_agreement_contract'] is False:
                 raise forms.ValidationError(_('You must agree to the terms of the loan agreement'),
                                             code='must_agree_to_terms_of_loan_agreement',)
-        return self.cleaned_data['has_agreed_to_loan_agreement_terms']
+        return self.cleaned_data['has_read_loan_agreement_contract']
 
     def save(self, *args, **kwargs):
         """
         Artificial save here as forms.Form dont have a save method
         """
-        has_agreed_to_loan_agreement_terms = self.cleaned_data.pop('has_agreed_to_loan_agreement_terms')
         t_and_c = self.cleaned_data.pop('t_and_c')
-        has_read_contract = self.cleaned_data.pop('has_read_contract')
+        has_read_investment_contract = self.cleaned_data.pop('has_read_investment_contract')
+        has_read_loan_agreement_contract = self.cleaned_data.pop('has_read_loan_agreement_contract')
 
         amount = self.cleaned_data['amount']
         self.cleaned_data['amount'] = Money(Decimal(amount), EUR)
+
+        self.cleaned_data['customer_name'] = '%s %s' % (self.cleaned_data.pop('customer_first_name'),
+                                                        self.cleaned_data.pop('customer_last_name'))
 
         self.cleaned_data['user'] = self.user
         self.cleaned_data['project'] = self.project
@@ -203,9 +215,8 @@ class CreateOrderForm(forms.Form):
                                                     user=self.user)
         order = pdf_service.process()
 
-        if order.is_large_amount is False:
-            email_service = SendEmailService(order=order)
-            email_service.send_order_created_email(user_list=[self.user])
+        email_service = SendEmailService(order=order)
+        email_service.send_order_created_email(user_list=[self.user])
 
         log(
             user=self.user,
@@ -215,6 +226,9 @@ class CreateOrderForm(forms.Form):
                 "note": "%s Created a new Order to Invest" % self.user,
                 "is_large_amount": order.is_large_amount,
                 "amount": unicode(order.amount),
+                "has_read_loan_agreement_contract": has_read_loan_agreement_contract,
+                "t_and_c_agreed": t_and_c,
+                "has_read_investment_contract": has_read_investment_contract,
             }
         )
 
