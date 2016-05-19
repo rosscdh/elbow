@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-19 13:09+0000\n"
-"PO-Revision-Date: 2016-05-19 15:01+0200\n"
+"POT-Creation-Date: 2016-05-19 13:28+0000\n"
+"PO-Revision-Date: 2016-05-19 15:29+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -214,9 +214,8 @@ msgid "I agree to the terms of the Loan Agreement"
 msgstr "Ich stimme dem Darlehensvertrag zu."
 
 #: elbow/apps/order/forms.py:277
-#: elbow/apps/order/templates/order/order-list.html:40
-msgid "Continue"
-msgstr "Weiter"
+msgid "Continue & Make the payment"
+msgstr "Jetzt zahlungspflichtig investieren"
 
 #: elbow/apps/order/models.py:78
 msgid "Order"
@@ -331,6 +330,10 @@ msgstr "Jahre"
 msgid "Investment History"
 msgstr "Investmentübersicht"
 
+#: elbow/apps/order/templates/order/order-list.html:40
+msgid "Continue"
+msgstr "Weiter"
+
 #: elbow/apps/order/templates/order/order-list.html:41
 msgid "Cancel"
 msgstr "Abbrechen"
@@ -346,6 +349,23 @@ msgstr "Investitionssumme"
 #| msgid "Invest Now"
 msgid "Invest now"
 msgstr "Jetzt investieren"
+
+#: elbow/apps/order/templates/order/order-loan_agreement.html:10
+msgid "Loan Agreement"
+msgstr "Darlehensvertrag"
+
+#: elbow/apps/order/templates/order/order-loan_agreement.html:25
+msgid ""
+"<p>I confirm that I have a freely available assets in the form of bank "
+"deposits and financial instruments of at least %(minimum)s € either</p><p>OR "
+"that the total amount of my investment in this project is not twice my "
+"monthly average. Net income exceeds.</p>"
+msgstr ""
+"<p>Ich bestätige, dass ich entweder über ein frei verfügbares Vermögen in "
+"Form von Bankguthaben und Finanzinstrumenten von mindestens %(minimum)s € "
+"verfüge</p><p>ODER dass der Gesamtbetrag meiner Investition in dieses "
+"Projekt nicht das Zweifache meines durchschnittlichen mtl. Nettoeinkommens "
+"übersteigt.</p>"
 
 #: elbow/apps/order/templates/order/order-payment.html:10
 msgid "Payment Details"

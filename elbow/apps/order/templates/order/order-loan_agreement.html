@@ -7,7 +7,7 @@
 
 {% block page_header %}
 <div class="page-header clearfix">
-  <h1>Loan Agreement</h1>
+  <h1>{% trans 'Loan Agreement' %}</h1>
   <p>{{ project.name }}, {{ project.proposition }}</p>
   <div class="col-md-4">
   &nbsp;
@@ -22,8 +22,7 @@
 <div class="row">
 
   <div class="col-md-12">
-    <p>Ich bestätige, dass ich entweder über ein frei verfügbares Vermögen in Form von Bankguthaben und Finanzinstrumenten von mindestens 100.000 € verfüge</p>
-    <p>ODER dass der Gesamtbetrag meiner Investition in dieses Projekt nicht das Zweifache meines durchschnittlichen mtl. Nettoeinkommens übersteigt.</p>
+    {% blocktrans with minimum='100.000' %}<p>I confirm that I have a freely available assets in the form of bank deposits and financial instruments of at least {{minimum}} € either</p><p>OR that the total amount of my investment in this project is not twice my monthly average. Net income exceeds.</p>{% endblocktrans %}
   </div>
 
   <div class="col-md-12" style="margin:10px 0px;">

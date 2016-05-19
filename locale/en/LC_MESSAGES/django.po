@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-19 13:09+0000\n"
+"POT-Creation-Date: 2016-05-19 13:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -198,8 +198,7 @@ msgid "I agree to the terms of the Loan Agreement"
 msgstr ""
 
 #: elbow/apps/order/forms.py:277
-#: elbow/apps/order/templates/order/order-list.html:40
-msgid "Continue"
+msgid "Continue & Make the payment"
 msgstr ""
 
 #: elbow/apps/order/models.py:78
@@ -313,6 +312,10 @@ msgstr ""
 msgid "Investment History"
 msgstr ""
 
+#: elbow/apps/order/templates/order/order-list.html:40
+msgid "Continue"
+msgstr ""
+
 #: elbow/apps/order/templates/order/order-list.html:41
 msgid "Cancel"
 msgstr ""
@@ -323,6 +326,18 @@ msgstr ""
 
 #: elbow/apps/order/templates/order/order-list.html:49
 msgid "Invest now"
+msgstr ""
+
+#: elbow/apps/order/templates/order/order-loan_agreement.html:10
+msgid "Loan Agreement"
+msgstr ""
+
+#: elbow/apps/order/templates/order/order-loan_agreement.html:25
+msgid ""
+"<p>I confirm that I have a freely available assets in the form of bank "
+"deposits and financial instruments of at least %(minimum)s € either</p><p>OR "
+"that the total amount of my investment in this project is not twice my "
+"monthly average. Net income exceeds.</p>"
 msgstr ""
 
 #: elbow/apps/order/templates/order/order-payment.html:10
