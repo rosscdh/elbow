@@ -135,7 +135,7 @@ class CreateOrderForm(forms.Form):
                                         HTML('<div class="input-group"><label for="" class="control-label">%s:</label>&nbsp;<span id="interest_rate_pa"></span></div>' % (_('Interest Rate p.a'),)),
                                         HTML('<div class="input-group"><label for="" class="control-label">%s:</label>&nbsp;<span id="interest_term"></span></div>' % (_('Interest Term'),)),
                                         HTML('<span id="accrue-target" class=""></span>'),
-                                        HTML('<div id="loan-contract" class="{show_has_agreed_to_loan_agreement_terms} alert alert-warning clearfix"><p>{text}</p>'.format(show_has_agreed_to_loan_agreement_terms=show_has_agreed_to_loan_agreement_terms, text=_(mark_safe(u'You want to invest &#8364;1000.00 or more and therefore, must agree to the loan contract in order to proceed')))),
+                                        HTML(u'<div id="loan-contract" class="{show_has_agreed_to_loan_agreement_terms} alert alert-warning clearfix"><p>{text}</p>'.format(show_has_agreed_to_loan_agreement_terms=show_has_agreed_to_loan_agreement_terms, text=_(u'You want to invest 1000.00 or more and therefore, must agree to the loan contract in order to proceed'))),
                                         HTML('</div>'),
                                ),
                                Fieldset(_('Investor Details'),
