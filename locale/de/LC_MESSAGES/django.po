@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-05-19 13:28+0000\n"
-"PO-Revision-Date: 2016-05-19 15:29+0200\n"
+"PO-Revision-Date: 2016-05-19 15:36+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -175,10 +175,8 @@ msgid "Investor Details"
 msgstr "Persönliche Daten"
 
 #: elbow/apps/order/forms.py:147
-#, fuzzy
-#| msgid "Payment Details"
 msgid "Company Details"
-msgstr "Zahlungsdetails"
+msgstr "Firmendetails"
 
 #: elbow/apps/order/forms.py:150
 msgid "Postal Address"
