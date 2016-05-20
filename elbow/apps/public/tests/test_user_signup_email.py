@@ -35,7 +35,7 @@ class EmailsSentOnNewSignupTest(BaseTestCase):
         self.assertEqual(2, len(mail.outbox))
 
         email = mail.outbox[0]  # Admin Email
-        self.assertEqual(unicode(email.subject), u'TodayCapital.de - New sign-up')
+        self.assertEqual(unicode(email.subject), u'Registrieren')
         self.assertEqual(email.recipients(), ['post@todaycapital.de'])
 
         email = mail.outbox[1]  # Customer Email
