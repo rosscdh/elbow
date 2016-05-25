@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-25 16:05+0000\n"
+"POT-Creation-Date: 2016-05-25 19:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,6 +15,27 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: elbow/apps/document/apps.py:9
+msgid "Project Document"
+msgstr ""
+
+#: elbow/apps/document/apps.py:10
+msgid "Order Document"
+msgstr ""
+
+#: elbow/apps/document/apps.py:11
+msgid "Generic Loan Agreement"
+msgstr ""
+
+#: elbow/apps/document/apps.py:12
+#: elbow/apps/order/templates/order/order-loan_agreement.html:10
+msgid "Loan Agreement"
+msgstr ""
+
+#: elbow/apps/document/apps.py:13
+msgid "Term Sheet"
+msgstr ""
 
 #: elbow/apps/order/apps.py:10
 msgid "Order Created (1/3)"
@@ -120,28 +141,33 @@ msgstr ""
 msgid "Please select a payment type"
 msgstr ""
 
-#: elbow/apps/order/forms.py:78
-msgid "I have read & agree to the Terms of the Loan Agreement"
+#: elbow/apps/order/forms.py:78 elbow/apps/public/forms.py:16
+msgid "I agree to the site <a href=\"/path/to/pdf\">Terms & Conditions</a>"
 msgstr ""
 
 #: elbow/apps/order/forms.py:81
+#, python-brace-format
 msgid ""
-"I have read and agree to be bound to the terms of the investment contract."
+"I have read and agree to be bound to the terms of the <a href="
+"\"{url}\">investment contract</a>."
 msgstr ""
 
 #: elbow/apps/order/forms.py:84
-msgid "I have read and agree to the terms of the loan agreement."
+#, python-brace-format
+msgid ""
+"I have read and agree to the terms of the <a href=\"{url}\">loan agreement</"
+"a>."
 msgstr ""
 
 #: elbow/apps/order/forms.py:115
 #, python-brace-format
-msgid "A minimum of &euro;{minimum} is required"
+msgid "A minimum of &euro; {minimum} is required"
 msgstr ""
 
 #: elbow/apps/order/forms.py:118
 #, python-brace-format
 msgid ""
-"A minimum of &euro;{minimum} and a maximum of &euro;{maximum}, is required"
+"A minimum of &euro; {minimum} and a maximum of &euro; {maximum}, is required"
 msgstr ""
 
 #: elbow/apps/order/forms.py:135
@@ -152,52 +178,52 @@ msgstr ""
 msgid "Interest Term"
 msgstr ""
 
-#: elbow/apps/order/forms.py:138
+#: elbow/apps/order/forms.py:139
 msgid ""
 "You want to invest 1000.00 or more and therefore, must agree to the loan "
 "contract in order to proceed"
 msgstr ""
 
-#: elbow/apps/order/forms.py:141
+#: elbow/apps/order/forms.py:142
 msgid "Investor Details"
 msgstr ""
 
-#: elbow/apps/order/forms.py:147
+#: elbow/apps/order/forms.py:148
 msgid "Company Details"
 msgstr ""
 
-#: elbow/apps/order/forms.py:150
+#: elbow/apps/order/forms.py:151
 msgid "Postal Address"
 msgstr ""
 
-#: elbow/apps/order/forms.py:157
+#: elbow/apps/order/forms.py:158
 msgid "Payment"
 msgstr ""
 
-#: elbow/apps/order/forms.py:164
+#: elbow/apps/order/forms.py:165
 #: elbow/apps/project/templates/project/project-detail.html:13
 msgid "Invest Now"
 msgstr ""
 
-#: elbow/apps/order/forms.py:178
+#: elbow/apps/order/forms.py:179
 #, python-brace-format
 msgid "The minimum investment amount is &euro;{minimum}"
 msgstr ""
 
-#: elbow/apps/order/forms.py:182
+#: elbow/apps/order/forms.py:183
 #, python-brace-format
 msgid "The maximum investment amount is &euro;{maximum}"
 msgstr ""
 
-#: elbow/apps/order/forms.py:188
+#: elbow/apps/order/forms.py:189
 msgid "You must agree to the terms of the loan agreement"
 msgstr ""
 
-#: elbow/apps/order/forms.py:240
+#: elbow/apps/order/forms.py:241
 msgid "I agree to the terms of the Loan Agreement"
 msgstr ""
 
-#: elbow/apps/order/forms.py:277
+#: elbow/apps/order/forms.py:278
 msgid "Continue & Make the payment"
 msgstr ""
 
@@ -326,10 +352,6 @@ msgstr ""
 
 #: elbow/apps/order/templates/order/order-list.html:49
 msgid "Invest now"
-msgstr ""
-
-#: elbow/apps/order/templates/order/order-loan_agreement.html:10
-msgid "Loan Agreement"
 msgstr ""
 
 #: elbow/apps/order/templates/order/order-loan_agreement.html:25
@@ -466,11 +488,6 @@ msgstr ""
 
 #: elbow/apps/project/templates/project/project-list.html:11
 msgid "A list of our current projects"
-msgstr ""
-
-#: elbow/apps/public/forms.py:16
-#, python-format
-msgid "I agree to the site <a href=\"%(url)s\">Terms & Conditions</a>"
 msgstr ""
 
 #: elbow/apps/public/forms.py:20

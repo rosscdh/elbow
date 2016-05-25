@@ -19,7 +19,10 @@ class ProjectAdmin(admin.ModelAdmin):
     def get_form(self, request, obj=None, **kwargs):
         form = super(ProjectAdmin, self).get_form(request, obj=obj, **kwargs)
         # Show only project documents
-        form.base_fields['documents'].queryset = Document.objects.filter(document_type__in=[Document.DOCUMENT_TYPES.project])
+        form.base_fields['documents'].queryset = Document.objects.filter(document_type__in=[Document.DOCUMENT_TYPES.project,
+                                                                                            Document.DOCUMENT_TYPES.generic_loan_agreement,
+                                                                                            Document.DOCUMENT_TYPES.loan_agreement,
+                                                                                            Document.DOCUMENT_TYPES.term_sheet])
         return form
 
     def get_urls(self):

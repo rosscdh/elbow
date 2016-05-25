@@ -20,7 +20,10 @@ class ProjectDocumentAdmin(admin.ModelAdmin):
     search_fields = ('uuid', 'name', 'status')
 
     def get_queryset(self, request):
-        return super(ProjectDocumentAdmin, self).get_queryset(request).filter(document_type='project')
+        return super(ProjectDocumentAdmin, self).get_queryset(request).filter(document_type__in=['project',
+                                                                                                 'generic_loan_agreement',
+                                                                                                 'loan_agreement',
+                                                                                                 'term_sheet',])
 
 
 class OrderDocument(Document):

@@ -13,6 +13,7 @@ from crispy_forms.bootstrap import PrependedAppendedText
 from decimal import Decimal
 from moneyed import Money, EUR
 
+
 from elbow.apps.order.models import Order
 from elbow.apps.order.services import LoanAgreementCreatePDFService
 
@@ -75,13 +76,13 @@ class CreateOrderForm(forms.Form):
                                      help_text=_('Please select a payment type'),
                                      widget=forms.RadioSelect)
 
-    t_and_c = forms.BooleanField(label=_('I have read & agree to the Terms of the Loan Agreement'),
+    t_and_c = forms.BooleanField(label=_('I agree to the site <a href="/path/to/pdf">Terms & Conditions</a>'),
                                  widget=forms.CheckboxInput)
 
-    has_read_investment_contract = forms.BooleanField(label=_('I have read and agree to be bound to the terms of the investment contract.'),
+    has_read_investment_contract = forms.BooleanField(label=_('I have read and agree to be bound to the terms of the <a href="{url}">investment contract</a>.'),
                                                       widget=forms.CheckboxInput)
 
-    has_read_loan_agreement_contract = forms.BooleanField(label=_('I have read and agree to the terms of the loan agreement.'),
+    has_read_loan_agreement_contract = forms.BooleanField(label=_('I have read and agree to the terms of the <a href="{url}">loan agreement</a>.'),
                                                           widget=forms.CheckboxInput)
 
     def __init__(self, *args, **kwargs):
@@ -112,10 +113,17 @@ class CreateOrderForm(forms.Form):
         # Order is important
         #
         if self.project.minimum_investment:
-            self.fields['amount'].help_text = _(u'A minimum of &euro;{minimum} is required'.format(minimum=self.project.minimum_investment.amount))
+            self.fields['amount'].help_text = _(u'A minimum of &euro; {minimum} is required').format(minimum=self.project.minimum_investment.amount)
 
         if self.project.maximum_investment:
-            self.fields['amount'].help_text = _(u'A minimum of &euro;{minimum} and a maximum of &euro;{maximum}, is required'.format(minimum=self.project.minimum_investment.amount, maximum=self.project.maximum_investment.amount))
+            self.fields['amount'].help_text = _(u'A minimum of &euro; {minimum} and a maximum of &euro; {maximum}, is required').format(minimum=self.project.minimum_investment.amount, maximum=self.project.maximum_investment.amount)
+
+        # Setup the loan_agreement and term_sheet
+        if self.project.term_sheet_url:
+          self.fields['has_read_investment_contract'].label.format(url=self.project.term_sheet_url)
+        if self.project.generic_loan_agreement_url:
+          self.fields['has_read_loan_agreement_contract'].label.format(url=self.project.generic_loan_agreement_url)
+
 
     @property
     def helper(self):
@@ -135,7 +143,8 @@ class CreateOrderForm(forms.Form):
                                         HTML('<div class="input-group"><label for="" class="control-label">%s:</label>&nbsp;<span id="interest_rate_pa"></span></div>' % (_('Interest Rate p.a'),)),
                                         HTML('<div class="input-group"><label for="" class="control-label">%s:</label>&nbsp;<span id="interest_term"></span></div>' % (_('Interest Term'),)),
                                         HTML('<span id="accrue-target" class=""></span>'),
-                                        HTML(u'<div id="loan-contract" class="{show_has_agreed_to_loan_agreement_terms} alert alert-warning clearfix"><p>{text}</p>'.format(show_has_agreed_to_loan_agreement_terms=show_has_agreed_to_loan_agreement_terms, text=_(u'You want to invest 1000.00 or more and therefore, must agree to the loan contract in order to proceed'))),
+                                        HTML(u'<div id="loan-contract" class="{show_has_agreed_to_loan_agreement_terms} alert alert-warning clearfix"><p>{text}</p>'.format(show_has_agreed_to_loan_agreement_terms=show_has_agreed_to_loan_agreement_terms,
+                                                                                                                                                                            text=_(u'You want to invest 1000.00 or more and therefore, must agree to the loan contract in order to proceed'))),
                                         HTML('</div>'),
                                ),
                                Fieldset(_('Investor Details'),

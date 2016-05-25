@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-25 16:05+0000\n"
+"POT-Creation-Date: 2016-05-25 19:29+0000\n"
 "PO-Revision-Date: 2016-05-25 18:15+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,6 +17,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.8.7\n"
+
+#: elbow/apps/document/apps.py:9
+#, fuzzy
+#| msgid "Project News"
+msgid "Project Document"
+msgstr "Projekt-News"
+
+#: elbow/apps/document/apps.py:10
+#, fuzzy
+#| msgid "Documents"
+msgid "Order Document"
+msgstr "Dokumente"
+
+#: elbow/apps/document/apps.py:11
+msgid "Generic Loan Agreement"
+msgstr "Muster-Darlehensvertrag"
+
+#: elbow/apps/document/apps.py:12
+#: elbow/apps/order/templates/order/order-loan_agreement.html:10
+msgid "Loan Agreement"
+msgstr "Darlehensvertrag"
+
+#: elbow/apps/document/apps.py:13
+msgid "Term Sheet"
+msgstr "Vermögensanlageninformationsblatt (VIB)"
 
 #: elbow/apps/order/apps.py:10
 msgid "Order Created (1/3)"
@@ -122,31 +147,40 @@ msgstr "Zahlungsmethode"
 msgid "Please select a payment type"
 msgstr "Bitte wählen Sie eine Zahlungsweise aus"
 
-#: elbow/apps/order/forms.py:78
-msgid "I have read & agree to the Terms of the Loan Agreement"
-msgstr "Ich habe den Muster-Darlehensvertrag gelesen und stimme zu."
+#: elbow/apps/order/forms.py:78 elbow/apps/public/forms.py:16
+msgid "I agree to the site <a href=\"/path/to/pdf\">Terms & Conditions</a>"
+msgstr ""
+"Ich habe die <a href=\"http://today-capital.de/impressum/agb/\">AGB</a> "
+"gelesen und stimme zu."
 
 #: elbow/apps/order/forms.py:81
+#, python-brace-format
 msgid ""
-"I have read and agree to be bound to the terms of the investment contract."
+"I have read and agree to be bound to the terms of the <a href="
+"\"{url}\">investment contract</a>."
 msgstr ""
-"Ich habe das Vermögensanlageninformationsblatt (VIB) gelesen und stimme zu."
+"Ich habe das <a href=\"{url}\">Vermögensanlageninformationsblatt (VIB)</a> "
+"gelesen und stimme zu."
 
 #: elbow/apps/order/forms.py:84
-msgid "I have read and agree to the terms of the loan agreement."
-msgstr "Ich habe den Muster-Darlehensvertrag gelesen und stimme zu."
+msgid ""
+"I have read and agree to the terms of the <a href=\"{url}\">loan agreement</"
+"a>."
+msgstr ""
+"Ich habe den <a href=\"{url}\">Muster-Darlehensvertrag</a> gelesen und "
+"stimme zu."
 
 #: elbow/apps/order/forms.py:115
 #, python-brace-format
-msgid "A minimum of &euro;{minimum} is required"
+msgid "A minimum of &euro; {minimum} is required"
 msgstr "Ein Minimum von & euro; {minimum} ist erforderlich"
 
 #: elbow/apps/order/forms.py:118
 #, python-brace-format
 msgid ""
-"A minimum of &euro;{minimum} and a maximum of &euro;{maximum}, is required"
+"A minimum of &euro; {minimum} and a maximum of &euro; {maximum}, is required"
 msgstr ""
-"Ein Minimum von & euro; {minimum} und ein Maximum von & euro; {maximum}, ist "
+"Ein Minimum von &euro; {minimum} und ein Maximum von &euro; {maximum}, ist "
 "erforderlich,"
 
 #: elbow/apps/order/forms.py:135
@@ -157,7 +191,7 @@ msgstr "Zinsen p.a."
 msgid "Interest Term"
 msgstr "Laufzeit"
 
-#: elbow/apps/order/forms.py:138
+#: elbow/apps/order/forms.py:139
 msgid ""
 "You want to invest 1000.00 or more and therefore, must agree to the loan "
 "contract in order to proceed"
@@ -168,46 +202,46 @@ msgstr ""
 "verfügbares Vermögen in Form von Bankguthaben und Finanzinstrumenten in H6he "
 "von mindestens 100.000 verfüge."
 
-#: elbow/apps/order/forms.py:141
+#: elbow/apps/order/forms.py:142
 msgid "Investor Details"
 msgstr "Persönliche Daten"
 
-#: elbow/apps/order/forms.py:147
+#: elbow/apps/order/forms.py:148
 msgid "Company Details"
 msgstr "Wenn Sie als Firma investieren"
 
-#: elbow/apps/order/forms.py:150
+#: elbow/apps/order/forms.py:151
 msgid "Postal Address"
 msgstr "Anschrift"
 
-#: elbow/apps/order/forms.py:157
+#: elbow/apps/order/forms.py:158
 msgid "Payment"
 msgstr "Zahlung"
 
-#: elbow/apps/order/forms.py:164
+#: elbow/apps/order/forms.py:165
 #: elbow/apps/project/templates/project/project-detail.html:13
 msgid "Invest Now"
 msgstr "Jetzt investieren"
 
-#: elbow/apps/order/forms.py:178
+#: elbow/apps/order/forms.py:179
 #, python-brace-format
 msgid "The minimum investment amount is &euro;{minimum}"
 msgstr "Der Mindestanlagebetrag ist &euro;{minimum}"
 
-#: elbow/apps/order/forms.py:182
+#: elbow/apps/order/forms.py:183
 #, python-brace-format
 msgid "The maximum investment amount is &euro;{maximum}"
 msgstr "Die maximale Anlagebetrag ist &euro;{maximum}"
 
-#: elbow/apps/order/forms.py:188
+#: elbow/apps/order/forms.py:189
 msgid "You must agree to the terms of the loan agreement"
 msgstr "Sie müssen den Bedingungen der Darlehensvertrag zustimmen."
 
-#: elbow/apps/order/forms.py:240
+#: elbow/apps/order/forms.py:241
 msgid "I agree to the terms of the Loan Agreement"
 msgstr "Ich stimme dem Darlehensvertrag zu."
 
-#: elbow/apps/order/forms.py:277
+#: elbow/apps/order/forms.py:278
 msgid "Continue & Make the payment"
 msgstr "Jetzt zahlungspflichtig investieren"
 
@@ -339,10 +373,6 @@ msgstr "Investitionssumme"
 #: elbow/apps/order/templates/order/order-list.html:49
 msgid "Invest now"
 msgstr "Jetzt investieren"
-
-#: elbow/apps/order/templates/order/order-loan_agreement.html:10
-msgid "Loan Agreement"
-msgstr "Darlehensvertrag"
 
 #: elbow/apps/order/templates/order/order-loan_agreement.html:25
 #, python-format
@@ -487,11 +517,6 @@ msgstr "Projekte"
 #: elbow/apps/project/templates/project/project-list.html:11
 msgid "A list of our current projects"
 msgstr "Aktuelle Projekte"
-
-#: elbow/apps/public/forms.py:16
-#, python-format
-msgid "I agree to the site <a href=\"%(url)s\">Terms & Conditions</a>"
-msgstr "Ich habe die <a href=\"%(url)s\">AGB</a> gelesen und stimme zu."
 
 #: elbow/apps/public/forms.py:20
 msgid "I would like to receive occasional news and information"
