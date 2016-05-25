@@ -75,7 +75,7 @@ class CreateOrderForm(forms.Form):
                                      help_text=_('Please select a payment type'),
                                      widget=forms.RadioSelect)
 
-    t_and_c = forms.BooleanField(label=_('I have read & agree to the Terms & Conditions'),
+    t_and_c = forms.BooleanField(label=_('I have read & agree to the Terms of the Loan Agreement'),
                                  widget=forms.CheckboxInput)
 
     has_read_investment_contract = forms.BooleanField(label=_('I have read and agree to be bound to the terms of the investment contract.'),

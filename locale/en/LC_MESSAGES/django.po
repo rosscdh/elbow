@@ -121,7 +121,7 @@ msgid "Please select a payment type"
 msgstr ""
 
 #: elbow/apps/order/forms.py:78
-msgid "I have read & agree to the Terms & Conditions"
+msgid "I have read & agree to the Terms of the Loan Agreement"
 msgstr ""
 
 #: elbow/apps/order/forms.py:81
