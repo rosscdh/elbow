@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-25 12:18+0000\n"
-"PO-Revision-Date: 2016-05-25 10:58+0200\n"
+"POT-Creation-Date: 2016-05-25 16:05+0000\n"
+"PO-Revision-Date: 2016-05-25 18:15+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -80,7 +80,7 @@ msgstr "Name"
 
 #: elbow/apps/order/forms.py:47
 msgid "Name of Company"
-msgstr "Name der Firma"
+msgstr "Firmenname"
 
 #: elbow/apps/order/forms.py:48
 msgid "If applicable"
@@ -130,7 +130,7 @@ msgstr "Ich habe den Muster-Darlehensvertrag gelesen und stimme zu."
 msgid ""
 "I have read and agree to be bound to the terms of the investment contract."
 msgstr ""
-"Ich habe das Vermfigensanlageninformationsblatt (VIB) gelesen und stimme zu."
+"Ich habe das Vermögensanlageninformationsblatt (VIB) gelesen und stimme zu."
 
 #: elbow/apps/order/forms.py:84
 msgid "I have read and agree to the terms of the loan agreement."
@@ -174,17 +174,15 @@ msgstr "Persönliche Daten"
 
 #: elbow/apps/order/forms.py:147
 msgid "Company Details"
-msgstr "Firmendetails"
+msgstr "Wenn Sie als Firma investieren"
 
 #: elbow/apps/order/forms.py:150
 msgid "Postal Address"
 msgstr "Anschrift"
 
 #: elbow/apps/order/forms.py:157
-#, fuzzy
-#| msgid "Payment Failed"
 msgid "Payment"
-msgstr "Zahlung fehlgeschlagen"
+msgstr "Zahlung"
 
 #: elbow/apps/order/forms.py:164
 #: elbow/apps/project/templates/project/project-detail.html:13
@@ -335,14 +333,10 @@ msgid "Cancel"
 msgstr "Abbrechen"
 
 #: elbow/apps/order/templates/order/order-list.html:48
-#, fuzzy
-#| msgid "Investment Amount"
 msgid "No investments found"
 msgstr "Investitionssumme"
 
 #: elbow/apps/order/templates/order/order-list.html:49
-#, fuzzy
-#| msgid "Invest Now"
 msgid "Invest now"
 msgstr "Jetzt investieren"
 
@@ -365,8 +359,6 @@ msgstr ""
 "übersteigt.</p>"
 
 #: elbow/apps/order/templates/order/order-loan_agreement.html:29
-#, fuzzy
-#| msgid "Loan Agreement"
 msgid "Download Loan Agreement"
 msgstr "Darlehensvertrag herunterladen"
 
@@ -379,8 +371,6 @@ msgid "Please make payment out to"
 msgstr "Zahlungsempfänger"
 
 #: elbow/apps/order/templates/order/order-payment.html:43
-#, fuzzy
-#| msgid "Bank debit"
 msgid "Bank Name"
 msgstr "Lastschrift"
 
@@ -432,8 +422,6 @@ msgid "Login"
 msgstr "Anmelden"
 
 #: elbow/apps/project/templates/project/_docs.html:18
-#, fuzzy
-#| msgid "No orders found"
 msgid "No documents found"
 msgstr "Keine Aufträge gefunden"
 
@@ -472,8 +460,6 @@ msgstr "Dokumente"
 
 #: elbow/apps/project/templates/project/project-detail.html:89
 #: elbow/apps/project/templates/project/project-detail.html:234
-#, fuzzy
-#| msgid "Project News"
 msgid "Latest News"
 msgstr "Projekt-News"
 
@@ -495,8 +481,6 @@ msgid "How it works"
 msgstr "Wie es funktioniert"
 
 #: elbow/apps/project/templates/project/project-list.html:10
-#, fuzzy
-#| msgid "Projects"
 msgid "Current Projects"
 msgstr "Projekte"
 
@@ -506,8 +490,8 @@ msgstr "Aktuelle Projekte"
 
 #: elbow/apps/public/forms.py:16
 #, python-format
-msgid "I have read & agree to the <a href=\"%s\">Terms & Conditions</a> of use"
-msgstr "Ich habe die <a href=\"%s\">AGB</a> gelesen und stimme zu."
+msgid "I agree to the site <a href=\"%(url)s\">Terms & Conditions</a>"
+msgstr "Ich habe die <a href=\"%(url)s\">AGB</a> gelesen und stimme zu."
 
 #: elbow/apps/public/forms.py:20
 msgid "I would like to receive occasional news and information"
@@ -533,11 +517,9 @@ msgstr "Jetzt registrieren"
 
 #: elbow/apps/public/services.py:29
 msgid "TodayCapital.de - New sign-up"
-msgstr "Registrieren"
+msgstr "TodayCapital.de - Registrieren"
 
 #: elbow/apps/public/services.py:51
-#, fuzzy
-#| msgid "TodayCapital.de - Your Investment Order has been created"
 msgid "TodayCapital.de - a new order has been created"
 msgstr "TodayCapital.de - Ihr Investment auf TodayCapital"
 
