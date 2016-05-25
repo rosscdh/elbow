@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-19 14:17+0000\n"
+"POT-Creation-Date: 2016-05-25 12:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -121,7 +121,7 @@ msgid "Please select a payment type"
 msgstr ""
 
 #: elbow/apps/order/forms.py:78
-msgid "I have read and agree to the Terms & Conditions"
+msgid "I have read & agree to the Terms & Conditions"
 msgstr ""
 
 #: elbow/apps/order/forms.py:81
@@ -341,6 +341,10 @@ msgid ""
 "monthly average. Net income exceeds.</p>"
 msgstr ""
 
+#: elbow/apps/order/templates/order/order-loan_agreement.html:29
+msgid "Download Loan Agreement"
+msgstr ""
+
 #: elbow/apps/order/templates/order/order-payment.html:10
 msgid "Payment Details"
 msgstr ""
@@ -465,8 +469,8 @@ msgid "A list of our current projects"
 msgstr ""
 
 #: elbow/apps/public/forms.py:16
-msgid ""
-"I have read & agree to the Terms & Conditions and Data Protection agreement"
+#, python-format
+msgid "I have read & agree to the <a href=\"%s\">Terms & Conditions</a> of use"
 msgstr ""
 
 #: elbow/apps/public/forms.py:20
@@ -485,8 +489,8 @@ msgstr ""
 msgid "Agreement & Newsletter"
 msgstr ""
 
-#: elbow/apps/public/forms.py:41 templates/navigation.html.py:36
-msgid "Register"
+#: elbow/apps/public/forms.py:41
+msgid "Register Now"
 msgstr ""
 
 #: elbow/apps/public/services.py:29
@@ -882,6 +886,10 @@ msgstr ""
 
 #: templates/navigation.html:15
 msgid "Home"
+msgstr ""
+
+#: templates/navigation.html:36
+msgid "Register"
 msgstr ""
 
 #: templates/navigation.html:39

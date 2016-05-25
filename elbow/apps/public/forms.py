@@ -13,7 +13,7 @@ class SignUpForm(AllAuthSignupForm):
     last_name = forms.CharField(label=_('Last name'), required=True)
 
     has_aggeed_t_and_c = forms.BooleanField(label='',
-                                            help_text=_('I have read & agree to the Terms & Conditions and Data Protection agreement'),
+                                            help_text=_('I have read & agree to the <a href="%s">Terms & Conditions</a> of use' % ('/url/to/somewhere',)),
                                             required=True,
                                             widget=forms.CheckboxInput)
     send_news_and_info = forms.NullBooleanField(label='',
@@ -38,5 +38,5 @@ class SignUpForm(AllAuthSignupForm):
                                Fieldset(_('Agreement & Newsletter'),
                                         Field('has_aggeed_t_and_c'),
                                         Field('send_news_and_info'),),
-                               ButtonHolder(Submit('submit', _('Register'), css_class='btn btn-primary btn-lg'),))
+                               ButtonHolder(Submit('submit', _('Register Now'), css_class='btn btn-primary btn-lg'),))
         return helper

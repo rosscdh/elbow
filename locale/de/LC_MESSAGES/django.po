@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-19 14:17+0000\n"
-"PO-Revision-Date: 2016-05-19 16:19+0200\n"
+"POT-Creation-Date: 2016-05-25 12:18+0000\n"
+"PO-Revision-Date: 2016-05-25 10:58+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -72,11 +72,11 @@ msgstr "Frau"
 
 #: elbow/apps/order/forms.py:41 elbow/apps/public/forms.py:12
 msgid "First name"
-msgstr "Name"
+msgstr "Vorname"
 
 #: elbow/apps/order/forms.py:44 elbow/apps/public/forms.py:13
 msgid "Last name"
-msgstr "Familienname"
+msgstr "Name"
 
 #: elbow/apps/order/forms.py:47
 msgid "Name of Company"
@@ -123,8 +123,8 @@ msgid "Please select a payment type"
 msgstr "Bitte wählen Sie eine Zahlungsweise aus"
 
 #: elbow/apps/order/forms.py:78
-msgid "I have read and agree to the Terms & Conditions"
-msgstr "Ich habe die AGB gelesen und stimme zu."
+msgid "I have read & agree to the Terms & Conditions"
+msgstr "Ich habe den Muster-Darlehensvertrag gelesen und stimme zu."
 
 #: elbow/apps/order/forms.py:81
 msgid ""
@@ -364,6 +364,12 @@ msgstr ""
 "Projekt nicht das Zweifache meines durchschnittlichen mtl. Nettoeinkommens "
 "übersteigt.</p>"
 
+#: elbow/apps/order/templates/order/order-loan_agreement.html:29
+#, fuzzy
+#| msgid "Loan Agreement"
+msgid "Download Loan Agreement"
+msgstr "Darlehensvertrag herunterladen"
+
 #: elbow/apps/order/templates/order/order-payment.html:10
 msgid "Payment Details"
 msgstr "Zahlungsdetails"
@@ -499,35 +505,31 @@ msgid "A list of our current projects"
 msgstr "Aktuelle Projekte"
 
 #: elbow/apps/public/forms.py:16
-msgid ""
-"I have read & agree to the Terms & Conditions and Data Protection agreement"
-msgstr ""
-"Ich habe die AGB gelesen und akzeptiert Geschäftsbedingungen und "
-"Datenschutzvereinbarung"
+#, python-format
+msgid "I have read & agree to the <a href=\"%s\">Terms & Conditions</a> of use"
+msgstr "Ich habe die <a href=\"%s\">AGB</a> gelesen und stimme zu."
 
 #: elbow/apps/public/forms.py:20
 msgid "I would like to receive occasional news and information"
-msgstr "Ich möchte gelegentliche Neuigkeiten und Informationen"
+msgstr ""
+"Bitte informieren Sie mich kostenlos über wichtige Neuigkeiten auf "
+"TodayCapital per E-Mail. Diese Einstellung kann ich jederzeit widerrufen."
 
 #: elbow/apps/public/forms.py:31
-#, fuzzy
-#| msgid "Payment Details"
 msgid "Personal Details"
-msgstr "Zahlungsdetails"
+msgstr "&nbsp;"
 
 #: elbow/apps/public/forms.py:34
-#, fuzzy
-#| msgid "Tax information"
 msgid "Login Information"
-msgstr "Steuerinformationen"
+msgstr "&nbsp;"
 
 #: elbow/apps/public/forms.py:38
 msgid "Agreement & Newsletter"
-msgstr "Vereinbarung & Newsletter"
+msgstr "&nbsp;"
 
-#: elbow/apps/public/forms.py:41 templates/navigation.html.py:36
-msgid "Register"
-msgstr "Neu registrieren"
+#: elbow/apps/public/forms.py:41
+msgid "Register Now"
+msgstr "Jetzt registrieren"
 
 #: elbow/apps/public/services.py:29
 msgid "TodayCapital.de - New sign-up"
@@ -730,7 +732,7 @@ msgstr ""
 #: templates/account/login.html:3 templates/account/login.html.py:7
 #: templates/account/login.html:44 templates/account/login.html.py:57
 msgid "Sign In"
-msgstr "Eintragen"
+msgstr "Anmelden"
 
 # > context? Account einer dritten Person?
 #: templates/account/login.html:17
@@ -756,8 +758,8 @@ msgid ""
 "If you have not created an account yet, then please\n"
 "    <a href=\"%(signup_url)s\">sign up</a> first."
 msgstr ""
-"Sie haben sich bereits registriert?\n"
-"Hier können Sie sich <a href=\"%(signup_url)s\">anmelden</a>."
+"Sie sind noch nicht registriert? Hier können Sie sich registrieren. Klick zu "
+"<a href=\"%(signup_url)s\">Neu registrieren</a>."
 
 #: templates/account/login.html:47 templates/account/login.html.py:56
 msgid "Forgot Password?"
@@ -894,19 +896,19 @@ msgstr "Passwort erstellen"
 
 #: templates/account/signup.html:3
 msgid "Sign up"
-msgstr "Anmelden"
+msgstr "Neu registrieren"
 
 #: templates/account/signup.html:7
 msgid "Sign Up"
-msgstr "Anmelden"
+msgstr "Neu registrieren"
 
 #: templates/account/signup.html:13
 #, python-format
 msgid ""
 "Already have an account? Then please <a href=\"%(login_url)s\">sign in</a>."
 msgstr ""
-"Sie haben sich bereits registriert? Hier können Sie sich anmelden <a href="
-"\"%(login_url)s\"></a>."
+"Sie haben sich bereits registriert? <a href=\"%(login_url)s\">Klick zu "
+"Anmelden</a>."
 
 #: templates/account/signup_closed.html:5
 #: templates/account/signup_closed.html:8
@@ -987,6 +989,10 @@ msgstr "Zurück nach oben"
 msgid "Home"
 msgstr "Home"
 
+#: templates/navigation.html:36
+msgid "Register"
+msgstr "Neu registrieren"
+
 #: templates/navigation.html:39
 msgid "Settings"
 msgstr "Einstellungen"
@@ -1002,72 +1008,3 @@ msgstr "Mein Benutzerkonto löschen"
 #: templates/navigation.html:49
 msgid "Logout"
 msgstr "Abmelden"
-
-#~ msgid "Terms & Conditions"
-#~ msgstr "Allgemeine Geschäftsbedingungen"
-
-#, fuzzy
-#~| msgid "I have read the contract"
-#~ msgid "I have read the financial investment contract"
-#~ msgstr "Vertragsunterlagen"
-
-#, fuzzy
-#~| msgid "I have read the contract"
-#~ msgid "I have read the loan agreement"
-#~ msgstr "Vertragsunterlagen"
-
-#, fuzzy
-#~| msgid "I agree to be bound to the terms of the contract."
-#~ msgid "I agree to be bound to the terms of the loan agreement."
-#~ msgstr "Ich habe den Darlehensvertrag gelesen und stimme zu."
-
-#~ msgid "Dr"
-#~ msgstr "Dr."
-
-#~ msgid "Prof"
-#~ msgstr "Prof."
-
-#~ msgid "Telephone"
-#~ msgstr "Telefon"
-
-#~ msgid "Tax number"
-#~ msgstr "Steuernummer"
-
-#~ msgid "Tax information"
-#~ msgstr "Steuerinformationen"
-
-#, fuzzy
-#~| msgid ""
-#~| "If you have not created an account yet, then please\n"
-#~| "  <a href=\"%(signup_url)s\">sign up</a> first."
-#~ msgid ""
-#~ "Wenn Sie noch kein Konto erstellt haben, dann wenden Sie sich bitte\n"
-#~ "    <a href=\"%(signup_url)s\">sign up</a> zuerst."
-#~ msgstr ""
-#~ "Wenn Sie noch kein Benutzerkonto haben, können Sie es hier anlegen.\n"
-#~ "  <a href=\"%(signup_url)s\">anlegen</a> erstmalig."
-
-# context?
-#~ msgid "Payment, Terms & Download Contract"
-#~ msgstr "Zahlung, Bedingungen & Download des Vertrags"
-
-# context?
-#~ msgid "Submit"
-#~ msgstr "Unterbreiten"
-
-#~ msgid "Investment Overview"
-#~ msgstr "Investmentübersicht"
-
-#~ msgid "News"
-#~ msgstr "News"
-
-#~ msgid "TodayCapital.de - Investment order created"
-#~ msgstr "TodayCapital.de - Ihr Investment auf TodayCapital"
-
-# zu klären
-#~ msgid "TodayCapital.de - Investment order agreed to Loan Agreement Terms"
-#~ msgstr "TodayCapital.de - Sie haben dem Darlehensvertrag zugestimmt"
-
-# zu klären
-#~ msgid "TodayCapital.de - Your Investment Order Loan Agreement is Attached"
-#~ msgstr "TodayCapital.de - Ihr Darlehensvertrag"
