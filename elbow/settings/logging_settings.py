@@ -65,7 +65,7 @@ if PROJECT_ENVIRONMENT in ['staging', 'production']:
             'papertrail_handler': {
                 'level': 'INFO',
                 'class': 'logging.handlers.SysLogHandler',
-                'address': ('logs2.papertrailapp.com', 29549),
+                'address': ('logs4.papertrailapp.com', 16417),
                 'formatter': 'papertrail_format',
             },
             'console': {

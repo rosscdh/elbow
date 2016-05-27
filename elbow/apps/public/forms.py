@@ -14,7 +14,7 @@ class SignUpForm(AllAuthSignupForm):
     last_name = forms.CharField(label=_('Last name'), required=True)
 
     has_aggeed_t_and_c = forms.BooleanField(label='',
-                                            help_text=_('I agree to the site <a href="{url}">Terms & Conditions</a>').format(url=settings.TERMS_AND_CONDITIONS_URL),
+                                            help_text=_('I agree to the site <a target="_NEW" href="{url}">Terms & Conditions</a>').format(url=settings.TERMS_AND_CONDITIONS_URL),
                                             required=True,
                                             widget=forms.CheckboxInput)
     send_news_and_info = forms.NullBooleanField(label='',

@@ -7,8 +7,8 @@
 
 {% block page_header %}
 <div class="page-header clearfix">
-  <h1>{% trans 'Loan Agreement' %}</h1>
-  <p>{{ project.name }}, {{ project.proposition }}</p>
+  <h1>{% trans 'Your Loan Agreement' %}</h1>
+  <p>{% blocktrans with project_name=project.name %}Thank you for deciding to support the {{ project_name }} project with your investment.' {% endblocktrans %}</p>
   <div class="col-md-4">
   &nbsp;
   </div>
@@ -22,7 +22,7 @@
 <div class="row">
 
   <div class="col-md-12">
-    {% blocktrans with minimum='100.000' %}<p>I confirm that I have a freely available assets in the form of bank deposits and financial instruments of at least {{minimum}} € either</p><p>OR that the total amount of my investment in this project is not twice my monthly average. Net income exceeds.</p>{% endblocktrans %}
+    <p>{% blocktrans %}You can download the generated Loan Agreement by clicking on the button below.{% endblocktrans %}</p>
   </div>
 
   <div class="col-md-12" style="margin:10px 0px;">

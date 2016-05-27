@@ -3,6 +3,7 @@ from django import forms
 from django.conf import settings
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
+from django_countries.widgets import CountrySelectWidget
 
 from pinax.eventlog.models import log
 
@@ -27,7 +28,7 @@ DEFAULT_CURRENCY_SYMBOL = getattr(settings, 'DEFAULT_CURRENCY_SYMBOL', '€')
 DATE_18_YEARS_AGO = datetime.datetime.today() - relativedelta(years=18)
 DEFAULT_DATE = datetime.datetime.today() - relativedelta(years=25)
 
-YEARS = [year for year in xrange(1930, DATE_18_YEARS_AGO.year -1)]
+YEARS = [year for year in xrange(1900, DATE_18_YEARS_AGO.year -1)]
 
 
 class CreateOrderForm(forms.Form):
@@ -68,6 +69,7 @@ class CreateOrderForm(forms.Form):
                            required=True)
 
     country = forms.CharField(label=_('Country'),
+                              initial=_('Germany'),
                               required=True)
 
     payment_type = forms.ChoiceField(label=_('How to pay'),
@@ -76,13 +78,17 @@ class CreateOrderForm(forms.Form):
                                      help_text=_('Please select a payment type'),
                                      widget=forms.RadioSelect)
 
-    t_and_c = forms.BooleanField(label=_('I agree to the site <a href="{url}">Terms & Conditions</a>'),
+    disclosure = forms.BooleanField(label=_(u'You want to invest &euro; 1000,00 or more and therefore, must agree to the loan contract in order to proceed'),
+                                    widget=forms.CheckboxInput,
+                                    required=False)
+
+    t_and_c = forms.BooleanField(label=_('I agree to the site <a target=\"_NEW\" href="{url}">Terms & Conditions</a>'),
                                  widget=forms.CheckboxInput)
 
-    has_read_investment_contract = forms.BooleanField(label=_('I have read and agree to be bound to the terms of the <a href="{url}">investment contract</a>.'),
+    has_read_investment_contract = forms.BooleanField(label=_('I have read and agree to be bound to the terms of the <a target=\"_NEW\" href="{url}">investment contract</a>.'),
                                                       widget=forms.CheckboxInput)
 
-    has_read_loan_agreement_contract = forms.BooleanField(label=_('I have read and agree to the terms of the <a href="{url}">loan agreement</a>.'),
+    has_read_loan_agreement_contract = forms.BooleanField(label=_('I have read and agree to the terms of the <a target=\"_NEW\" href="{url}">loan agreement</a>.'),
                                                           widget=forms.CheckboxInput)
 
     def __init__(self, *args, **kwargs):
@@ -145,8 +151,8 @@ class CreateOrderForm(forms.Form):
                                         HTML('<div class="input-group"><label for="" class="control-label">%s:</label>&nbsp;<span id="interest_rate_pa"></span></div>' % (_('Interest Rate p.a'),)),
                                         HTML('<div class="input-group"><label for="" class="control-label">%s:</label>&nbsp;<span id="interest_term"></span></div>' % (_('Interest Term'),)),
                                         HTML('<span id="accrue-target" class=""></span>'),
-                                        HTML(u'<div id="loan-contract" class="{show_has_agreed_to_loan_agreement_terms} alert alert-warning clearfix"><p>{text}</p>'.format(show_has_agreed_to_loan_agreement_terms=show_has_agreed_to_loan_agreement_terms,
-                                                                                                                                                                            text=_(u'You want to invest 1000.00 or more and therefore, must agree to the loan contract in order to proceed'))),
+                                        HTML(u'<div id="loan-contract" class="{show_has_agreed_to_loan_agreement_terms} alert alert-warning clearfix">'.format(show_has_agreed_to_loan_agreement_terms=show_has_agreed_to_loan_agreement_terms)),
+                                        Field('disclosure'),
                                         HTML('</div>'),
                                ),
                                Fieldset(_('Investor Details'),
@@ -178,14 +184,20 @@ class CreateOrderForm(forms.Form):
 
     def is_large_sum(self):
         if hasattr(self, 'cleaned_data') is True:
-            return self.cleaned_data.get('amount', None) >= 1000
+            return self.cleaned_data.get('amount', None) > 1000
         return False
+
+    def clean_disclosure(self, *args, **kwargs):
+        if self.is_large_sum() is True and self.cleaned_data['disclosure'] is False:
+                raise forms.ValidationError(_('You must confirm your self assessment of credit worthiness'),
+                                            code='self_assessment_credit_worthiness',)
+        return self.cleaned_data['disclosure']
 
     def clean_amount(self, *args, **kwargs):
         amount = self.data.get('amount', None)
 
         if amount and self.project.minimum_investment and \
-           Decimal(amount) <= self.project.minimum_investment.amount:
+           Decimal(amount) < self.project.minimum_investment.amount:
             raise forms.ValidationError(mark_safe(_(u'The minimum investment amount is &euro;{minimum}'.format(minimum=self.project.minimum_investment.amount))),
                                         code='minimum_investment_amount_not_met',)
         if amount and self.project.maximum_investment and \
@@ -205,6 +217,7 @@ class CreateOrderForm(forms.Form):
         """
         Artificial save here as forms.Form dont have a save method
         """
+        disclosure = self.cleaned_data.pop('disclosure')
         t_and_c = self.cleaned_data.pop('t_and_c')
         has_read_investment_contract = self.cleaned_data.pop('has_read_investment_contract')
         has_read_loan_agreement_contract = self.cleaned_data.pop('has_read_loan_agreement_contract')
@@ -238,6 +251,7 @@ class CreateOrderForm(forms.Form):
                 "note": "%s Created a new Order to Invest" % self.user,
                 "is_large_amount": order.is_large_amount,
                 "amount": unicode(order.amount),
+                "disclosure": disclosure,
                 "has_read_loan_agreement_contract": has_read_loan_agreement_contract,
                 "t_and_c_agreed": t_and_c,
                 "has_read_investment_contract": has_read_investment_contract,
