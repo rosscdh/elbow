@@ -1,30 +1,26 @@
 {% load i18n %}
-<div class="doc-list list-group">
-
-  <div class="notice alert alert-warning hide" role="alert">
-    <b>{% trans 'Please login to view the selected document.' %}</b>
-    <p><a href="{% url 'account_login' %}" class="btn btn-primary">{% trans 'Login' %}</a></p>
-  </div>
-
-  <a href="{{ MEDIA_URL }}{{ term_sheet }}" target="_NEW" class="list-group-item">
-    {% trans 'Term Sheet' %}&nbsp;<span class="pull-right">{% trans '.PDF Download' %}</span>
-  </a>
-
-  <a href="{{ MEDIA_URL }}{{ loan_agreement }}" target="_NEW" class="list-group-item">
-    {% trans 'Generic Loan Agreement' %}&nbsp;<span class="pull-right">{% trans '.PDF Download' %}</span>
-  </a>
-
+<div class="table-responsive">
+  <table class="table table-striped">
+  <tr>
+    <th colspan="2" class="bg-primary"><h4>{% trans 'Documents' %}</h4></th>
+  </tr>
+  <tr>
+    <td>{% trans 'Term Sheet' %}</td>
+    <td><a href="{{ MEDIA_URL }}{{ term_sheet }}" target="_NEW" class="btn btn-link btn-primary">{% trans '.PDF Download' %}</a></td>
+  </tr>
+  <tr>
+    <td>{% trans 'Generic Loan Agreement' %}</td>
+    <td><a href="{{ MEDIA_URL }}{{ loan_agreement }}" target="_NEW" class="btn btn-link btn-primary">{% trans '.PDF Download' %}</a></td>
+  </tr>
   {% for row in documents %}
-    {% if row.login_required == False or row.login_required and is_logged_in %}
-      <a href="{{ MEDIA_URL }}{{ row.document }}" target="_NEW" class="list-group-item">
-        {{ row.name }}&nbsp;<span class="pull-right">{% trans '.PDF Download' %}</span>
-      </a>
-    {% else %}
-      <a href="javascript:;" class="require-logged-in list-group-item">
-        {{ row.name }}<span class="pull-right glyphicon glyphicon-lock"></span>
-      </a>
-    {% endif %}
-  {% empty %}
-    <b>{% trans 'No documents found' %}</b>
+    <tr>
+      <td>{{ row.name }}</td>
+      {% if row.login_required == False or row.login_required and is_logged_in %}
+      <td><a href="{{ MEDIA_URL }}{{ row.document }}" target="_NEW" class="btn btn-link btn-primary">{% trans '.PDF Download' %}</a></td>
+      {% else %}
+        <a href="javascript:;" class="require-logged-in btn btn-link btn-primary">{% trans 'Login required' %}</a></td>
+      {% endif %}
+    </tr>
   {% endfor %}
+  </table>
 </div>
