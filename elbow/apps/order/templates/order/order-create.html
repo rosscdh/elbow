@@ -76,7 +76,7 @@
       // Interest calculator
       //
       var interest_rate_pa = '{{ project.interest_rate }}'.replace(',', '.');
-      $('#interest_rate_pa').html(interest_rate_pa+'%');
+      $('#interest_rate_pa').html(interest_rate_pa+' %');
       var display_interest_term = '{{ project.interest_term }}'.replace('m', ' {% trans "Months" %}')
       display_interest_term = display_interest_term.replace('y', ' {% trans "Years" %}')
       $('#interest_term').html(display_interest_term);

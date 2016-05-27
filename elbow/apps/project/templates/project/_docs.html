@@ -1,23 +1,27 @@
 {% load i18n %}
 <div class="doc-list list-group">
+
   <div class="notice alert alert-warning hide" role="alert">
     <b>{% trans 'Please login to view the selected document.' %}</b>
     <p><a href="{% url 'account_login' %}" class="btn btn-primary">{% trans 'Login' %}</a></p>
   </div>
+
   <a href="{{ MEDIA_URL }}{{ term_sheet }}" target="_NEW" class="list-group-item">
-    <span class="glyphicon glyphicon-save-file"></span>&nbsp;{% trans 'Term Sheet' %}
+    {% trans 'Term Sheet' %}&nbsp;<span class="pull-right">{% trans '.PDF Download' %}</span>
   </a>
+
   <a href="{{ MEDIA_URL }}{{ loan_agreement }}" target="_NEW" class="list-group-item">
-    <span class="glyphicon glyphicon-save-file"></span>&nbsp;{% trans 'Generic Loan Agreement' %}
+    {% trans 'Generic Loan Agreement' %}&nbsp;<span class="pull-right">{% trans '.PDF Download' %}</span>
   </a>
+
   {% for row in documents %}
     {% if row.login_required == False or row.login_required and is_logged_in %}
       <a href="{{ MEDIA_URL }}{{ row.document }}" target="_NEW" class="list-group-item">
-        <span class="glyphicon glyphicon-save-file"></span>&nbsp;{{ row.name }}
+        {{ row.name }}&nbsp;<span class="pull-right">{% trans '.PDF Download' %}</span>
       </a>
     {% else %}
       <a href="javascript:;" class="require-logged-in list-group-item">
-        <span class="glyphicon glyphicon-save-file"></span>&nbsp;{{ row.name }}<span class="pull-right glyphicon glyphicon-lock"></span>
+        {{ row.name }}<span class="pull-right glyphicon glyphicon-lock"></span>
       </a>
     {% endif %}
   {% empty %}
