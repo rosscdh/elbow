@@ -141,18 +141,3 @@ class Project(models.Model):
     @property
     def news_history(self):
         return self.content_type.log_set.filter(object_id=self.pk)
-
-    @property
-    def term_sheet_url(self):
-      try:
-          return self.documents.filter(document_type=DOCUMENT_TYPES.term_sheet).first().url
-      except:
-          return None
-
-    @property
-    def generic_loan_agreement_url(self):
-      try:
-          return self.documents.filter(document_type=DOCUMENT_TYPES.generic_loan_agreement).first().url
-      except:
-          return None
-
