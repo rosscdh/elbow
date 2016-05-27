@@ -119,11 +119,15 @@ class CreateOrderForm(forms.Form):
             self.fields['amount'].help_text = _(u'A minimum of &euro; {minimum} and a maximum of &euro; {maximum}, is required').format(minimum=self.project.minimum_investment.amount, maximum=self.project.maximum_investment.amount)
 
         # Setup the loan_agreement and term_sheet
-        if self.project.term_sheet_url:
-          self.fields['has_read_investment_contract'].label.format(url=self.project.term_sheet_url)
-        if self.project.generic_loan_agreement_url:
-          self.fields['has_read_loan_agreement_contract'].label.format(url=self.project.generic_loan_agreement_url)
+        if self.project.term_sheet_doc:
+            self.fields['has_read_investment_contract'].label = self.fields['has_read_investment_contract'].label.format(url=self.project.term_sheet_doc.url)
+        else:
+            self.fields.pop('has_read_investment_contract', None)
 
+        if self.project.loan_agreement_doc:
+            self.fields['has_read_loan_agreement_contract'].label = self.fields['has_read_loan_agreement_contract'].label.format(url=self.project.loan_agreement_doc.url)
+        else:
+            self.fields.pop('has_read_loan_agreement_contract', None)
 
     @property
     def helper(self):
@@ -166,8 +170,8 @@ class CreateOrderForm(forms.Form):
                                Fieldset(_('Payment'),
                                         'payment_type',
                                         't_and_c',
-                                        'has_read_investment_contract',
-                                        'has_read_loan_agreement_contract',
+                                        'has_read_investment_contract' if self.fields.get('has_read_investment_contract') else None,
+                                        'has_read_loan_agreement_contract' if self.fields.get('has_read_loan_agreement_contract') else None,
                                ),
                                ButtonHolder(
                                     Submit('submit', _('Invest Now'), css_class='btn btn-lg'),
@@ -193,9 +197,10 @@ class CreateOrderForm(forms.Form):
         return self.cleaned_data['amount']
 
     def clean_has_read_loan_agreement_contract(self, *args, **kwargs):
-        if self.is_large_sum() is True and self.cleaned_data['has_read_loan_agreement_contract'] is False:
-                raise forms.ValidationError(_('You must agree to the terms of the loan agreement'),
-                                            code='must_agree_to_terms_of_loan_agreement',)
+        if self.cleaned_data.get('has_read_loan_agreement_contract'):
+            if self.is_large_sum() is True and self.cleaned_data['has_read_loan_agreement_contract'] is False:
+                    raise forms.ValidationError(_('You must agree to the terms of the loan agreement'),
+                                                code='must_agree_to_terms_of_loan_agreement',)
         return self.cleaned_data['has_read_loan_agreement_contract']
 
     def save(self, *args, **kwargs):

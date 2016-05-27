@@ -4,6 +4,12 @@
     <b>{% trans 'Please login to view the selected document.' %}</b>
     <p><a href="{% url 'account_login' %}" class="btn btn-primary">{% trans 'Login' %}</a></p>
   </div>
+  <a href="{{ MEDIA_URL }}{{ term_sheet }}" target="_NEW" class="list-group-item">
+    <span class="glyphicon glyphicon-save-file"></span>&nbsp;{% trans 'Term Sheet' %}
+  </a>
+  <a href="{{ MEDIA_URL }}{{ loan_agreement }}" target="_NEW" class="list-group-item">
+    <span class="glyphicon glyphicon-save-file"></span>&nbsp;{% trans 'Generic Loan Agreement' %}
+  </a>
   {% for row in documents %}
     {% if row.login_required == False or row.login_required and is_logged_in %}
       <a href="{{ MEDIA_URL }}{{ row.document }}" target="_NEW" class="list-group-item">

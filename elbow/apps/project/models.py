@@ -26,7 +26,12 @@ import os
 
 def _image_upload_path(instance, filename):
     filename, file_extension = os.path.splitext(filename)
-    return 'project/%s-%s.%s' % (instance.slug, slugify(filename), file_extension)
+    return 'project/%s/img-%s%s' % (slugify(instance.name), slugify(filename), file_extension)
+
+
+def _doc_upload_path(instance, filename):
+    filename, file_extension = os.path.splitext(filename)
+    return 'project/%s/doc-%s%s' % (slugify(instance.name), slugify(filename), file_extension)
 
 
 class Project(models.Model):
@@ -61,6 +66,14 @@ class Project(models.Model):
     lat_long = GeopositionField(default='51.1655111, 6.2737308')
 
     documents = models.ManyToManyField('document.Document')
+
+    term_sheet_doc = models.FileField(verbose_name=_('Term Sheet'),
+                                      upload_to=_doc_upload_path,
+                                      storage=CustomManagedStorage())
+
+    loan_agreement_doc = models.FileField(verbose_name=_('Loan Agreement'),
+                                          upload_to=_doc_upload_path,
+                                          storage=CustomManagedStorage())
 
     # Sent to payment processor as description
     payment_description = models.CharField(max_length=255, blank=True, null=True)
