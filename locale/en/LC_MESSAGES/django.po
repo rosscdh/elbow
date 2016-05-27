@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-27 09:21+0000\n"
+"POT-Creation-Date: 2016-05-27 09:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -92,11 +92,11 @@ msgstr ""
 msgid "Mrs"
 msgstr ""
 
-#: elbow/apps/order/forms.py:42 elbow/apps/public/forms.py:12
+#: elbow/apps/order/forms.py:42 elbow/apps/public/forms.py:13
 msgid "First name"
 msgstr ""
 
-#: elbow/apps/order/forms.py:45 elbow/apps/public/forms.py:13
+#: elbow/apps/order/forms.py:45 elbow/apps/public/forms.py:14
 msgid "Last name"
 msgstr ""
 
@@ -144,8 +144,9 @@ msgstr ""
 msgid "Please select a payment type"
 msgstr ""
 
-#: elbow/apps/order/forms.py:79 elbow/apps/public/forms.py:16
-msgid "I agree to the site <a href=\"/path/to/pdf\">Terms & Conditions</a>"
+#: elbow/apps/order/forms.py:79 elbow/apps/public/forms.py:17
+#, python-brace-format
+msgid "I agree to the site <a href=\"{url}\">Terms & Conditions</a>"
 msgstr ""
 
 #: elbow/apps/order/forms.py:82
@@ -493,23 +494,23 @@ msgstr ""
 msgid "A list of our current projects"
 msgstr ""
 
-#: elbow/apps/public/forms.py:20
+#: elbow/apps/public/forms.py:21
 msgid "I would like to receive occasional news and information"
 msgstr ""
 
-#: elbow/apps/public/forms.py:31
+#: elbow/apps/public/forms.py:32
 msgid "Personal Details"
 msgstr ""
 
-#: elbow/apps/public/forms.py:34
+#: elbow/apps/public/forms.py:35
 msgid "Login Information"
 msgstr ""
 
-#: elbow/apps/public/forms.py:38
+#: elbow/apps/public/forms.py:39
 msgid "Agreement & Newsletter"
 msgstr ""
 
-#: elbow/apps/public/forms.py:41
+#: elbow/apps/public/forms.py:42
 msgid "Register Now"
 msgstr ""
 

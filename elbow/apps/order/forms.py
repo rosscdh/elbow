@@ -76,7 +76,7 @@ class CreateOrderForm(forms.Form):
                                      help_text=_('Please select a payment type'),
                                      widget=forms.RadioSelect)
 
-    t_and_c = forms.BooleanField(label=_('I agree to the site <a href="/path/to/pdf">Terms & Conditions</a>'),
+    t_and_c = forms.BooleanField(label=_('I agree to the site <a href="{url}">Terms & Conditions</a>'),
                                  widget=forms.CheckboxInput)
 
     has_read_investment_contract = forms.BooleanField(label=_('I have read and agree to be bound to the terms of the <a href="{url}">investment contract</a>.'),
@@ -118,7 +118,9 @@ class CreateOrderForm(forms.Form):
         if self.project.maximum_investment:
             self.fields['amount'].help_text = _(u'A minimum of &euro; {minimum} and a maximum of &euro; {maximum}, is required').format(minimum=self.project.minimum_investment.amount, maximum=self.project.maximum_investment.amount)
 
-        # Setup the loan_agreement and term_sheet
+        # Setup the loan_agreement and term_sheet        
+        self.fields['t_and_c'].label = self.fields['t_and_c'].label.format(url=settings.TERMS_AND_CONDITIONS_URL)
+
         if self.project.term_sheet_doc:
             self.fields['has_read_investment_contract'].label = self.fields['has_read_investment_contract'].label.format(url=self.project.term_sheet_doc.url)
         else:

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-27 09:21+0000\n"
+"POT-Creation-Date: 2016-05-27 09:32+0000\n"
 "PO-Revision-Date: 2016-05-25 18:15+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -98,11 +98,11 @@ msgstr "Herr"
 msgid "Mrs"
 msgstr "Frau"
 
-#: elbow/apps/order/forms.py:42 elbow/apps/public/forms.py:12
+#: elbow/apps/order/forms.py:42 elbow/apps/public/forms.py:13
 msgid "First name"
 msgstr "Vorname"
 
-#: elbow/apps/order/forms.py:45 elbow/apps/public/forms.py:13
+#: elbow/apps/order/forms.py:45 elbow/apps/public/forms.py:14
 msgid "Last name"
 msgstr "Name"
 
@@ -150,11 +150,10 @@ msgstr "Zahlungsmethode"
 msgid "Please select a payment type"
 msgstr "Bitte wählen Sie eine Zahlungsweise aus"
 
-#: elbow/apps/order/forms.py:79 elbow/apps/public/forms.py:16
-msgid "I agree to the site <a href=\"/path/to/pdf\">Terms & Conditions</a>"
-msgstr ""
-"Ich habe die <a href=\"http://today-capital.de/impressum/agb/\">AGB</a> "
-"gelesen und stimme zu."
+#: elbow/apps/order/forms.py:79 elbow/apps/public/forms.py:17
+#, python-brace-format
+msgid "I agree to the site <a href=\"{url}\">Terms & Conditions</a>"
+msgstr "Ich habe die <a href=\"{url}\">AGB</a> gelesen und stimme zu."
 
 #: elbow/apps/order/forms.py:82
 #, python-brace-format
@@ -522,25 +521,25 @@ msgstr "Projekte"
 msgid "A list of our current projects"
 msgstr "Aktuelle Projekte"
 
-#: elbow/apps/public/forms.py:20
+#: elbow/apps/public/forms.py:21
 msgid "I would like to receive occasional news and information"
 msgstr ""
 "Bitte informieren Sie mich kostenlos über wichtige Neuigkeiten auf "
 "TodayCapital per E-Mail. Diese Einstellung kann ich jederzeit widerrufen."
 
-#: elbow/apps/public/forms.py:31
+#: elbow/apps/public/forms.py:32
 msgid "Personal Details"
 msgstr "&nbsp;"
 
-#: elbow/apps/public/forms.py:34
+#: elbow/apps/public/forms.py:35
 msgid "Login Information"
 msgstr "&nbsp;"
 
-#: elbow/apps/public/forms.py:38
+#: elbow/apps/public/forms.py:39
 msgid "Agreement & Newsletter"
 msgstr "&nbsp;"
 
-#: elbow/apps/public/forms.py:41
+#: elbow/apps/public/forms.py:42
 msgid "Register Now"
 msgstr "Jetzt registrieren"
 

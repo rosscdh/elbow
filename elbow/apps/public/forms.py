@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 from django import forms
+from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
 from crispy_forms.helper import FormHelper
@@ -13,7 +14,7 @@ class SignUpForm(AllAuthSignupForm):
     last_name = forms.CharField(label=_('Last name'), required=True)
 
     has_aggeed_t_and_c = forms.BooleanField(label='',
-                                            help_text=_('I agree to the site <a href="/path/to/pdf">Terms & Conditions</a>'),
+                                            help_text=_('I agree to the site <a href="{url}">Terms & Conditions</a>').format(url=settings.TERMS_AND_CONDITIONS_URL),
                                             required=True,
                                             widget=forms.CheckboxInput)
     send_news_and_info = forms.NullBooleanField(label='',

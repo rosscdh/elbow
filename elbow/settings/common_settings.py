@@ -325,3 +325,6 @@ LEAFLET_CONFIG = {
     'MIN_ZOOM': 12,
     # 'MAX_ZOOM': 18,
 }
+
+
+TERMS_AND_CONDITIONS_URL = 'http://today-capital.de/impressum/agb/'
