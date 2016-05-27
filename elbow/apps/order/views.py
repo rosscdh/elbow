@@ -170,7 +170,7 @@ class OrderWebhook(View):
             hint = request.POST.get('hint')
             payment_status = request.POST.get('payment_status')
             #extended_status_description = order.SECUPAY.status_id_description(status_id=status_id)
-            simplifiedstatus = request.POST.get('simplifiedstatus')
+            #simplifiedstatus = request.POST.get('simplifiedstatus')
 
             log(
                 user=request.user,
@@ -185,8 +185,6 @@ class OrderWebhook(View):
                     #  'apikey': apikey, # Should not be TXing this at all
                     'hint': hint,
                     'payment_status': payment_status,
-                    'simplifiedstatus': simplifiedstatus,
-                    #'extended_status_description': extended_status_description,
                     #  'simplifiedstatus': simplifiedstatus, # Is not provided by api?
                 }
             )
