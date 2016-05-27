@@ -78,7 +78,7 @@ class CreateOrderForm(forms.Form):
                                      help_text=_('Please select a payment type'),
                                      widget=forms.RadioSelect)
 
-    disclosure = forms.BooleanField(label=_(u'You want to invest &euro; 1000,00 or more and therefore, must agree to the loan contract in order to proceed'),
+    disclosure = forms.BooleanField(label=_(u'You want to invest 1000,00 &euro; or more and therefore, must agree to the loan contract in order to proceed'),
                                     widget=forms.CheckboxInput,
                                     required=False)
 
@@ -119,10 +119,11 @@ class CreateOrderForm(forms.Form):
         # Order is important
         #
         if self.project.minimum_investment:
-            self.fields['amount'].help_text = _(u'A minimum of &euro; {minimum} is required').format(minimum=self.project.minimum_investment.amount)
+            self.fields['amount'].help_text = _(u'A minimum of {minimum} is required').format(minimum=unicode(self.project.minimum_investment))
 
         if self.project.maximum_investment:
-            self.fields['amount'].help_text = _(u'A minimum of &euro; {minimum} and a maximum of &euro; {maximum}, is required').format(minimum=self.project.minimum_investment.amount, maximum=self.project.maximum_investment.amount)
+            self.fields['amount'].help_text = _(u'A minimum of {minimum} and a maximum of {maximum}, is required').format(minimum=unicode(self.project.minimum_investment),
+                                                                                                                                        maximum=unicode(self.project.maximum_investment))
 
         # Setup the loan_agreement and term_sheet        
         self.fields['t_and_c'].label = self.fields['t_and_c'].label.format(url=settings.TERMS_AND_CONDITIONS_URL)
@@ -198,11 +199,11 @@ class CreateOrderForm(forms.Form):
 
         if amount and self.project.minimum_investment and \
            Decimal(amount) < self.project.minimum_investment.amount:
-            raise forms.ValidationError(mark_safe(_(u'The minimum investment amount is &euro;{minimum}'.format(minimum=self.project.minimum_investment.amount))),
+            raise forms.ValidationError(mark_safe(_(u'The minimum investment amount is {minimum}'.format(minimum=unicode(self.project.minimum_investment.amount)))),
                                         code='minimum_investment_amount_not_met',)
         if amount and self.project.maximum_investment and \
            Decimal(amount) > self.project.maximum_investment.amount:
-            raise forms.ValidationError(mark_safe(_(u'The maximum investment amount is &euro;{maximum}'.format(maximum=self.project.maximum_investment.amount))),
+            raise forms.ValidationError(mark_safe(_(u'The maximum investment amount is {maximum}'.format(maximum=unicode(self.project.maximum_investment.amount)))),
                                         code='maximum_investment_amount_not_met',)
         return self.cleaned_data['amount']
 

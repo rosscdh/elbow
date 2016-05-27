@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-27 13:12+0000\n"
+"POT-Creation-Date: 2016-05-27 13:44+0000\n"
 "PO-Revision-Date: 2016-05-25 18:15+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -80,7 +80,7 @@ msgstr "Lastschrift"
 msgid "Manual bank transfer"
 msgstr "Überweisung"
 
-#: elbow/apps/order/forms.py:35 elbow/apps/order/forms.py:149
+#: elbow/apps/order/forms.py:35 elbow/apps/order/forms.py:150
 msgid "Investment Amount"
 msgstr "Mein Investment"
 
@@ -156,14 +156,14 @@ msgstr "Bitte wählen Sie eine Zahlungsweise aus"
 
 #: elbow/apps/order/forms.py:81
 msgid ""
-"You want to invest &euro; 1000,00 or more and therefore, must agree to the "
+"You want to invest 1000,00 &euro; or more and therefore, must agree to the "
 "loan contract in order to proceed"
 msgstr ""
-"Da ich über &euro; 1000,00 investieren möchte, bestätige ich hiermit, dass mein "
-"Investitionsbetrag den zweifachen Betrag meines durchschnittlichen "
+"Da ich über 1000,00 &euro; investieren möchte, bestätige ich hiermit, dass "
+"mein Investitionsbetrag den zweifachen Betrag meines durchschnittlichen "
 "monatlichen Nettoeinkommens nicht übersteigt oder dass ich über ein frei "
 "verfügbares Vermögen in Form von Bankguthaben und Finanzinstrumenten in Höhe "
-"von mindestens € 100.000,00 verfüge."
+"von mindestens 100.000,00 &euro; verfüge."
 
 #: elbow/apps/order/forms.py:85 elbow/apps/public/forms.py:17
 #, python-brace-format
@@ -192,69 +192,67 @@ msgstr ""
 
 #: elbow/apps/order/forms.py:122
 #, python-brace-format
-msgid "A minimum of &euro; {minimum} is required"
-msgstr "Ein Minimum von & euro; {minimum} ist erforderlich"
+msgid "A minimum of {minimum} is required"
+msgstr "Ein Minimum von & {minimum} ist erforderlich"
 
 #: elbow/apps/order/forms.py:125
 #, python-brace-format
-msgid ""
-"A minimum of &euro; {minimum} and a maximum of &euro; {maximum}, is required"
+msgid "A minimum of {minimum} and a maximum of {maximum}, is required"
 msgstr ""
-"Ein Minimum von &euro; {minimum} und ein Maximum von &euro; {maximum}, ist "
-"erforderlich,"
+"Ein Minimum von {minimum} und ein Maximum von {maximum}, ist erforderlich,"
 
-#: elbow/apps/order/forms.py:151
+#: elbow/apps/order/forms.py:152
 msgid "Interest Rate p.a"
 msgstr "Zinsen p.a."
 
-#: elbow/apps/order/forms.py:152
+#: elbow/apps/order/forms.py:153
 msgid "Interest Term"
 msgstr "Laufzeit"
 
-#: elbow/apps/order/forms.py:158
+#: elbow/apps/order/forms.py:159
 msgid "Investor Details"
 msgstr "Persönliche Daten"
 
-#: elbow/apps/order/forms.py:164
+#: elbow/apps/order/forms.py:165
 msgid "Company Details"
 msgstr "Wenn Sie als Firma investieren"
 
-#: elbow/apps/order/forms.py:167
+#: elbow/apps/order/forms.py:168
 msgid "Postal Address"
 msgstr "Anschrift"
 
-#: elbow/apps/order/forms.py:174
+#: elbow/apps/order/forms.py:175
 msgid "Payment"
 msgstr "Zahlung"
 
-#: elbow/apps/order/forms.py:181
+#: elbow/apps/order/forms.py:182
 #: elbow/apps/project/templates/project/project-detail.html:13
 msgid "Invest Now"
 msgstr "Jetzt investieren"
 
-#: elbow/apps/order/forms.py:192
+#: elbow/apps/order/forms.py:193
 msgid "You must confirm your self assessment of credit worthiness"
 msgstr "Bitte bestätigen Sie die Selbstauskunft."
 
-#: elbow/apps/order/forms.py:201
+#: elbow/apps/order/forms.py:202
 #, python-brace-format
-msgid "The minimum investment amount is &euro;{minimum}"
-msgstr "Der Mindestanlagebetrag ist &euro;{minimum}"
+msgid "The minimum investment amount is {minimum}"
+msgstr "Der Mindestanlagebetrag ist {minimum}"
 
-#: elbow/apps/order/forms.py:205
+#: elbow/apps/order/forms.py:206
 #, python-brace-format
-msgid "The maximum investment amount is &euro;{maximum}"
-msgstr "Die maximale Anlagebetrag ist &euro;{maximum}"
+msgid "The maximum investment amount is {maximum}"
+msgstr "Die maximale Anlagebetrag ist {maximum}"
 
-#: elbow/apps/order/forms.py:212
+#: elbow/apps/order/forms.py:213
 msgid "You must agree to the terms of the loan agreement"
 msgstr "Sie müssen den Bedingungen der Darlehensvertrag zustimmen."
 
-#: elbow/apps/order/forms.py:266
+#: elbow/apps/order/forms.py:267
 msgid "I agree to the terms of the Loan Agreement"
 msgstr "Ich stimme dem Darlehensvertrag zu."
 
-#: elbow/apps/order/forms.py:303
+#: elbow/apps/order/forms.py:304
 msgid "Continue & Make the payment"
 msgstr "Jetzt zahlungspflichtig investieren"
 

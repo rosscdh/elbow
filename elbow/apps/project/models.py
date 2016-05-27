@@ -47,7 +47,8 @@ class Project(models.Model):
 
     amount = MoneyField(max_digits=10, decimal_places=2, default_currency='EUR')
     minimum_investment = MoneyField(max_digits=10, decimal_places=2, default=500, default_currency='EUR')
-    maximum_investment = MoneyField(max_digits=10, decimal_places=2, blank=True, null=True, default=None, default_currency='EUR')
+    maximum_investment = MoneyField(max_digits=10, decimal_places=2, default=None, default_currency='EUR', blank=True, null=True)
+
     interest_type = models.CharField(choices=INTEREST_TYPE.get_choices(),
                                      default=INTEREST_TYPE.a,
                                      max_length=64,

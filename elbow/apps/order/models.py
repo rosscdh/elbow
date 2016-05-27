@@ -201,7 +201,7 @@ class Order(models.Model):
             user=user,
             action="order.lifecycle.payment.capture_authorized_payment",
             obj=self,
-            extra=resp.json()
+            extra=resp
         )
         data = resp.get('data', {})
         self.data['capture'] = data
