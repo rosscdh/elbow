@@ -123,13 +123,9 @@ class CreateOrderForm(forms.Form):
 
         if self.project.term_sheet_doc:
             self.fields['has_read_investment_contract'].label = self.fields['has_read_investment_contract'].label.format(url=self.project.term_sheet_doc.url)
-        else:
-            self.fields.pop('has_read_investment_contract', None)
 
         if self.project.loan_agreement_doc:
             self.fields['has_read_loan_agreement_contract'].label = self.fields['has_read_loan_agreement_contract'].label.format(url=self.project.loan_agreement_doc.url)
-        else:
-            self.fields.pop('has_read_loan_agreement_contract', None)
 
     @property
     def helper(self):
