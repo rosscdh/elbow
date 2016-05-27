@@ -199,7 +199,7 @@ class OrderWebhook(View):
                 order.status = order.ORDER_STATUS.paid
 
             if payment_status in ['authorized'] \
-               and order.payment_type == order.payment_type.ORDER_PAYMENT_TYPE.debit:
+               and order.payment_type == order.ORDER_PAYMENT_TYPE.debit:
                 #
                 # IN the case of an authorized event (bank has allwed the tx)
                 # we need to manually capture the payment
