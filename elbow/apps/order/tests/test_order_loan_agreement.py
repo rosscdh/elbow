@@ -47,8 +47,8 @@ class OrderLoanAgreementViewTest(BaseTestCase):
             resp = self.c.get(self.url)
 
         self.assertEqual(resp.status_code, 200)
-        button = '<a href="{document}" target="_NEW" class="btn btn-lg btn-info">Darlehensvertrag Unterladen</a>'.format(document=self.order.documents.filter(user=self.order.user).first().url)
-        button = 'Darlehensvertrag Unterladen'
+        button = '<a href="{document}" target="_NEW" class="btn btn-lg btn-info">Darlehensvertrag herunterladen</a>'.format(document=self.order.documents.filter(user=self.order.user).first().url)
+        button = 'Darlehensvertrag herunterladen'
         self.assertTrue(button in resp.content)
         self.assertTrue('<p>Ich bestätige, dass ich entweder über ein frei verfügbares Vermögen in Form von Bankguthaben und Finanzinstrumenten von mindestens 100.000 € verfüge</p><p>ODER dass der Gesamtbetrag meiner Investition in dieses Projekt nicht das Zweifache meines durchschnittlichen mtl. Nettoeinkommens übersteigt.</p>' in resp.content)
 
@@ -130,7 +130,7 @@ class OrderLoanAgreementFormTest(TestCase):
         # Should have email to managers AND email to customer
         self.assertEqual(2, len(mail.outbox))
         email = mail.outbox[0]
-        self.assertEqual(unicode(email.subject), u'TodayCapital.de - a new order has been created')
+        self.assertEqual(unicode(email.subject), u'TodayCapital.de - Ihr Investment auf TodayCapital')
         self.assertEqual(email.recipients(), ['post@todaycapital.de'])
 
         #
