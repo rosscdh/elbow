@@ -88,6 +88,7 @@ HELPER_APPS = (
     'rulez',
     'djmoney',
     'embed_video',
+    'django_inlinecss',
     #  'django_rq',
     'easy_thumbnails',
     'easy_pdf',
