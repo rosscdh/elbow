@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-27 13:44+0000\n"
+"POT-Creation-Date: 2016-05-28 13:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,15 +25,15 @@ msgid "Order Document"
 msgstr ""
 
 #: elbow/apps/document/apps.py:11
-#: elbow/apps/project/templates/project/_docs.html:11
+#: elbow/apps/project/templates/project/_docs.html:12
 msgid "Generic Loan Agreement"
 msgstr ""
 
-#: elbow/apps/document/apps.py:12 elbow/apps/project/models.py:74
+#: elbow/apps/document/apps.py:12 elbow/apps/project/models.py:75
 msgid "Loan Agreement"
 msgstr ""
 
-#: elbow/apps/document/apps.py:13 elbow/apps/project/models.py:70
+#: elbow/apps/document/apps.py:13 elbow/apps/project/models.py:71
 #: elbow/apps/project/templates/project/_docs.html:8
 msgid "Term Sheet"
 msgstr ""
@@ -422,29 +422,32 @@ msgstr ""
 msgid "Customer Reference"
 msgstr ""
 
-#: elbow/apps/project/models.py:57
+#: elbow/apps/project/models.py:58
 msgid "Format: 12m, 36m, 3y, 7y"
 msgstr ""
 
-#: elbow/apps/project/models.py:102
+#: elbow/apps/project/models.py:103
 msgid "Project"
 msgstr ""
 
-#: elbow/apps/project/models.py:103
+#: elbow/apps/project/models.py:104
 msgid "Projects"
 msgstr ""
 
-#: elbow/apps/project/templates/project/_docs.html:4
-msgid "Please login to view the selected document."
-msgstr ""
-
 #: elbow/apps/project/templates/project/_docs.html:5
-#: templates/navigation.html:35
-msgid "Login"
+#: elbow/apps/project/templates/project/project-detail.html:88
+#: elbow/apps/project/templates/project/project-detail.html:118
+msgid "Documents"
 msgstr ""
 
-#: elbow/apps/project/templates/project/_docs.html:24
-msgid "No documents found"
+#: elbow/apps/project/templates/project/_docs.html:9
+#: elbow/apps/project/templates/project/_docs.html:13
+#: elbow/apps/project/templates/project/_docs.html:19
+msgid ".PDF Download"
+msgstr ""
+
+#: elbow/apps/project/templates/project/_docs.html:21
+msgid "Login required"
 msgstr ""
 
 #: elbow/apps/project/templates/project/_preview.html:8
@@ -471,11 +474,6 @@ msgstr ""
 
 #: elbow/apps/project/templates/project/project-detail.html:87
 msgid "Participation Model"
-msgstr ""
-
-#: elbow/apps/project/templates/project/project-detail.html:88
-#: elbow/apps/project/templates/project/project-detail.html:118
-msgid "Documents"
 msgstr ""
 
 #: elbow/apps/project/templates/project/project-detail.html:89
@@ -548,7 +546,7 @@ msgstr ""
 msgid "TodayCapital.de - Investment Payment, Failure"
 msgstr ""
 
-#: elbow/settings/common_settings.py:304
+#: elbow/settings/common_settings.py:305
 msgid "German"
 msgstr ""
 
@@ -921,6 +919,10 @@ msgstr ""
 
 #: templates/navigation.html:15
 msgid "Home"
+msgstr ""
+
+#: templates/navigation.html:35
+msgid "Login"
 msgstr ""
 
 #: templates/navigation.html:36
