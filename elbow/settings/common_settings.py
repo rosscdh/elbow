@@ -334,3 +334,5 @@ TERMS_AND_CONDITIONS_URL = 'http://today-capital.de/impressum/agb/'
 # All auth
 #
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
+ACCOUNT_EMAIL_SUBJECT_PREFIX = 'TodayCapital'
