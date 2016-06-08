@@ -199,11 +199,11 @@ class CreateOrderForm(forms.Form):
 
         if amount and self.project.minimum_investment and \
            Decimal(amount) < self.project.minimum_investment.amount:
-            raise forms.ValidationError(mark_safe(_(u'The minimum investment amount is {minimum}'.format(minimum=unicode(self.project.minimum_investment.amount)))),
+            raise forms.ValidationError(mark_safe(_(u'The minimum investment amount is {minimum}').format(minimum=unicode(self.project.minimum_investment.amount))),
                                         code='minimum_investment_amount_not_met',)
         if amount and self.project.maximum_investment and \
            Decimal(amount) > self.project.maximum_investment.amount:
-            raise forms.ValidationError(mark_safe(_(u'The maximum investment amount is {maximum}'.format(maximum=unicode(self.project.maximum_investment.amount)))),
+            raise forms.ValidationError(mark_safe(_(u'The maximum investment amount is {maximum}').format(maximum=unicode(self.project.maximum_investment.amount))),
                                         code='maximum_investment_amount_not_met',)
         return self.cleaned_data['amount']
 

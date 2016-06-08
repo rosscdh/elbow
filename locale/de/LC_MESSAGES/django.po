@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-28 13:01+0000\n"
-"PO-Revision-Date: 2016-05-25 18:15+0200\n"
+"POT-Creation-Date: 2016-06-08 12:45+0000\n"
+"PO-Revision-Date: 2016-06-08 14:49+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -717,7 +717,7 @@ msgstr "Passwort zurücksetzen"
 #: templates/account/email_confirmed.html:6
 #: templates/account/email_confirmed.html:11
 msgid "Confirm E-mail Address"
-msgstr "E-Mail-Adresse bestätigen"
+msgstr "Vielen Dank für Ihre Registrierung"
 
 #: templates/account/email_confirm.html:16
 #, python-format
@@ -964,9 +964,8 @@ msgid ""
 "finalize the signup process. Please contact us if you do not receive it "
 "within a few minutes."
 msgstr ""
-"Wir haben Ihnen Bestätigungsmail zugesendet. Bitte prüfen Sie Ihre E-Mails, "
-"um Ihr Benutzerkonto zu aktivieren. Sollten Sie innerhalb der nächsten "
-"Minuten keine Bestätigungsmail empfangen, wenden Sie sich bitte an uns."
+"Um die Anmeldung abzuschließen, bestätigen Sie bitte den Link, den wir Ihnen "
+"per E-Mail geschickt haben."
 
 #: templates/account/verified_email_required.html:12
 msgid ""
