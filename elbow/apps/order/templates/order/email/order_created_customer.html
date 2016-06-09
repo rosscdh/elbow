@@ -1,3 +1,5 @@
+{% extends 'email/base.html' %}
+{% block content %}
 {% spaceless %}<p>Hallo {{ order.customer_name }},</p>
 
 <p>wir freuen uns, dass Sie sich für das Projekt {{ order.project }} entschieden haben und es mit Ihrem Investment unterstützen wollen. Vielen Dank!</p>
@@ -23,3 +25,4 @@
 
 {% include 'email/_footer.html' %}
 {% endspaceless %}
+{% endblock %}

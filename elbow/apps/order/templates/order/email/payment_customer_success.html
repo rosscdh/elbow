@@ -1,3 +1,5 @@
+{% extends 'email/base.html' %}
+{% block content %}
 <p><b>[Betreff]</b></p>
 <p>Ihre Zahlung ist eingegangen</p>
 
@@ -11,4 +13,4 @@
 <p><b>Projektbezeichnung:</b> {{ order.project }}</p>
 <p><b>Bestellung ID:</b> {{ order.uuid }}</p>
 
-{% include 'email/_footer.html' %}
+{% endblock %}

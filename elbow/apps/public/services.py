@@ -23,10 +23,12 @@ class SendEmailService(object):
     def send_user_signedup_admin_email(user_list):
         logger.debug('Order Created')
         send_success = []
-        html2text = HTML2TextEmailMessageService(template_name='public/email/send_user_signedup_admin.html',
-                                                 recipients=user_list)
-        # Send Admin Email
         subject = _('TodayCapital.de - New sign-up')
+
+        html2text = HTML2TextEmailMessageService(template_name='public/email/send_user_signedup_admin.html',
+                                                 recipients=user_list,
+                                                 subject=subject)
+        # Send Admin Email
         message = html2text.plain_text
         from_email = 'application@todaycapital.de'
         recipient_list = ['post@todaycapital.de']
@@ -44,11 +46,12 @@ class SendEmailService(object):
                                                user=self.order.user)  \
                                        .order_by('-id').first()
 
+        subject = _('TodayCapital.de - a new order has been created')
         html2text = HTML2TextEmailMessageService(template_name='order/email/order_created.html',
                                                  order=self.order,
-                                                 recipients=user_list)
+                                                 recipients=user_list,
+                                                 subject=subject)
         # Send Admin Email
-        subject = _('TodayCapital.de - a new order has been created')
         message = html2text.plain_text
         from_email = 'application@todaycapital.de'
         recipient_list = ['post@todaycapital.de']
@@ -75,10 +78,12 @@ class SendEmailService(object):
             logger.debug('Send user %s email' % user)
             html2text = HTML2TextEmailMessageService(template_name='order/email/order_created_customer.html',
                                                      user=user,
-                                                     order=self.order)
+                                                     order=self.order,
+                                                     subject=subject)
 
             msg = EmailMultiAlternatives(subject, html2text.plain_text, from_email, [user.email])
             msg.attach_alternative(html2text.html, "text/html")
+
             if document:
                 msg.attach_file(document.document.path)
 
@@ -89,11 +94,13 @@ class SendEmailService(object):
     def send_success_email(self, user_list):
         logger.debug('Payment Success')
         send_success = []
+
+        subject = _('TodayCapital.de - Investment Payment, Success')
         html2text = HTML2TextEmailMessageService(template_name='order/email/payment_admin_success.html',
                                                  order=self.order,
-                                                 recipients=user_list)
+                                                 recipients=user_list,
+                                                 subject=subject)
         # Send Admin Email
-        subject = _('TodayCapital.de - Investment Payment, Success')
         message = html2text.plain_text
         from_email = 'application@todaycapital.de'
         recipient_list = ['post@todaycapital.de']
@@ -113,7 +120,8 @@ class SendEmailService(object):
             logger.debug('Send user %s email' % user)
             html2text = HTML2TextEmailMessageService(template_name='order/email/payment_customer_success.html',
                                                      user=user,
-                                                     order=self.order)
+                                                     order=self.order,
+                                                     subject=subject)
 
             send_success.append(('customer', send_mail(subject=subject,
                                                        message=message,
@@ -125,11 +133,13 @@ class SendEmailService(object):
     def send_fail_email(self):
         logger.debug('Payment Failure')
         send_success = []
+
+        subject = _('TodayCapital.de - Investment Payment, Failure')
         html2text = HTML2TextEmailMessageService(template_name='order/email/payment_admin_fail.html',
-                                                 order=self.order)
+                                                 order=self.order,
+                                                 subject=subject)
 
         # Send Customer Email
-        subject = _('TodayCapital.de - Investment Payment, Failure')
         message = html2text.plain_text
         from_email = 'application@todaycapital.de'
         recipient_list = ['post@todaycapital.de']
