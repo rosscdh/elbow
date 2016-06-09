@@ -162,12 +162,12 @@ class OrderFormTest(TestCase):
         email = mail.outbox[0]
 
         # Admin
-        self.assertEqual(unicode(email.subject), u'[TodayCapital] Neue Investition auf TodayCapital')
+        self.assertEqual(unicode(email.subject), u'Neue Investition auf TodayCapital')
         self.assertEqual(email.recipients(), ['post@todaycapital.de'])
 
         # Customer
         email = mail.outbox[1]
-        self.assertEqual(unicode(email.subject), u'[TodayCapital] Ihr Investment auf TodayCapital')
+        self.assertEqual(unicode(email.subject), u'Ihr Investment auf TodayCapital')
         self.assertEqual(email.recipients(), [self.user.email])
         self.assertTrue('<!-- type: Lastschrift -->' in str(email.message()))
 
@@ -212,11 +212,11 @@ class OrderFormTest(TestCase):
         email = mail.outbox[0]
 
         # Admin
-        self.assertEqual(unicode(email.subject), u'[TodayCapital] Neue Investition auf TodayCapital')
+        self.assertEqual(unicode(email.subject), u'Neue Investition auf TodayCapital')
         self.assertEqual(email.recipients(), ['post@todaycapital.de'])
 
         # Customer
         email = mail.outbox[1]
-        self.assertEqual(unicode(email.subject), u'[TodayCapital] Ihr Investment auf TodayCapital')
+        self.assertEqual(unicode(email.subject), u'Ihr Investment auf TodayCapital')
         self.assertEqual(email.recipients(), [self.user.email])
         self.assertTrue('<!-- type: \xc3\x9cberweisung -->' in str(email.message()))

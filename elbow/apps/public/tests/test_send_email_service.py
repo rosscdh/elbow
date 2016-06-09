@@ -36,11 +36,11 @@ class SendForPaymentEmailServiceTest(BaseTestCase):
 
         email = mail.outbox[0]  # 0 should be to the Founders
         self.assertEqual(email.recipients(), ['post@todaycapital.de'])
-        self.assertEqual(unicode(email.subject), u'[TodayCapital] Zahlung ist eingegangen')
+        self.assertEqual(unicode(email.subject), u'Zahlung ist eingegangen')
 
         email = mail.outbox[1]  # 1 should be to the Customers
         self.assertEqual(email.recipients(), [self.order.user.email])
-        self.assertEqual(unicode(email.subject), u'[TodayCapital] Ihre Zahlung ist eingegangen')
+        self.assertEqual(unicode(email.subject), u'Ihre Zahlung ist eingegangen')
 
     def test_send_fail_email(self):
         result = self.subject.send_fail_email()  # Send the email
@@ -49,6 +49,6 @@ class SendForPaymentEmailServiceTest(BaseTestCase):
         self.assertEqual(type(result), list)
         self.assertEqual(result, [('founders', 1)])
         email = mail.outbox[0]
-        self.assertEqual(unicode(email.subject), '[TodayCapital] Keine Zahlung erhalten')
+        self.assertEqual(unicode(email.subject), 'Keine Zahlung erhalten')
         self.assertEqual(email.recipients(), ['post@todaycapital.de'])
 

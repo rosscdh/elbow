@@ -133,7 +133,7 @@ class OrderLoanAgreementFormTest(TestCase):
         self.assertEqual(2, len(mail.outbox))
 
         email = mail.outbox[0]
-        self.assertEqual(unicode(email.subject), u'[TodayCapital] Neue Investition auf TodayCapital')
+        self.assertEqual(unicode(email.subject), u'Neue Investition auf TodayCapital')
         self.assertEqual(email.recipients(), ['post@todaycapital.de'])
 
         #
@@ -148,7 +148,7 @@ class OrderLoanAgreementFormTest(TestCase):
         self.assertTrue('test-finanzkennzahlen' in email.attachments[2][0])
 
         email = mail.outbox[1]
-        self.assertEqual(unicode(email.subject), u'[TodayCapital] Ihr Investment auf TodayCapital')
+        self.assertEqual(unicode(email.subject), u'Ihr Investment auf TodayCapital')
         self.assertEqual(email.recipients(), [self.user.email])
 
         self.assertEqual(len(email.attachments), 1)
