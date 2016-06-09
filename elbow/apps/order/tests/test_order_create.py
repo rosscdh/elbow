@@ -124,7 +124,7 @@ class OrderFormTest(TestCase):
         self.assertTrue(form.is_valid() is False)
 
     @httpretty.activate
-    def test_valid_form(self):
+    def test_valid_debit_form(self):
         expected_response = {
             "status": "ok",
             "data": {
@@ -169,3 +169,54 @@ class OrderFormTest(TestCase):
         email = mail.outbox[1]
         self.assertEqual(unicode(email.subject), u'[TodayCapital] Ihr Investment auf TodayCapital')
         self.assertEqual(email.recipients(), [self.user.email])
+        self.assertTrue('<!-- type: Lastschrift -->' in str(email.message()))
+
+    @httpretty.activate
+    def test_valid_prepay_form(self):
+        expected_response = {
+            "status": "ok",
+            "data": {
+                "hash": "tujevzgobryk3303",
+                "iframe_url": "https://api.secupay.ag/payment/tujevzgobryk3303"
+            },
+            "errors": None
+        }
+        httpretty.register_uri(httpretty.POST, "https://api-dist.secupay-ag.de/payment/init",
+                               body=json.dumps(expected_response),
+                               content_type="application/json")
+
+        with self.settings(DEBUG=True):
+
+            # Test with data
+            prepay_data = self.initial.copy()
+            prepay_data.update({'payment_type': 'prepay'})
+            form = CreateOrderForm(user=self.user, project=self.project, data=prepay_data)
+            self.assertTrue(form.is_valid())
+            order = form.save()
+
+        self.assertEqual(order.__class__.__name__, 'Order')
+
+        assert order.uuid
+        assert order.pk
+
+        self.assertEqual(order.amount.__class__.__name__, 'MoneyPatched')
+
+        self.assertEqual(order.user, self.user)
+        self.assertEqual(order.project, self.project)
+
+        # Should create a document for the user if a large sum
+        self.assertEqual(order.documents.all().count(), 1)
+
+        # Should have email to managers AND email to customer
+        self.assertEqual(2, len(mail.outbox))
+        email = mail.outbox[0]
+
+        # Admin
+        self.assertEqual(unicode(email.subject), u'[TodayCapital] Neue Investition auf TodayCapital')
+        self.assertEqual(email.recipients(), ['post@todaycapital.de'])
+
+        # Customer
+        email = mail.outbox[1]
+        self.assertEqual(unicode(email.subject), u'[TodayCapital] Ihr Investment auf TodayCapital')
+        self.assertEqual(email.recipients(), [self.user.email])
+        self.assertTrue('<!-- type: \xc3\x9cberweisung -->' in str(email.message()))

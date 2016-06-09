@@ -1,0 +1,15 @@
+{% extends 'email/base.html' %}
+{% block content %}
+{% spaceless %}<p>Hallo {{ order.customer_name }},</p>
+
+<p>wir freuen uns, dass Sie sich für das Projekt {{ order.project }} entschieden haben und es mit Ihrem Investment unterstützen wollen. Vielen Dank!</p>
+
+<p>Im nächsten Schritt erfolgt Ihre <b>Bezahlung</b> auf ein Treuhandkonto der SECUPAY AG, die die Transaktion professionell und sicher verwaltet.</p>
+<p>Sie haben die Zahlung per <b>Lastschrift</b> gewählt. Sind Ihre Daten erfolgreich auf unserer Webseite im Lastschrift-Formular eingetragen, wird der Darlehensbetrag in Kürze von Ihrem Konto eingezogen.</p>
+
+<p>Nach erfolgreichem Zahlungseingang erhalten Sie von uns eine <b>E-Mail-Bestätigung.</b></p>
+
+<p>Ihren <b>Darlehensvertrag</b> finden Sie in der Anlage zu dieser Mail. Selbstverständlich können Sie den Darlehensvertrag speichern oder für Ihre Unterlagen ausdrucken.<p>
+<!-- type: {{ order.display_payment_type }} -->
+{% endspaceless %}
+{% endblock %}

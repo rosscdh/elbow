@@ -80,6 +80,10 @@ class Order(models.Model):
         ordering = ('-created_at',)
 
     @property
+    def display_payment_type(self):
+        return self.ORDER_PAYMENT_TYPE.get_desc_by_value(self.payment_type)
+
+    @property
     def url(self):
         """
         Basic State-Machine need to integrate

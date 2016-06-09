@@ -76,7 +76,18 @@ class SendEmailService(object):
 
         for user in user_list:
             logger.debug('Send user %s email' % user)
-            html2text = HTML2TextEmailMessageService(template_name='order/email/order_created_customer.html',
+
+            template_name = None
+            if self.order.payment_type == self.order.ORDER_PAYMENT_TYPE.debit:
+                template_name = 'order/email/order_created_customer_debit.html'
+
+            if self.order.payment_type == self.order.ORDER_PAYMENT_TYPE.prepay:
+                template_name = 'order/email/order_created_customer_prepay.html'
+
+            if template_name is None:
+                raise Exception('Could not identify customer email template based on order.payment_type: %s' % order.payment_type)
+
+            html2text = HTML2TextEmailMessageService(template_name=template_name,
                                                      user=user,
                                                      order=self.order,
                                                      subject=subject)
