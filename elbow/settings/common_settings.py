@@ -338,6 +338,8 @@ TERMS_AND_CONDITIONS_URL = 'http://today-capital.de/impressum/agb/'
 def _user_display(user):
     if user.first_name and user.last_name:
         return u'%s %s' % (user.first_name, user.last_name)
+    if user.first_name:
+        return u'%s' % (user.first_name,)
     return user.email
 
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
