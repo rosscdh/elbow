@@ -1,3 +1,5 @@
+{% extends 'email/base.html' %}
+{% block content %}
 <p>[Betreff] Zahlung ist eingegangen</p>
 
 <p>Wir haben einen erfolgreichen Zahlungseingang.</p>
@@ -7,3 +9,4 @@
 <p><b>Projektbezeichnung:</b> {{ order.project }}</p>
 <p><b>Order ID.</b> {{ order.uuid }}</p>
 <p><b>Secupay NO.</b> {{ order.transaction_id }}</p>
+{% endblock %}
