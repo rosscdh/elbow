@@ -1,15 +1,14 @@
 {% extends 'email/base.html' %}
 {% block content %}
-<p><b>[Betreff]</b></p>
-<p>Ihre Zahlung ist eingegangen</p>
-
 <p>Hallo {{ order.customer_name }},</p>
 
 <p>wir sagen Danke für Ihre Zahlung, die auf dem Treuhandkonto der SECUPAY AG eingegangen ist.</p>
 
+<p><b>Projektbezeichnung:</b> {{ order.project }}</p>
+<p><b>Darlehensbetrag:</b> {{ order.amount }}</p>
+<!-- <p><b>Bestellung ID:</b> {{ order.uuid }}</p> -->
+
 <p>Auf TodayCapital informieren wir Sie fortlaufend über den Verlauf des Projekts. Als Investor erhalten Sie zudem exklusiv pro Quartal einen persönlichen Bericht über den Projektstatus.</p>
 
-<p><b>Investmentbetrag:</b> {{ order.amount }}</p>
-<p><b>Projektbezeichnung:</b> {{ order.project }}</p>
-<p><b>Bestellung ID:</b> {{ order.uuid }}</p>
+<p>Viele Grüße,</p>
 {% endblock %}
