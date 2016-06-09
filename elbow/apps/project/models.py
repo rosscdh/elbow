@@ -71,14 +71,14 @@ class Project(models.Model):
     term_sheet_doc = models.FileField(verbose_name=_('Term Sheet'),
                                       upload_to=_doc_upload_path,
                                       null=True,
-                                      blank = True,
+                                      blank=True,
                                       storage=CustomManagedStorage())
 
     loan_agreement_doc = models.FileField(verbose_name=_('Loan Agreement'),
                                           upload_to=_doc_upload_path,
                                           max_length=255,
                                           null=True,
-                                          blank = True,
+                                          blank=True,
                                           storage=CustomManagedStorage())
 
     # Sent to payment processor as description

@@ -17,11 +17,11 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='project',
             name='loan_agreement_doc',
-            field=models.FileField(max_length=255, null=True, storage=django.core.files.storage.FileSystemStorage(), upload_to=elbow.apps.project.models._doc_upload_path, verbose_name='Loan Agreement'),
+            field=models.FileField(max_length=255, blank=True, null=True, storage=django.core.files.storage.FileSystemStorage(), upload_to=elbow.apps.project.models._doc_upload_path, verbose_name='Loan Agreement'),
         ),
         migrations.AlterField(
             model_name='project',
             name='term_sheet_doc',
-            field=models.FileField(storage=django.core.files.storage.FileSystemStorage(), upload_to=elbow.apps.project.models._doc_upload_path, verbose_name='Term Sheet'),
+            field=models.FileField(max_length=255, blank=True, null=True, storage=django.core.files.storage.FileSystemStorage(), upload_to=elbow.apps.project.models._doc_upload_path, verbose_name='Term Sheet'),
         ),
     ]
