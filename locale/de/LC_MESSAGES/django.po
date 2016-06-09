@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-09 11:12+0000\n"
-"PO-Revision-Date: 2016-06-09 13:12+0200\n"
+"POT-Creation-Date: 2016-06-09 13:00+0000\n"
+"PO-Revision-Date: 2016-06-09 15:05+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -445,6 +445,22 @@ msgstr "Kontonummer"
 msgid "Customer Reference"
 msgstr "Kundennummer"
 
+#: elbow/apps/order/templates/order/order-payment_success.html:4
+#: elbow/apps/order/templates/order/order-payment_success.html:10
+#, fuzzy
+#| msgid "Payment Cancelled"
+msgid "Payment was successful"
+msgstr "Zahlung storniert"
+
+#: elbow/apps/order/templates/order/order-payment_success.html:19
+#, python-format
+msgid ""
+"\n"
+"    <p>Thank you for your investment in %(project_name)s.</p>\n"
+"    <p>Please check your email for other important information.</p>\n"
+"    "
+msgstr ""
+
 # ?
 #: elbow/apps/project/models.py:58
 msgid "Format: 12m, 36m, 3y, 7y"
@@ -556,27 +572,27 @@ msgstr "Jetzt registrieren"
 
 #: elbow/apps/public/services.py:26
 msgid "TodayCapital.de - New sign-up"
-msgstr "[TodayCapital] Registrieren"
+msgstr "Registrieren mit TodayCapital"
 
 #: elbow/apps/public/services.py:49
 msgid "TodayCapital.de - a new order has been created"
-msgstr "[TodayCapital] Neue Investition auf TodayCapital"
+msgstr "Neue Investition auf TodayCapital"
 
 #: elbow/apps/public/services.py:73
 msgid "TodayCapital.de - Your Investment Order has been created"
-msgstr "[TodayCapital] Ihr Investment auf TodayCapital"
+msgstr "Ihr Investment auf TodayCapital"
 
-#: elbow/apps/public/services.py:98
+#: elbow/apps/public/services.py:109
 msgid "TodayCapital.de - [admin] Investment Payment, Success"
-msgstr "[TodayCapital] Zahlung ist eingegangen"
+msgstr "Zahlung ist eingegangen"
 
-#: elbow/apps/public/services.py:115
+#: elbow/apps/public/services.py:126
 msgid "TodayCapital.de - Investment Payment, Success"
-msgstr "[TodayCapital] Ihre Zahlung ist eingegangen"
+msgstr "Ihre Zahlung ist eingegangen"
 
-#: elbow/apps/public/services.py:137
+#: elbow/apps/public/services.py:151
 msgid "TodayCapital.de - [admin] Investment Payment, Failure"
-msgstr "[TodayCapital] Keine Zahlung erhalten"
+msgstr "Keine Zahlung erhalten"
 
 #: elbow/settings/common_settings.py:305
 msgid "German"

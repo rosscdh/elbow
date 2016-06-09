@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-09 11:12+0000\n"
+"POT-Creation-Date: 2016-06-09 13:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -422,6 +422,20 @@ msgstr ""
 msgid "Customer Reference"
 msgstr ""
 
+#: elbow/apps/order/templates/order/order-payment_success.html:4
+#: elbow/apps/order/templates/order/order-payment_success.html:10
+msgid "Payment was successful"
+msgstr ""
+
+#: elbow/apps/order/templates/order/order-payment_success.html:19
+#, python-format
+msgid ""
+"\n"
+"    <p>Thank you for your investment in %(project_name)s.</p>\n"
+"    <p>Please check your email for other important information.</p>\n"
+"    "
+msgstr ""
+
 #: elbow/apps/project/models.py:58
 msgid "Format: 12m, 36m, 3y, 7y"
 msgstr ""
@@ -538,15 +552,15 @@ msgstr ""
 msgid "TodayCapital.de - Your Investment Order has been created"
 msgstr ""
 
-#: elbow/apps/public/services.py:98
+#: elbow/apps/public/services.py:109
 msgid "TodayCapital.de - [admin] Investment Payment, Success"
 msgstr ""
 
-#: elbow/apps/public/services.py:115
+#: elbow/apps/public/services.py:126
 msgid "TodayCapital.de - Investment Payment, Success"
 msgstr ""
 
-#: elbow/apps/public/services.py:137
+#: elbow/apps/public/services.py:151
 msgid "TodayCapital.de - [admin] Investment Payment, Failure"
 msgstr ""
 
