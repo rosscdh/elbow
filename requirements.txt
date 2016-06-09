@@ -96,7 +96,7 @@ pytz
 requests
 requests-mock
 requests-oauthlib
-rollbar
+rollbar==0.13.0
 shortuuid
 singledispatch
 six

@@ -99,9 +99,9 @@
       "author": 1,
       "parent": null,
       "creation_date": "2016-01-29T05:37:56.766Z",
-      "publication_date": "2016-03-01T07:13:39.038Z",
+      "publication_date": "2016-04-28T08:14:15.683Z",
       "publication_end_date": null,
-      "last_modification_date": "2016-03-01T07:13:39.039Z",
+      "last_modification_date": "2016-04-28T08:14:15.683Z",
       "status": 1,
       "template": "pages/home_page.html",
       "delegate_to": "",
@@ -230,8 +230,8 @@
     "pk": 78,
     "fields": {
       "language": "de",
-      "body": "<div id=\"myCarousel\" class=\"carousel slide clearfix\" data-ride=\"carousel\">\r\n  <!-- Indicators -->\r\n  <ol class=\"carousel-indicators\">\r\n    <li data-target=\"#myCarousel\" data-slide-to=\"0\" class=\"active\"></li>\r\n    <li data-target=\"#myCarousel\" data-slide-to=\"1\" class=\"\"></li>\r\n    <li data-target=\"#myCarousel\" data-slide-to=\"2\"></li>\r\n  </ol>\r\n  <div class=\"carousel-inner\" role=\"listbox\">\r\n    <div class=\"item active\">\r\n      <img class=\"first-slide\" src=\"/static/img/bgs/slider04.jpg\" alt=\"First slide\">\r\n      <div class=\"container\">\r\n        <div class=\"carousel-caption\">\r\n          <h1>TodayCapital - All investments tip top</h1>\r\n          <p>We provide access to real investments in real places for real people.</p>\r\n          <p><a class=\"btn btn-lg btn-primary\" href=\"/de/projects/\" role=\"button\">Invest today</a></p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"item\">\r\n      <img class=\"second-slide\" src=\"/static/img/bgs/slider02.jpg\" alt=\"Second slide\">\r\n      <div class=\"container\">\r\n        <div class=\"carousel-caption\">\r\n          <h1>Another example headline.</h1>\r\n          <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>\r\n          <p><a class=\"btn btn-lg btn-primary\" href=\"/de/projects/\" role=\"button\">Learn more</a></p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"item\">\r\n      <img class=\"third-slide\" src=\"/static/img/bgs/slider03.jpg\" alt=\"Third slide\">\r\n      <div class=\"container\">\r\n        <div class=\"carousel-caption\">\r\n          <h1>One more for good measure.</h1>\r\n          <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>\r\n          <p><a class=\"btn btn-lg btn-primary\" href=\"/de/projects/\" role=\"button\">Browse gallery</a></p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <a class=\"left carousel-control\" href=\"#myCarousel\" role=\"button\" data-slide=\"prev\">\r\n    <span class=\"glyphicon glyphicon-chevron-left\" aria-hidden=\"true\"></span>\r\n    <span class=\"sr-only\">Previous</span>\r\n  </a>\r\n  <a class=\"right carousel-control\" href=\"#myCarousel\" role=\"button\" data-slide=\"next\">\r\n    <span class=\"glyphicon glyphicon-chevron-right\" aria-hidden=\"true\"></span>\r\n    <span class=\"sr-only\">Next</span>\r\n  </a>\r\n</div>",
-      "type": "carousel",
+      "body": "<!-- Carousel\r\n================================================== -->\r\n<div id=\"myCarousel\" class=\"carousel slide clearfix\" data-ride=\"carousel\">\r\n  <!-- Indicators -->\r\n  <ol class=\"carousel-indicators\">\r\n    <li data-target=\"#myCarousel\" data-slide-to=\"0\" class=\"active\"></li>\r\n    <li data-target=\"#myCarousel\" data-slide-to=\"1\"></li>\r\n    <li data-target=\"#myCarousel\" data-slide-to=\"2\"></li>\r\n  </ol>\r\n  <div class=\"carousel-inner\" role=\"listbox\">\r\n    <div class=\"item active\">\r\n      <img class=\"first-slide\" src=\"{% get_static_prefix %}img/bgs/slider04.jpg\" alt=\"First slide\">\r\n      <div class=\"container\">\r\n        <div class=\"carousel-caption\">\r\n          <h1>TodayCapital - All investments tip top</h1>\r\n          <p>We provide access to real investments in real places for real people.</p>\r\n          <p><a class=\"btn btn-lg btn-primary\" href=\"{% url 'account_signup' %}\" role=\"button\">Invest today</a></p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"item\">\r\n      <img class=\"second-slide\" src=\"{% get_static_prefix %}img/bgs/slider02.jpg\" alt=\"Second slide\">\r\n      <div class=\"container\">\r\n        <div class=\"carousel-caption\">\r\n          <h1>Another example headline.</h1>\r\n          <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>\r\n          <p><a class=\"btn btn-lg btn-primary\" href=\"{% url 'account_signup' %}\" role=\"button\">Learn more</a></p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"item\">\r\n      <img class=\"third-slide\" src=\"{% get_static_prefix %}img/bgs/slider03.jpg\" alt=\"Third slide\">\r\n      <div class=\"container\">\r\n        <div class=\"carousel-caption\">\r\n          <h1>One more for good measure.</h1>\r\n          <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>\r\n          <p><a class=\"btn btn-lg btn-primary\" href=\"{% url 'account_signup' %}\" role=\"button\">Browse gallery</a></p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <a class=\"left carousel-control\" href=\"#myCarousel\" role=\"button\" data-slide=\"prev\">\r\n    <span class=\"glyphicon glyphicon-chevron-left\" aria-hidden=\"true\"></span>\r\n    <span class=\"sr-only\">Previous</span>\r\n  </a>\r\n  <a class=\"right carousel-control\" href=\"#myCarousel\" role=\"button\" data-slide=\"next\">\r\n    <span class=\"glyphicon glyphicon-chevron-right\" aria-hidden=\"true\"></span>\r\n    <span class=\"sr-only\">Next</span>\r\n  </a>\r\n</div><!-- /.carousel -->",
+      "type": "carousel_page_header",
       "page": 7,
       "creation_date": "2016-02-09T16:47:09.017Z"
     }
@@ -241,7 +241,7 @@
     "pk": 79,
     "fields": {
       "language": "de",
-      "body": "",
+      "body": "<h3>Heading</h3>\r\n      <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>",
       "type": "marketing_col_1",
       "page": 7,
       "creation_date": "2016-02-09T16:47:09.021Z"
@@ -252,7 +252,7 @@
     "pk": 80,
     "fields": {
       "language": "de",
-      "body": "",
+      "body": "<h3>Heading</h3>\r\n      <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>",
       "type": "marketing_col_2",
       "page": 7,
       "creation_date": "2016-02-09T16:47:09.025Z"
@@ -263,7 +263,7 @@
     "pk": 81,
     "fields": {
       "language": "de",
-      "body": "",
+      "body": "<h3>Heading</h3>\r\n      <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>",
       "type": "marketing_col_3",
       "page": 7,
       "creation_date": "2016-02-09T16:47:09.029Z"
@@ -274,7 +274,7 @@
     "pk": 82,
     "fields": {
       "language": "de",
-      "body": "",
+      "body": "<h2 class=\"featurette-heading\">First featurette heading. <span class=\"text-muted\">It'll blow your mind.</span></h2>\r\n      <p class=\"lead\">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>",
       "type": "featurette_1",
       "page": 7,
       "creation_date": "2016-02-09T16:47:09.032Z"
@@ -285,7 +285,7 @@
     "pk": 83,
     "fields": {
       "language": "de",
-      "body": "",
+      "body": "<h2 class=\"featurette-heading\">Oh yeah, it's that good. <span class=\"text-muted\">See for yourself.</span></h2>\r\n      <p class=\"lead\">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>",
       "type": "featurette_2",
       "page": 7,
       "creation_date": "2016-02-09T16:47:09.036Z"
@@ -545,73 +545,14 @@
     }
   },
   {
-    "model": "taggit.tag",
-    "pk": 1,
+    "model": "pages.content",
+    "pk": 107,
     "fields": {
-      "name": "main",
-      "slug": "main"
-    }
-  },
-  {
-    "model": "taggit.tag",
-    "pk": 2,
-    "fields": {
-      "name": "footer",
-      "slug": "footer"
-    }
-  },
-  {
-    "model": "taggit.taggeditem",
-    "pk": 1,
-    "fields": {
-      "tag": 1,
-      "content_type": 19,
-      "object_id": 7
-    }
-  },
-  {
-    "model": "taggit.taggeditem",
-    "pk": 2,
-    "fields": {
-      "tag": 1,
-      "content_type": 19,
-      "object_id": 3
-    }
-  },
-  {
-    "model": "taggit.taggeditem",
-    "pk": 3,
-    "fields": {
-      "tag": 1,
-      "content_type": 19,
-      "object_id": 4
-    }
-  },
-  {
-    "model": "taggit.taggeditem",
-    "pk": 5,
-    "fields": {
-      "tag": 2,
-      "content_type": 19,
-      "object_id": 6
-    }
-  },
-  {
-    "model": "taggit.taggeditem",
-    "pk": 6,
-    "fields": {
-      "tag": 2,
-      "content_type": 19,
-      "object_id": 8
-    }
-  },
-  {
-    "model": "taggit.taggeditem",
-    "pk": 7,
-    "fields": {
-      "tag": 1,
-      "content_type": 19,
-      "object_id": 5
+      "language": "de",
+      "body": "<div id=\"myCarousel\" class=\"carousel slide clearfix\" data-ride=\"carousel\">\r\n  <!-- Indicators -->\r\n  <!--   <ol class=\"carousel-indicators\">\r\n    <li data-target=\"#myCarousel\" data-slide-to=\"0\" class=\"active\"></li>\r\n    <li data-target=\"#myCarousel\" data-slide-to=\"1\" class=\"\"></li>\r\n    <li data-target=\"#myCarousel\" data-slide-to=\"2\"></li>\r\n  </ol> -->\r\n  <div class=\"carousel-inner\" role=\"listbox\">\r\n    <div class=\"item active\">\r\n      <img class=\"first-slide\" src=\"/static/img/bgs/slider01.jpg\" alt=\"First slide\">\r\n      <div class=\"container\">\r\n        <div class=\"carousel-caption\">\r\n          <h1>Gemeinsam in vielseitige Projekte investieren</h1>\r\n          <p><a class=\"btn btn-lg btn-primary\" href=\"/de/projects/\" role=\"button\">Zu den Projekten »</a></p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!--   <a class=\"left carousel-control\" href=\"#myCarousel\" role=\"button\" data-slide=\"prev\">\r\n    <span class=\"glyphicon glyphicon-chevron-left\" aria-hidden=\"true\"></span>\r\n    <span class=\"sr-only\">Previous</span>\r\n  </a>\r\n  <a class=\"right carousel-control\" href=\"#myCarousel\" role=\"button\" data-slide=\"next\">\r\n    <span class=\"glyphicon glyphicon-chevron-right\" aria-hidden=\"true\"></span>\r\n    <span class=\"sr-only\">Next</span>\r\n  </a>-->\r\n</div>",
+      "type": "carousel",
+      "page": 7,
+      "creation_date": "2016-03-03T10:42:25.112Z"
     }
   }
 ]
