@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-09 13:21+0000\n"
+"POT-Creation-Date: 2016-06-09 13:40+0000\n"
 "PO-Revision-Date: 2016-06-09 15:30+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -19,12 +19,10 @@ msgstr ""
 "X-Generator: Poedit 1.8.7\n"
 
 #: elbow/apps/document/apps.py:9
-#| msgid "Project News"
 msgid "Project Document"
 msgstr "Projekt-News"
 
 #: elbow/apps/document/apps.py:10
-#| msgid "Documents"
 msgid "Order Document"
 msgstr "Dokumente"
 
@@ -662,14 +660,6 @@ msgstr "Möchten Sie die E-Mail-Adresse wirklich entfernen?"
 
 #: templates/account/email/email_confirmation_message.html:4
 #, python-format
-#| msgid ""
-#| "Hello from %(site_name)s!\n"
-#| "\n"
-#| "You're receiving this e-mail because user %(user_display)s at "
-#| "%(site_domain)s has given yours as an e-mail address to connect their "
-#| "account.\n"
-#| "\n"
-#| "To confirm this is correct, go to %(activate_url)s\n"
 msgid ""
 "\n"
 "Hello from %(site_name)s!\n"
@@ -693,13 +683,6 @@ msgstr ""
 "<p>Vielen Dank!</p>\n"
 "<!— %(site_name)s  %(site_domain)s — >\n"
 
-#: templates/account/email/email_confirmation_message.html:11
-#, python-format
-msgid ""
-"Thank you from %(site_name)s!\n"
-"%(site_domain)s"
-msgstr ""
-
 #: templates/account/email/email_confirmation_subject.html:3
 msgid "Please Confirm Your E-mail Address"
 msgstr "Registrierung abschließen auf TodayCapital"
@@ -707,13 +690,6 @@ msgstr "Registrierung abschließen auf TodayCapital"
 # > zu klären, brauche den genauen Kontext
 #: templates/account/email/password_reset_key_message.html:4
 #, python-format
-#| msgid ""
-#| "Hello from %(site_name)s!\n"
-#| "\n"
-#| "You're receiving this e-mail because you or someone else has requested a "
-#| "password for your user account at %(site_domain)s.\n"
-#| "It can be safely ignored if you did not request a password reset. Click "
-#| "the link below to reset your password."
 msgid ""
 "Hello from %(site_name)s!\n"
 "You're receiving this e-mail because you or someone else has requested a "
@@ -1066,6 +1042,11 @@ msgstr "Mein Benutzerkonto löschen"
 #: templates/navigation.html:49
 msgid "Logout"
 msgstr "Abmelden"
+
+#~ msgid ""
+#~ "Thank you from %(site_name)s!\n"
+#~ "%(site_domain)s"
+#~ msgstr "<!-- %(site_name)s --><!-- %(site_domain)s -->"
 
 #~ msgid "Please login to view the selected document."
 #~ msgstr "Bitte einloggen, um das ausgewählte Dokument anzuzeigen."
