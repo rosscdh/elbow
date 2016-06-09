@@ -70,6 +70,7 @@ class Project(models.Model):
 
     term_sheet_doc = models.FileField(verbose_name=_('Term Sheet'),
                                       upload_to=_doc_upload_path,
+                                      null=True,
                                       storage=CustomManagedStorage())
 
     loan_agreement_doc = models.FileField(verbose_name=_('Loan Agreement'),
