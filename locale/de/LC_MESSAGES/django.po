@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-08 12:54+0000\n"
-"PO-Revision-Date: 2016-06-09 09:54+0200\n"
+"PO-Revision-Date: 2016-06-09 10:34+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -560,19 +560,19 @@ msgstr "[TodayCapital] Registrieren"
 
 #: elbow/apps/public/services.py:51
 msgid "TodayCapital.de - a new order has been created"
-msgstr "TodayCapital.de - Ihr Investment auf TodayCapital"
+msgstr "[TodayCapital] Ihr Investment auf TodayCapital"
 
 #: elbow/apps/public/services.py:70
 msgid "TodayCapital.de - Your Investment Order has been created"
-msgstr "TodayCapital.de - Ihr Investment auf TodayCapital"
+msgstr "[TodayCapital] Ihr Investment auf TodayCapital"
 
 #: elbow/apps/public/services.py:96 elbow/apps/public/services.py:108
 msgid "TodayCapital.de - Investment Payment, Success"
-msgstr "TodayCapital.de - Ihre Zahlung ist eingegangen"
+msgstr "[TodayCapital] Ihre Zahlung ist eingegangen"
 
 #: elbow/apps/public/services.py:132
 msgid "TodayCapital.de - Investment Payment, Failure"
-msgstr "TodayCapital.de - Offener Zahlungseingang zu Ihrem Investment"
+msgstr "[TodayCapital] Offener Zahlungseingang zu Ihrem Investment"
 
 #: elbow/settings/common_settings.py:305
 msgid "German"
