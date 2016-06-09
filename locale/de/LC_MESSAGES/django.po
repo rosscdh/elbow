@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-08 12:54+0000\n"
-"PO-Revision-Date: 2016-06-09 10:34+0200\n"
+"PO-Revision-Date: 2016-06-09 11:07+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -655,13 +655,18 @@ msgid ""
 "\n"
 "To confirm this is correct, go to %(activate_url)s\n"
 msgstr ""
-"Willkommen bei %(site_name)s!\n"
-"\n"
-"Sie erhalten diese E-Mail, weil der Nutzer %(user_display)s auf der Webseite "
-"%(site_domain)s diese E-Mail-Adresse mit seinem Benutzerkonto verbunden "
-"hat.\n"
-"\n"
-"Zum bestätigen klicken Sie bitte den folgenden Link %(activate_url)s\n"
+"<p>Hallo %(user_display)s,</p>\n"
+"<p>wir freuen uns, dass Sie sich auf der Crowdinvesting-Plattform "
+"TodayCapital registriert haben.</p>\n"
+"<p>Bitte schließen Sie jetzt Ihre Registrierung ab mit einem Klick auf den "
+"folgenden Link:</p>\n"
+"<p>%(activate_url)s</p>\n"
+"<p>Vielen Dank!</p>\n"
+"<p>Ihr Team von TodayCapital</p>\n"
+"<p><b>Warnhinweis:</b> Der Erwerb dieser Vermögensanlage ist mit erheblichen "
+"Risiken verbunden und kann zum vollständigen Verlust des eingesetzten "
+"Vermögens führen.</p>\n"
+"<!— %(site_name)s  %(site_domain)s — >\n"
 
 #: templates/account/email/email_confirmation_message.txt:7
 #, python-format
@@ -674,7 +679,7 @@ msgstr ""
 
 #: templates/account/email/email_confirmation_subject.txt:3
 msgid "Please Confirm Your E-mail Address"
-msgstr "Bitte bestätigen Sie Ihre E-Mail-Adresse"
+msgstr "Registrierung abschließen auf TodayCapital"
 
 # > zu klären, brauche den genauen Kontext
 #: templates/account/email/password_reset_key_message.txt:1

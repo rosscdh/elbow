@@ -39,6 +39,6 @@ class EmailsSentOnNewSignupTest(BaseTestCase):
         self.assertEqual(email.recipients(), ['post@todaycapital.de'])
 
         email = mail.outbox[1]  # Customer Email
-        self.assertEqual(email.subject, u'[TodayCapital] Bitte best\xe4tigen Sie Ihre E-Mail-Adresse')
+        self.assertEqual(email.subject, u'[TodayCapital] Registrierung abschlie\xdfen auf TodayCapital')
         self.assertEqual(email.recipients(), [u'test+user@example.com'])
 
