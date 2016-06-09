@@ -575,8 +575,6 @@ msgid "TodayCapital.de - Investment Payment, Success"
 msgstr "[TodayCapital] Ihre Zahlung ist eingegangen"
 
 #: elbow/apps/public/services.py:137
-#, fuzzy
-#| msgid "TodayCapital.de - Investment Payment, Failure"
 msgid "TodayCapital.de - [admin] Investment Payment, Failure"
 msgstr "[TodayCapital] Keine Zahlung erhalten"
 
