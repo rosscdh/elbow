@@ -333,6 +333,14 @@ TERMS_AND_CONDITIONS_URL = 'http://today-capital.de/impressum/agb/'
 #
 # All auth
 #
+
+
+def _user_display(user):
+    if user.first_name and user.last_name:
+        return u'%s %s' % user.first_name, user.last_name
+    return user.email
+
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 ACCOUNT_EMAIL_SUBJECT_PREFIX = '[TodayCapital] '
+ACCOUNT_USER_DISPLAY = _user_display
