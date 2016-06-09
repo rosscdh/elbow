@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-08 12:54+0000\n"
+"POT-Creation-Date: 2016-06-09 11:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,7 +29,7 @@ msgstr ""
 msgid "Generic Loan Agreement"
 msgstr ""
 
-#: elbow/apps/document/apps.py:12 elbow/apps/project/models.py:75
+#: elbow/apps/document/apps.py:12 elbow/apps/project/models.py:77
 msgid "Loan Agreement"
 msgstr ""
 
@@ -426,11 +426,11 @@ msgstr ""
 msgid "Format: 12m, 36m, 3y, 7y"
 msgstr ""
 
-#: elbow/apps/project/models.py:103
+#: elbow/apps/project/models.py:108
 msgid "Project"
 msgstr ""
 
-#: elbow/apps/project/models.py:104
+#: elbow/apps/project/models.py:109
 msgid "Projects"
 msgstr ""
 
@@ -526,24 +526,28 @@ msgstr ""
 msgid "Register Now"
 msgstr ""
 
-#: elbow/apps/public/services.py:29
+#: elbow/apps/public/services.py:26
 msgid "TodayCapital.de - New sign-up"
 msgstr ""
 
-#: elbow/apps/public/services.py:51
+#: elbow/apps/public/services.py:49
 msgid "TodayCapital.de - a new order has been created"
 msgstr ""
 
-#: elbow/apps/public/services.py:70
+#: elbow/apps/public/services.py:73
 msgid "TodayCapital.de - Your Investment Order has been created"
 msgstr ""
 
-#: elbow/apps/public/services.py:96 elbow/apps/public/services.py:108
+#: elbow/apps/public/services.py:98
+msgid "TodayCapital.de - [admin] Investment Payment, Success"
+msgstr ""
+
+#: elbow/apps/public/services.py:115
 msgid "TodayCapital.de - Investment Payment, Success"
 msgstr ""
 
-#: elbow/apps/public/services.py:132
-msgid "TodayCapital.de - Investment Payment, Failure"
+#: elbow/apps/public/services.py:137
+msgid "TodayCapital.de - [admin] Investment Payment, Failure"
 msgstr ""
 
 #: elbow/settings/common_settings.py:305
@@ -613,9 +617,10 @@ msgstr ""
 msgid "Do you really want to remove the selected e-mail address?"
 msgstr ""
 
-#: templates/account/email/email_confirmation_message.txt:1
+#: templates/account/email/email_confirmation_message.txt:4
 #, python-format
 msgid ""
+"\n"
 "Hello from %(site_name)s!\n"
 "\n"
 "You're receiving this e-mail because user %(user_display)s at "
@@ -625,7 +630,7 @@ msgid ""
 "To confirm this is correct, go to %(activate_url)s\n"
 msgstr ""
 
-#: templates/account/email/email_confirmation_message.txt:7
+#: templates/account/email/email_confirmation_message.txt:11
 #, python-format
 msgid ""
 "Thank you from %(site_name)s!\n"
@@ -636,23 +641,22 @@ msgstr ""
 msgid "Please Confirm Your E-mail Address"
 msgstr ""
 
-#: templates/account/email/password_reset_key_message.txt:1
+#: templates/account/email/password_reset_key_message.txt:4
 #, python-format
 msgid ""
 "Hello from %(site_name)s!\n"
-"\n"
 "You're receiving this e-mail because you or someone else has requested a "
 "password for your user account at %(site_domain)s.\n"
 "It can be safely ignored if you did not request a password reset. Click the "
 "link below to reset your password."
 msgstr ""
 
-#: templates/account/email/password_reset_key_message.txt:8
+#: templates/account/email/password_reset_key_message.txt:10
 #, python-format
 msgid "In case you forgot, your username is %(username)s."
 msgstr ""
 
-#: templates/account/email/password_reset_key_message.txt:10
+#: templates/account/email/password_reset_key_message.txt:12
 #, python-format
 msgid ""
 "Thank you for using %(site_name)s!\n"

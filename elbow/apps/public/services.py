@@ -95,7 +95,7 @@ class SendEmailService(object):
         logger.debug('Payment Success')
         send_success = []
 
-        subject = _('TodayCapital.de - Investment Payment, Success')
+        subject = _('TodayCapital.de - [admin] Investment Payment, Success')
         html2text = HTML2TextEmailMessageService(template_name='order/email/payment_admin_success.html',
                                                  order=self.order,
                                                  recipients=user_list,
@@ -131,10 +131,13 @@ class SendEmailService(object):
         return send_success
 
     def send_fail_email(self):
+        """
+        Was decided to send fail email to founders only, so that they can starta  conversation with the invstor
+        """
         logger.debug('Payment Failure')
         send_success = []
 
-        subject = _('TodayCapital.de - Investment Payment, Failure')
+        subject = _('TodayCapital.de - [admin] Investment Payment, Failure')
         html2text = HTML2TextEmailMessageService(template_name='order/email/payment_admin_fail.html',
                                                  order=self.order,
                                                  subject=subject)

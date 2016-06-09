@@ -1,4 +1,5 @@
 # -*- coding: UTF-8 -*-
+from django.conf import settings
 from django.core import mail
 from django.core.urlresolvers import reverse
 from elbow.apps.order.tests import BaseTestCase
@@ -37,6 +38,7 @@ class EmailsSentOnNewSignupTest(BaseTestCase):
         email = mail.outbox[0]  # Admin Email
         self.assertEqual(unicode(email.subject), u'[TodayCapital] Registrieren')
         self.assertEqual(email.recipients(), ['post@todaycapital.de'])
+        self.assertTrue('{base_url}/de/admin/auth/user/1/change'.format(base_url=settings.BASE_URL) in str(email.message()))
 
         email = mail.outbox[1]  # Customer Email
         self.assertEqual(email.subject, u'[TodayCapital] Registrierung abschlie\xdfen auf TodayCapital')

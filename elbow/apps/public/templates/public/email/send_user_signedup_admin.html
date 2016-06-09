@@ -1,1 +1,15 @@
-send_user_signedup_admin
+{% extends 'email/base.html' %}
+{% block content %}
+{% spaceless %}
+
+<p>Wir haben eine neue Registrierung auf TodayCapital.</p>
+
+{% for user in recipients %}
+<hr/>
+<p><b>Name</b>: {{ user.first_name }} {{ user.last_name }}</p>
+<p><b>Email</b>: {{ user.email }}</p>
+<p><a href="{{ BASE_URL }}{% url 'admin:auth_user_change' user.pk %}">View</a></p>
+{% endfor %}
+
+{% endspaceless %}
+{% endblock %}

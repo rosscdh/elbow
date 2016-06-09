@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-08 12:54+0000\n"
-"PO-Revision-Date: 2016-06-09 12:16+0200\n"
+"POT-Creation-Date: 2016-06-09 11:12+0000\n"
+"PO-Revision-Date: 2016-06-09 13:12+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -35,7 +35,7 @@ msgstr "Dokumente"
 msgid "Generic Loan Agreement"
 msgstr "Muster-Darlehensvertrag"
 
-#: elbow/apps/document/apps.py:12 elbow/apps/project/models.py:75
+#: elbow/apps/document/apps.py:12 elbow/apps/project/models.py:77
 msgid "Loan Agreement"
 msgstr "Darlehensvertrag"
 
@@ -450,11 +450,11 @@ msgstr "Kundennummer"
 msgid "Format: 12m, 36m, 3y, 7y"
 msgstr ""
 
-#: elbow/apps/project/models.py:103
+#: elbow/apps/project/models.py:108
 msgid "Project"
 msgstr "Projekt"
 
-#: elbow/apps/project/models.py:104
+#: elbow/apps/project/models.py:109
 msgid "Projects"
 msgstr "Projekte"
 
@@ -554,25 +554,31 @@ msgstr "&nbsp;"
 msgid "Register Now"
 msgstr "Jetzt registrieren"
 
-#: elbow/apps/public/services.py:29
+#: elbow/apps/public/services.py:26
 msgid "TodayCapital.de - New sign-up"
 msgstr "[TodayCapital] Registrieren"
 
-#: elbow/apps/public/services.py:51
+#: elbow/apps/public/services.py:49
 msgid "TodayCapital.de - a new order has been created"
-msgstr "[TodayCapital] Ihr Investment auf TodayCapital"
+msgstr "[TodayCapital] Neue Investition auf TodayCapital"
 
-#: elbow/apps/public/services.py:70
+#: elbow/apps/public/services.py:73
 msgid "TodayCapital.de - Your Investment Order has been created"
 msgstr "[TodayCapital] Ihr Investment auf TodayCapital"
 
-#: elbow/apps/public/services.py:96 elbow/apps/public/services.py:108
+#: elbow/apps/public/services.py:98
+msgid "TodayCapital.de - [admin] Investment Payment, Success"
+msgstr "[TodayCapital] Zahlung ist eingegangen"
+
+#: elbow/apps/public/services.py:115
 msgid "TodayCapital.de - Investment Payment, Success"
 msgstr "[TodayCapital] Ihre Zahlung ist eingegangen"
 
-#: elbow/apps/public/services.py:132
-msgid "TodayCapital.de - Investment Payment, Failure"
-msgstr "[TodayCapital] Offener Zahlungseingang zu Ihrem Investment"
+#: elbow/apps/public/services.py:137
+#, fuzzy
+#| msgid "TodayCapital.de - Investment Payment, Failure"
+msgid "TodayCapital.de - [admin] Investment Payment, Failure"
+msgstr "[TodayCapital] Keine Zahlung erhalten"
 
 #: elbow/settings/common_settings.py:305
 msgid "German"
@@ -644,9 +650,18 @@ msgstr "E-Mail hinzufügen"
 msgid "Do you really want to remove the selected e-mail address?"
 msgstr "Möchten Sie die E-Mail-Adresse wirklich entfernen?"
 
-#: templates/account/email/email_confirmation_message.txt:1
-#, python-format
+#: templates/account/email/email_confirmation_message.txt:4
+#, fuzzy, python-format
+#| msgid ""
+#| "Hello from %(site_name)s!\n"
+#| "\n"
+#| "You're receiving this e-mail because user %(user_display)s at "
+#| "%(site_domain)s has given yours as an e-mail address to connect their "
+#| "account.\n"
+#| "\n"
+#| "To confirm this is correct, go to %(activate_url)s\n"
 msgid ""
+"\n"
 "Hello from %(site_name)s!\n"
 "\n"
 "You're receiving this e-mail because user %(user_display)s at "
@@ -661,13 +676,13 @@ msgstr ""
 "<p>Bitte schließen Sie jetzt Ihre Registrierung ab mit einem Klick auf den "
 "folgenden Link:</p>\n"
 "<p>%(activate_url)s</p>\n"
+"<p><b>Warnhinweis:</b> Der Erwerb dieser Vermögensanlage ist mit erheblichen "
+"Risiken verbunden und kann zum vollständigen Verlust des eingesetzten "
+"Vermögens führen.</p>\n"
 "<p>Vielen Dank!</p>\n"
-"<p><b>Warnhinweis:</b> Der Erwerb dieser Vermögensanlage ist mit erheblichen "
-"Risiken verbunden und kann zum vollständigen Verlust des eingesetzten "
-"Vermögens führen.</p>\n"
 "<!— %(site_name)s  %(site_domain)s — >\n"
 
-#: templates/account/email/email_confirmation_message.txt:7
+#: templates/account/email/email_confirmation_message.txt:11
 #, python-format
 msgid ""
 "Thank you from %(site_name)s!\n"
@@ -681,11 +696,17 @@ msgid "Please Confirm Your E-mail Address"
 msgstr "Registrierung abschließen auf TodayCapital"
 
 # > zu klären, brauche den genauen Kontext
-#: templates/account/email/password_reset_key_message.txt:1
-#, python-format
+#: templates/account/email/password_reset_key_message.txt:4
+#, fuzzy, python-format
+#| msgid ""
+#| "Hello from %(site_name)s!\n"
+#| "\n"
+#| "You're receiving this e-mail because you or someone else has requested a "
+#| "password for your user account at %(site_domain)s.\n"
+#| "It can be safely ignored if you did not request a password reset. Click "
+#| "the link below to reset your password."
 msgid ""
 "Hello from %(site_name)s!\n"
-"\n"
 "You're receiving this e-mail because you or someone else has requested a "
 "password for your user account at %(site_domain)s.\n"
 "It can be safely ignored if you did not request a password reset. Click the "
@@ -698,12 +719,12 @@ msgstr ""
 "Bitte ignorieren Sie diese E-Mail, wenn Sie nicht Ihr Passwort zurücksetzen "
 "möchten. Bitte klicken Sie den Link, um Ihr Passwort zurückzusetzen ."
 
-#: templates/account/email/password_reset_key_message.txt:8
+#: templates/account/email/password_reset_key_message.txt:10
 #, python-format
 msgid "In case you forgot, your username is %(username)s."
 msgstr "Ihr Benutzername lautet %(username)s."
 
-#: templates/account/email/password_reset_key_message.txt:10
+#: templates/account/email/password_reset_key_message.txt:12
 #, python-format
 msgid ""
 "Thank you for using %(site_name)s!\n"

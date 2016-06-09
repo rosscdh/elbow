@@ -5,6 +5,8 @@ from django.core.files.storage import FileSystemStorage
 
 from inmemorystorage import InMemoryStorage
 
+from elbow.context_processors import elbow_globals
+
 import html2text    # convert html to text
 html2text.BODY_WIDTH = 0  # prevent random new lines all over the show: http://stackoverflow.com/questions/12839143/python-html2text-adds-random-n
 
@@ -130,8 +132,10 @@ class HTML2TextEmailMessageService(object):
         """
         Render HTML template and convert into a markdown version as well
         """
+        self.context.update(elbow_globals({}))
+        self.context.update(context)
         self.html = loader.render_to_string(self.template_name,
-                                            context)
+                                            self.context)
         # Add html2text here so we get mardown
         self.plain_text = html2text.html2text(self.html,
                                               bodywidth=0)
