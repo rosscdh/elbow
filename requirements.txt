@@ -25,7 +25,6 @@ cryptography
 cssselect
 decorator
 # django-activity-stream
-django-allauth
 django-annoying
 django-appconf
 django-bower
@@ -44,6 +43,7 @@ boto
 django-storages-redux
 django-jsonfield
 -e git+https://github.com/agiliq/Django-parsley.git@c11296dafcea475a6a6ec85b016b7a59b56c2470#egg=django_parsley-master
+-e git+https://github.com/rosscdh/django-allauth@feature/subject-in-context#egg=django-allauth
 django-pipeline==1.6.6
 #manifesto
 slimit

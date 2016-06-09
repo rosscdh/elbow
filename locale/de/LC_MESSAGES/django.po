@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-08 12:54+0000\n"
-"PO-Revision-Date: 2016-06-08 14:49+0200\n"
+"PO-Revision-Date: 2016-06-09 09:54+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -556,7 +556,7 @@ msgstr "Jetzt registrieren"
 
 #: elbow/apps/public/services.py:29
 msgid "TodayCapital.de - New sign-up"
-msgstr "TodayCapital.de - Registrieren"
+msgstr "[TodayCapital] Registrieren"
 
 #: elbow/apps/public/services.py:51
 msgid "TodayCapital.de - a new order has been created"

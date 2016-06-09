@@ -6,6 +6,7 @@ VALID_ORDER_POST_DATA = {
     'amount': 2500,
     'has_agreed_to_loan_agreement_terms': True,
     't_and_c': True,
+    'disclosure': True,
     'has_read_investment_contract': True,
     'has_read_loan_agreement_contract': True,
     'title': 'Mr',

@@ -26,12 +26,12 @@ import os
 
 def _image_upload_path(instance, filename):
     filename, file_extension = os.path.splitext(filename)
-    return 'project/%s/img-%s%s' % (slugify(instance.name), slugify(filename), file_extension)
+    return 'project/%s/img-%s%s' % (slugify(instance.slug), slugify(filename), file_extension)
 
 
 def _doc_upload_path(instance, filename):
     filename, file_extension = os.path.splitext(filename)
-    return 'project/%s/doc-%s%s' % (slugify(instance.name), slugify(filename), file_extension)
+    return 'project/%s/doc-%s%s' % (slugify(instance.slug), slugify(filename), file_extension)
 
 
 class Project(models.Model):
@@ -74,6 +74,8 @@ class Project(models.Model):
 
     loan_agreement_doc = models.FileField(verbose_name=_('Loan Agreement'),
                                           upload_to=_doc_upload_path,
+                                          max_length=255,
+                                          null=True,
                                           storage=CustomManagedStorage())
 
     # Sent to payment processor as description

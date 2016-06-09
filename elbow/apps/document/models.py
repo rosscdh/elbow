@@ -33,6 +33,7 @@ class Document(models.Model):
 
     document = models.FileField(upload_to=_document_upload_path,
                                 storage=CustomManagedStorage(),
+                                max_length=255,
                                 blank=True, null=True)
 
     document_type = models.CharField(choices=DOCUMENT_TYPES.get_choices(),

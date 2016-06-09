@@ -50,7 +50,9 @@ class OrderLoanAgreementViewTest(BaseTestCase):
         button = '<a href="{document}" target="_NEW" class="btn btn-lg btn-info">Darlehensvertrag herunterladen</a>'.format(document=self.order.documents.filter(user=self.order.user).first().url)
         button = 'Darlehensvertrag herunterladen'
         self.assertTrue(button in resp.content)
-        self.assertTrue('<p>Ich bestätige, dass ich entweder über ein frei verfügbares Vermögen in Form von Bankguthaben und Finanzinstrumenten von mindestens 100.000 € verfüge</p><p>ODER dass der Gesamtbetrag meiner Investition in dieses Projekt nicht das Zweifache meines durchschnittlichen mtl. Nettoeinkommens übersteigt.</p>' in resp.content)
+
+        self.assertTrue('Wir freuen uns, dass Sie sich für das Projekt {project_name} entscheiden haben und esmit Ihrem Investment unterstützen wollen.'.format(project_name=self.project.name) in resp.content)
+        self.assertTrue('Ihren Darlehnsvertrag können Sie jetzt herunterladen oder auch für IhreUnterlagen ausdrucken' in resp.content)
 
     def test_form_redirects_to_payment_page_on_success(self):
         with self.settings(DEBUG=True):
