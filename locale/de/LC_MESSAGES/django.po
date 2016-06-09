@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-09 13:00+0000\n"
+"POT-Creation-Date: 2016-06-09 13:21+0000\n"
 "PO-Revision-Date: 2016-06-09 15:12+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -19,13 +19,11 @@ msgstr ""
 "X-Generator: Poedit 1.8.7\n"
 
 #: elbow/apps/document/apps.py:9
-#, fuzzy
 #| msgid "Project News"
 msgid "Project Document"
 msgstr "Projekt-News"
 
 #: elbow/apps/document/apps.py:10
-#, fuzzy
 #| msgid "Documents"
 msgid "Order Document"
 msgstr "Dokumente"
@@ -447,8 +445,6 @@ msgstr "Kundennummer"
 
 #: elbow/apps/order/templates/order/order-payment_success.html:4
 #: elbow/apps/order/templates/order/order-payment_success.html:10
-#, fuzzy
-#| msgid "Payment Cancelled"
 msgid "Payment was successful"
 msgstr "Zahlung storniert"
 
@@ -664,8 +660,8 @@ msgstr "E-Mail hinzufügen"
 msgid "Do you really want to remove the selected e-mail address?"
 msgstr "Möchten Sie die E-Mail-Adresse wirklich entfernen?"
 
-#: templates/account/email/email_confirmation_message.txt:4
-#, fuzzy, python-format
+#: templates/account/email/email_confirmation_message.html:4
+#, python-format
 #| msgid ""
 #| "Hello from %(site_name)s!\n"
 #| "\n"
@@ -683,7 +679,7 @@ msgid ""
 "account.\n"
 "\n"
 "To confirm this is correct, go to %(activate_url)s\n"
-msgstr ""
+msgstr "\n"
 "<p>Hallo %(user_display)s,</p>\n"
 "<p>wir freuen uns, dass Sie sich auf der Crowdinvesting-Plattform "
 "TodayCapital registriert haben.</p>\n"
@@ -696,7 +692,7 @@ msgstr ""
 "<p>Vielen Dank!</p>\n"
 "<!— %(site_name)s  %(site_domain)s — >\n"
 
-#: templates/account/email/email_confirmation_message.txt:11
+#: templates/account/email/email_confirmation_message.html:11
 #, python-format
 msgid ""
 "Thank you from %(site_name)s!\n"
@@ -705,13 +701,13 @@ msgstr ""
 "Vielen Dank sagt %(site_name)s!\n"
 "%(site_domain)s"
 
-#: templates/account/email/email_confirmation_subject.txt:3
+#: templates/account/email/email_confirmation_subject.html:3
 msgid "Please Confirm Your E-mail Address"
 msgstr "Registrierung abschließen auf TodayCapital"
 
 # > zu klären, brauche den genauen Kontext
-#: templates/account/email/password_reset_key_message.txt:4
-#, fuzzy, python-format
+#: templates/account/email/password_reset_key_message.html:4
+#, python-format
 #| msgid ""
 #| "Hello from %(site_name)s!\n"
 #| "\n"
@@ -733,12 +729,12 @@ msgstr ""
 "Bitte ignorieren Sie diese E-Mail, wenn Sie nicht Ihr Passwort zurücksetzen "
 "möchten. Bitte klicken Sie den Link, um Ihr Passwort zurückzusetzen ."
 
-#: templates/account/email/password_reset_key_message.txt:10
+#: templates/account/email/password_reset_key_message.html:10
 #, python-format
 msgid "In case you forgot, your username is %(username)s."
 msgstr "Ihr Benutzername lautet %(username)s."
 
-#: templates/account/email/password_reset_key_message.txt:12
+#: templates/account/email/password_reset_key_message.html:12
 #, python-format
 msgid ""
 "Thank you for using %(site_name)s!\n"
@@ -747,7 +743,7 @@ msgstr ""
 "Vielen Dank, dass Sie %(site_name)s besucht haben.\n"
 "%(site_domain)s"
 
-#: templates/account/email/password_reset_key_subject.txt:3
+#: templates/account/email/password_reset_key_subject.html:3
 msgid "Password Reset E-mail"
 msgstr "Passwort zurücksetzen"
 
