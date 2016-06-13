@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-09 13:40+0000\n"
-"PO-Revision-Date: 2016-06-13 13:19+0200\n"
+"PO-Revision-Date: 2016-06-13 13:23+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -195,8 +195,7 @@ msgstr "Ein Minimum von & {minimum} ist erforderlich"
 #: elbow/apps/order/forms.py:125
 #, python-brace-format
 msgid "A minimum of {minimum} and a maximum of {maximum}, is required"
-msgstr ""
-"Ein Minimum von {minimum} und ein Maximum von {maximum}, ist erforderlich,"
+msgstr "Sie können eine Summe von {minimum} bis {maximum} investieren."
 
 #: elbow/apps/order/forms.py:152
 msgid "Interest Rate p.a"
@@ -239,7 +238,10 @@ msgstr "Der Mindestanlagebetrag ist {minimum}"
 #: elbow/apps/order/forms.py:206
 #, python-brace-format
 msgid "The maximum investment amount is {maximum}"
-msgstr "Die maximale Anlagebetrag ist {maximum}"
+msgstr ""
+"Die maximale Summe beträgt {maximum}. Investments über {maximum} sind nur "
+"für Unternehmen möglich. Bitte setzen Sie sich hierfür persönlich mit uns in "
+"Kontakt."
 
 #: elbow/apps/order/forms.py:213
 msgid "You must agree to the terms of the loan agreement"
