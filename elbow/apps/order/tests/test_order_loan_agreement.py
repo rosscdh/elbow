@@ -51,8 +51,8 @@ class OrderLoanAgreementViewTest(BaseTestCase):
         button = 'Darlehensvertrag herunterladen'
         self.assertTrue(button in resp.content)
 
-        self.assertTrue('Wir freuen uns, dass Sie sich für das Projekt {project_name} entscheiden haben und esmit Ihrem Investment unterstützen wollen.'.format(project_name=self.project.name) in resp.content)
-        self.assertTrue('Ihren Darlehnsvertrag können Sie jetzt herunterladen oder auch für IhreUnterlagen ausdrucken' in resp.content)
+        self.assertTrue('Wir freuen uns, dass Sie sich für das Projekt {project_name} entschieden haben und es mit Ihrem Investment unterstützen wollen.'.format(project_name=self.project.name) in resp.content)
+        self.assertTrue('Ihren Darlehensvertrag können Sie jetzt herunterladen oder auch für Ihre Unterlagen ausdrucken.' in resp.content)
 
     def test_form_redirects_to_payment_page_on_success(self):
         with self.settings(DEBUG=True):
