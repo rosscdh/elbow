@@ -206,7 +206,6 @@ class OrderWebhook(View):
             # Handle updating of info in data field
             #
             order.data['payment_status_description'] = status_description
-            #order.data['payment_extended_status_description'] = extended_status_description
             order.save()
 
         #

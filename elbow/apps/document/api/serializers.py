@@ -9,7 +9,6 @@ class DocumentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Document
-        #exclude = ('amount_currency', 'minimum_investment_currency',)
 
     def get_document(self, obj):
         if obj.document:

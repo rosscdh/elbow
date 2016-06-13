@@ -104,14 +104,16 @@
       // Amount checker
       //
       $('#id_amount').on('change keyup', function (event) {
+
         var amount = parseInt($(this).val());
-        console.log(amount)
+
         if (amount > 1000) {
           // if the user wants more than 1k invested he needs a darllensvertrag
           $('#loan-contract').removeClass('hide').fadeIn();
         } else {
           $('#loan-contract').addClass('hide');
         }
+
       });
   });
   </script>
