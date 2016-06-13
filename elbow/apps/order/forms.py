@@ -28,7 +28,7 @@ DEFAULT_CURRENCY_SYMBOL = getattr(settings, 'DEFAULT_CURRENCY_SYMBOL', '€')
 DATE_18_YEARS_AGO = datetime.datetime.today() - relativedelta(years=18)
 DEFAULT_DATE = datetime.datetime.today() - relativedelta(years=25)
 
-YEARS = [year for year in xrange(1900, DATE_18_YEARS_AGO.year -1)]
+YEARS = [year for year in xrange(1900, DATE_18_YEARS_AGO.year + 1)]
 
 
 class CreateOrderForm(forms.Form):
