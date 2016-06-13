@@ -58,10 +58,41 @@
       window.removeEmbedLoadingAnimation = function (target) {
         target.find('.loading').remove();
       }
-
     </script>
     {% javascript 'base' %}
     {% block javascript %}{% endblock %}
+    <script>
+      /**
+      * Prevent users from double clicking on submit
+      *
+      */
+      $( document ).ready(function() {
+        jQuery.fn.preventDoubleSubmission = function() {
+
+            var last_clicked, time_since_clicked;
+
+            $(this).bind('submit', function(event){
+
+            if(last_clicked) {
+              time_since_clicked = event.timeStamp - last_clicked;
+            }
+
+            last_clicked = event.timeStamp;
+
+            if(time_since_clicked && time_since_clicked < 2000) {
+              //console.log('no submit')
+              return false;
+            } else {
+              //console.log('submit')
+              return true;
+            }
+          });
+        };
+
+        $('form').preventDoubleSubmission();
+
+      });
+    </script>
   </body>
 </html>
 
