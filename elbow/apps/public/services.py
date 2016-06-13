@@ -14,6 +14,7 @@ class SendEmailService(object):
     """
     required_project_docs = ['Verbraucherinformationsblatt',
                              'Finanzkennzahlen']
+    admin_recipient_list = ['post@todaycapital.de']
 
     def __init__(self, order, **kwargs):
         self.order = order
@@ -31,7 +32,7 @@ class SendEmailService(object):
         # Send Admin Email
         message = html2text.plain_text
         from_email = 'application@todaycapital.de'
-        recipient_list = ['post@todaycapital.de']
+        recipient_list = self.admin_recipient_list
         logger.debug('Send founders email')
         send_success.append(('founders', send_mail(subject=subject,
                                                    message=message,
@@ -54,7 +55,7 @@ class SendEmailService(object):
         # Send Admin Email
         message = html2text.plain_text
         from_email = 'application@todaycapital.de'
-        recipient_list = ['post@todaycapital.de']
+        recipient_list = self.admin_recipient_list
         logger.debug('Send founders email')
 
         msg = EmailMultiAlternatives(subject, html2text.plain_text, from_email, recipient_list)
@@ -114,7 +115,7 @@ class SendEmailService(object):
         # Send Admin Email
         message = html2text.plain_text
         from_email = 'application@todaycapital.de'
-        recipient_list = ['post@todaycapital.de']
+        recipient_list = self.admin_recipient_list
         logger.debug('Send founders email')
         send_success.append(('founders', send_mail(subject=subject,
                                                    message=message,
@@ -156,7 +157,7 @@ class SendEmailService(object):
         # Send Customer Email
         message = html2text.plain_text
         from_email = 'application@todaycapital.de'
-        recipient_list = ['post@todaycapital.de']
+        recipient_list = self.admin_recipient_list
 
         send_success.append(('founders', send_mail(subject=subject,
                                                    message=message,
