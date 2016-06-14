@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-14 08:54+0000\n"
-"PO-Revision-Date: 2016-06-13 13:23+0200\n"
+"PO-Revision-Date: 2016-06-14 13:03+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -390,7 +390,7 @@ msgstr "Jetzt investieren"
 
 #: elbow/apps/order/templates/order/order-loan_agreement.html:10
 msgid "Your Loan Agreement"
-msgstr "Darlehensvertrag"
+msgstr "Ihr Investment auf TodayCapital"
 
 #: elbow/apps/order/templates/order/order-loan_agreement.html:11
 #, python-format
