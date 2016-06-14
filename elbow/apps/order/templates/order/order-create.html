@@ -103,8 +103,15 @@
       //
       // Amount checker
       //
-      $('#id_amount').on('change keyup', function (event) {
+      $('#id_amount').on('keypress', function (e) {
+        var kCode = (e.which || e.keyCode)
+        // prevent any non number from being accepted
+        if (kCode < 48 || kCode > 57) {
+          e.preventDefault();
+        }
+      });
 
+      $('#id_amount').on('change keyup', function (event) {
         var amount = parseInt($(this).val());
 
         if (amount > 1000) {
@@ -113,7 +120,6 @@
         } else {
           $('#loan-contract').addClass('hide');
         }
-
       });
   });
   </script>
