@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-09 13:40+0000\n"
+"POT-Creation-Date: 2016-06-14 08:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -74,8 +74,8 @@ msgstr ""
 msgid "Manual bank transfer"
 msgstr ""
 
-#: elbow/apps/order/forms.py:35 elbow/apps/order/forms.py:150
-msgid "Investment Amount"
+#: elbow/apps/order/forms.py:35
+msgid "Amount to invest"
 msgstr ""
 
 #: elbow/apps/order/forms.py:41
@@ -180,6 +180,10 @@ msgstr ""
 #: elbow/apps/order/forms.py:125
 #, python-brace-format
 msgid "A minimum of {minimum} and a maximum of {maximum}, is required"
+msgstr ""
+
+#: elbow/apps/order/forms.py:150
+msgid "Investment Amount"
 msgstr ""
 
 #: elbow/apps/order/forms.py:152
@@ -540,27 +544,27 @@ msgstr ""
 msgid "Register Now"
 msgstr ""
 
-#: elbow/apps/public/services.py:26
+#: elbow/apps/public/services.py:27
 msgid "TodayCapital.de - New sign-up"
 msgstr ""
 
-#: elbow/apps/public/services.py:49
+#: elbow/apps/public/services.py:50
 msgid "TodayCapital.de - a new order has been created"
 msgstr ""
 
-#: elbow/apps/public/services.py:73
+#: elbow/apps/public/services.py:74
 msgid "TodayCapital.de - Your Investment Order has been created"
 msgstr ""
 
-#: elbow/apps/public/services.py:109
+#: elbow/apps/public/services.py:110
 msgid "TodayCapital.de - [admin] Investment Payment, Success"
 msgstr ""
 
-#: elbow/apps/public/services.py:126
+#: elbow/apps/public/services.py:127
 msgid "TodayCapital.de - Investment Payment, Success"
 msgstr ""
 
-#: elbow/apps/public/services.py:151
+#: elbow/apps/public/services.py:152
 msgid "TodayCapital.de - [admin] Investment Payment, Failure"
 msgstr ""
 
@@ -631,7 +635,7 @@ msgstr ""
 msgid "Do you really want to remove the selected e-mail address?"
 msgstr ""
 
-#: templates/account/email/email_confirmation_message.html:4
+#: templates/account/email/email_confirmation_message.html:5
 #, python-format
 msgid ""
 "\n"

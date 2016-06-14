@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-09 13:40+0000\n"
+"POT-Creation-Date: 2016-06-14 08:54+0000\n"
 "PO-Revision-Date: 2016-06-13 13:23+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -76,9 +76,9 @@ msgstr "Lastschrift"
 msgid "Manual bank transfer"
 msgstr "Überweisung"
 
-#: elbow/apps/order/forms.py:35 elbow/apps/order/forms.py:150
-msgid "Investment Amount"
-msgstr "Mein Investment"
+#: elbow/apps/order/forms.py:35
+msgid "Amount to invest"
+msgstr "Darlehensbetrag"
 
 #: elbow/apps/order/forms.py:41
 msgid "Title"
@@ -196,6 +196,10 @@ msgstr "Ein Minimum von & {minimum} ist erforderlich"
 #, python-brace-format
 msgid "A minimum of {minimum} and a maximum of {maximum}, is required"
 msgstr "Sie können eine Summe von {minimum} bis {maximum} investieren."
+
+#: elbow/apps/order/forms.py:150
+msgid "Investment Amount"
+msgstr "Mein Investment"
 
 #: elbow/apps/order/forms.py:152
 msgid "Interest Rate p.a"
@@ -569,27 +573,27 @@ msgstr "&nbsp;"
 msgid "Register Now"
 msgstr "Jetzt registrieren"
 
-#: elbow/apps/public/services.py:26
+#: elbow/apps/public/services.py:27
 msgid "TodayCapital.de - New sign-up"
 msgstr "Registrieren"
 
-#: elbow/apps/public/services.py:49
+#: elbow/apps/public/services.py:50
 msgid "TodayCapital.de - a new order has been created"
 msgstr "Neue Investition auf TodayCapital"
 
-#: elbow/apps/public/services.py:73
+#: elbow/apps/public/services.py:74
 msgid "TodayCapital.de - Your Investment Order has been created"
 msgstr "Ihr Investment auf TodayCapital"
 
-#: elbow/apps/public/services.py:109
+#: elbow/apps/public/services.py:110
 msgid "TodayCapital.de - [admin] Investment Payment, Success"
 msgstr "Zahlung ist eingegangen"
 
-#: elbow/apps/public/services.py:126
+#: elbow/apps/public/services.py:127
 msgid "TodayCapital.de - Investment Payment, Success"
 msgstr "Ihre Zahlung ist eingegangen"
 
-#: elbow/apps/public/services.py:151
+#: elbow/apps/public/services.py:152
 msgid "TodayCapital.de - [admin] Investment Payment, Failure"
 msgstr "Keine Zahlung erhalten"
 
@@ -663,7 +667,7 @@ msgstr "E-Mail hinzufügen"
 msgid "Do you really want to remove the selected e-mail address?"
 msgstr "Möchten Sie die E-Mail-Adresse wirklich entfernen?"
 
-#: templates/account/email/email_confirmation_message.html:4
+#: templates/account/email/email_confirmation_message.html:5
 #, python-format
 msgid ""
 "\n"

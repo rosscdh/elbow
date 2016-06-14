@@ -32,7 +32,7 @@ YEARS = [year for year in xrange(1900, DATE_18_YEARS_AGO.year + 1)]
 
 
 class CreateOrderForm(forms.Form):
-    amount = forms.DecimalField(label=_('Investment Amount'),
+    amount = forms.DecimalField(label=_('Amount to invest'),
                                 max_digits=8,
                                 decimal_places=2,
                                 min_value=500,
