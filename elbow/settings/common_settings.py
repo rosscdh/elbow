@@ -110,9 +110,9 @@ MIDDLEWARE_CLASSES = [
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware', # Not required as we load allot from 3rd party sites in iframe
     # Language
     'django.middleware.locale.LocaleMiddleware',
+    'django.middleware.gzip.GZipMiddleware',
     # Minify
     'pipeline.middleware.MinifyHTMLMiddleware',
-    'django.middleware.gzip.GZipMiddleware',
     # must come last
     'rollbar.contrib.django.middleware.RollbarNotifierMiddleware',
 ]
