@@ -32,7 +32,7 @@ class SendEmailService(object):
         # Send Admin Email
         message = html2text.plain_text
         from_email = 'application@todaycapital.de'
-        recipient_list = self.admin_recipient_list
+        recipient_list = SendEmailService.admin_recipient_list
         logger.debug('Send founders email')
         send_success.append(('founders', send_mail(subject=subject,
                                                    message=message,
