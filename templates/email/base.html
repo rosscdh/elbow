@@ -5,24 +5,32 @@
         <title>TodayCapital GmbH</title>
     </head>
     <body style="margin:0px;background-color:#e6e6e6;font-family:sans-serif;">
-        <div id="container" style="background-color:#ffffff;margin:32px;">
-            <div id="head" style="padding:32px;font-family:sans-serif;border-bottom:solid 2px #99cc33;">
-                <img src="http://today-capital.de/wp-content/uploads/2015/11/tc-logo.png" alt="TodayCapital Logo" />
-                <h1 style="text-align:right;font-family:sans-serif;">TodayCapital</h1>
-                <h2 style="text-align:right;font-family:sans-serif;">{% block subject %}{{ subject }}{% endblock %}</h2>
-            </div>
-            <div id="main" style="padding:32px 32px;;font-family:sans-serif;">
-                {% block content %}{% endblock %}
-                <p>Ihr Team von TodayCapital</p>
-            </div>
-            <div id="foot" style="padding:16px;background-color:#99cc33;">
-                <p style="color:#ffffff;text-align:center;">TodayCapital GmbH | Richmodstra&szlig;e 6 | 50667 K&ouml;ln<br />
-                    E-Mail <a href="mailto:post@todaycapital.de" title="post@todaycapital.de" style="color:#ffffff;">post@todaycapital.de</a> | Fon +49 (0) 221 920 42 - 035 | Fax +49 (0) 221 920 42 - 200<br />
-                    Gesch&auml;ftsf&uuml;hrer: Ssam Arasteh<br />
-                    Sitz der Gesellschaft: Windthorststra&szlig;e 5-7 | 41061 M&ouml;nchengladbach<br />
-                Handelsregister Amtsgericht M&ouml;nchengladbach | Handelregisternummer HR B 16173</p>
-                <p style="color:#ffffff;text-align:center;font-size:75%;"><a href="http://today-capital.de/impressum/datenschutz/" title="Datenschutz" style="color:#ffffff;">Datenschutz</a> | <a href="http://today-capital.de/impressum/disclaimer/" title="Disclaimer" style="color:#ffffff;">Disclaimer</a> | <a href="http://today-capital.de/impressum/" title="Impressum" style="color:#ffffff;">Impressum</a></p>
-            </div>
-        </div>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="20%"></td>
+                <td width="60%">
+                    <div id="container" style="background-color:#ffffff;margin:32px;">
+                        <div id="head" style="text-align:center;padding:32px;font-family:sans-serif;border-bottom:solid 2px #99cc33;">
+                            <img src="http://today-capital.de/wp-content/uploads/2015/11/tc-logo.png" alt="TodayCapital Logo" />
+                            <h1 style="font-family:sans-serif;">TodayCapital</h1>
+                            <h2 style="font-family:sans-serif;">{% block subject %}{{ subject }}{% endblock %}</h2>
+                        </div>
+                        <div id="main" style="padding:32px 32px;;font-family:sans-serif;">
+                            {% block content %}{% endblock %}
+                            <p>Ihr Team von TodayCapital</p>
+                        </div>
+                        <div id="foot" style="padding:16px;background-color:#99cc33;">
+                            <p style="color:#ffffff;text-align:center;">TodayCapital GmbH | Richmodstra&szlig;e 6 | 50667 K&ouml;ln<br />
+                                E-Mail <a href="mailto:post@todaycapital.de" title="post@todaycapital.de" style="color:#ffffff;">post@todaycapital.de</a> | Fon +49 (0) 221 920 42 - 035 | Fax +49 (0) 221 920 42 - 200<br />
+                                Gesch&auml;ftsf&uuml;hrer: Ssam Arasteh<br />
+                                Sitz der Gesellschaft: Windthorststra&szlig;e 5-7 | 41061 M&ouml;nchengladbach<br />
+                            Handelsregister Amtsgericht M&ouml;nchengladbach | Handelregisternummer HR B 16173</p>
+                            <p style="color:#ffffff;text-align:center;font-size:75%;"><a href="http://today-capital.de/impressum/datenschutz/" title="Datenschutz" style="color:#ffffff;">Datenschutz</a> | <a href="http://today-capital.de/impressum/disclaimer/" title="Disclaimer" style="color:#ffffff;">Disclaimer</a> | <a href="http://today-capital.de/impressum/" title="Impressum" style="color:#ffffff;">Impressum</a></p>
+                        </div>
+                    </div>
+                </td>
+                <td width="20%"></td>
+            </tr>
+        </table>
     </body>
 </html>
