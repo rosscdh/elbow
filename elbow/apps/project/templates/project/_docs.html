@@ -6,11 +6,19 @@
   </tr>
   <tr>
     <td>{% trans 'Term Sheet' %}</td>
+    {% if row.login_required == False or row.login_required and is_logged_in %}
     <td><a href="{% get_media_prefix %}{{ term_sheet }}" target="_NEW" class="btn btn-link btn-primary">{% trans '.PDF Download' %}</a></td>
+    {% else %}
+    <td><a href="javascript:;" class="require-logged-in btn btn-link btn-primary">{% trans 'Login required' %}</a></td>
+    {% endif %}
   </tr>
   <tr>
     <td>{% trans 'Generic Loan Agreement' %}</td>
+    {% if row.login_required == False or row.login_required and is_logged_in %}
     <td><a href="{% get_media_prefix %}{{ loan_agreement }}" target="_NEW" class="btn btn-link btn-primary">{% trans '.PDF Download' %}</a></td>
+    {% else %}
+    <td><a href="javascript:;" class="require-logged-in btn btn-link btn-primary">{% trans 'Login required' %}</a></td>
+    {% endif %}
   </tr>
   {% for row in documents %}
     <tr>
