@@ -18,7 +18,7 @@
       {% if row.login_required == False or row.login_required and is_logged_in %}
       <td><a href="{% get_media_prefix %}{{ row.document }}" target="_NEW" class="btn btn-link btn-primary">{% trans '.PDF Download' %}</a></td>
       {% else %}
-        <a href="javascript:;" class="require-logged-in btn btn-link btn-primary">{% trans 'Login required' %}</a></td>
+      <td><a href="javascript:;" class="require-logged-in btn btn-link btn-primary">{% trans 'Login required' %}</a></td>
       {% endif %}
     </tr>
   {% endfor %}
