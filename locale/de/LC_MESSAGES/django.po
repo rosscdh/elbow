@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-14 08:54+0000\n"
+"POT-Creation-Date: 2016-07-29 14:55+0000\n"
 "PO-Revision-Date: 2016-06-14 13:03+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -158,9 +158,9 @@ msgid ""
 msgstr ""
 "Da ich über 1000,00 &euro; investieren möchte, bestätige ich hiermit, dass "
 "mein Investitionsbetrag den zweifachen Betrag meines durchschnittlichen "
-"monatlichen Nettoeinkommens nicht übersteigt oder dass ich über ein frei "
-"verfügbares Vermögen in Form von Bankguthaben und Finanzinstrumenten in Höhe "
-"von mindestens 100.000,00 &euro; verfüge."
+"monatlichen Nettoeinkommens nicht übersteigt <b>oder</b> dass ich über ein "
+"frei verfügbares Vermögen in Form von Bankguthaben und Finanzinstrumenten in "
+"Höhe von mindestens 100.000,00 &euro; verfüge."
 
 #: elbow/apps/order/forms.py:85 elbow/apps/public/forms.py:17
 #, python-brace-format
@@ -430,9 +430,8 @@ msgid "Bankcode"
 msgstr "Bankverbindung"
 
 #: elbow/apps/order/templates/order/order-payment.html:45
-#: templates/account/email.html:5
-msgid "Account"
-msgstr "Konto"
+msgid "Account Owner"
+msgstr "Kontoinhaber"
 
 #: elbow/apps/order/templates/order/order-payment.html:46
 msgid "IBAN"
@@ -487,10 +486,6 @@ msgstr "Dokumente"
 #: elbow/apps/project/templates/project/_docs.html:13
 #: elbow/apps/project/templates/project/_docs.html:19
 msgid ".PDF Download"
-msgstr ""
-
-#: elbow/apps/project/templates/project/_docs.html:21
-msgid "Login required"
 msgstr ""
 
 #: elbow/apps/project/templates/project/_preview.html:8
@@ -597,7 +592,7 @@ msgstr "Ihre Zahlung ist eingegangen"
 msgid "TodayCapital.de - [admin] Investment Payment, Failure"
 msgstr "Keine Zahlung erhalten"
 
-#: elbow/settings/common_settings.py:305
+#: elbow/settings/common_settings.py:307
 msgid "German"
 msgstr "Deutsch"
 
@@ -609,6 +604,10 @@ msgstr "Benutzerkonto nicht aktiv"
 #: templates/account/account_inactive.html:10
 msgid "This account is inactive."
 msgstr "Dieses Benutzerkonto ist nicht aktiv"
+
+#: templates/account/email.html:5
+msgid "Account"
+msgstr "Konto"
 
 #: templates/account/email.html:9
 msgid "E-mail Addresses"
