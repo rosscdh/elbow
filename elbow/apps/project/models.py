@@ -155,6 +155,3 @@ class Project(models.Model):
     @property
     def loan_agreement_doc_permalink(self):
         return reverse('project:media_permalink', kwargs={'slug': self.slug, 'media_slug': 'loan-agreement'})
-
-    def media_permalink(self, media):
-        return reverse('project:media_permalink', kwargs={'slug': self.slug, 'media_slug': media.uuid})

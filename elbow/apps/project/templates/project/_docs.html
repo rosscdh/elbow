@@ -6,17 +6,17 @@
   </tr>
   <tr>
     <td>{% trans 'Term Sheet' %}</td>
-    <td><a href="{{ term_sheet }}" target="_NEW" class="btn btn-link btn-primary">{% if is_logged_in %}{% trans '.PDF Download' %}{% else %}{% trans 'Login required' %}{% endif %}</a></td>
+    <td><a href="{{ term_sheet }}" target="_NEW" class="btn btn-link btn-primary">{% trans '.PDF Download' %}</a></td>
   </tr>
   <tr>
     <td>{% trans 'Generic Loan Agreement' %}</td>
-    <td><a href="{{ loan_agreement }}" target="_NEW" class="btn btn-link btn-primary">{% if is_logged_in %}{% trans '.PDF Download' %}{% else %}{% trans 'Login required' %}{% endif %}</a></td>
+    <td><a href="{{ loan_agreement }}" target="_NEW" class="btn btn-link btn-primary">{% trans '.PDF Download' %}</a></td>
   </tr>
   {% for row in documents %}
     <tr>
       <td>{{ row.name }}</td>
       
-      <td><a href="{% url 'project:media_permalink' slug=project_slug media_slug=row.uuid %}" target="_NEW" class="btn btn-link btn-primary">{% if row.login_required == False or row.login_required and is_logged_in %}{% trans '.PDF Download' %}{% else %}{% trans 'Login required' %}{% endif %}</a></td>
+      <td><a href="{% url 'project:media_permalink' slug=project_slug media_slug=row.uuid %}" target="_NEW" class="btn btn-link btn-primary">{% trans '.PDF Download' %}</a></td>
     </tr>
   {% endfor %}
   </table>

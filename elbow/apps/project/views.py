@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
-#from django.views.generic import TemplateView
+from django.shortcuts import get_object_or_404
 from django.views.generic import RedirectView
 from django.core.urlresolvers import reverse
 
-from elbow.apps.document.models import Document
 from elbow.apps.project.models import Project
 
 
@@ -23,7 +22,7 @@ class PDFPermalinkView(RedirectView):
             #
             # Get the document object
             #
-            document = Document.objects.get(uuid=media_slug)
+            document = get_object_or_404(project.documents, uuid=media_slug)
             login_required = document.login_required
 
         # Get the url
