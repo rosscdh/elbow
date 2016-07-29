@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.views.generic import TemplateView
+#from django.views.generic import TemplateView
 from django.views.generic import RedirectView
 from elbow.apps.project.models import Project
 

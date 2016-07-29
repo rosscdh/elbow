@@ -24,8 +24,9 @@ def project_stats(project):
 def project_docs(context, project):
     is_logged_in = context.get('user').is_authenticated
     return {
-        'term_sheet': project.term_sheet_doc,
-        'loan_agreement': project.loan_agreement_doc,
+        'project_slug': project.slug,
+        'term_sheet': project.term_sheet_doc_permalink,
+        'loan_agreement': project.loan_agreement_doc_permalink,
         'documents': project.documents.all(),
         'is_logged_in': is_logged_in
     }

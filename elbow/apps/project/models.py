@@ -147,3 +147,14 @@ class Project(models.Model):
     @property
     def news_history(self):
         return self.content_type.log_set.filter(object_id=self.pk)
+
+    @property
+    def term_sheet_doc_permalink(self):
+        return reverse('project:media_permalink', kwargs={'slug': self.slug, 'media_slug': 'term-sheet'})
+
+    @property
+    def loan_agreement_doc_permalink(self):
+        return reverse('project:media_permalink', kwargs={'slug': self.slug, 'media_slug': 'loan-agreement'})
+
+    def media_permalink(self, media):
+        return reverse('project:media_permalink', kwargs={'slug': self.slug, 'media_slug': media.uuid})
