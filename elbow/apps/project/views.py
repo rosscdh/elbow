@@ -8,6 +8,7 @@ from elbow.apps.project.models import Project
 
 
 class PDFPermalinkView(RedirectView):
+
     def get_object(self):
         return Project.objects.get(slug=self.kwargs.get('slug'))
 
@@ -19,6 +20,9 @@ class PDFPermalinkView(RedirectView):
         if media_slug in ['term-sheet', 'loan-agreement']:
             login_required = True
         else:
+            #
+            # Get the document object
+            #
             document = Document.objects.get(uuid=media_slug)
             login_required = document.login_required
 
@@ -31,7 +35,7 @@ class PDFPermalinkView(RedirectView):
                 url = project.loan_agreement_doc.url
         else:
             # is a standard document so get its url
-            url = document.url
+            url = document.document.url
 
         if login_required is True:
             # if authenticated
@@ -40,4 +44,5 @@ class PDFPermalinkView(RedirectView):
             else:
                 # not autenticated
                 return reverse('account_login')
+
         return url

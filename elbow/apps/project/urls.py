@@ -4,7 +4,7 @@ from django.views.generic import TemplateView, ListView, DetailView
 
 from .models import Project
 from .views import PDFPermalinkView
- 
+
 
 urlpatterns = patterns('',
                        url(r'^project-api/$', TemplateView.as_view(template_name='project/api-project-list.html')),
@@ -14,7 +14,7 @@ urlpatterns = patterns('',
                                             queryset=Project.objects.public()),
                            name='list'),
 
-                       url(r'^(?P<slug>[\w-]+)/media/(?P<media_slug>[\w-]+)/$',
+                       url(r'^(?P<slug>[\w-]+)/media/(?P<media_slug>[\w-]+)/permalink/$',
                            PDFPermalinkView.as_view(),
                            name='media_permalink'),
 
