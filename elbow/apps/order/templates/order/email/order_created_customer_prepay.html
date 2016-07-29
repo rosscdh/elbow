@@ -1,4 +1,4 @@
-{% extends 'email/base.html' %}
+{% extends 'email/base.html' %}{% load i18n djmoney %}
 {% block content %}
 {% spaceless %}<p>Hallo {{ order.customer_name }},</p>
 
@@ -8,10 +8,10 @@
 <p>Sie haben die Zahlung per <b>Überweisung</b> gewählt. Bitte überweisen Sie den Darlehensbetrag auf folgendes Konto:</p>
 
 <ul>
-<li><b>Empfänger:</b> {{ order.data.payment_data.accountowner }}</li>
-<li><b>IBAN des Empfängers:</b> {{ order.data.payment_data.iban }}</li>
-<li><b>Verwendungszweck:</b> {{ order.uuid }}</li>
-<li><b>Ihr Darlehensbetrag:</b> {{ order.amount }}</li>
+<li><b>{% trans 'Account Owner' %}:</b> {{ order.data.payment_data.accountowner }}</li>
+<li><b>{% trans 'IBAN' %}:</b> {{ order.data.payment_data.iban }}</li>
+<li><b><em>{% trans 'Customer Reference' %}:</em></b> {{ order.transaction_id }}</li>
+<li><b>Ihr Darlehensbetrag:</b> {% money_localize order.amount %}</li>
 </ul>
 
 <p>Nach erfolgreichem Zahlungseingang erhalten Sie von uns eine <b>E-Mail-Bestätigung</b>.</p>
