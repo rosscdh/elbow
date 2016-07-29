@@ -8,8 +8,8 @@
 <p>Sie haben die Zahlung per <b>Überweisung</b> gewählt. Bitte überweisen Sie den Darlehensbetrag auf folgendes Konto:</p>
 
 <ul>
-<li><b>Empfänger:</b> {{ order.SECUPAY_BANK_DATA.accountowner }}</li>
-<li><b>IBAN des Empfängers:</b> {{ order.SECUPAY_BANK_DATA.iban }}</li>
+<li><b>Empfänger:</b> {{ order.data.payment_data.accountowner }}</li>
+<li><b>IBAN des Empfängers:</b> {{ order.data.payment_data.iban }}</li>
 <li><b>Verwendungszweck:</b> {{ order.uuid }}</li>
 <li><b>Ihr Darlehensbetrag:</b> {{ order.amount }}</li>
 </ul>
