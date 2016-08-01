@@ -607,7 +607,7 @@ msgstr "Dieses Benutzerkonto ist nicht aktiv"
 
 #: templates/account/email.html:5
 msgid "Account"
-msgstr "Konto"
+msgstr "Kontoinhaber"
 
 #: templates/account/email.html:9
 msgid "E-mail Addresses"
