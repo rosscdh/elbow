@@ -23,10 +23,14 @@ def project_stats(project):
 @register.inclusion_tag('project/_docs.html', takes_context=True)
 def project_docs(context, project):
     is_logged_in = context.get('user').is_authenticated
+    specified_docs = list(project.documents.filter(name__icontains='Exposé') | project.documents.filter(name__icontains='Finanzplan'))
+
     return {
         'project_slug': project.slug,
+        'expose_document': [d for d in specified_docs if u'Expos\xe9' in d.name][0],
+        'finance_plan': [d for d in specified_docs if u'Finanzplan' in d.name][0],
         'term_sheet': project.term_sheet_doc_permalink,
         'loan_agreement': project.loan_agreement_doc_permalink,
-        'documents': project.documents.all(),
+        'documents': project.documents.exclude(pk__in=[d.pk for d in specified_docs]).all(),
         'is_logged_in': is_logged_in
     }
