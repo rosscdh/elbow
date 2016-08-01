@@ -6,7 +6,7 @@
   </tr>
   <tr>
     <td>{% trans 'Exposé TodayHaus' %}</td>
-    <td><a href="{{ expose_document }}" target="_NEW" class="btn btn-link btn-primary">{% trans '.PDF Download' %}</a></td>
+    <td><a href="{% url 'project:media_permalink' slug=project_slug media_slug=expose_document.uuid %}" target="_NEW" class="btn btn-link btn-primary">{% trans '.PDF Download' %}</a></td>
   </tr>
   <tr>
     <td>{% trans 'Generic Loan Agreement' %}</td>
@@ -18,7 +18,7 @@
   </tr>
   <tr>
     <td>{% trans 'Finanzplan' %}</td>
-    <td><a href="{{ finance_plan }}" target="_NEW" class="btn btn-link btn-primary">{% trans '.PDF Download' %}</a></td>
+    <td><a href="{% url 'project:media_permalink' slug=project_slug media_slug=finance_plan.uuid %}" target="_NEW" class="btn btn-link btn-primary">{% trans '.PDF Download' %}</a></td>
   </tr>
 
   {% for row in documents %}
