@@ -48,3 +48,13 @@ tx set --source -r elbow.djangopo -l en locale/en/LC_MESSAGES/django.po
 tx set -r elbow.djangopo -l de locale/de/LC_MESSAGES/django.po
 tx set -r elbow.djangopo -l en locale/en/LC_MESSAGES/django.po
 ```
+
+
+## Update secupay IBAN data
+
+```
+my_hash = 'bkrmrgnonlyu967461'  # Get a current Order secupay hash
+data = Order.SECUPAY.payment().status(hash=my_hash)
+import json
+json.loads(data)
+```
