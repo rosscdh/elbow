@@ -20,12 +20,11 @@ class OrderModelTest(BaseTestCase):
         self.order = mommy.make('order.Order',
                                 status='processing',  # Must be in processing
                                 transaction_id=None,
-                                amount=250.25)  # AND must NOT have a transaction_id
+                                amount=250.25,
+                                customer_name='Bob Example')  # AND must NOT have a transaction_id
         user = self.order.user
         user.email = 'bob@example.com'  # Set the email of the order User
-        user.first_name = 'Bob'
-        user.last_name = 'Bob'
-        user.save()
+
 
     def test_can_send_payment(self):
         self.assertTrue(self.order.can_send_payment)
