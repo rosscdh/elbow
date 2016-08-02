@@ -459,6 +459,7 @@ def assets():
     local('tar cvzf static.tar.gz ./static')
     put('static.tar.gz', env.remote_project_path)
     run('tar -zxvf %sstatic.tar.gz -C %s' % (env.remote_project_path, env.remote_project_path))
+    run('chmod -R 755 %sstatic' % env.remote_project_path)
     run('rm %sstatic.tar.gz' % env.remote_project_path)
     local('rm static.tar.gz')
 
