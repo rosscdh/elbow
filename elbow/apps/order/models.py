@@ -182,7 +182,7 @@ class Order(models.Model):
 
         secupay_required_values = {
             "firstname": self.customer_name.split(' ')[0],
-            "lastname": self.customer_name.split(' ')[1:],
+            "lastname": ' '.join(self.customer_name.split(' ')[1:]),
             "street": self.address_1,
             "housenumber": self.address_2,
             "zip": self.postcode,
