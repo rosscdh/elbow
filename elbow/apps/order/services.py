@@ -4,6 +4,7 @@ from django.core.files.base import ContentFile
 from easy_pdf.rendering import render_to_pdf
 
 from elbow.apps.document.models import Document, _document_upload_path
+from elbow.apps.order.apps import SECUPAY_BANK_DATA
 
 import logging
 logger = logging.getLogger('django.request')
@@ -21,7 +22,8 @@ class LoanAgreementCreatePDFService(object):
         kwargs.update({
             'order': self.order,
             'project': self.order.project,
-            'user': self.user
+            'user': self.user,
+            'SECUPAY_BANK_DATA': SECUPAY_BANK_DATA,
         })
 
         pdf_bytes = render_to_pdf(template='order/documents/loan_agreement.html',
