@@ -181,7 +181,7 @@ class Order(models.Model):
                                                                    type=self.payment_type))
 
         secupay_required_values = {
-            "purpose": 'TC-%d' % self.pk,  # Shown to user on bank statement
+            "purpose": 'TodayCapital-%d' % self.pk,  # Shown to user on bank statement
             "firstname": self.customer_name.split(' ')[0],
             "lastname": ' '.join(self.customer_name.split(' ')[1:]),
             "street": self.address_1,
