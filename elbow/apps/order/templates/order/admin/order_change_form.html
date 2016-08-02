@@ -50,6 +50,7 @@
         <th class="required">Address</th>
         <th class="required">Country</th>
         <th class="required">Secupay Id</th>
+        <th class="required">Secupay Purpose</th>
         <th class="required">Payment type</th>
         <th class="required">Status</th>
         <th>Actions</th>
@@ -81,6 +82,9 @@
             </td>
             <td class="field-transaction_id">
                 {{ order.transaction_id|default:"" }}
+            </td>
+            <td class="field-tracking_number">
+                {{ order.tracking_number|default:"" }}
             </td>
             <td class="field-payment_type">
                 {{ order.payment_type }}

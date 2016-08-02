@@ -17,6 +17,10 @@ class OrderCreateViewTest(BaseTestCase):
     def setUp(self):
         super(OrderCreateViewTest, self).setUp()
         self.project = mommy.make('project.Project', name='My Basic Test Project')
+        
+        self.project.documents.add(mommy.make('document.Document', name=u'Exposé'))
+        self.project.documents.add(mommy.make('document.Document', name=u'Finanzplan'))
+
         self.url = reverse('order:create', kwargs={'project_slug': self.project.slug})
 
         user_dict = {'first_name': 'Test', 'last_name': 'User', 'email': 'test@example.com'}

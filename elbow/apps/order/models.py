@@ -179,11 +179,24 @@ class Order(models.Model):
         logger.info('make_payment: {order} {amount} {type}'.format(order=self,
                                                                    amount=amount,
                                                                    type=self.payment_type))
+
+        secupay_required_values = {
+            "firstname": self.customer_name.split(' ')[0],
+            "lastname": self.customer_name.split(' ')[1:],
+            "street": self.address_1,
+            "housenumber": self.address_2,
+            "zip": self.postcode,
+            "city": self.city,
+            "country": self.country,
+            "email": self.user.email,
+        }
+
         resp = self.SECUPAY.payment().make_payment(amount=amount,
                                                    payment_type=self.payment_type,
                                                    url_success=self.url_success,
                                                    url_failure=self.url_failure,
-                                                   url_push=self.url_webhook)
+                                                   url_push=self.url_webhook,
+                                                   **secupay_required_values)
 
         log(
             user=user,
@@ -193,8 +206,9 @@ class Order(models.Model):
         )
 
         self.transaction_id = resp.get('data', {}).get('hash')
+        self.tracking_number = resp.get('data', {}).get('purpose')
         self.data = resp.get('data', {})
-        self.save(update_fields=['transaction_id', 'data'])
+        self.save(update_fields=['transaction_id', 'tracking_number', 'data'])
 
         return self, resp
 

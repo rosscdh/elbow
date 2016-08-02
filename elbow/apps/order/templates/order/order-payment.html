@@ -47,7 +47,7 @@
         <b>{% trans 'BIC' %}:</b> {{ order.data.payment_data.bic }}<br/>
         <b>{% trans 'Account No.' %}:</b> {{ order.data.payment_data.accountnumber }}<br/>
         <hr/>
-        <p class="lead"><b><em>{% trans 'Customer Reference' %}:</em></b> {{ order.transaction_id }}</p>
+        <p class="lead"><b><em>{% trans 'Customer Reference' %}:</em></b> {{ order.tracking_number }}</p>
       </div>
     </div>
 

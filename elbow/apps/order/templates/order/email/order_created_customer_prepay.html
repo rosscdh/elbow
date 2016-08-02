@@ -10,7 +10,7 @@
 <ul>
 <li><b>{% trans 'Account Owner' %}:</b> {{ order.data.payment_data.accountowner }}</li>
 <li><b>{% trans 'IBAN' %}:</b> {{ order.data.payment_data.iban }}</li>
-<li><b><em>{% trans 'Customer Reference' %}:</em></b> {{ order.transaction_id }}</li>
+<li><b><em>{% trans 'Customer Reference' %}:</em></b> {{ order.tracking_number }}</li>
 <li><b>Ihr Darlehensbetrag:</b> {% money_localize order.amount %}</li>
 </ul>
 

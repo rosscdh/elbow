@@ -7,4 +7,5 @@
 <p><b>Projektbezeichnung:</b> {{ order.project }}</p>
 <p><b>Order ID.</b> {{ order.uuid }} | <a href="{{ BASE_URL }}{% url 'admin:order_order_change' order.pk %}">View</a></p>
 <p><b>Secupay ID.</b> {{ order.transaction_id }}</p>
+<p><b>Secupay Purpose.</b> {{ order.tracking_number }}</p>
 {% endblock %}
