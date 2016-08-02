@@ -12,7 +12,6 @@
 <li><b>{% trans 'BANK' %}:</b> {{ SECUPAY_BANK_DATA.bankname }}</li>
 <li><b>{% trans 'IBAN' %}:</b> {{ SECUPAY_BANK_DATA.iban }}</li>
 <li><b>{% trans 'BIC' %}:</b> {{ SECUPAY_BANK_DATA.bic }}</li>
-<li><b><em>{% trans 'Customer Reference' %}:</em></b> {{ order.tracking_number }}</li>
 <li><b>Ihr Darlehensbetrag:</b> {% money_localize order.amount %}</li>
 </ul>
 
