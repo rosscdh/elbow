@@ -3,6 +3,7 @@ from django.core.mail import send_mail, EmailMultiAlternatives
 from django.utils.translation import ugettext_lazy as _
 
 from elbow.utils import HTML2TextEmailMessageService
+from elbow.apps.order.apps import SECUPAY_BANK_DATA
 
 import logging
 logger = logging.getLogger('django.request')
@@ -51,7 +52,8 @@ class SendEmailService(object):
         html2text = HTML2TextEmailMessageService(template_name='order/email/order_created.html',
                                                  order=self.order,
                                                  recipients=user_list,
-                                                 subject=subject)
+                                                 subject=subject,
+                                                 SECUPAY_BANK_DATA=SECUPAY_BANK_DATA)
         # Send Admin Email
         message = html2text.plain_text
         from_email = 'application@todaycapital.de'
@@ -91,7 +93,8 @@ class SendEmailService(object):
             html2text = HTML2TextEmailMessageService(template_name=template_name,
                                                      user=user,
                                                      order=self.order,
-                                                     subject=subject)
+                                                     subject=subject,
+                                                     SECUPAY_BANK_DATA=SECUPAY_BANK_DATA)
 
             msg = EmailMultiAlternatives(subject, html2text.plain_text, from_email, [user.email])
             msg.attach_alternative(html2text.html, "text/html")
