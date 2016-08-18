@@ -123,3 +123,5 @@ xhtml2pdf>=0.0.6
 reportlab>=2.7,<3
 # End PDF Rendering
 -e git+https://github.com/rosscdh/python-secupay.git@master#egg=secupay
+# Admin import export
+django-import-export==0.4.5
