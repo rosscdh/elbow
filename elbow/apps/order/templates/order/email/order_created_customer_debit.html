@@ -1,4 +1,4 @@
-{% extends 'email/base.html' %}
+{% extends 'email/base.html' %}{% load i18n djmoney %}
 {% block content %}
 {% spaceless %}<p>Hallo {{ order.customer_name }},</p>
 
@@ -10,6 +10,12 @@
 <p>Nach erfolgreichem Zahlungseingang erhalten Sie von uns eine <b>E-Mail-Bestätigung.</b></p>
 
 <p>Ihren <b>Darlehensvertrag</b> finden Sie in der Anlage zu dieser Mail. Selbstverständlich können Sie den Darlehensvertrag speichern oder für Ihre Unterlagen ausdrucken.<p>
+
+<ul>
+<li><b>{% trans 'Customer Reference' %}:</b> {{ order.tracking_number }}
+<li><b>Ihr Darlehensbetrag:</b> {% money_localize order.amount %}</li>
+</ul>
+
 <!-- type: {{ order.display_payment_type }} -->
 {% endspaceless %}
 {% endblock %}

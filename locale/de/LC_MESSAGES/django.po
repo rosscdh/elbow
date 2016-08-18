@@ -447,7 +447,7 @@ msgstr "Kontonummer"
 
 #: elbow/apps/order/templates/order/order-payment.html:50
 msgid "Customer Reference"
-msgstr "Kundennummer"
+msgstr "Verwendungszweck"
 
 #: elbow/apps/order/templates/order/order-payment_success.html:4
 #: elbow/apps/order/templates/order/order-payment_success.html:10
