@@ -82,6 +82,8 @@ HELPER_APPS = (
     'corsheaders',
     'rest_framework',
 
+    'import_export',
+
     'pages', # cms
     'taggit', # cms
     'mptt',  # for cms
