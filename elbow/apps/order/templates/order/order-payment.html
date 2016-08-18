@@ -41,11 +41,11 @@
       <h2>{% trans 'Please make payment out to' %}</h2>
       <div class="col-xs-12 well well-lg">
         <b>{% trans 'Bank Name' %}:</b> {{order.data.payment_data.bankname}}<br/>
-        <b>{% trans 'Bankcode' %}:</b> {{ order.data.payment_data.bankcode }}<br/>
+        <!--<b>{% trans 'Bankcode' %}:</b> {{ order.data.payment_data.bankcode }}<br/>-->
         <b>{% trans 'Account Owner' %}:</b> {{ order.data.payment_data.accountowner }}<br/>
         <b>{% trans 'IBAN' %}:</b> {{ order.data.payment_data.iban }}<br/>
         <b>{% trans 'BIC' %}:</b> {{ order.data.payment_data.bic }}<br/>
-        <b>{% trans 'Account No.' %}:</b> {{ order.data.payment_data.accountnumber }}<br/>
+        <!--<b>{% trans 'Account No.' %}:</b> {{ order.data.payment_data.accountnumber }}<br/>-->
         <hr/>
         <p class="lead"><b><em>{% trans 'Customer Reference' %}:</em></b> {{ order.tracking_number }}</p>
       </div>

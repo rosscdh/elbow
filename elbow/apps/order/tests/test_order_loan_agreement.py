@@ -22,7 +22,9 @@ class OrderLoanAgreementViewTest(BaseTestCase):
     def setUp(self):
         super(OrderLoanAgreementViewTest, self).setUp()
         self.project = mommy.make('project.Project', name='My Basic Test Project')
-        self.order = mommy.make('order.Order', project=self.project, amount=250.00)
+        self.order = mommy.make('order.Order',
+                                project=self.project,
+                                amount=250.00)
         self.url = reverse('order:loan_agreement', kwargs={'project_slug': self.project.slug, 'uuid': self.order.uuid})
 
         user_dict = {'first_name': 'Test', 'last_name': 'User', 'email': 'test@example.com'}
@@ -82,6 +84,7 @@ class OrderLoanAgreementFormTest(TestCase):
         self.order = mommy.make('order.Order',
                                 project=self.project,
                                 amount=2500.00,
+                                tracking_number='TA 1234567',
                                 user=self.user)
 
         self.initial = {
@@ -139,13 +142,16 @@ class OrderLoanAgreementFormTest(TestCase):
         #
         # Test Attachments
         #
-        self.assertEqual(len(email.attachments), 3)
+        self.assertEqual(len(email.attachments), 4)
         self.assertTrue(attachment_filename_pattern.match(email.attachments[0][0]))
         # Test all are pdfs
         for attachment in email.attachments:
             self.assertEqual(attachment[2], 'application/pdf')
-        self.assertTrue('test-verbraucherinformationsblatt' in email.attachments[1][0])
-        self.assertTrue('test-finanzkennzahlen' in email.attachments[2][0])
+
+        self.assertTrue('order-documentorder-loan-agreement' in email.attachments[0][0])
+        self.assertTrue('darlehensvertrag-monchengladbach-30-ta-1234567.pdf' in email.attachments[1][0])
+        self.assertTrue('test-verbraucherinformationsblatt' in email.attachments[2][0])
+        self.assertTrue('test-finanzkennzahlen' in email.attachments[3][0])
 
         email = mail.outbox[1]
         self.assertEqual(unicode(email.subject), u'Ihr Investment auf TodayCapital')

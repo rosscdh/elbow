@@ -207,7 +207,14 @@ class Order(models.Model):
         )
 
         self.transaction_id = resp.get('data', {}).get('hash')
+
         self.tracking_number = resp.get('data', {}).get('purpose')
+
+        # Replace the TA- with TH- as requestd by client
+        # we save the original TA-***** number in the order.data json
+        if self.tracking_number is not None:
+            self.tracking_number = self.tracking_number.replace('TA-', 'TH-')
+
         self.data = resp.get('data', {})
         self.save(update_fields=['transaction_id', 'tracking_number', 'data'])
 

@@ -1,6 +1,7 @@
 # -*- coding: UTF-8 -*-
-from django.core.mail import send_mail, EmailMultiAlternatives
+from django.template.defaultfilters import slugify
 from django.utils.translation import ugettext_lazy as _
+from django.core.mail import send_mail, EmailMultiAlternatives
 
 from elbow.utils import HTML2TextEmailMessageService
 from elbow.apps.order.apps import SECUPAY_BANK_DATA
@@ -32,7 +33,7 @@ class SendEmailService(object):
                                                  subject=subject)
         # Send Admin Email
         message = html2text.plain_text
-        from_email = 'application@todaycapital.de'
+        from_email = 'noreply@todaycapital.de'
         recipient_list = SendEmailService.admin_recipient_list
         logger.debug('Send founders email')
         send_success.append(('founders', send_mail(subject=subject,
@@ -56,7 +57,7 @@ class SendEmailService(object):
                                                  SECUPAY_BANK_DATA=SECUPAY_BANK_DATA)
         # Send Admin Email
         message = html2text.plain_text
-        from_email = 'application@todaycapital.de'
+        from_email = 'noreply@todaycapital.de'
         recipient_list = self.admin_recipient_list
         logger.debug('Send founders email')
 
@@ -65,6 +66,8 @@ class SendEmailService(object):
 
         if document.document:
             msg.attach_file(document.document.path)
+            file_name = '%s.pdf' % slugify('%s-%s-%s' % (_('Loan Agreement'), self.order.project.name, self.order.tracking_number))
+            msg.attach(filename=file_name, content=document.document.read(), mimetype='application/pdf')
 
         for doc in self.order.project.documents.filter(name__in=self.required_project_docs):
             if doc.document:
@@ -75,7 +78,7 @@ class SendEmailService(object):
         # Send Customer Email
         subject = _('TodayCapital.de - Your Investment Order has been created')
         message = html2text.plain_text
-        from_email = 'application@todaycapital.de'
+        from_email = 'noreply@todaycapital.de'
 
         for user in user_list:
             logger.debug('Send user %s email' % user)
@@ -117,7 +120,7 @@ class SendEmailService(object):
                                                  subject=subject)
         # Send Admin Email
         message = html2text.plain_text
-        from_email = 'application@todaycapital.de'
+        from_email = 'noreply@todaycapital.de'
         recipient_list = self.admin_recipient_list
         logger.debug('Send founders email')
         send_success.append(('founders', send_mail(subject=subject,
@@ -129,7 +132,7 @@ class SendEmailService(object):
         # Send Customer Email
         subject = _('TodayCapital.de - Investment Payment, Success')
         message = html2text.plain_text
-        from_email = 'application@todaycapital.de'
+        from_email = 'noreply@todaycapital.de'
 
         for user in user_list:
             logger.debug('Send user %s email' % user)
@@ -159,7 +162,7 @@ class SendEmailService(object):
 
         # Send Customer Email
         message = html2text.plain_text
-        from_email = 'application@todaycapital.de'
+        from_email = 'noreply@todaycapital.de'
         recipient_list = self.admin_recipient_list
 
         send_success.append(('founders', send_mail(subject=subject,

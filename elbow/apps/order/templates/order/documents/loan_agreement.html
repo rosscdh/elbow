@@ -1,5 +1,4 @@
-{% extends "easy_pdf/base.html" %}{% load static djmoney pdf_tags %}
-
+{% extends "easy_pdf/base.html" %}{% load i18n static djmoney pdf_tags %}
 
 {% block content %}
 <img src="{{ '/static/img/todaycapital-logo-white-bg-160.png' | get64 }}"/>
@@ -56,10 +55,11 @@ eingetragen im Handelsregister des Amtsgerichts Mönchengladbach unter HRB 13171
 <p><strong>2.</strong> Hat der Darlehensgeber keinen Lastschriftauftrag erteilt, ist der Darlehensbetrag sofort unter Angabe der persönlichen Vertrags-/Darlehensnummer zu überweisen auf das Konto:</p>
 
 <blockquote style="padding:10px;background-color:#fafafa;color:#000;font-weight:bolder;">
-Kontoinhaber: {{ SECUPAY_BANK_DATA.accountowner }}<br/>
-BANK: {{ SECUPAY_BANK_DATA.bankname }}<br/>
-IBAN: {{ SECUPAY_BANK_DATA.iban }}<br/>
-BIC: {{ SECUPAY_BANK_DATA.bic }}
+{% trans 'Bank Name' %}: {{order.data.payment_data.bankname}}<br/>
+{% trans 'Account Owner' %}: {{ order.data.payment_data.accountowner }}<br/>
+{% trans 'IBAN' %}: {{ order.data.payment_data.iban }}<br/>
+{% trans 'BIC' %}: {{ order.data.payment_data.bic }}
+{% trans 'Customer Reference' %}:</em></b> {{ order.tracking_number }}
 </blockquote>
 
 <p><strong>3.</strong> TodaySystems GmbH stellt sicher, dass der Darlehensbetrag von der SECUPAY AG vollständig und kostenfrei an den Darlehensgeber zurückgezahlt wird, wenn der  Darlehensvertrag aufgrund einer wirksamen Widerrufserklärung aufgelöst wird. </p>
