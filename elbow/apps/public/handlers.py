@@ -20,6 +20,11 @@ def save_user_signup_preferences(*args, **kwargs):
 
     profile.data['has_aggeed_t_and_c'] = request.POST.get('has_aggeed_t_and_c')
     profile.data['send_news_and_info'] = request.POST.get('send_news_and_info')
+    #
+    # Field used to provider filter capabilities in the admin system
+    #
+    profile.send_news_and_info = profile.data['send_news_and_info'] in ['on', True, 1, '1', 'yes']
+
     profile.save(update_fields=['data'])
     # save
 
