@@ -49,6 +49,13 @@
 {% block css %}
   {{ block.super }}
   <style>
+  /* Remove the number input spinners */
+  input[type=number]::-webkit-inner-spin-button, 
+  input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+  }
+
   fieldset {
     margin-top:30px;
   }

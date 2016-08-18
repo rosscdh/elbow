@@ -123,8 +123,7 @@ class CreateOrderForm(forms.Form):
 
         if self.project.maximum_investment:
             self.fields['amount'].help_text = _(u'A minimum of {minimum} and a maximum of {maximum}, is required').format(minimum=unicode(self.project.minimum_investment),
-                                                                                                                                        maximum=unicode(self.project.maximum_investment))
-
+                                                                                                                          maximum=unicode(self.project.maximum_investment))
         # Setup the loan_agreement and term_sheet        
         self.fields['t_and_c'].label = self.fields['t_and_c'].label.format(url=settings.TERMS_AND_CONDITIONS_URL)
 
@@ -265,7 +264,8 @@ class CreateOrderForm(forms.Form):
 class OrderLoanAgreementForm(forms.Form):
     has_agreed_to_loan_agreement_terms = forms.BooleanField(label='',
                                                             help_text=_('I agree to the terms of the Loan Agreement'),
-                                                            required=True)
+                                                            initial=True,
+                                                            widget=forms.HiddenInput)
 
     def __init__(self, *args, **kwargs):
         self.order = kwargs.pop('order', None)
@@ -300,6 +300,7 @@ class OrderLoanAgreementForm(forms.Form):
 
         helper.layout = Layout(Fieldset('',
                                         Field('has_agreed_to_loan_agreement_terms'),),
+                               HTML('<br/>'),
                                ButtonHolder(
                                    Submit('submit', _('Continue & Make the payment'), css_class='btn btn-primary btn-lg'),))
         return helper
