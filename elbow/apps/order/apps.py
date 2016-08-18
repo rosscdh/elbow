@@ -25,9 +25,9 @@ ORDER_PAYMENT_TYPE = get_namedtuple_choices('ORDER_PAYMENT_TYPE', (
 SECUPAY_BANK_DATA = {
     "bankcode": "30050000",
     "accountowner": "secupay AG",
-    "bankname": u"Landesbank Hessen-Thüringen Girozentrale NL. Düsseldorf",
-    "iban": "DE93 3005 0000 7060 5077 33",
-    "bic": "WELADEDDXXX",
+    "bankname": u"Commerzbank CC",
+    "iban": "DE24 8504 0061 1005 5999 60",
+    "bic": "COBADEFFXXX",
     "accountnumber": "1747013"
 }
 
