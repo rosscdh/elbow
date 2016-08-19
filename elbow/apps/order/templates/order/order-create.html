@@ -7,11 +7,13 @@
 
 {% block page_header %}
 <div class="page-header clearfix">
-  <h1>{% blocktrans with project=project.name %}Invest in {{ project }}{% endblocktrans %}</h1>
-  <p>{{ project.proposition }}</p>
+    <div class="col-md-12" style="padding:0px;">
+      <h1>{% blocktrans with project=project.name %}Invest in {{ project }}{% endblocktrans %}<br/><small>{{ project.proposition }}</small></h1>
+    </div>
 </div>
 <div class="clearfix"></div>
 {% endblock %}
+
 
 {% block content %}
 <div class="row">
@@ -23,12 +25,7 @@
     </div>
 
     <div class="col-sm-12" style="padding:0px;">
-      <div class="col-sm-4 well well-sm text-center">
-        {% trans "Backers" %}<br/><span class="badge">{{ project.num_backers }}</span>
-      </div>
-      <div class="col-sm-4 well well-sm text-center">
-        {% trans "Revenue" %}<br/><span class="badge">{% money_localize project.revenue %}</span>
-      </div>
+          {% project_stats project %}
     </div>
 
     <div class="col-sm-12" style="padding:0px;">

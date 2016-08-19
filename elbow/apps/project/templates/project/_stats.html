@@ -25,11 +25,11 @@ This is view is deliberately without a outer div, allows you to define the proje
 
   {% if project.percent > 0 %}
   <div class="col-md-12">
-    <div class="col-sm-6 well well-sm text-center">
+    <div class="col-sm-6 text-center" style="min-height:80px;">
       <span class="badge">{{ project.num_backers }}</span>
       <br/><i class="glyphicon glyphicon-king" title="{% trans "Backers" %}"></i> {% trans "Backers" %}
     </div>
-    <div class="col-sm-6 well well-sm text-center">
+    <div class="col-sm-6 text-center" style="min-height:80px;">
       <span class="badge">{% money_localize project.revenue %}</span>
       <br/><i class="glyphicon glyphicon-euro" title="{% trans "Revenue" %}"></i> {% trans "Revenue" %}
     </div>
