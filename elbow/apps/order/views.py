@@ -23,9 +23,8 @@ class OrderCreate(LoginRequiredMixin, FormView):
         return super(OrderCreate, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
-        self.order = form.save()
         try:
-            self.order, payment_api_response = self.order.make_payment(user=self.request.user)
+            self.order = form.save()
         except Exception as e:
             log(
                 user=self.request.user,

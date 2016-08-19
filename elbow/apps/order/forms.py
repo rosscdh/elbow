@@ -234,6 +234,11 @@ class CreateOrderForm(forms.Form):
         order = Order.objects.create(**self.cleaned_data)
 
         #
+        # Make the payment
+        #
+        order, payment_api_response = order.make_payment(user=self.user)
+
+        #
         # Create PDF and associate with Order
         #
         pdf_service = LoanAgreementCreatePDFService(order=order,
