@@ -1,9 +1,11 @@
 {% load i18n static %}
 <div class="table-responsive">
-  <table class="table table-striped">
+  <table class="table table-responsive table-striped">
+  {% if header %}
   <tr>
-    <th colspan="2" class="bg-primary"><h4>{% trans 'Documents' %}</h4></th>
+    <th colspan="2" class="bg-primary"><b>{% trans 'Documents' %}</b></th>
   </tr>
+  {% endif %}
   <tr>
     <td>{% trans 'Exposé TodayHaus' %}</td>
     <td><a href="{% url 'project:media_permalink' slug=project_slug media_slug=expose_document.uuid %}" target="_NEW" class="btn btn-link btn-primary">{% trans '.PDF Download' %}</a></td>

@@ -54,16 +54,21 @@
 </div> -->
 <hr/>
 <ul id="project-tabs" class="nav nav-tabs" role="tablist">
-  <li role="presentation" class="active"><a href="#project-description" aria-controls="home" role="tab" data-toggle="tab">{% trans 'Project description' %}</a></li>
-  <li role="presentation"><a href="#project-participation" aria-controls="profile" role="tab" data-toggle="tab">{% trans 'Participation Model' %}</a></li>
-  <li role="presentation"><a href="#project-documents" aria-controls="messages" role="tab" data-toggle="tab">{% trans 'Documents' %}</a></li>
+  <li role="presentation" class="active"><a href="#project-documents" aria-controls="messages" role="tab" data-toggle="tab">{% trans 'Documents' %}</a></li>
+  {# <li role="presentation"><a href="#project-description" aria-controls="home" role="tab" data-toggle="tab">{% trans 'Project description' %}</a></li> #}
+  {# <li role="presentation"><a href="#project-participation" aria-controls="profile" role="tab" data-toggle="tab">{% trans 'Participation Model' %}</a></li> #}
   <li role="presentation"><a href="#project-news" aria-controls="messages" role="tab" data-toggle="tab">{% trans 'Latest News' %}</a></li>
-  <li role="presentation"><a href="#project-faq" aria-controls="messages" role="tab" data-toggle="tab">{% trans 'F.A.Q' %}</a></li>
+  {# <li role="presentation"><a href="#project-faq" aria-controls="messages" role="tab" data-toggle="tab">{% trans 'F.A.Q' %}</a></li> #}
 </ul>
 
 <div class="tab-content">
 
-  <div id="project-description" role="tabpanel" class="tab-pane fade in active">
+  <div id="project-documents" role="tabpanel" class="tab-pane fade in active">
+    <h3>{% trans 'Documents' %}</h3>
+    {% project_docs project header=False %}
+  </div>
+
+  <div id="project-description" role="tabpanel" class="tab-pane fade">
     <div class="row">
       <div class="col-sm-6">
         <h3>{% trans 'Building Details' %}</h3>
@@ -82,13 +87,6 @@
     <h3>{% trans 'How it works' %}</h3>
     <div class="col-sm-12">
       <img src="{% get_static_prefix %}img/sharing-model.png" class="img img-responsive" title="" alt="" />
-    </div>
-  </div>
-
-  <div id="project-documents" role="tabpanel" class="tab-pane fade">
-    <h3>{% trans 'Documents' %}</h3>
-    <div class="col-sm-12">
-      {% project_docs project %}
     </div>
   </div>
 

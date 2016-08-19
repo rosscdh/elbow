@@ -21,7 +21,7 @@ def project_stats(project):
 
 
 @register.inclusion_tag('project/_docs.html', takes_context=True)
-def project_docs(context, project):
+def project_docs(context, project, header=True):
     is_logged_in = context.get('user').is_authenticated
     specified_docs = list(project.documents.filter(name__icontains='Exposé') | project.documents.filter(name__icontains='Finanzplan'))
     try:
@@ -35,6 +35,7 @@ def project_docs(context, project):
         finance_plan = {'uuid': None}
 
     return {
+        'header': header,
         'project_slug': project.slug,
         'expose_document': expose_document,
         'finance_plan': finance_plan,
