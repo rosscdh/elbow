@@ -20,31 +20,7 @@
 {% block content %}
 <div class="row">
   <div class="col-sm-5">
-
-    <div class="col-sm-12">
-      {% if project.percent > 0 %}
-      <div class="row progress">
-        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="{{ project.percent|unlocalize }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ project.percent|unlocalize }}%">
-          <b>{{ project.percent|unlocalize }}%</b>
-        </div>
-      </div>
-      {% else %}
-      <div class="row">
-        <div class="col-sm-12 alert alert-success" role="alert">{% trans "<b>NB</b> Be one of the first to invest in this opportunity" %}</div>
-      </div>
-      {% endif %}
-    </div>
-
-    <img src="{% get_media_prefix %}{{ project.image }}" class="img img-responsive" alt="" title="" />
-    <div class="clearfix" style="margin-top:15px;"></div>
     {% project_stats project %}
-<!--         {% if project.video %}
-      {% video project.video as project_video %}
-        <div class="embed-responsive">
-        {% video project_video "small" %}
-        </div>
-      {% endvideo %}
-    {% endif %} -->
   </div>
   <div class="col-sm-7">
 
