@@ -6,6 +6,7 @@ from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
 
 from import_export.admin import ExportMixin
 from import_export import resources
+from .formats import base_formats
 
 
 class UserResource(resources.ModelResource):
@@ -34,6 +35,7 @@ class UserResource(resources.ModelResource):
 class UserAdmin(ExportMixin, DjangoUserAdmin):
     resource_class = UserResource
     list_filter = ('userprofile__send_news_and_info', 'is_staff', 'is_superuser', 'is_active', 'groups')
+    formats = (base_formats.CSV,)
 
 
 admin.site.unregister(get_user_model())
