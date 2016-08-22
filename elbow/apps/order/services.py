@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 from django.core.files.base import ContentFile
+from django.utils.translation import ugettext_lazy as _
 
 from easy_pdf.rendering import render_to_pdf
 
@@ -34,7 +35,8 @@ class LoanAgreementCreatePDFService(object):
                        document_type=Document.DOCUMENT_TYPES.order,
                        user=self.user)
 
-        doc.document.save(_document_upload_path(doc, 'loan-agreement.pdf'), ContentFile(pdf_bytes))
+        doc.document.save(_document_upload_path(doc, _('loan-agreement.pdf')),
+                          ContentFile(pdf_bytes))
         doc.save()
 
         self.order.documents.add(doc)

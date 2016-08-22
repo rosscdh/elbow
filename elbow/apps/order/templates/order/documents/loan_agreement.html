@@ -17,6 +17,7 @@ eingetragen im Handelsregister des Amtsgerichts Mönchengladbach unter HRB 13171
 
 
 <div style="padding:10px;background-color:#fafafa;color:#000;font-weight:bolder;">
+{% if order.company_name %}{{ order.company_name }}<br/>{% endif %}
 {{ order.customer_name }}<br/>
 {{ order.address }}
 </div>

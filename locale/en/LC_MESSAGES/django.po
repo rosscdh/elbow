@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-29 14:55+0000\n"
+"POT-Creation-Date: 2016-08-22 09:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,16 +25,17 @@ msgid "Order Document"
 msgstr ""
 
 #: elbow/apps/document/apps.py:11
-#: elbow/apps/project/templates/project/_docs.html:12
+#: elbow/apps/project/templates/project/_docs.html:14
 msgid "Generic Loan Agreement"
 msgstr ""
 
 #: elbow/apps/document/apps.py:12 elbow/apps/project/models.py:77
+#: elbow/apps/public/services.py:69
 msgid "Loan Agreement"
 msgstr ""
 
 #: elbow/apps/document/apps.py:13 elbow/apps/project/models.py:71
-#: elbow/apps/project/templates/project/_docs.html:8
+#: elbow/apps/project/templates/project/_docs.html:18
 msgid "Term Sheet"
 msgstr ""
 
@@ -182,62 +183,62 @@ msgstr ""
 msgid "A minimum of {minimum} and a maximum of {maximum}, is required"
 msgstr ""
 
-#: elbow/apps/order/forms.py:150
+#: elbow/apps/order/forms.py:149
 msgid "Investment Amount"
 msgstr ""
 
-#: elbow/apps/order/forms.py:152
+#: elbow/apps/order/forms.py:151
 msgid "Interest Rate p.a"
 msgstr ""
 
-#: elbow/apps/order/forms.py:153
+#: elbow/apps/order/forms.py:152
 msgid "Interest Term"
 msgstr ""
 
-#: elbow/apps/order/forms.py:159
+#: elbow/apps/order/forms.py:158
 msgid "Investor Details"
 msgstr ""
 
-#: elbow/apps/order/forms.py:165
+#: elbow/apps/order/forms.py:164
 msgid "Company Details"
 msgstr ""
 
-#: elbow/apps/order/forms.py:168
+#: elbow/apps/order/forms.py:167
 msgid "Postal Address"
 msgstr ""
 
-#: elbow/apps/order/forms.py:175
+#: elbow/apps/order/forms.py:174
 msgid "Payment"
 msgstr ""
 
-#: elbow/apps/order/forms.py:182
+#: elbow/apps/order/forms.py:181
 #: elbow/apps/project/templates/project/project-detail.html:13
 msgid "Invest Now"
 msgstr ""
 
-#: elbow/apps/order/forms.py:193
+#: elbow/apps/order/forms.py:192
 msgid "You must confirm your self assessment of credit worthiness"
 msgstr ""
 
-#: elbow/apps/order/forms.py:202
+#: elbow/apps/order/forms.py:201
 #, python-brace-format
 msgid "The minimum investment amount is {minimum}"
 msgstr ""
 
-#: elbow/apps/order/forms.py:206
+#: elbow/apps/order/forms.py:205
 #, python-brace-format
 msgid "The maximum investment amount is {maximum}"
 msgstr ""
 
-#: elbow/apps/order/forms.py:213
+#: elbow/apps/order/forms.py:212
 msgid "You must agree to the terms of the loan agreement"
 msgstr ""
 
-#: elbow/apps/order/forms.py:267
+#: elbow/apps/order/forms.py:271
 msgid "I agree to the terms of the Loan Agreement"
 msgstr ""
 
-#: elbow/apps/order/forms.py:304
+#: elbow/apps/order/forms.py:310
 msgid "Continue & Make the payment"
 msgstr ""
 
@@ -249,6 +250,10 @@ msgstr ""
 msgid "Orders"
 msgstr ""
 
+#: elbow/apps/order/services.py:38
+msgid "loan-agreement.pdf"
+msgstr ""
+
 #: elbow/apps/order/templates/order/_user_orders_for_project.html:3
 msgid "Previous Orders"
 msgstr ""
@@ -257,7 +262,7 @@ msgstr ""
 msgid "Order Logs"
 msgstr ""
 
-#: elbow/apps/order/templates/order/admin/order-logs.html:38
+#: elbow/apps/order/templates/order/admin/order-logs.html:39
 #: elbow/apps/project/templates/project/admin/project-news.html:29
 msgid "No logs found"
 msgstr ""
@@ -280,7 +285,7 @@ msgid "Note:"
 msgstr ""
 
 #: elbow/apps/order/templates/order/admin/order_change_form.html:28
-#: elbow/apps/order/templates/order/order-list.html:42
+#: elbow/apps/order/templates/order/order-list.html:43
 msgid "Delete"
 msgstr ""
 
@@ -288,32 +293,66 @@ msgstr ""
 msgid "Project Orders"
 msgstr ""
 
-#: elbow/apps/order/templates/order/admin/order_change_form.html:64
+#: elbow/apps/order/templates/order/admin/order_change_form.html:65
 msgid "Created:"
 msgstr ""
 
-#: elbow/apps/order/templates/order/admin/order_change_form.html:65
+#: elbow/apps/order/templates/order/admin/order_change_form.html:66
 msgid "Updated:"
 msgstr ""
 
-#: elbow/apps/order/templates/order/admin/order_change_form.html:93
+#: elbow/apps/order/templates/order/admin/order_change_form.html:97
 msgid "Mark as Paid"
 msgstr ""
 
-#: elbow/apps/order/templates/order/admin/order_change_form.html:96
+#: elbow/apps/order/templates/order/admin/order_change_form.html:100
 msgid "Cancel Order"
 msgstr ""
 
-#: elbow/apps/order/templates/order/admin/order_change_form.html:99
+#: elbow/apps/order/templates/order/admin/order_change_form.html:103
 msgid "Reset Order"
 msgstr ""
 
-#: elbow/apps/order/templates/order/admin/order_change_form.html:101
+#: elbow/apps/order/templates/order/admin/order_change_form.html:105
 msgid "View Logs"
 msgstr ""
 
-#: elbow/apps/order/templates/order/admin/order_change_form.html:106
+#: elbow/apps/order/templates/order/admin/order_change_form.html:110
 msgid "No orders found"
+msgstr ""
+
+#: elbow/apps/order/templates/order/documents/loan_agreement.html:59
+#: elbow/apps/order/templates/order/order-payment.html:43
+msgid "Bank Name"
+msgstr ""
+
+#: elbow/apps/order/templates/order/documents/loan_agreement.html:60
+#: elbow/apps/order/templates/order/email/order_created_customer_prepay.html:11
+#: elbow/apps/order/templates/order/order-payment.html:45
+msgid "Account Owner"
+msgstr ""
+
+#: elbow/apps/order/templates/order/documents/loan_agreement.html:61
+#: elbow/apps/order/templates/order/email/order_created_customer_prepay.html:13
+#: elbow/apps/order/templates/order/order-payment.html:46
+msgid "IBAN"
+msgstr ""
+
+#: elbow/apps/order/templates/order/documents/loan_agreement.html:62
+#: elbow/apps/order/templates/order/email/order_created_customer_prepay.html:14
+#: elbow/apps/order/templates/order/order-payment.html:47
+msgid "BIC"
+msgstr ""
+
+#: elbow/apps/order/templates/order/documents/loan_agreement.html:63
+#: elbow/apps/order/templates/order/email/order_created_customer_debit.html:15
+#: elbow/apps/order/templates/order/email/order_created_customer_prepay.html:15
+#: elbow/apps/order/templates/order/order-payment.html:50
+msgid "Customer Reference"
+msgstr ""
+
+#: elbow/apps/order/templates/order/email/order_created_customer_prepay.html:12
+msgid "BANK"
 msgstr ""
 
 #: elbow/apps/order/templates/order/order-create.html:4
@@ -322,21 +361,9 @@ msgid "%(project)s - Invest Now"
 msgstr ""
 
 #: elbow/apps/order/templates/order/order-create.html:5
-#: elbow/apps/order/templates/order/order-create.html:10
+#: elbow/apps/order/templates/order/order-create.html:11
 #, python-format
 msgid "Invest in %(project)s"
-msgstr ""
-
-#: elbow/apps/order/templates/order/order-create.html:27
-#: elbow/apps/project/templates/project/_stats.html:30
-#: elbow/apps/project/templates/project/project-detail.html:41
-msgid "Backers"
-msgstr ""
-
-#: elbow/apps/order/templates/order/order-create.html:30
-#: elbow/apps/project/templates/project/_stats.html:34
-#: elbow/apps/project/templates/project/project-detail.html:44
-msgid "Revenue"
 msgstr ""
 
 #: elbow/apps/order/templates/order/order-create.html:80
@@ -352,19 +379,19 @@ msgstr ""
 msgid "Investment History"
 msgstr ""
 
-#: elbow/apps/order/templates/order/order-list.html:40
+#: elbow/apps/order/templates/order/order-list.html:41
 msgid "Continue"
 msgstr ""
 
-#: elbow/apps/order/templates/order/order-list.html:41
+#: elbow/apps/order/templates/order/order-list.html:42
 msgid "Cancel"
 msgstr ""
 
-#: elbow/apps/order/templates/order/order-list.html:48
+#: elbow/apps/order/templates/order/order-list.html:49
 msgid "No investments found"
 msgstr ""
 
-#: elbow/apps/order/templates/order/order-list.html:49
+#: elbow/apps/order/templates/order/order-list.html:50
 msgid "Invest now"
 msgstr ""
 
@@ -397,32 +424,12 @@ msgstr ""
 msgid "Please make payment out to"
 msgstr ""
 
-#: elbow/apps/order/templates/order/order-payment.html:43
-msgid "Bank Name"
-msgstr ""
-
 #: elbow/apps/order/templates/order/order-payment.html:44
 msgid "Bankcode"
 msgstr ""
 
-#: elbow/apps/order/templates/order/order-payment.html:45
-msgid "Account Owner"
-msgstr ""
-
-#: elbow/apps/order/templates/order/order-payment.html:46
-msgid "IBAN"
-msgstr ""
-
-#: elbow/apps/order/templates/order/order-payment.html:47
-msgid "BIC"
-msgstr ""
-
 #: elbow/apps/order/templates/order/order-payment.html:48
 msgid "Account No."
-msgstr ""
-
-#: elbow/apps/order/templates/order/order-payment.html:50
-msgid "Customer Reference"
 msgstr ""
 
 #: elbow/apps/order/templates/order/order-payment_success.html:4
@@ -451,16 +458,26 @@ msgstr ""
 msgid "Projects"
 msgstr ""
 
-#: elbow/apps/project/templates/project/_docs.html:5
-#: elbow/apps/project/templates/project/project-detail.html:88
-#: elbow/apps/project/templates/project/project-detail.html:118
+#: elbow/apps/project/templates/project/_docs.html:6
+#: elbow/apps/project/templates/project/project-detail.html:57
+#: elbow/apps/project/templates/project/project-detail.html:67
 msgid "Documents"
 msgstr ""
 
-#: elbow/apps/project/templates/project/_docs.html:9
-#: elbow/apps/project/templates/project/_docs.html:13
+#: elbow/apps/project/templates/project/_docs.html:10
+msgid "Exposé TodayHaus"
+msgstr ""
+
+#: elbow/apps/project/templates/project/_docs.html:11
+#: elbow/apps/project/templates/project/_docs.html:15
 #: elbow/apps/project/templates/project/_docs.html:19
+#: elbow/apps/project/templates/project/_docs.html:23
+#: elbow/apps/project/templates/project/_docs.html:30
 msgid ".PDF Download"
+msgstr ""
+
+#: elbow/apps/project/templates/project/_docs.html:22
+msgid "Finanzplan"
 msgstr ""
 
 #: elbow/apps/project/templates/project/_preview.html:8
@@ -472,51 +489,57 @@ msgid "Investment Goal:"
 msgstr ""
 
 #: elbow/apps/project/templates/project/_stats.html:22
-#: elbow/apps/project/templates/project/project-detail.html:33
-#: elbow/apps/project/templates/project/project-detail.html:81
+#: elbow/apps/project/templates/project/project-detail.html:52
 msgid "<b>NB</b> Be one of the first to invest in this opportunity"
 msgstr ""
 
-#: elbow/apps/project/templates/project/project-detail.html:60
+#: elbow/apps/project/templates/project/_stats.html:30
+msgid "Backers"
+msgstr ""
+
+#: elbow/apps/project/templates/project/_stats.html:34
+msgid "Revenue"
+msgstr ""
+
+#: elbow/apps/project/templates/project/project-detail.html:31
 msgid "Overview"
 msgstr ""
 
-#: elbow/apps/project/templates/project/project-detail.html:86
-msgid "Project description"
-msgstr ""
-
-#: elbow/apps/project/templates/project/project-detail.html:87
-msgid "Participation Model"
-msgstr ""
-
-#: elbow/apps/project/templates/project/project-detail.html:89
-#: elbow/apps/project/templates/project/project-detail.html:234
+#: elbow/apps/project/templates/project/project-detail.html:60
+#: elbow/apps/project/templates/project/project-detail.html:203
 msgid "Latest News"
 msgstr ""
 
-#: elbow/apps/project/templates/project/project-detail.html:90
-#: elbow/apps/project/templates/project/project-detail.html:130
-msgid "F.A.Q"
-msgstr ""
-
-#: elbow/apps/project/templates/project/project-detail.html:98
+#: elbow/apps/project/templates/project/project-detail.html:74
 msgid "Building Details"
 msgstr ""
 
-#: elbow/apps/project/templates/project/project-detail.html:104
+#: elbow/apps/project/templates/project/project-detail.html:80
 msgid "Map"
 msgstr ""
 
-#: elbow/apps/project/templates/project/project-detail.html:111
+#: elbow/apps/project/templates/project/project-detail.html:87
 msgid "How it works"
+msgstr ""
+
+#: elbow/apps/project/templates/project/project-detail.html:99
+msgid "F.A.Q"
 msgstr ""
 
 #: elbow/apps/project/templates/project/project-list.html:10
 msgid "Current Projects"
 msgstr ""
 
-#: elbow/apps/project/templates/project/project-list.html:11
+#: elbow/apps/project/templates/project/project-list.html:10
 msgid "A list of our current projects"
+msgstr ""
+
+#: elbow/apps/public/admin.py:20
+msgid "Yes"
+msgstr ""
+
+#: elbow/apps/public/admin.py:20
+msgid "No"
 msgstr ""
 
 #: elbow/apps/public/forms.py:21
@@ -539,31 +562,31 @@ msgstr ""
 msgid "Register Now"
 msgstr ""
 
-#: elbow/apps/public/services.py:27
+#: elbow/apps/public/services.py:29
 msgid "TodayCapital.de - New sign-up"
 msgstr ""
 
-#: elbow/apps/public/services.py:50
+#: elbow/apps/public/services.py:52
 msgid "TodayCapital.de - a new order has been created"
 msgstr ""
 
-#: elbow/apps/public/services.py:74
+#: elbow/apps/public/services.py:79
 msgid "TodayCapital.de - Your Investment Order has been created"
 msgstr ""
 
-#: elbow/apps/public/services.py:110
+#: elbow/apps/public/services.py:116
 msgid "TodayCapital.de - [admin] Investment Payment, Success"
 msgstr ""
 
-#: elbow/apps/public/services.py:127
+#: elbow/apps/public/services.py:133
 msgid "TodayCapital.de - Investment Payment, Success"
 msgstr ""
 
-#: elbow/apps/public/services.py:152
+#: elbow/apps/public/services.py:158
 msgid "TodayCapital.de - [admin] Investment Payment, Failure"
 msgstr ""
 
-#: elbow/settings/common_settings.py:307
+#: elbow/settings/common_settings.py:309
 msgid "German"
 msgstr ""
 
@@ -794,7 +817,7 @@ msgstr ""
 
 #: templates/account/password_change.html:5
 #: templates/account/password_change.html:9
-#: templates/account/password_change.html:19
+#: templates/account/password_change.html:22
 #: templates/account/password_reset_from_key.html:4
 #: templates/account/password_reset_from_key.html:7
 #: templates/account/password_reset_from_key_done.html:4
