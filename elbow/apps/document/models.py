@@ -16,8 +16,8 @@ import os
 
 def _document_upload_path(instance, filename):
     filename, file_extension = os.path.splitext(filename)
-    document_type = instance.document_type
-    return 'document/%s-%s%s' % (document_type, slugify(filename), file_extension)
+    print filename
+    return 'document/%s%s' % (slugify(filename), file_extension)
 
 
 class Document(models.Model):

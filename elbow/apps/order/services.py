@@ -31,7 +31,7 @@ class LoanAgreementCreatePDFService(object):
                                   context=kwargs,
                                   encoding=u'utf-8')
 
-        doc = Document(name='Loan Agreement - %s' % self.order.customer_name,
+        doc = Document(name='%s - %s' % (_('Loan Agreement'), self.order.customer_name),
                        document_type=Document.DOCUMENT_TYPES.order,
                        user=self.user)
 

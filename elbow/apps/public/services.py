@@ -65,7 +65,6 @@ class SendEmailService(object):
         msg.attach_alternative(html2text.html, "text/html")
 
         if document.document:
-            msg.attach_file(document.document.path)
             file_name = '%s.pdf' % slugify('%s-%s-%s' % (_('Loan Agreement'), self.order.project.name, self.order.tracking_number))
             msg.attach(filename=file_name, content=document.document.read(), mimetype='application/pdf')
 
@@ -103,7 +102,8 @@ class SendEmailService(object):
             msg.attach_alternative(html2text.html, "text/html")
 
             if document:
-                msg.attach_file(document.document.path)
+                file_name = '%s.pdf' % slugify('%s-%s-%s' % (_('Loan Agreement'), self.order.project.name, self.order.tracking_number))
+                msg.attach(filename=file_name, content=document.document.read(), mimetype='application/pdf')
 
             send_success.append(('customer', msg.send()))
 

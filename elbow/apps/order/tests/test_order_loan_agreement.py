@@ -130,7 +130,7 @@ class OrderLoanAgreementFormTest(TestCase):
         self.assertEqual(order.project, self.project)
 
         # django adds a unique string to the attachement
-        attachment_filename_pattern = re.compile('order-documentorder-loan-agreement_(.+?).pdf')
+        attachment_filename_pattern = re.compile('darlehensvertrag(.+?).pdf')
 
         # Should have email to managers AND email to customer
         self.assertEqual(2, len(mail.outbox))
@@ -142,16 +142,15 @@ class OrderLoanAgreementFormTest(TestCase):
         #
         # Test Attachments
         #
-        self.assertEqual(len(email.attachments), 4)
-        self.assertTrue(attachment_filename_pattern.match(email.attachments[0][0]))
+        self.assertEqual(len(email.attachments), 3)
+
         # Test all are pdfs
         for attachment in email.attachments:
             self.assertEqual(attachment[2], 'application/pdf')
 
-        self.assertTrue('order-documentorder-loan-agreement' in email.attachments[0][0])
-        self.assertTrue('darlehensvertrag-monchengladbach-30-ta-1234567.pdf' in email.attachments[1][0])
-        self.assertTrue('test-verbraucherinformationsblatt' in email.attachments[2][0])
-        self.assertTrue('test-finanzkennzahlen' in email.attachments[3][0])
+        self.assertTrue('darlehensvertrag-monchengladbach-30-ta-1234567.pdf' in email.attachments[0][0])
+        self.assertTrue('test-verbraucherinformationsblatt' in email.attachments[1][0])
+        self.assertTrue('test-finanzkennzahlen' in email.attachments[2][0])
 
         email = mail.outbox[1]
         self.assertEqual(unicode(email.subject), u'Ihr Investment auf TodayCapital')
