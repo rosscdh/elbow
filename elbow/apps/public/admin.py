@@ -6,7 +6,7 @@ from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
 
 from import_export.admin import ExportMixin
 from import_export import resources
-from .formats import base_formats
+from import_export.formats import base_formats
 
 
 class UserResource(resources.ModelResource):
