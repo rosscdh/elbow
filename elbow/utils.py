@@ -5,6 +5,7 @@ from django.core.files.storage import FileSystemStorage
 
 from inmemorystorage import InMemoryStorage
 
+from elbow.apps.order.apps import SECUPAY_BANK_DATA
 from elbow.context_processors import elbow_globals
 
 import html2text    # convert html to text
@@ -126,6 +127,7 @@ class HTML2TextEmailMessageService(object):
         self.plain_text = None
         self.template_name = template_name
         self.context = kwargs
+        self.context.update({'SECUPAY_BANK_DATA': SECUPAY_BANK_DATA})
         self.process(context=self.context)
 
     def process(self, context):
