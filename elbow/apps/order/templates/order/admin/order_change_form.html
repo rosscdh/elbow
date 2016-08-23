@@ -96,13 +96,13 @@
               {% if order.status == 'pending' and order.status != 'failed' %}
                 {% if order.payment_type == 'prepay' %}<a href="javascript:;" class="order-lifecycle-event" data-url="{% url 'admin:order_marked_as_paid' uuid=order.uuid %}">{% trans 'Mark as Paid' %}</a><br/>{% endif %}
               {% endif %}
-              {% if order.status != 'cancelled' and order.status != 'paid' %}
-              <a href="javascript:;" class="order-lifecycle-event" data-url="{% url 'admin:order_cancel' uuid=order.uuid %}">{% trans 'Cancel Order' %}</a><br/>
-              {% endif %}
+              <br/><a href="{% url 'admin:order_logs' uuid=order.uuid %}" target="_NEW" class="view-order-logs" data-url="{% url 'admin:order_logs' uuid=order.uuid %}">{% trans 'View Logs' %}</a><br/>
+              {% comment %}{% if order.status != 'cancelled' and order.status != 'paid' %}
+              <br/><a href="javascript:;" class="order-lifecycle-event" data-url="{% url 'admin:order_cancel' uuid=order.uuid %}">{% trans 'Cancel Order' %}</a><br/>
+              {% endif %}{% endcomment %}
               {% if order.status == 'cancelled' or order.status == 'processing' %}
-              <a href="javascript:;" class="order-lifecycle-event" data-url="{% url 'admin:order_reset' uuid=order.uuid %}">{% trans 'Reset Order' %}</a>
+              <br/><a href="javascript:;" class="order-lifecycle-event" data-url="{% url 'admin:order_reset' uuid=order.uuid %}">{% trans 'Reset Order' %}</a><br/>
               {% endif %}
-              <br/><a href="{% url 'admin:order_logs' uuid=order.uuid %}" target="_NEW" class="view-order-logs" data-url="{% url 'admin:order_logs' uuid=order.uuid %}">{% trans 'View Logs' %}</a>
             </td>
         </tr>
      {% empty %}

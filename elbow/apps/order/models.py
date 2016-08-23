@@ -19,6 +19,7 @@ from .managers import OrderManager
 from shortuuidfield import ShortUUIDField
 
 import re
+import time
 import logging
 logger = logging.getLogger('django.request')
 
@@ -207,9 +208,12 @@ class Order(models.Model):
             extra=resp
         )
 
-        self.transaction_id = resp.get('data', {}).get('hash')
+        self.data = resp.get('data', {})
 
-        self.tracking_number = resp.get('data', {}).get('purpose')
+        self.transaction_id = self.data.get('hash')
+
+        self.tracking_number = self.data.get('purpose')
+
         #
         # @NOTE Secupay limitation
         # Will happen in the case of direct debit, no purpose will be provided.
@@ -217,19 +221,43 @@ class Order(models.Model):
         #
         if self.tracking_number is None:
             #
-            # where hash is upptaaluefxm967881
-            # (Pdb) match.groups()
-            # (u'upptaaluefxm', u'967881')
+            # Get the Actual status
             #
-            match = re.search('^([a-zA-Z]+)(\d+)$', self.transaction_id)
-            self.tracking_number = 'TA %s' % match.group(2)
+            time.sleep(2)
+            status_resp = self.SECUPAY.payment().status(hash=self.transaction_id)
+            status_resp = status_resp.get('data', {})
+            self.tracking_number = 'TA %s' % status_resp.get('trans_id')
+
+            self.data['status_resp'] = status_resp
+
+            log(
+                user=user,
+                action="order.lifecycle.payment.missing_trans_id",
+                obj=self,
+                extra=status_resp
+            )
+
+            if not self.tracking_number:
+                #
+                # LAST FALBACK OPPORTUNITY
+                # where hash is upptaaluefxm967881
+                # (Pdb) match.groups()
+                # (u'upptaaluefxm', u'967881')
+                #
+                match = re.search('^([a-zA-Z]+)(\d+)$', self.transaction_id)
+                self.tracking_number = 'TA %s' % match.group(2)
+
+                log(
+                    user=user,
+                    action="order.lifecycle.payment.fallback_missing_trans_id",
+                    obj=self,
+                    extra=status_resp
+                )
 
         # Replace the TA- with TH- as requestd by client
         # we save the original TA-***** number in the order.data json
-        if self.tracking_number is not None:
-            self.tracking_number = self.tracking_number.replace('TA ', 'TC-')
+        self.tracking_number = self.tracking_number.replace('TA ', 'TC-')
 
-        self.data = resp.get('data', {})
         self.save(update_fields=['transaction_id', 'tracking_number', 'data'])
 
         return self, resp

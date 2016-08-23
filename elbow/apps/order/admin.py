@@ -10,9 +10,9 @@ from .models import Order
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('uuid', 'user', 'project', 'tracking_number', 'payment_type', 'status')
+    list_display = ('id', 'user', 'project', 'tracking_number', 'payment_type', 'updated_at', 'status')
     list_filter = ('project','payment_type', 'status')
-    search_fields = ('uuid', 'user__email', 'user__first_name', 'user__last_name', 'project__name', 'tracking_number', 'payment_type', 'status')
+    search_fields = ('id', 'uuid', 'user__email', 'user__first_name', 'user__last_name', 'project__name', 'tracking_number', 'payment_type', 'status')
 
     def get_urls(self):
         urls = super(OrderAdmin, self).get_urls()
