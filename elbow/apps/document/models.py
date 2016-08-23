@@ -16,7 +16,6 @@ import os
 
 def _document_upload_path(instance, filename):
     filename, file_extension = os.path.splitext(filename)
-    print filename
     return 'document/%s%s' % (slugify(filename), file_extension)
 
 

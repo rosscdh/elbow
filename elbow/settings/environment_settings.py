@@ -2,8 +2,8 @@ from . import PROJECT_ENVIRONMENT
 
 
 PIPELINE = {
-    'PIPELINE_ENABLED': True,#False if PROJECT_ENVIRONMENT in ['development'] else True,
-    #'PIPELINE_COLLECTOR_ENABLED': False if DJANGO_ENV in ['development'] else True,
+    'PIPELINE_ENABLED': True,
+    'PIPELINE_COLLECTOR_ENABLED': True,
     'CSS_COMPRESSOR': 'pipeline.compressors.cssmin.CSSMinCompressor',
     'JS_COMPRESSOR': 'pipeline.compressors.slimit.SlimItCompressor',
     'CSSMIN_BINARY': 'cssmin',
@@ -17,6 +17,12 @@ PIPELINE = {
             ),
             'output_filename': 'dist/base.css',
             'variant': 'datauri',
+        },
+        'email_css': {
+            'source_filenames': (
+                'email/email.css',
+            ),
+            'output_filename': 'email/email.css',
         },
     },
     'JAVASCRIPT': {
