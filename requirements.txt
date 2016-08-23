@@ -29,7 +29,7 @@ cssselect==0.9.1
 cssutils==1.0.1
 decorator==4.0.9
 diff-match-patch==20121119
--e git+https://github.com/rosscdh/django-allauth@5b02b6d27135f73ea20d4d3a110ffc869cd165c0#egg=django_allauth-origin/feature/subject-in-context
+-e git+https://github.com/rosscdh/django-allauth@5b02b6d27135f73ea20d4d3a110ffc869cd165c0#egg=django_allauth-origin
 django-annoying==0.9.0
 django-appconf==1.0.1
 django-autoslug==1.9.3
@@ -65,7 +65,7 @@ django-rulez==1.0.2
 django-shortuuidfield==0.1.3
 django-storages-redux==1.3.2
 django-taggit==0.18.0
--e git+https://github.com/rosscdh/django-templated-email.git@fd2eabd4afa0da520d5e8ffb3dc07a397a2cfbd3#egg=django_templated_email-origin/attachments
+-e git+https://github.com/rosscdh/django-templated-email.git@fd2eabd4afa0da520d5e8ffb3dc07a397a2cfbd3#egg=django_templated_email-origin
 djangorestframework==3.3.3
 djangorestframework-hstore==1.3
 djangorestframework-jwt==1.7.2
@@ -100,7 +100,7 @@ ndg-httpsclient==0.3.0
 oauthlib==1.0.3
 paramiko==1.16.0
 pbr==1.8.1
--e git+https://github.com/rosscdh/pinax-eventlog.git@d1018d626db926dee6593bc7f51dd653659367b1#egg=pinax_eventlog-origin/feature/dateoverride
+-e git+https://github.com/rosscdh/pinax-eventlog.git@d1018d626db926dee6593bc7f51dd653659367b1#egg=pinax_eventlog-origin
 ply==3.8
 psycopg2==2.6.1
 pusher==1.2.3
