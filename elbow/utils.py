@@ -5,7 +5,6 @@ from django.core.files.storage import FileSystemStorage
 
 from inmemorystorage import InMemoryStorage
 
-from elbow.apps.order.apps import SECUPAY_BANK_DATA
 from elbow.context_processors import elbow_globals
 
 import html2text    # convert html to text
@@ -123,6 +122,7 @@ def CustomManagedStorage():
 
 class HTML2TextEmailMessageService(object):
     def __init__(self, template_name, **kwargs):
+        from elbow.apps.order.apps import SECUPAY_BANK_DATA
         self.html = None
         self.plain_text = None
         self.template_name = template_name

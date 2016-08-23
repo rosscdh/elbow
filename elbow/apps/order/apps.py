@@ -28,7 +28,7 @@ SECUPAY_BANK_DATA = {
     "bankname": u"Commerzbank CC",
     "iban": "DE24 8504 0061 1005 5999 60",
     "bic": "COBADEFFXXX",
-    "accountnumber": "1747013"
+    "accountnumber": "1747013",
 }
 
 
