@@ -217,16 +217,16 @@ class CreateOrderForm(forms.Form):
         """
         Artificial save here as forms.Form dont have a save method
         """
-        disclosure = self.cleaned_data.pop('disclosure')
-        t_and_c = self.cleaned_data.pop('t_and_c')
-        has_read_investment_contract = self.cleaned_data.pop('has_read_investment_contract')
-        has_read_loan_agreement_contract = self.cleaned_data.pop('has_read_loan_agreement_contract')
+        disclosure = self.cleaned_data.pop('disclosure', None)
+        t_and_c = self.cleaned_data.pop('t_and_c', None)
+        has_read_investment_contract = self.cleaned_data.pop('has_read_investment_contract', None)
+        has_read_loan_agreement_contract = self.cleaned_data.pop('has_read_loan_agreement_contract', None)
 
         amount = self.cleaned_data['amount']
         self.cleaned_data['amount'] = Money(Decimal(amount), EUR)
 
-        self.cleaned_data['customer_name'] = '%s %s' % (self.cleaned_data.pop('customer_first_name'),
-                                                        self.cleaned_data.pop('customer_last_name'))
+        self.cleaned_data['customer_name'] = '%s %s' % (self.cleaned_data.pop('customer_first_name', None),
+                                                        self.cleaned_data.pop('customer_last_name', None))
 
         self.cleaned_data['user'] = self.user
         self.cleaned_data['project'] = self.project

@@ -18,6 +18,7 @@ from .managers import OrderManager
 
 from shortuuidfield import ShortUUIDField
 
+import re
 import logging
 logger = logging.getLogger('django.request')
 
@@ -209,6 +210,19 @@ class Order(models.Model):
         self.transaction_id = resp.get('data', {}).get('hash')
 
         self.tracking_number = resp.get('data', {}).get('purpose')
+        #
+        # @NOTE Secupay limitation
+        # Will happen in the case of direct debit, no purpose will be provided.
+        # thus we need to use their hash as a relatively simple code as requested by TC
+        #
+        if self.tracking_number is None:
+            #
+            # where hash is upptaaluefxm967881
+            # (Pdb) match.groups()
+            # (u'upptaaluefxm', u'967881')
+            #
+            match = re.search('^([a-zA-Z]+)(\d+)$', self.transaction_id)
+            self.tracking_number = 'TA %s' % match.group(2)
 
         # Replace the TA- with TH- as requestd by client
         # we save the original TA-***** number in the order.data json

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-23 11:53+0000\n"
+"POT-Creation-Date: 2016-08-23 13:49+0000\n"
 "PO-Revision-Date: 2016-06-14 13:03+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -458,6 +458,7 @@ msgid "Account No."
 msgstr "Kontonummer"
 
 #: elbow/apps/order/templates/order/order-payment_failed.html:4
+#, python-format
 msgid " %(name)s - Payment Failed"
 msgstr "%(name)s - Zahlung fehlgeschlagen"
 
@@ -488,6 +489,11 @@ msgid ""
 "    <p>Please check your email for other important information.</p>\n"
 "    "
 msgstr ""
+"\n"
+"    <p>Vielen Dank für Ihre Investition in %(project_name)s.</p>\n"
+"    <p>Bitte überprüfen Sie Ihre E-Mail für andere wichtige Informationen.</"
+"p>\n"
+"    "
 
 # ?
 #: elbow/apps/project/models.py:58
