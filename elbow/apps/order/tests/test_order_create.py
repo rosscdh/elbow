@@ -60,6 +60,11 @@ class OrderCreateViewTest(BaseTestCase):
                                body=json.dumps(expected_response),
                                content_type="application/json")
 
+        expected_response = {u'status': u'ok', u'errors': None, u'data': {u'status': u'proceed', u'hash': u'xfquhyrguiub967897', u'created': u'2016-08-23 14:42:10', u'demo': 1, u'amount': 150000, u'trans_id': u'6088759'}}
+        httpretty.register_uri(httpretty.POST, "https://api-dist.secupay-ag.de/payment/status",
+                               body=json.dumps(expected_response),
+                               content_type="application/json")
+
         # This is to ensure we redirect to the loan_agreement page
         self.assertEqual(self.initial.get('amount'), 2500)
 
@@ -90,6 +95,11 @@ class OrderCreateViewTest(BaseTestCase):
             "errors": None
         }
         httpretty.register_uri(httpretty.POST, "https://api-dist.secupay-ag.de/payment/init",
+                               body=json.dumps(expected_response),
+                               content_type="application/json")
+
+        expected_response = {u'status': u'ok', u'errors': None, u'data': {u'status': u'proceed', u'hash': u'xfquhyrguiub967897', u'created': u'2016-08-23 14:42:10', u'demo': 1, u'amount': 150000, u'trans_id': u'6088759'}}
+        httpretty.register_uri(httpretty.POST, "https://api-dist.secupay-ag.de/payment/status",
                                body=json.dumps(expected_response),
                                content_type="application/json")
 
@@ -141,6 +151,11 @@ class OrderFormTest(TestCase):
                                body=json.dumps(expected_response),
                                content_type="application/json")
 
+        expected_response = {u'status': u'ok', u'errors': None, u'data': {u'status': u'proceed', u'hash': u'xfquhyrguiub967897', u'created': u'2016-08-23 14:42:10', u'demo': 1, u'amount': 150000, u'trans_id': u'6088759'}}
+        httpretty.register_uri(httpretty.POST, "https://api-dist.secupay-ag.de/payment/status",
+                               body=json.dumps(expected_response),
+                               content_type="application/json")
+
         with self.settings(DEBUG=True):
 
             # Test with data
@@ -186,6 +201,11 @@ class OrderFormTest(TestCase):
             "errors": None
         }
         httpretty.register_uri(httpretty.POST, "https://api-dist.secupay-ag.de/payment/init",
+                               body=json.dumps(expected_response),
+                               content_type="application/json")
+
+        expected_response = {u'status': u'ok', u'errors': None, u'data': {u'status': u'proceed', u'hash': u'xfquhyrguiub967897', u'created': u'2016-08-23 14:42:10', u'demo': 1, u'amount': 150000, u'trans_id': u'6088759'}}
+        httpretty.register_uri(httpretty.POST, "https://api-dist.secupay-ag.de/payment/status",
                                body=json.dumps(expected_response),
                                content_type="application/json")
 

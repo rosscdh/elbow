@@ -78,6 +78,11 @@ class OrderModelTest(BaseTestCase):
                                body=json.dumps(expected_response),
                                content_type="application/json")
 
+        expected_response = {u'status': u'ok', u'errors': None, u'data': {u'status': u'proceed', u'hash': u'xfquhyrguiub967897', u'created': u'2016-08-23 14:42:10', u'demo': 1, u'amount': 150000, u'trans_id': u'6088759'}}
+        httpretty.register_uri(httpretty.POST, "https://api-dist.secupay-ag.de/payment/status",
+                               body=json.dumps(expected_response),
+                               content_type="application/json")
+
         with self.settings(DEBUG=True):
             resp = self.order.make_payment(user=self.order.user)
 
@@ -87,7 +92,7 @@ class OrderModelTest(BaseTestCase):
         self.assertTrue(type(resp[1]) is dict)
 
         self.assertEqual(self.order.transaction_id, 'tujevzgobryk3303')
-        self.assertEqual(self.order.data, {u'iframe_url': u'https://api.secupay.ag/payment/tujevzgobryk3303', u'hash': u'tujevzgobryk3303'})
+        self.assertEqual(self.order.data, {u'iframe_url': u'https://api.secupay.ag/payment/tujevzgobryk3303', u'status_resp': {u'status': u'proceed', u'hash': u'xfquhyrguiub967897', u'created': u'2016-08-23 14:42:10', u'demo': 1, u'amount': 150000, u'trans_id': u'6088759'}, u'hash': u'tujevzgobryk3303'})
 
     @httpretty.activate
     def test_capture_authorized_payment(self):
@@ -134,6 +139,13 @@ class OrderModelTest(BaseTestCase):
         httpretty.register_uri(httpretty.POST, "https://api-dist.secupay-ag.de/payment/init",
                                body=json.dumps(expected_response),
                                content_type="application/json")
+
+        expected_response = {u'status': u'ok', u'errors': None, u'data': {u'status': u'proceed', u'hash': u'xfquhyrguiub967897', u'created': u'2016-08-23 14:42:10', u'demo': 1, u'amount': 150000, u'trans_id': u'6088759'}}
+        httpretty.register_uri(httpretty.POST, "https://api-dist.secupay-ag.de/payment/status",
+                               body=json.dumps(expected_response),
+                               content_type="application/json")
+
+
         self.order.payment_type = self.order.ORDER_PAYMENT_TYPE.prepay
         self.order.save(update_fields=['payment_type'])
 
