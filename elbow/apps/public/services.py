@@ -5,6 +5,7 @@ from django.core.mail import send_mail, EmailMultiAlternatives
 
 from elbow.utils import HTML2TextEmailMessageService
 
+import os
 import logging
 logger = logging.getLogger('django.request')
 
@@ -46,22 +47,25 @@ class SendEmailService(object):
 
         def _attach_project_documents(document, document_qs, msg):
             """
-            Priavte method used in this method to attach the set of documents
+            Private method used in this method to attach the set of documents
+            Please note document is the bytestream of the document which is sent in each time
             """
             if not document:
                 raise Exception('No Loan Agreement is available for this User and this Order')
 
             file_name = '%s.pdf' % slugify('%s-%s-%s' % (_('Loan Agreement'), self.order.project.name, self.order.tracking_number))
-            msg.attach(filename=file_name, content=document.document.read(), mimetype='application/pdf')
+            msg.attach(filename=file_name, content=document, mimetype='application/pdf')
 
             for doc in document_qs:
                 if doc.document:
-                    msg.attach_file(doc.document.path)
+                    file_name = os.path.basename(doc.document.path)
+                    msg.attach(filename=file_name, content=doc.document.read(), mimetype='application/pdf')
 
         send_success = []
         document = self.order.documents.filter(document_type='order',
                                                user=self.order.user)  \
                                        .order_by('-id').first()
+        document = document.document.read()  # Required so that we dont have to call .seek()
 
         subject = _('TodayCapital.de - a new order has been created')
         html2text = HTML2TextEmailMessageService(template_name='order/email/order_created.html',
