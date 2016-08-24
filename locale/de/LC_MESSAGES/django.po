@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-23 13:49+0000\n"
+"POT-Creation-Date: 2016-08-24 10:11+0000\n"
 "PO-Revision-Date: 2016-06-14 13:03+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -32,8 +32,7 @@ msgid "Generic Loan Agreement"
 msgstr "Muster-Darlehensvertrag"
 
 #: elbow/apps/document/apps.py:12 elbow/apps/order/services.py:34
-#: elbow/apps/project/models.py:77 elbow/apps/public/services.py:66
-#: elbow/apps/public/services.py:102
+#: elbow/apps/project/models.py:77 elbow/apps/public/services.py:56
 msgid "Loan Agreement"
 msgstr "Darlehensvertrag"
 
@@ -253,19 +252,19 @@ msgstr ""
 msgid "You must agree to the terms of the loan agreement"
 msgstr "Sie müssen den Bedingungen der Darlehensvertrag zustimmen."
 
-#: elbow/apps/order/forms.py:271
+#: elbow/apps/order/forms.py:262
 msgid "I agree to the terms of the Loan Agreement"
 msgstr "Ich stimme dem Darlehensvertrag zu."
 
-#: elbow/apps/order/forms.py:310
+#: elbow/apps/order/forms.py:301
 msgid "Continue & Make the payment"
 msgstr "Jetzt zahlungspflichtig investieren"
 
-#: elbow/apps/order/models.py:78
+#: elbow/apps/order/models.py:80
 msgid "Order"
 msgstr "Investment"
 
-#: elbow/apps/order/models.py:79
+#: elbow/apps/order/models.py:81
 msgid "Orders"
 msgstr "Investments"
 
@@ -326,19 +325,15 @@ msgstr "Aktualisierung:"
 msgid "Mark as Paid"
 msgstr "Als bezahlt markieren"
 
-#: elbow/apps/order/templates/order/admin/order_change_form.html:100
-msgid "Cancel Order"
-msgstr "Auftrag stornieren"
-
-#: elbow/apps/order/templates/order/admin/order_change_form.html:103
-msgid "Reset Order"
-msgstr "Auftrag zurücksetzen"
-
-#: elbow/apps/order/templates/order/admin/order_change_form.html:105
+#: elbow/apps/order/templates/order/admin/order_change_form.html:99
 msgid "View Logs"
 msgstr "Aufträge ansehen"
 
-#: elbow/apps/order/templates/order/admin/order_change_form.html:110
+#: elbow/apps/order/templates/order/admin/order_change_form.html:105
+msgid "Reset Order"
+msgstr "Auftrag zurücksetzen"
+
+#: elbow/apps/order/templates/order/admin/order_change_form.html:111
 msgid "No orders found"
 msgstr "Keine Aufträge gefunden"
 
@@ -387,11 +382,11 @@ msgstr "%(project)s - jetzt Investieren"
 msgid "Invest in %(project)s"
 msgstr "In %(project)s investieren"
 
-#: elbow/apps/order/templates/order/order-create.html:80
+#: elbow/apps/order/templates/order/order-create.html:83
 msgid "Months"
 msgstr "Monate"
 
-#: elbow/apps/order/templates/order/order-create.html:81
+#: elbow/apps/order/templates/order/order-create.html:84
 msgid "Years"
 msgstr "Jahre"
 
@@ -620,27 +615,27 @@ msgstr "&nbsp;"
 msgid "Register Now"
 msgstr "Jetzt registrieren"
 
-#: elbow/apps/public/services.py:28
+#: elbow/apps/public/services.py:29
 msgid "TodayCapital.de - New sign-up"
 msgstr "Registrieren"
 
-#: elbow/apps/public/services.py:51
+#: elbow/apps/public/services.py:70
 msgid "TodayCapital.de - a new order has been created"
 msgstr "Neue Investition auf TodayCapital"
 
-#: elbow/apps/public/services.py:76
+#: elbow/apps/public/services.py:91
 msgid "TodayCapital.de - Your Investment Order has been created"
 msgstr "Ihr Investment auf TodayCapital"
 
-#: elbow/apps/public/services.py:113
+#: elbow/apps/public/services.py:128
 msgid "TodayCapital.de - [admin] Investment Payment, Success"
 msgstr "Zahlung ist eingegangen"
 
-#: elbow/apps/public/services.py:130
+#: elbow/apps/public/services.py:145
 msgid "TodayCapital.de - Investment Payment, Success"
 msgstr "Ihre Zahlung ist eingegangen"
 
-#: elbow/apps/public/services.py:155
+#: elbow/apps/public/services.py:170
 msgid "TodayCapital.de - [admin] Investment Payment, Failure"
 msgstr "Keine Zahlung erhalten"
 
@@ -1102,6 +1097,9 @@ msgstr "Mein Benutzerkonto löschen"
 #: templates/navigation.html:49
 msgid "Logout"
 msgstr "Abmelden"
+
+#~ msgid "Cancel Order"
+#~ msgstr "Auftrag stornieren"
 
 #~ msgid "Project description"
 #~ msgstr "Projektbeschreibung"

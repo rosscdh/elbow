@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-23 13:49+0000\n"
+"POT-Creation-Date: 2016-08-24 10:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,8 +30,7 @@ msgid "Generic Loan Agreement"
 msgstr ""
 
 #: elbow/apps/document/apps.py:12 elbow/apps/order/services.py:34
-#: elbow/apps/project/models.py:77 elbow/apps/public/services.py:66
-#: elbow/apps/public/services.py:102
+#: elbow/apps/project/models.py:77 elbow/apps/public/services.py:56
 msgid "Loan Agreement"
 msgstr ""
 
@@ -235,19 +234,19 @@ msgstr ""
 msgid "You must agree to the terms of the loan agreement"
 msgstr ""
 
-#: elbow/apps/order/forms.py:271
+#: elbow/apps/order/forms.py:262
 msgid "I agree to the terms of the Loan Agreement"
 msgstr ""
 
-#: elbow/apps/order/forms.py:310
+#: elbow/apps/order/forms.py:301
 msgid "Continue & Make the payment"
 msgstr ""
 
-#: elbow/apps/order/models.py:78
+#: elbow/apps/order/models.py:80
 msgid "Order"
 msgstr ""
 
-#: elbow/apps/order/models.py:79
+#: elbow/apps/order/models.py:81
 msgid "Orders"
 msgstr ""
 
@@ -306,19 +305,15 @@ msgstr ""
 msgid "Mark as Paid"
 msgstr ""
 
-#: elbow/apps/order/templates/order/admin/order_change_form.html:100
-msgid "Cancel Order"
-msgstr ""
-
-#: elbow/apps/order/templates/order/admin/order_change_form.html:103
-msgid "Reset Order"
-msgstr ""
-
-#: elbow/apps/order/templates/order/admin/order_change_form.html:105
+#: elbow/apps/order/templates/order/admin/order_change_form.html:99
 msgid "View Logs"
 msgstr ""
 
-#: elbow/apps/order/templates/order/admin/order_change_form.html:110
+#: elbow/apps/order/templates/order/admin/order_change_form.html:105
+msgid "Reset Order"
+msgstr ""
+
+#: elbow/apps/order/templates/order/admin/order_change_form.html:111
 msgid "No orders found"
 msgstr ""
 
@@ -367,11 +362,11 @@ msgstr ""
 msgid "Invest in %(project)s"
 msgstr ""
 
-#: elbow/apps/order/templates/order/order-create.html:80
+#: elbow/apps/order/templates/order/order-create.html:83
 msgid "Months"
 msgstr ""
 
-#: elbow/apps/order/templates/order/order-create.html:81
+#: elbow/apps/order/templates/order/order-create.html:84
 msgid "Years"
 msgstr ""
 
@@ -582,27 +577,27 @@ msgstr ""
 msgid "Register Now"
 msgstr ""
 
-#: elbow/apps/public/services.py:28
+#: elbow/apps/public/services.py:29
 msgid "TodayCapital.de - New sign-up"
 msgstr ""
 
-#: elbow/apps/public/services.py:51
+#: elbow/apps/public/services.py:70
 msgid "TodayCapital.de - a new order has been created"
 msgstr ""
 
-#: elbow/apps/public/services.py:76
+#: elbow/apps/public/services.py:91
 msgid "TodayCapital.de - Your Investment Order has been created"
 msgstr ""
 
-#: elbow/apps/public/services.py:113
+#: elbow/apps/public/services.py:128
 msgid "TodayCapital.de - [admin] Investment Payment, Success"
 msgstr ""
 
-#: elbow/apps/public/services.py:130
+#: elbow/apps/public/services.py:145
 msgid "TodayCapital.de - Investment Payment, Success"
 msgstr ""
 
-#: elbow/apps/public/services.py:155
+#: elbow/apps/public/services.py:170
 msgid "TodayCapital.de - [admin] Investment Payment, Failure"
 msgstr ""
 
