@@ -238,16 +238,6 @@ class CreateOrderForm(forms.Form):
         #
         order, payment_api_response = order.make_payment(user=self.user)
 
-        # #
-        # # Create PDF and associate with Order
-        # #
-        # pdf_service = LoanAgreementCreatePDFService(order=order,
-        #                                             user=self.user)
-        # order = pdf_service.process()
-
-        # email_service = SendEmailService(order=order)
-        # email_service.send_order_created_email(user_list=[self.user])
-
         log(
             user=self.user,
             action="order.lifecycle.created",
