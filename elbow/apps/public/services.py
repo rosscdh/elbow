@@ -50,9 +50,6 @@ class SendEmailService(object):
             Private method used in this method to attach the set of documents
             Please note document is the bytestream of the document which is sent in each time
             """
-            if not document:
-                raise Exception('No Loan Agreement is available for this User and this Order')
-
             file_name = '%s.pdf' % slugify('%s-%s-%s' % (_('Loan Agreement'), self.order.project.name, self.order.tracking_number))
             msg.attach(filename=file_name, content=document, mimetype='application/pdf')
 
@@ -65,6 +62,8 @@ class SendEmailService(object):
         document = self.order.documents.filter(document_type='order',
                                                user=self.order.user)  \
                                        .order_by('-id').first()
+        if not document:
+            raise Exception('No Loan Agreement is available for this User and this Order')
         document = document.document.read()  # Required so that we dont have to call .seek()
 
         subject = _('TodayCapital.de - a new order has been created')
