@@ -637,6 +637,7 @@ def db_backup(db='default'):
 
     run('PGPASSWORD={password} pg_dump -U {user_name} {source_db} -f ~/{dump_filename}.sql'.format(user_name=user_name, source_db=source_db, dump_filename=dump_filename, password=password))
     get('~/{dump_filename}.sql'.format(dump_filename=dump_filename), './')
+    run('rm ~/{dump_filename}.sql'.format(dump_filename=dump_filename), './')
 #-------
 
 @task
