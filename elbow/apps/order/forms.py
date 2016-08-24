@@ -73,7 +73,7 @@ class CreateOrderForm(forms.Form):
                               required=True)
 
     payment_type = forms.ChoiceField(label=_('How to pay'),
-                                     initial=ORDER_PAYMENT_TYPE.prepay,
+                                     initial=ORDER_PAYMENT_TYPE.debit,
                                      choices=ORDER_PAYMENT_TYPE.get_choices(),
                                      help_text=_('Please select a payment type'),
                                      widget=forms.RadioSelect)

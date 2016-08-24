@@ -149,7 +149,11 @@ class Order(models.Model):
         return '%s%s' % (self.BASE_URL, reverse('order:payment_success', kwargs={'project_slug': self.project.slug, 'uuid': self.uuid}))
 
     @property
-    def url_failure(self):
+    def cancel_order_url(self):
+        """
+        URL is used for the "back to basket" functionlity at secupay
+        NEVER sent via webhooks or 301 so this is effectively back_to_shop or cancel_order_url
+        """
         activate(settings.LANGUAGE_CODE)
         return '%s%s' % (self.BASE_URL, reverse('order:payment_failure', kwargs={'project_slug': self.project.slug, 'uuid': self.uuid}))
 
@@ -197,7 +201,7 @@ class Order(models.Model):
         resp = self.SECUPAY.payment().make_payment(amount=amount,
                                                    payment_type=self.payment_type,
                                                    url_success=self.url_success,
-                                                   url_failure=self.url_failure,
+                                                   url_failure=self.cancel_order_url,
                                                    url_push=self.url_webhook,
                                                    **secupay_required_values)
 
