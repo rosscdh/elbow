@@ -155,7 +155,7 @@ class Order(models.Model):
         NEVER sent via webhooks or 301 so this is effectively back_to_shop or cancel_order_url
         """
         activate(settings.LANGUAGE_CODE)
-        return '%s%s' % (self.BASE_URL, reverse('order:payment_failure', kwargs={'project_slug': self.project.slug, 'uuid': self.uuid}))
+        return '%s%s' % (self.BASE_URL, reverse('project:detail', kwargs={'slug': self.project.slug}))
 
     @property
     def url_webhook(self):
