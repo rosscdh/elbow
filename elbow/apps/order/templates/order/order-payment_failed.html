@@ -1,13 +1,13 @@
 {% extends 'order/base.html' %}{% load i18n static crispy_forms_tags djmoney embed_video_tags %}
 {% load crispy_forms_filters %}
 
-{% block page_title %}{% blocktrans with name=project.name %} {{ name }} - Payment Failed{% endblocktrans %}{% endblock %}
-{% block page_description %}{% blocktrans with name=project.name %}Payment failed for your investment {{ name }}{% endblocktrans %}{% endblock %}
+{% block page_title %}{% blocktrans with name=order.project.name %} {{ name }} - Payment Failed{% endblocktrans %}{% endblock %}
+{% block page_description %}{% blocktrans with name=order.project.name %}Payment failed for your investment {{ name }}{% endblocktrans %}{% endblock %}
 
 
 {% block page_header %}
 <div class="page-header clearfix">
-  <h1>{% blocktrans with name=project.name %}Payment failed for {{ name }}{% endblocktrans %}</h1>
+  <h1>{% blocktrans with name=order.project.name %}Payment failed for {{ name }}{% endblocktrans %}</h1>
 </div>
 {% endblock %}
 
@@ -16,7 +16,8 @@
 <div class="row">
 
   <div class="well well-lg">
-    <h3>{% trans 'Could not process payment, please try again.' %}</h3>
+    <p>{% trans 'Could not process payment, please try again.' %}</p>
+    <p><a href="{% url 'order:create' project_slug=order.project.slug %}">{% trans 'Click here' %}</a></p>
   </div>
 
 </div>

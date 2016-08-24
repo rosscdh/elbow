@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-24 10:11+0000\n"
+"POT-Creation-Date: 2016-08-24 11:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,7 +30,7 @@ msgid "Generic Loan Agreement"
 msgstr ""
 
 #: elbow/apps/document/apps.py:12 elbow/apps/order/services.py:34
-#: elbow/apps/project/models.py:77 elbow/apps/public/services.py:56
+#: elbow/apps/project/models.py:77 elbow/apps/public/services.py:53
 msgid "Loan Agreement"
 msgstr ""
 
@@ -234,11 +234,11 @@ msgstr ""
 msgid "You must agree to the terms of the loan agreement"
 msgstr ""
 
-#: elbow/apps/order/forms.py:262
+#: elbow/apps/order/forms.py:270
 msgid "I agree to the terms of the Loan Agreement"
 msgstr ""
 
-#: elbow/apps/order/forms.py:301
+#: elbow/apps/order/forms.py:309
 msgid "Continue & Make the payment"
 msgstr ""
 
@@ -447,6 +447,10 @@ msgstr ""
 msgid "Could not process payment, please try again."
 msgstr ""
 
+#: elbow/apps/order/templates/order/order-payment_failed.html:20
+msgid "Click here"
+msgstr ""
+
 #: elbow/apps/order/templates/order/order-payment_success.html:4
 #: elbow/apps/order/templates/order/order-payment_success.html:10
 msgid "Payment was successful"
@@ -581,23 +585,23 @@ msgstr ""
 msgid "TodayCapital.de - New sign-up"
 msgstr ""
 
-#: elbow/apps/public/services.py:70
+#: elbow/apps/public/services.py:69
 msgid "TodayCapital.de - a new order has been created"
 msgstr ""
 
-#: elbow/apps/public/services.py:91
+#: elbow/apps/public/services.py:90
 msgid "TodayCapital.de - Your Investment Order has been created"
 msgstr ""
 
-#: elbow/apps/public/services.py:128
+#: elbow/apps/public/services.py:127
 msgid "TodayCapital.de - [admin] Investment Payment, Success"
 msgstr ""
 
-#: elbow/apps/public/services.py:145
+#: elbow/apps/public/services.py:144
 msgid "TodayCapital.de - Investment Payment, Success"
 msgstr ""
 
-#: elbow/apps/public/services.py:170
+#: elbow/apps/public/services.py:169
 msgid "TodayCapital.de - [admin] Investment Payment, Failure"
 msgstr ""
 

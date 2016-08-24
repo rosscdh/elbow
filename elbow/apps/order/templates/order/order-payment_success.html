@@ -1,8 +1,8 @@
-{% extends 'order/base.html' %}{% load i18n static crispy_forms_tags djmoney embed_video_tags %}
+{% extends 'order/base.html' %}{% load i18n  %}
 {% load crispy_forms_filters %}
 
-{% block page_title %}{{ project.name }} - {% trans 'Payment was successful' %}{% endblock %}
-{% block page_description %}Payment succeeded for your investment in {{ project.name }}{% endblock %}
+{% block page_title %}{{ order.project.name }} - {% trans 'Payment was successful' %}{% endblock %}
+{% block page_description %}Payment succeeded for your investment in {{ order.project.name }}{% endblock %}
 
 
 {% block page_header %}
@@ -16,7 +16,7 @@
 <div class="row">
 
   <div class="well well-lg">
-    {% blocktrans with project_name=project.name %}
+    {% blocktrans with project_name=order.project.name %}
     <p>Thank you for your investment in {{ project_name }}.</p>
     <p>Please check your email for other important information.</p>
     {% endblocktrans %}
