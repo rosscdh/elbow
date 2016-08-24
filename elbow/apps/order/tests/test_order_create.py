@@ -173,22 +173,11 @@ class OrderFormTest(TestCase):
         self.assertEqual(order.user, self.user)
         self.assertEqual(order.project, self.project)
 
-        # Should create a document for the user if a large sum
-        self.assertEqual(order.documents.all().count(), 1)
+        # Should be no documents attached YET
+        self.assertEqual(order.documents.all().count(), 0)
 
-        # Should have email to managers AND email to customer
-        self.assertEqual(2, len(mail.outbox))
-        email = mail.outbox[0]
-
-        # Admin
-        self.assertEqual(unicode(email.subject), u'Neue Investition auf TodayCapital')
-        self.assertEqual(email.recipients(), ['post@todaycapital.de'])
-
-        # Customer
-        email = mail.outbox[1]
-        self.assertEqual(unicode(email.subject), u'Ihr Investment auf TodayCapital')
-        self.assertEqual(email.recipients(), [self.user.email])
-        self.assertTrue('<!-- type: Lastschrift -->' in str(email.message()))
+        # NO Emails should be sent right after the make_payment has been called
+        self.assertEqual(0, len(mail.outbox))
 
     @httpretty.activate
     def test_valid_prepay_form(self):
@@ -228,19 +217,8 @@ class OrderFormTest(TestCase):
         self.assertEqual(order.user, self.user)
         self.assertEqual(order.project, self.project)
 
-        # Should create a document for the user if a large sum
-        self.assertEqual(order.documents.all().count(), 1)
+        # No documents yet
+        self.assertEqual(order.documents.all().count(), 0)
 
         # Should have email to managers AND email to customer
-        self.assertEqual(2, len(mail.outbox))
-        email = mail.outbox[0]
-
-        # Admin
-        self.assertEqual(unicode(email.subject), u'Neue Investition auf TodayCapital')
-        self.assertEqual(email.recipients(), ['post@todaycapital.de'])
-
-        # Customer
-        email = mail.outbox[1]
-        self.assertEqual(unicode(email.subject), u'Ihr Investment auf TodayCapital')
-        self.assertEqual(email.recipients(), [self.user.email])
-        self.assertTrue('<!-- type: \xc3\x9cberweisung -->' in str(email.message()))
+        self.assertEqual(0, len(mail.outbox))

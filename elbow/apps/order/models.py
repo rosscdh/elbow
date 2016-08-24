@@ -19,7 +19,7 @@ from .managers import OrderManager
 from shortuuidfield import ShortUUIDField
 
 import re
-import time
+# import time
 import logging
 logger = logging.getLogger('django.request')
 
@@ -223,7 +223,9 @@ class Order(models.Model):
             #
             # Get the Actual status
             #
-            time.sleep(2)
+            # time.sleep(2)  # Was required when the email was sent right after make_payment was called.
+            # But no longer required as we send the email only once they have accepted the loand agreement
+            #
             status_resp = self.SECUPAY.payment().status(hash=self.transaction_id)
             status_resp = status_resp.get('data', {})
             self.tracking_number = 'TA %s' % status_resp.get('trans_id')

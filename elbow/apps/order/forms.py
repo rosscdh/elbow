@@ -238,15 +238,15 @@ class CreateOrderForm(forms.Form):
         #
         order, payment_api_response = order.make_payment(user=self.user)
 
-        #
-        # Create PDF and associate with Order
-        #
-        pdf_service = LoanAgreementCreatePDFService(order=order,
-                                                    user=self.user)
-        order = pdf_service.process()
+        # #
+        # # Create PDF and associate with Order
+        # #
+        # pdf_service = LoanAgreementCreatePDFService(order=order,
+        #                                             user=self.user)
+        # order = pdf_service.process()
 
-        email_service = SendEmailService(order=order)
-        email_service.send_order_created_email(user_list=[self.user])
+        # email_service = SendEmailService(order=order)
+        # email_service.send_order_created_email(user_list=[self.user])
 
         log(
             user=self.user,
@@ -260,6 +260,7 @@ class CreateOrderForm(forms.Form):
                 "has_read_loan_agreement_contract": has_read_loan_agreement_contract,
                 "t_and_c_agreed": t_and_c,
                 "has_read_investment_contract": has_read_investment_contract,
+                "email_with_loan_agreement_sent": False,
             }
         )
 
@@ -316,26 +317,27 @@ class OrderLoanAgreementForm(forms.Form):
         """
         has_agreed_to_loan_agreement_terms = self.cleaned_data.pop('has_agreed_to_loan_agreement_terms')
 
-        self.order.status = self.order.ORDER_STATUS.loan_agreement
-        self.order.data['has_agreed_to_loan_agreement_terms'] = has_agreed_to_loan_agreement_terms
-        self.order.save(update_fields=['status', 'data'])
-
         #
         # Send email with PDF Attachment
         #
-        if self.order.is_large_amount is True:
-            email_service = SendEmailService(order=self.order)
-            email_service.send_order_created_email(user_list=[self.user])
+        email_service = SendEmailService(order=self.order)
+        email_service.send_order_created_email(user_list=[self.user])
 
-            log(
-                user=self.user,
-                action="order.lifecycle.loan_agreement.accepted",
-                obj=self.order,
-                extra={
-                    "note": "%s Agreed to the large sum agreement" % self.user,
-                    "is_large_amount": self.order.is_large_amount,
-                    "amount": unicode(self.order.amount),
-                }
-            )
+        self.order.status = self.order.ORDER_STATUS.loan_agreement
+        self.order.data['has_agreed_to_loan_agreement_terms'] = has_agreed_to_loan_agreement_terms
+        self.order.data['email_with_loan_agreement_sent'] = True
+        self.order.save(update_fields=['status', 'data'])
+
+        log(
+            user=self.user,
+            action="order.lifecycle.loan_agreement.accepted",
+            obj=self.order,
+            extra={
+                "note": "%s Agreed to the large sum agreement" % self.user,
+                "is_large_amount": self.order.is_large_amount,
+                "amount": unicode(self.order.amount),
+                "email_with_loan_agreement_sent": True,
+            }
+        )
 
         return self.order

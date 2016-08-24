@@ -102,6 +102,10 @@ class SendEmailService(object):
                 file_name = '%s.pdf' % slugify('%s-%s-%s' % (_('Loan Agreement'), self.order.project.name, self.order.tracking_number))
                 msg.attach(filename=file_name, content=document.document.read(), mimetype='application/pdf')
 
+            for doc in self.order.project.documents.filter(name__in=self.required_project_docs):
+                if doc.document:
+                    msg.attach_file(doc.document.path)
+
             send_success.append(('customer', msg.send()))
 
         return send_success

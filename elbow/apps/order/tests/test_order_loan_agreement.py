@@ -135,9 +135,24 @@ class OrderLoanAgreementFormTest(TestCase):
         # Should have email to managers AND email to customer
         self.assertEqual(2, len(mail.outbox))
 
+        #
+        # Admin
+        #
         email = mail.outbox[0]
         self.assertEqual(unicode(email.subject), u'Neue Investition auf TodayCapital')
         self.assertEqual(email.recipients(), ['post@todaycapital.de'])
+        #
+        # Test Attachments
+        #
+        self.assertEqual(len(email.attachments), 3)
+
+        #
+        # Customer
+        #
+        email = mail.outbox[1]
+        self.assertEqual(unicode(email.subject), u'Ihr Investment auf TodayCapital')
+        self.assertEqual(email.recipients(), [self.user.email])
+        self.assertTrue('<!-- type: Lastschrift -->' in str(email.message()))
 
         #
         # Test Attachments
@@ -151,11 +166,3 @@ class OrderLoanAgreementFormTest(TestCase):
         self.assertTrue('darlehensvertrag-monchengladbach-30-ta-1234567.pdf' in email.attachments[0][0])
         self.assertTrue('test-verbraucherinformationsblatt' in email.attachments[1][0])
         self.assertTrue('test-finanzkennzahlen' in email.attachments[2][0])
-
-        email = mail.outbox[1]
-        self.assertEqual(unicode(email.subject), u'Ihr Investment auf TodayCapital')
-        self.assertEqual(email.recipients(), [self.user.email])
-
-        self.assertEqual(len(email.attachments), 1)
-        self.assertTrue(attachment_filename_pattern.match(email.attachments[0][0]))
-        self.assertEqual(email.attachments[0][2], 'application/pdf')
