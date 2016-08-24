@@ -43,6 +43,18 @@ class SendEmailService(object):
 
     def send_order_created_email(self, user_list):
         logger.debug('Order Created')
+
+        def _attach_project_documents(document_qs, msg):
+            """
+            Priavte method used in this method to attach the set of documents
+            """
+            file_name = '%s.pdf' % slugify('%s-%s-%s' % (_('Loan Agreement'), self.order.project.name, self.order.tracking_number))
+            msg.attach(filename=file_name, content=document.document.read(), mimetype='application/pdf')
+
+            for doc in document_qs:
+                if doc.document:
+                    msg.attach_file(doc.document.path)
+
         send_success = []
         document = self.order.documents.filter(document_type='order',
                                                user=self.order.user)  \
@@ -62,13 +74,8 @@ class SendEmailService(object):
         msg = EmailMultiAlternatives(subject, html2text.plain_text, from_email, recipient_list)
         msg.attach_alternative(html2text.html, "text/html")
 
-        if document.document:
-            file_name = '%s.pdf' % slugify('%s-%s-%s' % (_('Loan Agreement'), self.order.project.name, self.order.tracking_number))
-            msg.attach(filename=file_name, content=document.document.read(), mimetype='application/pdf')
-
-        for doc in self.order.project.documents.filter(name__in=self.required_project_docs):
-            if doc.document:
-                msg.attach_file(doc.document.path)
+        _attach_project_documents(document_qs=self.order.project.documents.filter(name__in=self.required_project_docs),
+                                  msg=msg)
 
         send_success.append(('founders', msg.send()))
 
@@ -98,13 +105,8 @@ class SendEmailService(object):
             msg = EmailMultiAlternatives(subject, html2text.plain_text, from_email, [user.email])
             msg.attach_alternative(html2text.html, "text/html")
 
-            if document:
-                file_name = '%s.pdf' % slugify('%s-%s-%s' % (_('Loan Agreement'), self.order.project.name, self.order.tracking_number))
-                msg.attach(filename=file_name, content=document.document.read(), mimetype='application/pdf')
-
-            for doc in self.order.project.documents.filter(name__in=self.required_project_docs):
-                if doc.document:
-                    msg.attach_file(doc.document.path)
+            _attach_project_documents(document_qs=self.order.project.documents.filter(name__in=self.required_project_docs),
+                                      msg=msg)
 
             send_success.append(('customer', msg.send()))
 
