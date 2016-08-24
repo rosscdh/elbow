@@ -1,7 +1,7 @@
 from __future__ import with_statement
 from fabric.api import *
 from fabric.contrib import files
-#from fab_deploy import crontab
+
 
 from git import *
 
@@ -12,6 +12,9 @@ import shutil
 import getpass
 import requests
 from termcolor import colored
+
+os.environ['DJANGO_SETTINGS_MODULE'] = 'elbow.settings'
+from django.template.defaultfilters import slugify
 
 debug = True
 
@@ -60,6 +63,7 @@ env.roledefs.update({
 
 @task
 def production():
+    os.environ['DJANGO_ENV'] = 'production'
     from config.environments import production as config
     env.application_user = env.user = 'django'
 
@@ -88,6 +92,7 @@ def production():
 
 @task
 def staging():
+    os.environ['DJANGO_ENV'] = 'staging'
     from config.environments import staging as config
     env.application_user = env.user = 'django'
 
@@ -618,6 +623,20 @@ def compile_messages():
 @task
 def upload_db():
     put('db.sqlite3', '/home/ubuntu/apps/elbow/')
+
+
+@task
+def db_backup(db='default'):
+    from django.conf import settings
+    db_settings = getattr(settings, 'DATABASES')
+
+    user_name = db_settings.get(db, {}).get('USER')
+    password = db_settings.get(db, {}).get('PASSWORD')
+    source_db = db_settings.get(db, {}).get('NAME')
+    dump_filename = slugify('%s-%s' % (source_db, time.strftime("%a-%d-%b-%Y-%H:%M", time.gmtime())))
+
+    run('PGPASSWORD={password} pg_dump -U {user_name} {source_db} -f ~/{dump_filename}.sql'.format(user_name=user_name, source_db=source_db, dump_filename=dump_filename, password=password))
+    get('~/{dump_filename}.sql'.format(dump_filename=dump_filename), './')
 #-------
 
 @task
@@ -637,7 +656,7 @@ def deploy(is_predeploy='False',full='False',db='False',search='False'):
     #paths()
     put_confs()
     relink()
-    requirements()
+    # requirements()
     update_env_conf()
     compile_messages()
     migrate()
