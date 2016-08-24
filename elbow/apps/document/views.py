@@ -15,12 +15,5 @@ class DocumentDownload(LoginRequiredMixin, DetailView):
     slug_url_kwarg = 'uuid'
     content_type = 'application/pdf'
 
-    def get_context_data(self, **kwargs):
-        kwargs = super(DocumentDownload, self).get_context_data(**kwargs)
-        kwargs.update({
-            'SECUPAY_BANK_DATA': SECUPAY_BANK_DATA,
-        })
-        return kwargs
-
     def render_to_response(self, *args, **kwargs):
         return FileResponse(self.get_object().document, content_type=self.content_type)

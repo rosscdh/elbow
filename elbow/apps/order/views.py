@@ -8,6 +8,7 @@ from pinax.eventlog.models import log
 
 from elbow.mixins import LoginRequiredMixin
 from elbow.apps.project.models import Project
+from elbow.apps.order.apps import SECUPAY_BANK_DATA
 
 from .forms import CreateOrderForm, OrderLoanAgreementForm
 from .models import Order
@@ -117,7 +118,8 @@ class OrderPayment(LoginRequiredMixin, DetailView):
     def get_context_data(self, *args, **kwargs):
         context = super(OrderPayment, self).get_context_data(*args, **kwargs)
         context.update({
-            'project': self.project
+            'project': self.project,
+            'SECUPAY_BANK_DATA': SECUPAY_BANK_DATA,
         })
         return context
 
