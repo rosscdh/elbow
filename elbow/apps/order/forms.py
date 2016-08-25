@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from django.conf import settings
+from django.core import validators
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 from django_countries.widgets import CountrySelectWidget
@@ -108,8 +109,11 @@ class CreateOrderForm(forms.Form):
         # Set minimum amount to that of the project
         # and the widget min value too
         #
-        self.fields['amount'].min_value = self.project.minimum_investment.amount
-        self.fields['amount'].widget.attrs['min'] = int(self.project.minimum_investment.amount)
+        min_amount = int(self.project.minimum_investment.amount)
+        self.fields['amount'].min_value = min_amount
+        self.fields['amount'].widget.attrs['min'] = min_amount
+        del self.fields['amount'].validators[0]
+        self.fields['amount'].validators.append(validators.MinValueValidator(min_amount))
 
         #
         # Setup minimum and max investment if the project has it
