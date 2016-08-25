@@ -656,7 +656,7 @@ def deploy(is_predeploy='False',full='False',db='False',search='False'):
     #paths()
     put_confs()
     relink()
-    # requirements()
+    requirements()
     update_env_conf()
     compile_messages()
     migrate()
