@@ -115,7 +115,7 @@ pyquery==1.2.11
 pytest==2.9.1
 python-dateutil==2.5.1
 python-openid==2.2.5
--e git+https://github.com/rosscdh/python-secupay.git@ccbb0e874d46f520ddf40c342262b54d372e9ad3#egg=python_secupay-master
+-e git+https://github.com/rosscdh/python-secupay.git@c78a1a63611279df6e38306ca499a5c5cad99e99#egg=python_secupay-master
 python-social-auth==0.2.14
 pytz==2016.3
 redis==2.10.5
