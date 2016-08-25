@@ -174,7 +174,7 @@ class OrderFormTest(TestCase):
         self.assertEqual(order.project, self.project)
 
         # Should be no documents attached YET
-        self.assertEqual(order.documents.all().count(), 0)
+        self.assertEqual(order.documents.all().count(), 1)
 
         # NO Emails should be sent right after the make_payment has been called
         self.assertEqual(0, len(mail.outbox))
@@ -218,7 +218,7 @@ class OrderFormTest(TestCase):
         self.assertEqual(order.project, self.project)
 
         # No documents yet
-        self.assertEqual(order.documents.all().count(), 0)
+        self.assertEqual(order.documents.all().count(), 1)
 
         # Should have email to managers AND email to customer
         self.assertEqual(0, len(mail.outbox))
