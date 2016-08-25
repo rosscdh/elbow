@@ -3,8 +3,6 @@ from django.conf import settings
 from django.template import loader
 from django.core.files.storage import FileSystemStorage
 
-from inmemorystorage import InMemoryStorage
-
 from elbow.context_processors import elbow_globals
 
 import html2text    # convert html to text
