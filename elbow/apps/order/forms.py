@@ -34,7 +34,7 @@ YEARS = [year for year in xrange(1900, DATE_18_YEARS_AGO.year + 1)]
 class CreateOrderForm(forms.Form):
     amount = forms.DecimalField(label=_('Amount to invest'),
                                 max_digits=8,
-                                decimal_places=2,
+                                decimal_places=0,
                                 min_value=500,
                                 required=True)
 
@@ -104,7 +104,12 @@ class CreateOrderForm(forms.Form):
         self.fields['customer_first_name'].initial = self.user.first_name
         self.fields['customer_last_name'].initial = self.user.last_name
 
+        #
+        # Set minimum amount to that of the project
+        # and the widget min value too
+        #
         self.fields['amount'].min_value = self.project.minimum_investment.amount
+        self.fields['amount'].widget.attrs['min'] = int(self.project.minimum_investment.amount)
 
         #
         # Setup minimum and max investment if the project has it
