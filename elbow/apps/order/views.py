@@ -30,7 +30,7 @@ class OrderCreate(LoginRequiredMixin, FormView):
             log(
                 user=self.request.user,
                 action="order.lifecycle.payment.attempt.failed",
-                obj=self.order,
+                obj=self,
                 extra={
                     'order.make_payment failed'
                     'error': unicode(e),
