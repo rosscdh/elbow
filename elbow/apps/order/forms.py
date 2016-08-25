@@ -100,6 +100,8 @@ class CreateOrderForm(forms.Form):
         if self.project is None:
             raise Exception('project must be passed into the Form')
 
+        self.fields['amount'].min_value = self.project.minimum_investment.amount
+
         super(CreateOrderForm, self).__init__(**kwargs)
         self.fields['customer_first_name'].initial = self.user.first_name
         self.fields['customer_last_name'].initial = self.user.last_name
@@ -108,8 +110,6 @@ class CreateOrderForm(forms.Form):
         # Setup minimum and max investment if the project has it
         # Order is important
         #
-        self.fields['amount'].min_value = self.project.minimum_investment.amount
-
         if self.project.minimum_investment:
             self.fields['amount'].min_value = self.project.minimum_investment.amount
 
