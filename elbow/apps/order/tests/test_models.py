@@ -39,7 +39,7 @@ class OrderModelTest(BaseTestCase):
         self.assertEqual(self.order.url_success, u'http://localhost:8009/de/orders/%s/order/%s/payment/successful/' % (self.order.project.slug, self.order.uuid))
 
     def test_cancel_order_url(self):
-        self.assertEqual(self.order.cancel_order_url, u'http://localhost:8009/de/projects/%s/' % (self.order.project.slug))
+        self.assertEqual(self.order.cancel_order_url, u'http://localhost:8009/de/orders/%s/order/' % (self.order.project.slug))
 
     def test_url_webhooks(self):
         self.assertEqual(self.order.url_webhook, u'http://localhost:8009/de/orders/%s/order/%s/payment/webhook/' % (self.order.project.slug, self.order.uuid))
