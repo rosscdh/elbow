@@ -320,6 +320,19 @@ SECUPAY_TOKEN = 'testToken'
 SECUPAY_DEVELOPMENT = True
 SECUPAY_DEMO = True
 
+SECUPAY_LABELS = {
+    "en_US": {
+        "basket_title": "Your Order",
+        "submit_button_title": "Submit",
+        "cancel_button_title": "Return to Project"
+    },
+    "de_DE": {
+        "basket_title": "Ihre Bestellung",
+        "submit_button_title": "Daten Ubermitteln",
+        "cancel_button_title": u"Zurück zum Projekt"
+    }
+}
+
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, '../', 'locale')
 ]
