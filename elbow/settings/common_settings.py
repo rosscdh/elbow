@@ -345,7 +345,7 @@ LEAFLET_CONFIG = {
 }
 
 
-TERMS_AND_CONDITIONS_URL = 'http://today-capital.de/impressum/agb/'
+TERMS_AND_CONDITIONS_URL = 'https://today-capital.de/impressum/agb/'
 
 #
 # All auth

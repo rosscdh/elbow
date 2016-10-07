@@ -26,7 +26,8 @@ urlpatterns = i18n_patterns(
     # url(r'^auth/registration/', include('rest_auth.registration.urls')),
     url(r'^accounts/', include('allauth.urls')),
 
-    url(r'^p/', include('pages.urls')),
-    url(r'^', include('django.contrib.auth.urls')),
     url(r'^', include('elbow.apps.public.urls', namespace='public')),
+    url(r'^p/', include('pages.urls')), # check public/urls.py
+    url(r'^', include('django.contrib.auth.urls')),
+
 ) + staticfiles_urlpatterns() + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
