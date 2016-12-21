@@ -6,22 +6,30 @@
     <th colspan="2" class="bg-primary"><b>{% trans 'Documents' %}</b></th>
   </tr>
   {% endif %}
+  {% if expose_document.uuid %}
   <tr>
     <td>{% trans 'Exposé TodayHaus' %}</td>
     <td><a href="{% url 'project:media_permalink' slug=project_slug media_slug=expose_document.uuid %}" target="_NEW" class="btn btn-link btn-primary">{% trans '.PDF Download' %}</a></td>
   </tr>
+  {% endif %}
+  {% if loan_agreement %}
   <tr>
     <td>{% trans 'Generic Loan Agreement' %}</td>
     <td><a href="{{ loan_agreement }}" target="_NEW" class="btn btn-link btn-primary">{% trans '.PDF Download' %}</a></td>
   </tr>
+  {% endif %}
+  {% if term_sheet %}
   <tr>
     <td>{% trans 'Term Sheet' %}</td>
     <td><a href="{{ term_sheet }}" target="_NEW" class="btn btn-link btn-primary">{% trans '.PDF Download' %}</a></td>
   </tr>
+  {% endif %}
+  {% if finance_plan.uuid %}
   <tr>
     <td>{% trans 'Finanzplan' %}</td>
     <td><a href="{% url 'project:media_permalink' slug=project_slug media_slug=finance_plan.uuid %}" target="_NEW" class="btn btn-link btn-primary">{% trans '.PDF Download' %}</a></td>
   </tr>
+  {% endif %}
 
   {% for row in documents %}
     <tr>
