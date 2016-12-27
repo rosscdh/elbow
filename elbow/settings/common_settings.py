@@ -74,6 +74,8 @@ HELPER_APPS = (
     'allauth.socialaccount',
     'rest_auth',
 
+    'robots',
+
     'pinax.eventlog',
 
     'geoposition',
@@ -128,6 +130,8 @@ STATICFILES_FINDERS = (
 )
 
 STATICFILES_STORAGE = 'pipeline.storage.PipelineStorage'
+
+ROBOTS_USE_SITEMAP = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/

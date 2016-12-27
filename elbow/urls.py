@@ -28,6 +28,7 @@ urlpatterns = i18n_patterns(
 
     url(r'^', include('elbow.apps.public.urls', namespace='public')),
     url(r'^p/', include('pages.urls')), # check public/urls.py
+    url(r'^robots\.txt$', include('robots.urls')),
     url(r'^', include('django.contrib.auth.urls')),
 
 ) + staticfiles_urlpatterns() + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
