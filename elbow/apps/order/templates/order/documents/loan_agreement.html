@@ -25,7 +25,7 @@ eingetragen im Handelsregister des Amtsgerichts Mönchengladbach unter HRB 13171
 <p>wird folgende Vereinbarung getroffen:</p>
 
 <h3>Vorbemerkung</h3>
-<p>Der Darlehensnehmer TodaySystems GmbH realisiert das Projekt <strong>{{ project.name }}</strong> – neben dem Eigenkapital der Gesellschaft und eventuellen Bankfinanzierungen – durch die von der Internet-Plattform TodayCapital eingeworbenen Gelder von Darlehensgebern in Form des Crowdinvesting (auch „Schwarmfinanzierung“ genannt). TodayCapital ist lediglich Vermittler der sogenannten nachrangigen Darlehen mit qualifiziertem Rangrücktritt und erteilt keinerlei Beratung. </p>
+<p>Der Darlehensnehmer TodaySystems GmbH realisiert das <strong>Projekt {{ project.name }}</strong> – neben dem Eigenkapital der Gesellschaft und eventuellen Bankfinanzierungen – durch die von der Internet-Plattform TodayCapital eingeworbenen Gelder von Darlehensgebern in Form des Crowdinvesting (auch „Schwarmfinanzierung“ genannt). TodayCapital ist lediglich Vermittler der sogenannten nachrangigen Darlehen mit qualifiziertem Rangrücktritt und erteilt keinerlei Beratung.</p>
 <p>Das einzuwerbende Gesamtkapital beträgt für dieses Projekt {{ project.amount }}, wobei das Projekt in drei Investitionsstufen gegliedert ist: Stufe 1 - 300.000,00 Euro, Stufe 2 - 250.000,00 Euro, Stufe 3 - 750.000,00 Euro. Jede Investitionsstufe ist einzeln wirtschaftlich durchführbar. </p>
 <p>Darlehensgeber können sich mit einer Mindestsumme von {{ project.minimum_investment }} bis {{ project.maximum_investment }} am Projekt beteiligen. Ab 1.000,00 Euro bis maximal 10.000,00 Euro können Darlehensverträge nur geschlossen werden, wenn der spätere Darlehensgeber vor Abschluss des Darlehensvertrags der Internet-Plattform TodayCapital eine Selbstauskunft erteilt, die den Anforderungen des § 2a des Vermögensanlagengesetzes entspricht. </p>
 <p>Die Einzahlung des vereinbarten Darlehensbetrags erfolgt nicht an den Darlehensnehmer TodaySystems GmbH direkt, sondern an SECUPAY AG, die im Auftrag des Darlehensgebers die vereinbarten Darlehensbeträge per Überweisung oder Lastschrift einsammelt und dann an den Darlehensnehmer weiterleitet. </p>
@@ -33,13 +33,14 @@ eingetragen im Handelsregister des Amtsgerichts Mönchengladbach unter HRB 13171
 
 <p><strong>§ 1 Beginn und Dauer des nachrangigen Darlehens </strong></p>
 
-<p><strong>1.</strong> Der Darlehensgeber gewährt dem Darlehensnehmer ein nachrangiges Darlehen mit qualifiziertem Rangrücktritt – nachstehend auch nur  „Darlehen“ genannt – in der Höhe eines Betrags von</p>
+<p><strong>1.</strong> Der Darlehensgeber gewährt dem Darlehensnehmer ein nachrangiges Darlehen mit qualifiziertem Rangrücktritt – nachstehend auch nur „Darlehen“ genannt – in der Höhe eines Betrags von</p>
 <blockquote style="padding:10px;background-color:#fafafa;color:#000;font-weight:bolder;">
   {% money_localize order.amount %}
 </blockquote>
-<p>zu einem Festzins in der Höhe von 7 % des Darlehensbetrags p.a. Die Zinsen sind vom Darlehensnehmer endfällig zusammen mit der Rückzahlung des Darlehensbetrags zu zahlen.</p>
+<p>zu einem Festzins in der Höhe von 6% des Darlehensbetrags p. a. Die Zinsen sind vom Darlehensnehmer endfällig zusammen mit der Rückzahlung des Darlehensbetrags zu zahlen.</p>
+<p>Zusätzlich zu dem vorerwähnten Festzins erhält der Darlehensgeber einen Bonuszins in der Höhe von 0,5 % p. a., wenn er innerhalb von 3 Wochen ab Fundingstart seinen Vertragsabschluss tätigt. Der Beginn des Fundingstarts ist auf der Internet-Plattform <strong>TodayCapital</strong> unter dem <strong>Projekt {{ project.name }}</strong> vermerkt. Ebenfalls zu dem vorerwähnten Festzins erhält der Darlehensgeber einen <strong>Bonuszins in der Höhe von 0,5 % p. a.</strong>, wenn er sich für mindestens 3.000,00 Euro am Projekt beteiligt. Beide Bonuszinsen können gleichzeitig vereinbart werden.</p>
 
-<p><strong>2.</strong> Das Darlehen wird ausschließlich für das Projekt <strong>{{ project.name }}</strong> verwendet, wie es auf der Internett-Plattform von TodayCapital aufgeführt worden ist, abzüglich der Vergütungen und Kostenerstattungen an die TodayCapital GmbH für ihre Vermittlungsleistungen sowie die Kosten für die Zahlungsabwicklungen durch SECUPAY AG.</p>
+<p><strong>2.</strong> Das Darlehen wird ausschließlich für das <strong>Projekt {{ project.name }}</strong> verwendet, wie es auf der Internett-Plattform von TodayCapital aufgeführt worden ist, abzüglich der Vergütungen und Kostenerstattungen an die TodayCapital GmbH für ihre Vermittlungsleistungen sowie die Kosten für die Zahlungsabwicklungen durch SECUPAY AG.</p>
 
 <p><strong>3.</strong> Das Darlehen hat eine Regellaufzeit von 48 Monaten. Der Darlehensnehmer kann mit schriftlicher Erklärung gegenüber dem Darlehensgeber bis spätestens 2 Monate vor Ende der Regellaufzeit eine Verlängerung der Darlehenslaufzeit um 6 Monate verlängern.</p>
 
@@ -48,12 +49,12 @@ eingetragen im Handelsregister des Amtsgerichts Mönchengladbach unter HRB 13171
 <p><strong>5.</strong> Sollte der Darlehensgeber den vollständigen Darlehensbetrag nicht innerhalb von zehn Tagen nach Vertragsabschluss an SECUPAY AG bezahlt haben, erlischt der Darlehensvertrag. Das gesetzliche Widerrufsrecht bleibt hiervon unberührt.</p>
 
 
+
 <p><strong>§ 2 Zahlung des Darlehensbetrags </strong></p>
 
-<p><strong>1.</strong> Der Darlehensgeber zahlt den von auf der Internet-Plattform ausgewählten Darlehensbetrag in Euro. Der Darlehensbetrag muss mindestens {{ project.minimum_investment }} betragen. Dieser Darlehensbetrag ist an SECUPAY vorbehaltlos und ohne weitere Bedingungen zu zahlen, unabhängig von den Vereinbarungen zwischen  Darlehensgeber und Darlehensnehmer.</p>
+<p><strong>1.</strong> Der Darlehensgeber zahlt den von auf der Internet-Plattform ausgewählten Darlehensbetrag in Euro. Der Darlehensbetrag muss mindestens {{ project.minimum_investment }} betragen. Dieser Darlehensbetrag ist an SECUPAY vorbehaltlos und ohne weitere Bedingungen zu zahlen, unabhängig von den Vereinbarungen zwischen Darlehensgeber und Darlehensnehmer.</p>
 
-
-<p><strong>2.</strong> Hat der Darlehensgeber keinen Lastschriftauftrag erteilt, ist der Darlehensbetrag sofort unter Angabe des Verwendungszwecks ({{ order.tracking_number }}) zu überweisen auf das Konto:</p>
+<p><strong>2.</strong> Hat der Darlehensgeber keinen Lastschriftauftrag erteilt, ist der Darlehensbetrag sofort unter Angabe des Verwendungszwecks zu überweisen auf das Konto:</p>
 
 <blockquote style="padding:10px;background-color:#fafafa;color:#000;font-weight:bolder;">
 {% trans 'Bank Name' %}: {{ SECUPAY_BANK_DATA.bankname }}<br/>
@@ -63,82 +64,86 @@ eingetragen im Handelsregister des Amtsgerichts Mönchengladbach unter HRB 13171
 {% trans 'Customer Reference' %}:</em></b> {{ order.tracking_number }}
 </blockquote>
 
-<p><strong>3.</strong> TodaySystems GmbH stellt sicher, dass der Darlehensbetrag von der SECUPAY AG vollständig und kostenfrei an den Darlehensgeber zurückgezahlt wird, wenn der  Darlehensvertrag aufgrund einer wirksamen Widerrufserklärung aufgelöst wird. </p>
+<p><strong>3.</strong> TodaySystems GmbH stellt sicher, dass der Darlehensbetrag von der SECUPAY AG vollständig und kostenfrei an den Darlehensgeber zurückgezahlt wird, wenn der Darlehensvertrag aufgrund einer wirksamen Widerrufserklärung aufgelöst wird.</p>
+
 
 <p><strong>§ 3 Abruf des Darlehensbetrags bei SECUPAY AG </strong></p>
 <p><strong>1.</strong> TodaySystems GmbH kann die bei SECUPAY AG eingegangenen Darlehensbeträge abrufen, wenn die vorgegebene Fundingschwelle von 100.000,00 Euro erreicht ist oder wenn TodaySystems GmbH durch eine anderweitige Finanzierung die Erreichung der vorgegebenen Fundingschwelle sichergestellt hat. Darüber hinaus müssen die jeweils maßgeblichen gesetzlichen Widerrufsfristen für die betreffenden Darlehensgeber abgelaufen sein. </p>
-<p><strong>2.</strong> TodaySystems GmbH verpflichtet sich, dass der Darlehensbetrag ohne Kosten an den Darlehensgeber zurückgezahlt wird, wenn die vorgenannte Fundingschwelle nicht erreicht wird und TodaySystems GmbH durch eine anderweitige Finanzierung die Erreichung der vorgegebenen Fundingschwelle nicht sichergestellt hat, sowie wenn der Darlehensbetrag nicht innerhalb der ersten 12 Monate nach Einzahlung des Darlehensbetrags für das Projekt <strong>{{ project.name }}</strong> verwendet wurde. </p>
+<p><strong>2.</strong> TodaySystems GmbH verpflichtet sich, dass der Darlehensbetrag ohne Kosten an den Darlehensgeber zurückgezahlt wird, wenn die vorgenannte Fundingschwelle nicht erreicht wird und TodaySystems GmbH durch eine anderweitige Finanzierung die Erreichung der vorgegebenen Fundingschwelle nicht sichergestellt hat, sowie wenn der Darlehensbetrag nicht innerhalb der ersten 12 Monate nach Einzahlung des Darlehensbetrags für das <strong>Projekt {{ project.name }}</strong> verwendet wurde. </p>
+
 
 <p><strong>§ 4 Stellung des Darlehensgebers </strong></p>
 <p><strong>1.</strong> Der Darlehensgeber verfügt über keinerlei Mitwirkungsbefugnisse, Stimm- und Weisungsrechte hinsichtlich der Führung des Geschäftsbetriebs von TodaySystems GmbH. Zwischen der Gesellschaft und dem Darlehensgeber wird kein Gesellschaftsverhältnis begründet. Die Darlehensgewährung begründet weder eine stille Beteiligung im Sinne der §§ 230 ff. HGB noch ein Genussrecht.</p>
 
+
 <p><strong>§ 5 Informationsrechte und -pflichten </strong></p>
-<p><strong>1.</strong> TodaySystems GmbH wird dem Darlehensgeber zumindest einmal je Quartal ein Reporting über die Projektentwicklung mitteilen. Das beinhaltet in der Regel Informationen über den Baufortschritt, die Kosten, den Produktionsstatus sowie über die Marketingmaßnahmen und Verkaufsanbahnungen und -erfolge des {{ project.name }}-Projekts.</p>
-<p><strong>2.</strong> Die zur Verfügung zu stellenden Unterlagen werden den Darlehensgebern per E-Mail zur Verfügung gestellt. Der Darlehensgeber ist verpflichtet, die bei Abschluss des Darlehensvertrags hinterlegte E-Mail-Adresse stets aktuell zu halten.</p>
+<p><strong>1.</strong> TodaySystems GmbH wird dem Darlehensgeber zumindest einmal je Quartal ein Reporting über die Projektentwicklung mitteilen. Das beinhaltet in der Regel Informationen über den Baufortschritt, die Kosten, den Produktionsstatus sowie über die Marketingmaßnahmen und Verkaufsanbahnungen und -erfolge des {{ project.name }}- Projekts.</p>
+<p><strong>2.</strong> Die zur Verfügung zu stellenden Unterlagen werden den Darlehensgebern per E- Mail zur Verfügung gestellt. Der Darlehensgeber ist verpflichtet, die bei Abschluss des Darlehensvertrags hinterlegte E-Mail-Adresse stets aktuell zu halten.</p>
 <p><strong>3.</strong> Der Darlehensgeber ist verpflichtet, den Inhalt dieses Darlehensvertrags sowie alle ihm mitgeteilten Informationen streng vertraulich zu behandeln, außer, die Informationen sind oder werden öffentlich bekannt. </p>
+
 
 <p><strong>§ 6 Rückzahlung des Nachrangdarlehens </strong></p>
 <p><strong>1.</strong> Die Rückzahlung des Nachrangdarlehens erfolgt mit den vereinbarten Zinsen als endfälliges Darlehen nach dem Ende der Regellaufzeit oder nach einer optionalen einmaligen Verlängerung um 6 Monaten oder wenn von einer der Vertragsparteien wirksam gekündigt wird oder der Vertrag auf andere Weise endet.</p>
 <p><strong>2.</strong> Eine frühere Rückzahlung des Darlehens ist dem Darlehensnehmer ohne eine Frist möglich. Dies teilt der Darlehensnehmer dem Darlehensgeber 2 Wochen vor der geplanten Rückzahlung mit.</p>
 
+
 <p><strong>§ 7 Erfolgsunabhängige feste Verzinsung </strong></p>
-<p><strong>1.</strong> Die feste Verzinsung des gewährten Darlehensbetrags beträgt 7 % p.a., beginnend mit dem Tag der Auszahlung des Darlehensbetrags an den Darlehensnehmer durch SECUPAY. Die Zinsen werden nach der Methode 30/360 berechnet.</p>
-<p><strong>2.</strong> Die Verzinsung des Darlehens ist erfolgsunabhängig und ist mit der Rückzahlung des Darlehensbetrags fällig und zahlbar. Im Falle des Verzugs hat TodaySystems GmbH Verzugszinsen für den Darlehensbetrag in Höhe von 7 % pro Jahr an den Darlehensgeber zu zahlen. Bei einer Verlängerung der Regellaufzeit gemäß § 1 Abs. 3 tritt kein Verzug ein.</p>
+<p><strong>1.</strong> Die feste Verzinsung des gewährten Darlehensbetrags beträgt 6 % p. a., beginnend mit dem Tag der Auszahlung des Darlehensbetrags an den Darlehensnehmer durch SECUPAY. Die Zinsen werden nach der Methode 30/360 berechnet.</p>
+<p><strong>2.</strong> Die Verzinsung des Darlehens ist erfolgsunabhängig und ist mit der Rückzahlung des Darlehensbetrags fällig und zahlbar. Im Falle des Verzugs hat TodaySystems GmbH Verzugszinsen für den Darlehensbetrag in Höhe von 6 % pro Jahr an den Darlehensgeber zu zahlen. Bei einer Verlängerung der Regellaufzeit gemäß § 1 Abs. 3 tritt kein Verzug ein.</p>
 
 <p><strong>§ 8 Auszahlungskonto </strong></p>
-<p>Zinsen und die Rückzahlung des Darlehensbetrags sind auf das Konto des Darlehensgebers zu überweisen, das dieser bei Abschluss des Darlehensvertrags angegeben hat, soweit vom Darlehensgeber oder seinem Rechtsnachfolger später kein anderes Konto mitgeteilt wurde. </p>
+<p>Zinsen und die Rückzahlung des Darlehensbetrags sind auf das Konto des Darlehensgebers zu überweisen, das dieser bei Abschluss des Darlehensvertrags angegeben hat, soweit vom Darlehensgeber oder seinem Rechtsnachfolger später kein anderes Konto mitgeteilt wurde.</p>
 
 <p><strong>§ 9 Qualifizierter Rangrücktritt</strong></p>
-<p><strong>1.</strong> Zur Vermeidung einer insolvenzrechtlichen Überschuldung des Darlehensgebers im Sinne des § 19 Abs. 2 Insolvenzordnung vereinbaren Darlehensgeber und Darlehensnehmer gemäß § 39 Abs. 2 Insolvenzordnung, und zwar hinsichtlich sämtlicher gegenwärtigen und zukünftigen Ansprüche des Darlehensgebers aus diesem Darlehensvertrag, einschließlich Verzinsung und Ansprüche infolge einer etwaigen außerordentlichen Kündigung („Nachrangforderungen“), einen Nachrang in der Weise, dass die Ansprüche erst nach sämtlichen in § 39 Abs. 1 Nr. 1 bis 5 der Insolvenzordnung bezeichneten Ansprüche und Forderungen aller bestehenden und zukünftigen Gläubiger des Darlehensnehmers (mit Ausnahme anderer Rücktrittsgläubiger und gleichrangige Gläubiger) zu befriedigen sind.</p>
-<p><strong>2.</strong> Sämtliche Nachrangdarlehen sind im Verhältnis untereinander gleichrangig. </p>
-<p><strong>3.</strong> Die nachrangigen Ansprüche des Darlehensgebers können nur aus zukünftigen Jahresüberschüssen, aus etwaigen Liquidationsüberschüssen oder aus sonstigem freien Vermögen nach Erhaltung eines gesetzlich vorgeschriebenen Nennkapitals und nach Befriedigung aller anderen Gläubiger des Darlehensnehmers, mit Ausnahme anderer Rücktrittsgläubiger und gleichrangige Gläubiger, beglichen werden.</p>
-<p><strong>4.</strong> Der Darlehensgeber verpflichtet sich also deshalb, seine Nachrangforderungen solange und soweit nicht geltend zu machen, wie die Befriedigung der Nachrangforderungen einen Grund für die Insolvenzverfahrenseröffnung über das Vermögen des Darlehensnehmers auslösen würde, d. h. zu einer Zahlungsunfähigkeit oder Überschuldung des Darlehensnehmers gem. §§ 17, 19 der Insolvenzordnung führen würde (qualifizierter Rangrücktritt).</p>
+<p><strong>1.</strong> Zur Vermeidung einer insolvenzrechtlichen Überschuldung des Darlehensnehmers im Sinne des § 19 Abs. 2 Insolvenzordnung vereinbaren Darlehensgeber und Darlehensnehmer gemäß § 39 Abs. 2 Insolvenzordnung, und zwar <b>hinsichtlich sämtlicher gegenwärtigen und zukünftigen Ansprüche des Darlehensnehmers aus diesem Darlehensvertrag</b>, einschließlich Verzinsung und Ansprüche infolge einer etwaigen außerordentlichen Kündigung („Nachrangforderungen“), einen <b>Nachrang</b> in der Weise, dass die Ansprüche erst <b>nach</b> sämtlichen in § 39 Abs. 1 Nr. 1 bis 5 der Insolvenzordnung bezeichneten Ansprüche und Forderungen aller bestehenden und zukünftigen Gläubiger des Darlehensnehmers (mit Ausnahme anderer Rücktrittsgläubiger und gleichrangige Gläubiger) zu befriedigen sind.</p>
+<p><strong>2.</strong> Sämtliche Nachrangdarlehen sind im Verhältnis untereinander gleichrangig.</p>
+<p><strong>3.</strong> Die nachrangigen Ansprüche des Darlehensgebers können nur aus zukünftigen Jahresüberschüssen, aus etwaigen Liquidationsüberschüssen oder aus sonstigem freien Vermögen nach Erhaltung eines gesetzlich vorgeschriebenen Nennkapitals und nach Befriedigung aller anderen Gläubiger des Darlehensnehmers, mit Ausnahme anderer Rücktrittsgläubiger und gleichrangige Gläubiger, beglichen werden.</p>
+<p><strong>4.</strong> Der Darlehensgeber verpflichtet sich also deshalb, <b>seine Nachrangforderungen solange und soweit nicht geltend zu machen</b>, wie die Befriedigung der Nachrangforderungen einen Grund für die Insolvenzverfahrenseröffnung über das Vermögen des Darlehensnehmers auslösen würde, das heißt zu einer Zahlungsunfähigkeit oder Überschuldung des Darlehensnehmers gem. §§ 17, 19 der Insolvenzordnung führen würde (qualifizierter Rangrücktritt).</p>
 
 <p><strong>§ 10 Übertragung des Darlehens </strong></p>
-<p>Der Darlehensgeber kann seinen Darlehensvertrag teilweise oder im Ganzen an einen Dritten nur nach ausdrücklicher schriftlicher Zustimmung des Darlehensnehmers übertragen. </p>
+<p>Der Darlehensgeber kann seinen Darlehensvertrag teilweise oder im Ganzen an einen Dritten nur nach ausdrücklicher schriftlicher Zustimmung des Darlehensnehmers übertragen.</p>
 
 
 <p><strong>§ 11 Kündigung</strong></p>
-<p><strong>1.</strong> Eine ordentliche Kündigung des Darlehensvertrags innerhalb der Darlehenslaufzeit durch den Darlehensgeber ist nicht möglich.</p>
-<p><strong>2.</strong> Der Darlehensgeber hat das Recht zur außerordentlichen Kündigung aus wichtigem Grund. Als wichtiger Grund für eine außerordentliche Kündigung gilt insbesondere, wenn der Darlehensbetrag in wesentlichem Umfang nicht seinem Zweck entsprechend verwendet worden ist; oder das Unternehmen wesentliche Pflichten aus diesem Vertrag nachhaltig verletzt hat. </p>
-<p><strong>3.</strong> Das gesetzliche Recht zur Kündigung aus einem sonstigen wichtigen Grund bleibt für beide Vertragsparteien unberührt.</p>
+<p><strong>1.</strong> Eine ordentliche Kündigung des Darlehensvertrags innerhalb der Darlehenslaufzeit durch den Darlehensgeber ist nicht möglich.</p>
+<p><strong>2.</strong> Der Darlehensgeber hat das Recht zur außerordentlichen Kündigung aus wichtigem Grund. Als wichtiger Grund für eine außerordentliche Kündigung gilt insbesondere, wenn der Darlehensbetrag in wesentlichem Umfang nicht seinem Zweck entsprechend verwendet worden ist; oder das Unternehmen wesentliche Pflichten aus diesem Vertrag nachhaltig verletzt hat.</p>
+<p><strong>3.</strong> Das gesetzliche Recht zur Kündigung aus einem sonstigen wichtigen Grund bleibt für beide Vertragsparteien unberührt.</p>
 
 
 <p><strong>§ 12 Kosten </strong></p>
-<p>Für den Abschluss des Darlehensvertrags entstehen dem Darlehensgeber keine Kosten, dieser hat lediglich den Darlehensbetrag zu entrichten. </p>
+<p>Für den Abschluss des Darlehensvertrags entstehen dem Darlehensgeber keine Kosten, dieser hat lediglich den Darlehensbetrag zu entrichten.</p>
 
 
 <p><strong>§ 13 Steuern</strong></p>
 <p><strong>1.</strong> Es erfolgt keine steuerliche Beratung durch den Darlehensnehmer.</p>
-<p><strong>2.</strong> Abgeltungssteuer und sonstige Quellensteuern wird der Darlehensnehmer nur einbehalten und an das zuständige Finanzamt weiterleiten, wenn er dazu gesetzlich verpflichtet ist. Nach dem heutigen Stand sind bei nicht gewinnabhängigen Zinserträgen keine Abgeltungssteuern fällig. Die erhaltenen Zinserträge sind von den Darlehensgebern in deren persönlichen Einkommenssteuererklärungen zu deklarieren.</p>
+<p><strong>2.</strong> Abgeltungssteuer und sonstige Quellensteuern wird der Darlehensnehmer nur einbehalten und an das zuständige Finanzamt weiterleiten, wenn er dazu gesetzlich verpflichtet ist. Nach dem heutigen Stand sind bei nicht gewinnabhängigen Zinserträgen keine Abgeltungssteuern fällig. Die erhaltenen Zinserträge sind von den Darlehensgebern in deren persönlichen Einkommenssteuererklärungen zu deklarieren.</p>
+
 
 <p><strong>§ 14 Risikohinweise </strong></p>
-<p><strong>1.</strong> Der Erwerb dieser Vermögensanlage ist mit erheblichen Risiken verbunden und kann zum vollständigen Verlust des eingesetzten Vermögens führen. Das Angebot ist daher nur für Investoren geeignet, die das Risiko eines Totalverlusts finanziell verkraften können. Die Anlage des Darlehenskapitals ist nicht zur Altersvorsorge geeignet.</p>
-<p><strong>2.</strong> Der Darlehensgeber erklärt deshalb ausdrücklich und unwiderruflich, dass ihm bewusst ist, dass die Darlehensgewährung in Form eines Nachrangdarlehens mit qualifiziertem Rangrücktritt neben den Chancen auch Risiken, bis hin zu einem möglichen Totalausfall des eingezahlten Kapitals, haben kann. Der Darlehensgeber erklärt weiterhin ausdrücklich und unwiderruflich, dass er einen Totalausfall des Darlehenskapitals wirtschaftlich verkraften kann und auf die Rückzahlung des Darlehens wirtschaftlich nicht angewiesen ist. Der Darlehensgeber erklärt ausdrücklich und unwiderruflich, dass er das Nachrangdarlehen mit qualifiziertem Rangrücktritt erst nach fachkundiger Beratung, etwa durch einen Rechtsanwalt, auch über die Tatsache, ob die Darlehensgewährung an den Darlehensnehmer zu seinen bestehenden Vermögensverhältnissen passt, dem Darlehensnehmer angeboten hat.</p>
-<p><strong>3.</strong> Der Darlehensgeber verfügt über ein Widerrufsrecht.</p>
+<p><strong>1.</strong> Der Erwerb dieser Vermögensanlage ist mit erheblichen Risiken verbunden und kann zum vollständigen Verlust des eingesetzten Vermögens führen. Das Angebot ist daher nur für Investoren geeignet, die das Risiko eines Totalverlusts finanziell verkraften können. Die Anlage des Darlehenskapitals ist nicht zur Altersvorsorge geeignet.</p>
+<p><strong>2.</strong> Der Darlehensgeber erklärt deshalb ausdrücklich und unwiderruflich, dass ihm bewusst ist, dass die Darlehensgewährung in Form eines Nachrangdarlehens mit qualifiziertem Rangrücktritt neben den Chancen auch Risiken, bis hin zu einem möglichen Totalausfall des eingezahlten Kapitals, haben kann. Der Darlehensgeber erklärt weiterhin ausdrücklich und unwiderruflich, dass er einen Totalausfall des Darlehenskapitals wirtschaftlich verkraften kann und auf die Rückzahlung des Darlehens wirtschaftlich nicht angewiesen ist. Der Darlehensgeber erklärt ausdrücklich und unwiderruflich, dass er das Nachrangdarlehen mit qualifiziertem Rangrücktritt erst nach fachkundiger Beratung, etwa durch einen Rechtsanwalt, auch über die Tatsache, ob die Darlehensgewährung an den Darlehensnehmer zu seinen bestehenden Vermögensverhältnissen passt, dem Darlehensnehmer angeboten hat.</p>
+
+
+<p><strong>§ 15 Widerrufsrecht </strong></p>
+<p><strong>1.</strong> Der Darlehensgeber verfügt über ein Widerrufsrecht.</p>
 
 
 <center><h3>Widerrufsbelehrung:</h3></center>
 
-<p>„Sie haben das Recht, binnen 14 Tagen ohne Angabe von Gründen diesen Vertrag zu widerrufen. Die Widerrufsfrist beträgt 14 Tage ab dem Tag des Abschlusses des Darlehensvertrags.</p>
-<p>Schreiben Sie bitte der TodaySystems GmbH, Windthorststr. 5-7, 41061 Mönchengladbach, E-Mail: ebels@todaysystems.de, wenn Sie diesen Darlehensvertrag widerrufen. Zur Fristwahrung des Widerrufs reicht aus, dass Sie die Widerrufserklärung vor Ablauf der Widerrufsfrist absenden. Sie können dies der TodaySystems GmbH formlos schreiben oder aber das nachstehende Widerrufsformular benutzen. </p>
-<p>Die Folgen des Widerrufs sind: TodaySystems GmbH hat Ihnen alle Zahlungen, die Sie an uns geleistet haben ohne Abzug von Kosten, zurück zu erstatten. Die Frist für die Rückzahlung beträgt längstens 14 Tage nach Eingang Ihres Widerrufs bei uns. Die Rückzahlung des Darlehensbetrags erfolgt auf das von Ihnen innerhalb des Vertragsverhältnisses angegebene Bankkonto, soweit Sie bei der Widerrufserklärung kein anderes Bankkonto angegeben haben.“ Ende der Widerrufsbelehrung.</p>
+<p><strong>Widerrufsrecht</strong></p>
+<p>Sie können Ihre Vertragserklärung innerhalb von 14 Tagen ohne Angabe von Gründen mittels einer eindeutigen Erklärung widerrufen. Die Frist beginnt nach Erhalt dieser Belehrung auf einem dauerhaften Datenträger, jedoch nicht vor Vertragsabschluss und auch nicht vor Erfüllung unserer Informationspflichten gemäß Artikel 246 b § 2 Absatz 1 in Verbindung mit Artikel 246 b § 1 Absatz 1 EGBGB. Zur Wahrung der Widerrufsfrist genügt die rechtzeitige Absendung des Widerrufs, wenn die Erklärung auf einem dauerhaften Datenträger (z.B. Brief, Telefax, E-Mail) erfolgt. Der Widerruf ist zu richten an:</p>
+<p><b>TodaySystems GmbH<br/>
+Windthorststraße 5-7, D-41061 Mönchengladbach<br/>
+E-Mail: ebels@todaysystems.de</b></p>
 
-<center><h3>Muster-Widerrufsformular</h3></center
+<p><strong>Widerrufsfolgen</strong></p>
+<p>Im Falle eines wirksamen Widerrufs sind die beiderseits empfangenen Leistungen zurück zu gewähren. Sie sind zur Zahlung von Wertersatz für die bis zum Widerruf erbrachte Dienstleitung verpflichtet, wenn Sie vor Abgabe Ihrer Vertragserklärung auf diese Rechtsfolge hingewiesen wurden und ausdrücklich zugestimmt haben, dass wir vor dem Ende der Widerrufsfrist mit der Ausführung der Gegenleistung beginnen. Besteht eine Verpflichtung zur Zahlung von Wertersatz, kann dies dazu führen, dass Sie die vertraglichen Zahlungsverpflichtungen für den Zeitraum bis zum Widerruf dennoch erfüllen müssen. Ihr Widerrufsrecht erlischt vorzeitig, wenn der Vertrag von beiden Seiten auf Ihren ausdrücklichen Wunsch vollständig erfüllt ist, bevor Sie Ihr Widerrufsrecht ausgeübt haben. Verpflichtungen zur Erstattung von Zahlungen müssen innerhalb von 30 Tagen erfüllt werden. Die Frist beginnt für Sie mit der Absendung Ihrer Widerrufserklärung, für uns mit deren Empfang.</p>
+<p><strong>Ende der Widerrufsbelehrung</strong></p>
 
-<p>„An TodaySystems GmbH, Windthorststr. 5-7, 41061 Mönchengladbach (per Post)<br/>
-oder per E-Mail an ebels@todaysystems.de:<br/>
-Hiermit widerrufe ich den von mir abgeschlossenen Darlehensvertrag vom {% now "SHORT_DATE_FORMAT" %}</p>
-
-<p>Name und Anschrift des Darlehensgebers/Verbrauchers:<br/>
-Unterschrift des Darlehensgebers/Verbrauchers (nur bei Postversion):</p>
-
-<p>Datum: {% now "SHORT_DATE_FORMAT" %}.“ Ende des Muster-Widerrufsformulars.</p>
-
-<p><strong>§ 15 Textform; Salvatorische Klausel; Gerichtsstand </strong></p>
-<p><strong>1.</strong> Nebenabreden, Änderungen oder Ergänzungen dieses Darlehensvertrags bedürfen zu ihrer Wirksamkeit der Textform. Dies gilt auch für eine Vereinbarung, die den Verzicht auf die Textformerfordernis bestimmen soll. Mündliche Nebenabreden bestehen nicht. Es gilt deutsches Recht. Die Vertragssprache ist Deutsch. </p>
-<p><strong>2.</strong> Sollten einzelne Bestimmungen dieses Darlehensvertrags unwirksam oder undurchführbar sein oder der Darlehensvertrag Lücken enthalten, wird dadurch die Wirksamkeit der übrigen Bestimmungen nicht berührt. Die Vertragsparteien verpflichten sich, anstelle der unwirksamen oder undurchführbaren Bestimmungen solche Bestimmungen zu treffen, die den mit den unwirksamen oder undurchführbaren Bestimmungen verfolgten wirtschaftlichen Zwecken in zulässiger Weise am nächsten kommen. Im Falle von Lücken verpflichten sich die Vertragsparteien zur Aufnahme derjenigen Bestimmungen in den Darlehensvertrag hinzuwirken, die dem entspricht, was nach Sinn und Zweck dieses Darlehensvertrags vereinbart worden wäre, hätte man dies von vornherein bedacht. </p>
-<p><strong>3.</strong> Für alle Streitigkeiten aus und in Zusammenhang mit diesem Darlehensvertrag ist, soweit gesetzlich zulässig, der Gerichtsstand der Sitz von TodaySystems GmbH.</p>
+<p><strong>§ 16 Textform; Salvatorische Klausel; Gerichtsstand</strong></p>
+<p><strong>1.</strong> Nebenabreden, Änderungen oder Ergänzungen dieses Darlehensvertrags bedürfen zu ihrer Wirksamkeit der Textform. Dies gilt auch für eine Vereinbarung, die den Verzicht auf die Textformerfordernis bestimmen soll. Mündliche Nebenabreden bestehen nicht. Es gilt deutsches Recht. Die Vertragssprache ist Deutsch.</p>
+<p><strong>2.</strong> Sollten einzelne Bestimmungen dieses Darlehensvertrags unwirksam oder undurchführbar sein oder der Darlehensvertrag Lücken enthalten, wird dadurch die Wirksamkeit der übrigen Bestimmungen nicht berührt. Die Vertragsparteien verpflichten sich, anstelle der unwirksamen oder undurchführbaren Bestimmungen solche Bestimmungen zu treffen, die den mit den unwirksamen oder undurchführbaren Bestimmungen verfolgten wirtschaftlichen Zwecken in zulässiger Weise am nächsten kommen. Im Falle von Lücken verpflichten sich die Vertragsparteien zur Aufnahme derjenigen Bestimmungen in den Darlehensvertrag hinzuwirken, die dem entspricht, was nach Sinn und Zweck dieses Darlehensvertrags vereinbart worden wäre, hätte man dies von vornherein bedacht.</p>
+<p><strong>3.</strong> Für alle Streitigkeiten aus und in Zusammenhang mit diesem Darlehensvertrag ist, soweit gesetzlich zulässig, der Gerichtsstand der Sitz von TodaySystems GmbH.</p>
 
 <p>Mönchengladbach, den {{ order.created_at|date:"SHORT_DATE_FORMAT" }}</p>
 {% endblock %}

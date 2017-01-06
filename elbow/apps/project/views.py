@@ -1,9 +1,27 @@
 # -*- coding: utf-8 -*-
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
-from django.views.generic import RedirectView
+from django.views.generic import DetailView, RedirectView
 from django.core.urlresolvers import reverse
 
 from elbow.apps.project.models import Project
+
+
+class ProjectDetailView(DetailView):
+    model = Project
+    template_name = 'project/project-detail.html'
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+
+        #
+        # If a redirect url is set then redirect
+        #
+        if self.object.redirect_url:
+            return HttpResponseRedirect(self.object.redirect_url)
+
+        context = self.get_context_data(object=self.object)
+        return self.render_to_response(context)
 
 
 class PDFPermalinkView(RedirectView):

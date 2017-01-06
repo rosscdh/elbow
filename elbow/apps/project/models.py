@@ -98,6 +98,11 @@ class Project(models.Model):
                               max_length=64,
                               db_index=True)
 
+    redirect_url = models.URLField(verbose_name=_('Redirect URL'),
+                                   help_text=_('If present the detail page will redirect here'),
+                                   blank=True,
+                                   null=True)
+
     expiration = models.DateField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

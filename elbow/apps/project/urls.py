@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from django.conf.urls import patterns, url
-from django.views.generic import TemplateView, ListView, DetailView
+from django.views.generic import TemplateView, ListView
 
 from .models import Project
-from .views import PDFPermalinkView
+from .views import ProjectDetailView, PDFPermalinkView
 
 
 urlpatterns = patterns('',
@@ -19,6 +19,5 @@ urlpatterns = patterns('',
                            name='media_permalink'),
 
                        url(r'^(?P<slug>[\w-]+)/$',
-                           DetailView.as_view(template_name='project/project-detail.html',
-                                              model=Project),
+                           ProjectDetailView.as_view(),
                            name='detail'),)
