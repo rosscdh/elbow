@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-24 11:32+0000\n"
-"PO-Revision-Date: 2016-06-14 13:03+0200\n"
+"POT-Creation-Date: 2017-01-06 19:39+0000\n"
+"PO-Revision-Date: 2017-01-06 20:40+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -27,7 +27,7 @@ msgid "Order Document"
 msgstr "Dokumente"
 
 #: elbow/apps/document/apps.py:11
-#: elbow/apps/project/templates/project/_docs.html:14
+#: elbow/apps/project/templates/project/_docs.html:17
 msgid "Generic Loan Agreement"
 msgstr "Muster-Darlehensvertrag"
 
@@ -37,7 +37,7 @@ msgid "Loan Agreement"
 msgstr "Darlehensvertrag"
 
 #: elbow/apps/document/apps.py:13 elbow/apps/project/models.py:71
-#: elbow/apps/project/templates/project/_docs.html:18
+#: elbow/apps/project/templates/project/_docs.html:23
 msgid "Term Sheet"
 msgstr "Vermögensanlageninformationsblatt (VIB)"
 
@@ -77,82 +77,82 @@ msgstr "Lastschrift"
 msgid "Manual bank transfer"
 msgstr "Überweisung"
 
-#: elbow/apps/order/forms.py:35
+#: elbow/apps/order/forms.py:36
 msgid "Amount to invest"
 msgstr "Darlehensbetrag"
 
-#: elbow/apps/order/forms.py:41
+#: elbow/apps/order/forms.py:42
 msgid "Title"
 msgstr "Anrede"
 
-#: elbow/apps/order/forms.py:41
+#: elbow/apps/order/forms.py:42
 msgid "Mr"
 msgstr "Herr"
 
-#: elbow/apps/order/forms.py:41
+#: elbow/apps/order/forms.py:42
 msgid "Mrs"
 msgstr "Frau"
 
-#: elbow/apps/order/forms.py:43 elbow/apps/public/forms.py:13
+#: elbow/apps/order/forms.py:44 elbow/apps/public/forms.py:13
 msgid "First name"
 msgstr "Vorname"
 
-#: elbow/apps/order/forms.py:46 elbow/apps/public/forms.py:14
+#: elbow/apps/order/forms.py:47 elbow/apps/public/forms.py:14
 msgid "Last name"
 msgstr "Name"
 
-#: elbow/apps/order/forms.py:49
+#: elbow/apps/order/forms.py:50
 msgid "Name of Company"
 msgstr "Firmenname"
 
-#: elbow/apps/order/forms.py:50
+#: elbow/apps/order/forms.py:51
 msgid "If applicable"
 msgstr ""
 "Bitte tragen Sie den vollständigen Firmennamen ein. Wenn Sie als Unternehmen "
 "über 10.000,00 € investieren möchten, setzen Sie sich bitte persönlich mit "
 "uns in Kontakt."
 
-#: elbow/apps/order/forms.py:53
+#: elbow/apps/order/forms.py:54
 msgid "Date of Birth"
 msgstr "Geburtsdatum"
 
-#: elbow/apps/order/forms.py:57
+#: elbow/apps/order/forms.py:58
 msgid "Address"
 msgstr "Adresse"
 
-#: elbow/apps/order/forms.py:58
+#: elbow/apps/order/forms.py:59
 msgid "Line 1 of address"
 msgstr "Straße Hausnummer"
 
-#: elbow/apps/order/forms.py:62
+#: elbow/apps/order/forms.py:63
 msgid "Line 2 of address"
 msgstr "Adresszusatz"
 
-#: elbow/apps/order/forms.py:65
+#: elbow/apps/order/forms.py:66
 msgid "Post code"
 msgstr "Postleitzahl"
 
-#: elbow/apps/order/forms.py:68
+#: elbow/apps/order/forms.py:69
 msgid "City"
 msgstr "Stadt"
 
-#: elbow/apps/order/forms.py:71
+#: elbow/apps/order/forms.py:72
 msgid "Country"
 msgstr "Land"
 
-#: elbow/apps/order/forms.py:72
+#: elbow/apps/order/forms.py:73
 msgid "Germany"
 msgstr "Deutschland"
 
-#: elbow/apps/order/forms.py:75
+#: elbow/apps/order/forms.py:76
 msgid "How to pay"
 msgstr "Zahlungsmethode"
 
-#: elbow/apps/order/forms.py:78
+#: elbow/apps/order/forms.py:79
 msgid "Please select a payment type"
 msgstr "Bitte wählen Sie eine Zahlungsweise aus"
 
-#: elbow/apps/order/forms.py:81
+#: elbow/apps/order/forms.py:82
 msgid ""
 "You want to invest 1000,00 &euro; or more and therefore, must agree to the "
 "loan contract in order to proceed"
@@ -163,14 +163,14 @@ msgstr ""
 "frei verfügbares Vermögen in Form von Bankguthaben und Finanzinstrumenten in "
 "Höhe von mindestens 100.000,00 &euro; verfüge."
 
-#: elbow/apps/order/forms.py:85 elbow/apps/public/forms.py:17
+#: elbow/apps/order/forms.py:86 elbow/apps/public/forms.py:17
 #, python-brace-format
 msgid ""
 "I agree to the site <a target=\"_NEW\" href=\"{url}\">Terms & Conditions</a>"
 msgstr ""
 "Ich habe die <a target=\"_NEW\" href=\"{url}\">AGB</a> gelesen und stimme zu."
 
-#: elbow/apps/order/forms.py:88
+#: elbow/apps/order/forms.py:89
 #, python-brace-format
 msgid ""
 "I have read and agree to be bound to the terms of the <a target=\"_NEW\" "
@@ -179,7 +179,7 @@ msgstr ""
 "Ich habe das <a target=\"_NEW\" href="
 "\"{url}\">Vermögensanlageninformationsblatt (VIB)</a> gelesen und stimme zu."
 
-#: elbow/apps/order/forms.py:91
+#: elbow/apps/order/forms.py:92
 #, python-brace-format
 msgid ""
 "I have read and agree to the terms of the <a target=\"_NEW\" href="
@@ -188,59 +188,59 @@ msgstr ""
 "Ich habe den <a target=\"_NEW\" href=\"{url}\">Muster-Darlehensvertrag</a> "
 "gelesen und stimme zu."
 
-#: elbow/apps/order/forms.py:122
+#: elbow/apps/order/forms.py:133
 #, python-brace-format
 msgid "A minimum of {minimum} is required"
 msgstr "Ein Minimum von & {minimum} ist erforderlich"
 
-#: elbow/apps/order/forms.py:125
+#: elbow/apps/order/forms.py:136
 #, python-brace-format
 msgid "A minimum of {minimum} and a maximum of {maximum}, is required"
 msgstr "Sie können eine Summe von {minimum} bis {maximum} investieren."
 
-#: elbow/apps/order/forms.py:149
+#: elbow/apps/order/forms.py:160
 msgid "Investment Amount"
 msgstr "Mein Investment"
 
-#: elbow/apps/order/forms.py:151
+#: elbow/apps/order/forms.py:162
 msgid "Interest Rate p.a"
 msgstr "Zinsen p.a."
 
-#: elbow/apps/order/forms.py:152
+#: elbow/apps/order/forms.py:163
 msgid "Interest Term"
 msgstr "Laufzeit"
 
-#: elbow/apps/order/forms.py:158
+#: elbow/apps/order/forms.py:169
 msgid "Investor Details"
 msgstr "Persönliche Daten"
 
-#: elbow/apps/order/forms.py:164
+#: elbow/apps/order/forms.py:175
 msgid "Company Details"
 msgstr "Wenn Sie als Unternehmen investieren"
 
-#: elbow/apps/order/forms.py:167
+#: elbow/apps/order/forms.py:178
 msgid "Postal Address"
 msgstr "Anschrift"
 
-#: elbow/apps/order/forms.py:174
+#: elbow/apps/order/forms.py:185
 msgid "Payment"
 msgstr "Zahlung"
 
-#: elbow/apps/order/forms.py:181
+#: elbow/apps/order/forms.py:192
 #: elbow/apps/project/templates/project/project-detail.html:13
 msgid "Invest Now"
 msgstr "Jetzt investieren"
 
-#: elbow/apps/order/forms.py:192
+#: elbow/apps/order/forms.py:203
 msgid "You must confirm your self assessment of credit worthiness"
 msgstr "Bitte bestätigen Sie die Selbstauskunft."
 
-#: elbow/apps/order/forms.py:201
+#: elbow/apps/order/forms.py:212
 #, python-brace-format
 msgid "The minimum investment amount is {minimum}"
 msgstr "Der Mindestanlagebetrag ist {minimum}"
 
-#: elbow/apps/order/forms.py:205
+#: elbow/apps/order/forms.py:216
 #, python-brace-format
 msgid "The maximum investment amount is {maximum}"
 msgstr ""
@@ -248,15 +248,15 @@ msgstr ""
 "für Unternehmen möglich. Bitte setzen Sie sich hierfür persönlich mit uns in "
 "Kontakt."
 
-#: elbow/apps/order/forms.py:212
+#: elbow/apps/order/forms.py:223
 msgid "You must agree to the terms of the loan agreement"
 msgstr "Sie müssen den Bedingungen der Darlehensvertrag zustimmen."
 
-#: elbow/apps/order/forms.py:270
+#: elbow/apps/order/forms.py:281
 msgid "I agree to the terms of the Loan Agreement"
 msgstr "Ich stimme dem Darlehensvertrag zu."
 
-#: elbow/apps/order/forms.py:309
+#: elbow/apps/order/forms.py:320
 msgid "Continue & Make the payment"
 msgstr "Jetzt zahlungspflichtig investieren"
 
@@ -313,54 +313,54 @@ msgstr "Löschen"
 msgid "Project Orders"
 msgstr "Projektaufträge"
 
-#: elbow/apps/order/templates/order/admin/order_change_form.html:65
+#: elbow/apps/order/templates/order/admin/order_change_form.html:63
 msgid "Created:"
 msgstr "Erstellt:"
 
-#: elbow/apps/order/templates/order/admin/order_change_form.html:66
+#: elbow/apps/order/templates/order/admin/order_change_form.html:64
 msgid "Updated:"
 msgstr "Aktualisierung:"
 
-#: elbow/apps/order/templates/order/admin/order_change_form.html:97
+#: elbow/apps/order/templates/order/admin/order_change_form.html:89
 msgid "Mark as Paid"
 msgstr "Als bezahlt markieren"
 
-#: elbow/apps/order/templates/order/admin/order_change_form.html:99
+#: elbow/apps/order/templates/order/admin/order_change_form.html:91
 msgid "View Logs"
 msgstr "Aufträge ansehen"
 
-#: elbow/apps/order/templates/order/admin/order_change_form.html:105
+#: elbow/apps/order/templates/order/admin/order_change_form.html:97
 msgid "Reset Order"
 msgstr "Auftrag zurücksetzen"
 
-#: elbow/apps/order/templates/order/admin/order_change_form.html:111
+#: elbow/apps/order/templates/order/admin/order_change_form.html:103
 msgid "No orders found"
 msgstr "Keine Aufträge gefunden"
 
-#: elbow/apps/order/templates/order/documents/loan_agreement.html:59
+#: elbow/apps/order/templates/order/documents/loan_agreement.html:60
 #: elbow/apps/order/templates/order/order-payment.html:43
 msgid "Bank Name"
 msgstr "Lastschrift"
 
-#: elbow/apps/order/templates/order/documents/loan_agreement.html:60
+#: elbow/apps/order/templates/order/documents/loan_agreement.html:61
 #: elbow/apps/order/templates/order/email/order_created_customer_prepay.html:11
 #: elbow/apps/order/templates/order/order-payment.html:45
 msgid "Account Owner"
 msgstr "Kontoinhaber"
 
-#: elbow/apps/order/templates/order/documents/loan_agreement.html:61
+#: elbow/apps/order/templates/order/documents/loan_agreement.html:62
 #: elbow/apps/order/templates/order/email/order_created_customer_prepay.html:13
 #: elbow/apps/order/templates/order/order-payment.html:46
 msgid "IBAN"
 msgstr "IBAN"
 
-#: elbow/apps/order/templates/order/documents/loan_agreement.html:62
+#: elbow/apps/order/templates/order/documents/loan_agreement.html:63
 #: elbow/apps/order/templates/order/email/order_created_customer_prepay.html:14
 #: elbow/apps/order/templates/order/order-payment.html:47
 msgid "BIC"
 msgstr "BIC"
 
-#: elbow/apps/order/templates/order/documents/loan_agreement.html:63
+#: elbow/apps/order/templates/order/documents/loan_agreement.html:64
 #: elbow/apps/order/templates/order/email/order_created_customer_debit.html:15
 #: elbow/apps/order/templates/order/email/order_created_customer_prepay.html:15
 #: elbow/apps/order/templates/order/order-payment.html:50
@@ -475,6 +475,11 @@ msgstr "Konnte nicht Zahlung zu verarbeiten, versuchen Sie es erneut."
 msgid "Click here"
 msgstr "Bitte hier Klicken"
 
+#: elbow/apps/order/templates/order/order-payment_failed.html:24
+#: elbow/apps/order/templates/order/order-payment_success.html:26
+msgid "Back to Project"
+msgstr "Zurück zum Projekt"
+
 #: elbow/apps/order/templates/order/order-payment_success.html:4
 #: elbow/apps/order/templates/order/order-payment_success.html:10
 msgid "Payment was successful"
@@ -499,11 +504,19 @@ msgstr ""
 msgid "Format: 12m, 36m, 3y, 7y"
 msgstr ""
 
-#: elbow/apps/project/models.py:108
+#: elbow/apps/project/models.py:101
+msgid "Redirect URL"
+msgstr ""
+
+#: elbow/apps/project/models.py:102
+msgid "If present the detail page will redirect here"
+msgstr ""
+
+#: elbow/apps/project/models.py:113
 msgid "Project"
 msgstr "Projekt"
 
-#: elbow/apps/project/models.py:109
+#: elbow/apps/project/models.py:114
 msgid "Projects"
 msgstr "Projekte"
 
@@ -513,19 +526,19 @@ msgstr "Projekte"
 msgid "Documents"
 msgstr "Dokumente"
 
-#: elbow/apps/project/templates/project/_docs.html:10
+#: elbow/apps/project/templates/project/_docs.html:11
 msgid "Exposé TodayHaus"
 msgstr ""
 
-#: elbow/apps/project/templates/project/_docs.html:11
-#: elbow/apps/project/templates/project/_docs.html:15
-#: elbow/apps/project/templates/project/_docs.html:19
-#: elbow/apps/project/templates/project/_docs.html:23
+#: elbow/apps/project/templates/project/_docs.html:12
+#: elbow/apps/project/templates/project/_docs.html:18
+#: elbow/apps/project/templates/project/_docs.html:24
 #: elbow/apps/project/templates/project/_docs.html:30
+#: elbow/apps/project/templates/project/_docs.html:38
 msgid ".PDF Download"
 msgstr ""
 
-#: elbow/apps/project/templates/project/_docs.html:22
+#: elbow/apps/project/templates/project/_docs.html:29
 msgid "Finanzplan"
 msgstr ""
 
@@ -643,7 +656,7 @@ msgstr "Ihre Zahlung ist eingegangen"
 msgid "TodayCapital.de - [admin] Investment Payment, Failure"
 msgstr "Keine Zahlung erhalten"
 
-#: elbow/settings/common_settings.py:309
+#: elbow/settings/common_settings.py:313
 msgid "German"
 msgstr "Deutsch"
 
