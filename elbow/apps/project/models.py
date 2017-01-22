@@ -103,6 +103,7 @@ class Project(models.Model):
                                    blank=True,
                                    null=True)
 
+    date_available = models.DateField(blank=True, null=True)
     expiration = models.DateField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

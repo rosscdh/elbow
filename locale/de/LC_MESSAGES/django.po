@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-06 19:39+0000\n"
-"PO-Revision-Date: 2017-01-06 20:40+0100\n"
+"POT-Creation-Date: 2017-01-22 18:22+0100\n"
+"PO-Revision-Date: 2017-01-22 18:22+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -227,7 +227,7 @@ msgid "Payment"
 msgstr "Zahlung"
 
 #: elbow/apps/order/forms.py:192
-#: elbow/apps/project/templates/project/project-detail.html:13
+#: elbow/apps/project/templates/project/project-detail.html:14
 msgid "Invest Now"
 msgstr "Jetzt investieren"
 
@@ -338,32 +338,32 @@ msgid "No orders found"
 msgstr "Keine Aufträge gefunden"
 
 #: elbow/apps/order/templates/order/documents/loan_agreement.html:60
-#: elbow/apps/order/templates/order/order-payment.html:43
+#: elbow/apps/order/templates/order/order-payment.html:50
 msgid "Bank Name"
 msgstr "Lastschrift"
 
 #: elbow/apps/order/templates/order/documents/loan_agreement.html:61
 #: elbow/apps/order/templates/order/email/order_created_customer_prepay.html:11
-#: elbow/apps/order/templates/order/order-payment.html:45
+#: elbow/apps/order/templates/order/order-payment.html:52
 msgid "Account Owner"
 msgstr "Kontoinhaber"
 
 #: elbow/apps/order/templates/order/documents/loan_agreement.html:62
 #: elbow/apps/order/templates/order/email/order_created_customer_prepay.html:13
-#: elbow/apps/order/templates/order/order-payment.html:46
+#: elbow/apps/order/templates/order/order-payment.html:53
 msgid "IBAN"
 msgstr "IBAN"
 
 #: elbow/apps/order/templates/order/documents/loan_agreement.html:63
 #: elbow/apps/order/templates/order/email/order_created_customer_prepay.html:14
-#: elbow/apps/order/templates/order/order-payment.html:47
+#: elbow/apps/order/templates/order/order-payment.html:54
 msgid "BIC"
 msgstr "BIC"
 
 #: elbow/apps/order/templates/order/documents/loan_agreement.html:64
 #: elbow/apps/order/templates/order/email/order_created_customer_debit.html:15
 #: elbow/apps/order/templates/order/email/order_created_customer_prepay.html:15
-#: elbow/apps/order/templates/order/order-payment.html:50
+#: elbow/apps/order/templates/order/order-payment.html:57
 msgid "Customer Reference"
 msgstr "Verwendungszweck"
 
@@ -441,14 +441,20 @@ msgid "Payment Details"
 msgstr "Zahlungsdetails"
 
 #: elbow/apps/order/templates/order/order-payment.html:41
+#: elbow/apps/order/templates/order/order-payment_failed.html:24
+#: elbow/apps/order/templates/order/order-payment_success.html:26
+msgid "Back to Project"
+msgstr "Zurück zum Projekt"
+
+#: elbow/apps/order/templates/order/order-payment.html:48
 msgid "Please make payment out to"
 msgstr "Zahlungsempfänger"
 
-#: elbow/apps/order/templates/order/order-payment.html:44
+#: elbow/apps/order/templates/order/order-payment.html:51
 msgid "Bankcode"
 msgstr "Bankverbindung"
 
-#: elbow/apps/order/templates/order/order-payment.html:48
+#: elbow/apps/order/templates/order/order-payment.html:55
 msgid "Account No."
 msgstr "Kontonummer"
 
@@ -474,11 +480,6 @@ msgstr "Konnte nicht Zahlung zu verarbeiten, versuchen Sie es erneut."
 #: elbow/apps/order/templates/order/order-payment_failed.html:20
 msgid "Click here"
 msgstr "Bitte hier Klicken"
-
-#: elbow/apps/order/templates/order/order-payment_failed.html:24
-#: elbow/apps/order/templates/order/order-payment_success.html:26
-msgid "Back to Project"
-msgstr "Zurück zum Projekt"
 
 #: elbow/apps/order/templates/order/order-payment_success.html:4
 #: elbow/apps/order/templates/order/order-payment_success.html:10
@@ -512,17 +513,17 @@ msgstr ""
 msgid "If present the detail page will redirect here"
 msgstr ""
 
-#: elbow/apps/project/models.py:113
+#: elbow/apps/project/models.py:114
 msgid "Project"
 msgstr "Projekt"
 
-#: elbow/apps/project/models.py:114
+#: elbow/apps/project/models.py:115
 msgid "Projects"
 msgstr "Projekte"
 
 #: elbow/apps/project/templates/project/_docs.html:6
-#: elbow/apps/project/templates/project/project-detail.html:57
-#: elbow/apps/project/templates/project/project-detail.html:67
+#: elbow/apps/project/templates/project/project-detail.html:61
+#: elbow/apps/project/templates/project/project-detail.html:71
 msgid "Documents"
 msgstr "Dokumente"
 
@@ -552,7 +553,7 @@ msgstr "Fundingziel:"
 
 # > an welcher Stelle steht das?
 #: elbow/apps/project/templates/project/_stats.html:22
-#: elbow/apps/project/templates/project/project-detail.html:52
+#: elbow/apps/project/templates/project/project-detail.html:56
 msgid "<b>NB</b> Be one of the first to invest in this opportunity"
 msgstr ""
 "<b>NB</b> Investieren Sie als einer der Ersten in ein vielseitiges Projekt"
@@ -565,28 +566,33 @@ msgstr "Anzahl der Investoren"
 msgid "Revenue"
 msgstr "Bereits investiert"
 
-#: elbow/apps/project/templates/project/project-detail.html:31
+#: elbow/apps/project/templates/project/project-detail.html:16
+#, python-format
+msgid "Available from %(available_from)s"
+msgstr "Ab %(available_from)s Verfügbar"
+
+#: elbow/apps/project/templates/project/project-detail.html:35
 msgid "Overview"
 msgstr "Überblick"
 
-#: elbow/apps/project/templates/project/project-detail.html:60
-#: elbow/apps/project/templates/project/project-detail.html:203
+#: elbow/apps/project/templates/project/project-detail.html:64
+#: elbow/apps/project/templates/project/project-detail.html:207
 msgid "Latest News"
 msgstr "Projekt-News"
 
-#: elbow/apps/project/templates/project/project-detail.html:74
+#: elbow/apps/project/templates/project/project-detail.html:78
 msgid "Building Details"
 msgstr "Objektbeschreibung"
 
-#: elbow/apps/project/templates/project/project-detail.html:80
+#: elbow/apps/project/templates/project/project-detail.html:84
 msgid "Map"
 msgstr "Karte"
 
-#: elbow/apps/project/templates/project/project-detail.html:87
+#: elbow/apps/project/templates/project/project-detail.html:91
 msgid "How it works"
 msgstr "Wie es funktioniert"
 
-#: elbow/apps/project/templates/project/project-detail.html:99
+#: elbow/apps/project/templates/project/project-detail.html:103
 msgid "F.A.Q"
 msgstr "Häufig gestellte Fragen"
 
