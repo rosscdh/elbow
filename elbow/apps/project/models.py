@@ -22,6 +22,7 @@ from .apps import PROJECT_STATUS, USE_PAYMENTOPTIONS, INTEREST_TYPE
 from .managers import ProjectManager
 
 import os
+import datetime
 
 
 def _image_upload_path(instance, filename):
@@ -129,6 +130,10 @@ class Project(models.Model):
     @property
     def running_time(self):
         return '?'
+
+    @property
+    def is_available_for_investment(self):
+        return datetime.datetime.combine(self.date_available, datetime.time(0, 0)) <= datetime.datetime.today() if self.date_available else True
 
     @property
     def num_backers(self):

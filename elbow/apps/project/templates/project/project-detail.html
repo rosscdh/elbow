@@ -10,10 +10,10 @@
       <h1>{{ project.name }}<br/><small>{{ project.proposition }}</small></h1>
     </div>
     <div class="col-md-3 text-center" style="padding-top:35px;">
-      {% if is_available_for_investment %}
+      {% if object.is_available_for_investment %}
         <a href="{% url 'order:create' project_slug=project.slug %}" class="btn btn-primary btn-lg" name="" id="">{% trans "Invest Now" %}</a>
       {% else %}
-        <a href="" class="btn btn-default btn-lg" name="" id="">{% blocktrans with available_from=object.date_available %}Available from {{ available_from}}{% endblocktrans %}</a>
+        <a href="" class="btn btn-default btn-lg" name="" id="">{% blocktrans with available_from=object.date_available %}Available from {{ available_from }}{% endblocktrans %}</a>
       {% endif %}
     </div>
 </div>

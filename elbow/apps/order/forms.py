@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django import forms
+from django.utils import formats
 from django.conf import settings
 from django.core import validators
 from django.utils.safestring import mark_safe
@@ -9,7 +10,7 @@ from django_countries.widgets import CountrySelectWidget
 from pinax.eventlog.models import log
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Field, Submit, HTML
+from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Field, Submit, HTML, Button
 from crispy_forms.bootstrap import PrependedAppendedText
 
 from decimal import Decimal
@@ -156,6 +157,12 @@ class CreateOrderForm(forms.Form):
         if self.is_large_sum() is True:
             show_has_agreed_to_loan_agreement_terms = ''
 
+        if self.project.is_available_for_investment is True:
+            form_submit_button = Submit('submit', _(u'Invest Now'), css_class='btn btn-primary btn-lg')
+        else:
+            available_from = formats.date_format(self.project.date_available, "SHORT_DATE_FORMAT")
+            form_submit_button = Button('button', _(u'Available %(available_from)s' % {'available_from': available_from}), css_class='btn btn-default btn-lg')
+
         helper.layout = Layout(
                                Fieldset(_('Investment Amount'),
                                         PrependedAppendedText('amount', DEFAULT_CURRENCY_SYMBOL, '.00'),
@@ -189,8 +196,9 @@ class CreateOrderForm(forms.Form):
                                         'has_read_loan_agreement_contract' if self.fields.get('has_read_loan_agreement_contract') else None,
                                ),
                                ButtonHolder(
-                                    Submit('submit', _('Invest Now'), css_class='btn btn-lg'),
+                                    form_submit_button,
                                ))
+
         return helper
 
     def is_large_sum(self):

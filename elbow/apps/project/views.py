@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import datetime
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, RedirectView
@@ -22,11 +21,6 @@ class ProjectDetailView(DetailView):
             return HttpResponseRedirect(self.object.redirect_url)
 
         context = self.get_context_data(object=self.object)
-
-        context.update({
-            'is_available_for_investment': datetime.datetime.combine(self.object.date_available, datetime.time(0, 0)) <= datetime.datetime.today() if self.object.date_available else True
-        })
-
         return self.render_to_response(context)
 
 
