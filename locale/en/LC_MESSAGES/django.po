@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-22 19:24+0100\n"
+"POT-Creation-Date: 2017-01-22 19:29+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -183,67 +183,68 @@ msgstr ""
 msgid "A minimum of {minimum} and a maximum of {maximum}, is required"
 msgstr ""
 
-#: elbow/apps/order/forms.py:161 elbow/apps/order/forms.py:164
+#: elbow/apps/order/forms.py:161
 #: elbow/apps/project/templates/project/project-detail.html:14
 msgid "Invest Now"
 msgstr ""
 
-#: elbow/apps/order/forms.py:165
+#: elbow/apps/order/forms.py:164
+#: elbow/apps/project/templates/project/project-detail.html:16
 #, python-format
-msgid "Available %(available_from)s"
+msgid "Available from %(available_from)s"
 msgstr ""
 
-#: elbow/apps/order/forms.py:168
+#: elbow/apps/order/forms.py:167
 msgid "Investment Amount"
 msgstr ""
 
-#: elbow/apps/order/forms.py:170
+#: elbow/apps/order/forms.py:169
 msgid "Interest Rate p.a"
 msgstr ""
 
-#: elbow/apps/order/forms.py:171
+#: elbow/apps/order/forms.py:170
 msgid "Interest Term"
 msgstr ""
 
-#: elbow/apps/order/forms.py:177
+#: elbow/apps/order/forms.py:176
 msgid "Investor Details"
 msgstr ""
 
-#: elbow/apps/order/forms.py:183
+#: elbow/apps/order/forms.py:182
 msgid "Company Details"
 msgstr ""
 
-#: elbow/apps/order/forms.py:186
+#: elbow/apps/order/forms.py:185
 msgid "Postal Address"
 msgstr ""
 
-#: elbow/apps/order/forms.py:193
+#: elbow/apps/order/forms.py:192
 msgid "Payment"
 msgstr ""
 
-#: elbow/apps/order/forms.py:212
+#: elbow/apps/order/forms.py:211
 msgid "You must confirm your self assessment of credit worthiness"
 msgstr ""
 
-#: elbow/apps/order/forms.py:221
+#: elbow/apps/order/forms.py:220
 #, python-brace-format
 msgid "The minimum investment amount is {minimum}"
 msgstr ""
 
-#: elbow/apps/order/forms.py:225
+#: elbow/apps/order/forms.py:224
 #, python-brace-format
 msgid "The maximum investment amount is {maximum}"
 msgstr ""
 
-#: elbow/apps/order/forms.py:232
+#: elbow/apps/order/forms.py:231
 msgid "You must agree to the terms of the loan agreement"
 msgstr ""
 
-#: elbow/apps/order/forms.py:290
+#: elbow/apps/order/forms.py:289
 msgid "I agree to the terms of the Loan Agreement"
 msgstr ""
 
-#: elbow/apps/order/forms.py:329
+#: elbow/apps/order/forms.py:328
 msgid "Continue & Make the payment"
 msgstr ""
 
@@ -537,11 +538,6 @@ msgstr ""
 
 #: elbow/apps/project/templates/project/_stats.html:34
 msgid "Revenue"
-msgstr ""
-
-#: elbow/apps/project/templates/project/project-detail.html:16
-#, python-format
-msgid "Available from %(available_from)s"
 msgstr ""
 
 #: elbow/apps/project/templates/project/project-detail.html:35

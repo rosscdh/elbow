@@ -161,7 +161,7 @@ class CreateOrderForm(forms.Form):
             form_submit_button = Submit('submit', _(u'Invest Now'), css_class='btn btn-primary btn-lg')
         else:
             available_from = formats.date_format(self.project.date_available, "SHORT_DATE_FORMAT")
-            form_submit_button = Button('button', _(u'Available %(available_from)s' % {'available_from': available_from}), css_class='btn btn-default btn-lg')
+            form_submit_button = Button('button', _(u'Available from %(available_from)s') % {'available_from': available_from}, css_class='btn btn-default btn-lg')
 
         helper.layout = Layout(
                                Fieldset(_('Investment Amount'),

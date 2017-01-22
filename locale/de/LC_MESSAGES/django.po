@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-22 19:24+0100\n"
+"POT-Creation-Date: 2017-01-22 19:29+0100\n"
 "PO-Revision-Date: 2017-01-22 19:24+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -198,55 +198,55 @@ msgstr "Ein Minimum von & {minimum} ist erforderlich"
 msgid "A minimum of {minimum} and a maximum of {maximum}, is required"
 msgstr "Sie können eine Summe von {minimum} bis {maximum} investieren."
 
-#: elbow/apps/order/forms.py:161 elbow/apps/order/forms.py:164
+#: elbow/apps/order/forms.py:161
 #: elbow/apps/project/templates/project/project-detail.html:14
 msgid "Invest Now"
 msgstr "Jetzt investieren"
 
-#: elbow/apps/order/forms.py:165
-#, fuzzy, python-format
-#| msgid "Available from %(available_from)s"
-msgid "Available %(available_from)s"
+#: elbow/apps/order/forms.py:164
+#: elbow/apps/project/templates/project/project-detail.html:16
+#, python-format
+msgid "Available from %(available_from)s"
 msgstr "möglich ab %(available_from)s"
 
-#: elbow/apps/order/forms.py:168
+#: elbow/apps/order/forms.py:167
 msgid "Investment Amount"
 msgstr "Mein Investment"
 
-#: elbow/apps/order/forms.py:170
+#: elbow/apps/order/forms.py:169
 msgid "Interest Rate p.a"
 msgstr "Zinsen p.a."
 
-#: elbow/apps/order/forms.py:171
+#: elbow/apps/order/forms.py:170
 msgid "Interest Term"
 msgstr "Laufzeit"
 
-#: elbow/apps/order/forms.py:177
+#: elbow/apps/order/forms.py:176
 msgid "Investor Details"
 msgstr "Persönliche Daten"
 
-#: elbow/apps/order/forms.py:183
+#: elbow/apps/order/forms.py:182
 msgid "Company Details"
 msgstr "Wenn Sie als Unternehmen investieren"
 
-#: elbow/apps/order/forms.py:186
+#: elbow/apps/order/forms.py:185
 msgid "Postal Address"
 msgstr "Anschrift"
 
-#: elbow/apps/order/forms.py:193
+#: elbow/apps/order/forms.py:192
 msgid "Payment"
 msgstr "Zahlung"
 
-#: elbow/apps/order/forms.py:212
+#: elbow/apps/order/forms.py:211
 msgid "You must confirm your self assessment of credit worthiness"
 msgstr "Bitte bestätigen Sie die Selbstauskunft."
 
-#: elbow/apps/order/forms.py:221
+#: elbow/apps/order/forms.py:220
 #, python-brace-format
 msgid "The minimum investment amount is {minimum}"
 msgstr "Der Mindestanlagebetrag ist {minimum}"
 
-#: elbow/apps/order/forms.py:225
+#: elbow/apps/order/forms.py:224
 #, python-brace-format
 msgid "The maximum investment amount is {maximum}"
 msgstr ""
@@ -254,15 +254,15 @@ msgstr ""
 "für Unternehmen möglich. Bitte setzen Sie sich hierfür persönlich mit uns in "
 "Kontakt."
 
-#: elbow/apps/order/forms.py:232
+#: elbow/apps/order/forms.py:231
 msgid "You must agree to the terms of the loan agreement"
 msgstr "Sie müssen den Bedingungen der Darlehensvertrag zustimmen."
 
-#: elbow/apps/order/forms.py:290
+#: elbow/apps/order/forms.py:289
 msgid "I agree to the terms of the Loan Agreement"
 msgstr "Ich stimme dem Darlehensvertrag zu."
 
-#: elbow/apps/order/forms.py:329
+#: elbow/apps/order/forms.py:328
 msgid "Continue & Make the payment"
 msgstr "Jetzt zahlungspflichtig investieren"
 
@@ -571,11 +571,6 @@ msgstr "Anzahl der Investoren"
 #: elbow/apps/project/templates/project/_stats.html:34
 msgid "Revenue"
 msgstr "Bereits investiert"
-
-#: elbow/apps/project/templates/project/project-detail.html:16
-#, python-format
-msgid "Available from %(available_from)s"
-msgstr "möglich ab %(available_from)s"
 
 #: elbow/apps/project/templates/project/project-detail.html:35
 msgid "Overview"
@@ -1126,6 +1121,11 @@ msgstr "Mein Benutzerkonto löschen"
 #: templates/navigation.html:49
 msgid "Logout"
 msgstr "Abmelden"
+
+#, fuzzy
+#~| msgid "Available from %(available_from)s"
+#~ msgid "Available %(available_from)s"
+#~ msgstr "möglich ab %(available_from)s"
 
 #~ msgid "Cancel Order"
 #~ msgstr "Auftrag stornieren"
