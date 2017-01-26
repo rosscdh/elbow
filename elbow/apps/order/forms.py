@@ -3,6 +3,7 @@ from django import forms
 from django.utils import formats
 from django.conf import settings
 from django.core import validators
+
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 from django_countries.widgets import CountrySelectWidget
@@ -97,6 +98,11 @@ class CreateOrderForm(forms.Form):
         self.user = kwargs.pop('user', None)
         self.project = kwargs.pop('project', None)
 
+        self.available_from_message = None
+        if self.project.date_available:
+            available_from = formats.date_format(self.project.date_available, "SHORT_DATE_FORMAT")
+            self.available_from_message = _(u'Available from %(available_from)s') % {'available_from': available_from}
+
         if self.user is None:
             raise Exception('user must be passed into the Form')
         if self.project is None:
@@ -160,8 +166,7 @@ class CreateOrderForm(forms.Form):
         if self.project.is_available_for_investment is True:
             form_submit_button = Submit('submit', _(u'Invest Now'), css_class='btn btn-primary btn-lg')
         else:
-            available_from = formats.date_format(self.project.date_available, "SHORT_DATE_FORMAT")
-            form_submit_button = Button('button', _(u'Available from %(available_from)s') % {'available_from': available_from}, css_class='btn btn-default btn-lg')
+            form_submit_button = Button('button', self.available_from_message, css_class='btn btn-default btn-lg not-yet-available')
 
         helper.layout = Layout(
                                Fieldset(_('Investment Amount'),
@@ -205,6 +210,13 @@ class CreateOrderForm(forms.Form):
         if hasattr(self, 'cleaned_data') is True:
             return self.cleaned_data.get('amount', None) > 1000
         return False
+
+    def clean(self, *args, **kwargs):
+        # ensure we are able to do this
+        if self.project.is_available_for_investment is False:
+            raise forms.ValidationError(self.available_from_message,
+                                        code='project_not_set_available',)
+        return super(CreateOrderForm, self).clean(*args, **kwargs)
 
     def clean_disclosure(self, *args, **kwargs):
         if self.is_large_sum() is True and self.cleaned_data['disclosure'] is False:
@@ -251,7 +263,6 @@ class CreateOrderForm(forms.Form):
         self.cleaned_data['project'] = self.project
 
         order = Order.objects.create(**self.cleaned_data)
-
 
         #
         # Make the payment

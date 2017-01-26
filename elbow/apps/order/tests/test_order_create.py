@@ -1,9 +1,10 @@
 # -*- coding: UTF-8 -*-
 from . import BaseTestCase, TestCase, VALID_ORDER_POST_DATA
-from django.core.urlresolvers import reverse
 from django.core import mail
+from django.core.urlresolvers import reverse
 
 import json
+import datetime
 import httpretty
 
 from elbow.apps.order.forms import CreateOrderForm
@@ -120,6 +121,21 @@ class OrderCreateViewTest(BaseTestCase):
         #
         self.assertEqual(resp.status_code, 302)
         self.assertEqual(resp.url, '/de/orders/my-basic-test-project/order/%s/loan-agreement/' % order.uuid)
+
+    @httpretty.activate
+    def test_form_raises_permission_denied_if_date_available_not_valid(self):
+        tomorrow = datetime.datetime.today() + datetime.timedelta(days=1)
+        self.project.date_available = tomorrow
+        self.project.save(update_fields=['date_available'])
+
+        with self.settings(DEBUG=True):
+            self.c.force_login(self.user)
+            # initial amount is 2500
+            resp = self.c.post(self.url, self.initial)
+
+        self.assertEqual(resp.status_code, 200)
+
+        self.assertTrue('<div class="alert alert-block alert-danger"><ul><li>m\xc3\xb6glich ab' in resp.content)
 
 
 class OrderFormTest(TestCase):
