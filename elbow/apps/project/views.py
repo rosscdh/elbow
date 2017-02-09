@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.http import HttpResponseRedirect
+from django.http import Http404
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, RedirectView
 from django.core.urlresolvers import reverse
@@ -13,6 +14,12 @@ class ProjectDetailView(DetailView):
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
+
+        #
+        # if is removed or pending project
+        #
+        if self.object.status in [self.object.PROJECT_STATUS.pending, self.object.PROJECT_STATUS.removed]:
+            raise Http404("Project is not available: {0}".format(self.object.PROJECT_STATUS.get_desc_by_value(self.object.status)))
 
         #
         # If a redirect url is set then redirect

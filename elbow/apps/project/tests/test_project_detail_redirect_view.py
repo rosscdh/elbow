@@ -1,11 +1,10 @@
 # -*- coding: UTF-8 -*-
 from django.core.urlresolvers import reverse
-from django.core.files.base import ContentFile
 
 from model_mommy import mommy
 
 from elbow.apps.order.tests import BaseTestCase
-
+from elbow.apps.project.models import Project
 
 
 class ProjectDocumentRedirectUrlTest(BaseTestCase):
@@ -16,6 +15,7 @@ class ProjectDocumentRedirectUrlTest(BaseTestCase):
         super(ProjectDocumentRedirectUrlTest, self).setUp()
         self.project = mommy.make('project.Project',
                                   name='My Basic Test Project',
+                                  status=Project.PROJECT_STATUS.active,
                                   redirect_url=None)
 
         self.detail_url = reverse('project:detail', kwargs={'slug': self.project.slug})
