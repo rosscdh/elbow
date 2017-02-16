@@ -161,8 +161,8 @@ class Project(models.Model):
 
     @property
     def term_sheet_doc_permalink(self):
-        return reverse('project:media_permalink', kwargs={'slug': self.slug, 'media_slug': 'term-sheet'})
+        return reverse('project:media_permalink', kwargs={'slug': self.slug, 'media_slug': 'term-sheet'}) if self.term_sheet_doc else None
 
     @property
     def loan_agreement_doc_permalink(self):
-        return reverse('project:media_permalink', kwargs={'slug': self.slug, 'media_slug': 'loan-agreement'})
+        return reverse('project:media_permalink', kwargs={'slug': self.slug, 'media_slug': 'loan-agreement'}) if self.loan_agreement_doc else None
