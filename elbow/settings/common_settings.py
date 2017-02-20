@@ -262,14 +262,7 @@ AUTHENTICATION_BACKENDS = (
     'rulez.backends.ObjectPermissionBackend',
 )
 
-# All Auth /rest-auth config
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_UNIQUE_EMAIL = True
-ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = 'https://today-capital.de'
-ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = 'https://today-capital.de'
-ACCOUNT_LOGOUT_ON_GET = True
+
 LOGIN_REDIRECT_URL = '/de/projects/todayhaus/'
 
 BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, '../')
@@ -370,6 +363,14 @@ def _user_display(user):
         return u'%s' % (user.first_name,)
     return user.email
 
+# All Auth /rest-auth config
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = 'https://today-capital.de/project/todayhaus/'
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = 'https://today-capital.de/project/todayhaus/'
+ACCOUNT_LOGOUT_ON_GET = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 ACCOUNT_EMAIL_SUBJECT_PREFIX = ''
