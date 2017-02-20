@@ -64,7 +64,7 @@ class ValidateEmailsOnSignupTest(BaseTestCase):
         resp = self.c.get(url)
 
         self.assertEqual(resp.status_code, 302)
-        self.assertEqual(resp.url, 'https://today-capital.de')
+        self.assertEqual(resp.url, 'https://today-capital.de/project/todayhaus/')
         signup.refresh_from_db()
         signup.email_address.refresh_from_db()
 

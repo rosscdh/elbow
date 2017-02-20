@@ -14,10 +14,10 @@ class SignupCreatesUserProfileTest(BaseTestCase):
         self.assertEqual(resp.status_code, 200)
         form = resp.context['form']
         self.assertEqual(form.__class__.__name__, 'SignUpForm')
+
         self.assertEqual(form.fields.keys(), ['email',
                                               'password1',
                                               'password2',
-                                              'confirmation_key',
                                               'first_name',
                                               'last_name',
                                               'has_aggeed_t_and_c',
