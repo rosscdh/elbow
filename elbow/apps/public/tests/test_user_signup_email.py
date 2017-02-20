@@ -1,4 +1,5 @@
 # -*- coding: UTF-8 -*-
+from django.utils import timezone
 from django.conf import settings
 from django.core import mail
 from django.core.urlresolvers import reverse
@@ -44,3 +45,28 @@ class EmailsSentOnNewSignupTest(BaseTestCase):
         self.assertEqual(email.subject, u'Registrierung abschlie\xdfen auf TodayCapital')
         self.assertEqual(email.recipients(), [u'test+user@example.com'])
 
+
+class ValidateEmailsOnSignupTest(BaseTestCase):
+    """
+    Test that we only have to land on the page in order to confirm our account
+    not click a button
+    """
+
+    def setUp(self):
+        super(ValidateEmailsOnSignupTest, self).setUp()
+        mail.outbox = []
+
+    def test_signup_sends_admin_email(self):
+        signup = mommy.make('account.EmailConfirmation', sent=timezone.now())
+
+        url = reverse('account_confirm_email', kwargs={'key': signup.key})
+
+        resp = self.c.get(url)
+
+        self.assertEqual(resp.status_code, 302)
+        self.assertEqual(resp.url, 'https://today-capital.de')
+        signup.refresh_from_db()
+        signup.email_address.refresh_from_db()
+
+        # # Should have email to managers and outgoing welcome email
+        self.assertEqual(signup.email_address.verified, True)
