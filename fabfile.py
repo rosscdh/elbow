@@ -625,7 +625,6 @@ def upload_db():
 
 @task
 def db_backup(db='default'):
-    os.environ['DJANGO_ENV'] = env.environment
     from django.conf import settings
     db_settings = getattr(settings, 'DATABASES')
 

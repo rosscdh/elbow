@@ -12,7 +12,8 @@ templates/dashboard/*
 *.pyc
 
 secupay
-
+ansible
+allauth
 # ignore the locally generated dash as its uploaded seperately
 dj_paymill
 
