@@ -21,6 +21,13 @@ SECRET_KEY = '2=il^vfe7b_(q&qloc5mzju$l=#-8%*@__%=5yhah0obaie!^_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+ADMINS = [
+    'sendrossemail+elbow@gmail.com'
+]
+
+MANAGERS = ADMINS
+
+DEFAULT_FROM_EMAIL = SERVER_EMAIL = 'post@todaycapital.de'
 
 ALLOWED_HOSTS = ['*']
 

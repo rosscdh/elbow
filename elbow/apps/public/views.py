@@ -4,6 +4,7 @@ from django.views.generic import RedirectView
 from elbow.apps.project.models import Project
 from elbow.mixins import LoginRequiredMixin
 
+
 #class HomePageView(TemplateView):
 class HomePageView(LoginRequiredMixin, RedirectView):
     #url = '/de/p/start/'
