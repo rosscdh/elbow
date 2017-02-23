@@ -30,13 +30,13 @@ class ProjectSerializer(serializers.ModelSerializer):
 
     def get_amount(self, obj):
         return {
-            'amount': obj.amount.amount,
+            'amount': obj.amount.amount.to_eng_string(),
             'currency': str(obj.amount.currency),
         }
 
     def get_minimum(self, obj):
         return {
-            'amount': obj.minimum_investment.amount,
+            'amount': obj.minimum_investment.amount.to_eng_string(),
             'currency': str(obj.minimum_investment.currency),
         }
 
@@ -51,7 +51,7 @@ class ProjectSerializer(serializers.ModelSerializer):
 
     def get_revenue(self, obj):
         return {
-            'amount': obj.revenue.amount,
+            'amount': obj.revenue.amount.to_eng_string(),
             'currency': str(obj.revenue.currency)
         }
 
