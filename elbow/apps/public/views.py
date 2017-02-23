@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.views.generic import RedirectView
+from allauth.account.views import LoginView as AllAuthLoginView
+from allauth.account.views import SignupView as AllAuthSignupView
 
 from elbow.apps.project.models import Project
 from elbow.mixins import LoginRequiredMixin
@@ -17,3 +19,11 @@ class HomePageView(LoginRequiredMixin, RedirectView):
             'project_list': Project.objects.public()
         })
         return context
+
+
+class LoginView(AllAuthLoginView):
+    pass
+
+
+class SignupView(AllAuthSignupView):
+    pass

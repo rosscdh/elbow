@@ -5,7 +5,9 @@ from django.conf.urls.static import static
 from django.conf.urls import url, include
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.views.decorators.cache import never_cache
 
+from elbow.apps.public.views import LoginView, SignupView
 
 urlpatterns = i18n_patterns(
     url(r'^admin/', admin.site.urls),
@@ -24,6 +26,8 @@ urlpatterns = i18n_patterns(
     # url(r'^auth/token/refresh/', 'rest_framework_jwt.views.refresh_jwt_token'),
     # url(r'^auth/', include('rest_auth.urls')),
     # url(r'^auth/registration/', include('rest_auth.registration.urls')),
+    url(r'^accounts/login/', never_cache(LoginView.as_view()), name='account_login'),
+    url(r'^accounts/signup/', never_cache(SignupView.as_view()), name='account_signup'),
     url(r'^accounts/', include('allauth.urls')),
 
     url(r'^', include('elbow.apps.public.urls', namespace='public')),
