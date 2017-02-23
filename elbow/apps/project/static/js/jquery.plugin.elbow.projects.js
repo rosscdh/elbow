@@ -1,5 +1,28 @@
 'use strict';
 /*
+jQuery('#outer-wrapper').projects({
+    endpoint: 'http://localhost:8100/de/api/v1/projects/todayhaus/',
+    source: '<table id="tablepress-7" class="tablepress tablepress-id-7">' +
+        '<tbody>' +
+        '<tr class="row-1">' +
+        '    <td class="column-1">{{ revenue.amount }} €</td>' +
+        '</tr>' +
+        '<tr class="row-2">' +
+        '    <td class="column-1">von {{ amount.amount }} € investiert</td>' +
+        '</tr>' +
+        '<tr class="row-3">' +
+        '    <td class="column-1">9 Wochen verbleiben</td>' +
+        '</tr>' +
+        '<tr class="row-4">' +
+        '    <td class="column-1"><img src="//today-capital.de/wp-content/uploads/2016/07/tc-progress-bar-00.png" alt="tc-progress-bar-00" width="256" height="16" class="alignnone size-full wp-image-443"></td>' +
+        '</tr>' +
+        '<tr class="row-5">' +
+        '    <td class="column-1"><div style="background-color:#94c11f;padding:16px;border-radius:8px;text-align:center;"><a href="{{ urls.invest_now }}?TB_iframe=true&amp;width=1024&amp;height=768" class="thickbox" style="color:#ffffff;font-size:150%;">Jetzt investieren</a></div></td>' +
+        '</tr>' +
+        '</tbody>' +
+        '</table>'
+});
+
 */
 jQuery(function($) {
     // the widget definition, where "custom" is the namespace,
@@ -21,11 +44,11 @@ jQuery(function($) {
             var self = this;
             self.template = Handlebars.compile(self.options.source)
             this._listen();
-            //this.projects();
+            this.project();
         },
         _listen: function () {
         },
-        projects: function () {
+        project: function () {
             var self = this;
             $.ajax({
                 type: 'GET',
@@ -33,45 +56,18 @@ jQuery(function($) {
                 beforeSend: function () {
                 },
                 success: function ( data ) {
+                    self._log(data);
+                    self._log('fdaffds');
                     var combined_html = '';
-                    $.each(data.results, function (i, item) {
-                        console.log(i)
-                        console.log(item)
-                        var html = self.template(item);
-                        console.log(html)
-                        combined_html += html;
-                    });
-                    self.element.html(combined_html);
+                    var html = self.template(data)
+                    self.element.html(html);
                     
                 },
                 error: function ( data ) {
+                    self._log(data);
                 },
-                complete: function () {
-                }
-            });
-        },
-        project: function (pk) {
-            var self = this;
-            $.ajax({
-                type: 'GET',
-                url: self.options.endpoint + pk,
-                beforeSend: function () {
-                },
-                success: function ( data ) {
-                    var combined_html = '';
-                    $.each(data.results, function (i, item) {
-                        console.log(i)
-                        console.log(item)
-                        var html = self.template(item);
-                        console.log(html)
-                        combined_html += html;
-                    });
-                    self.element.html(combined_html);
-                    
-                },
-                error: function ( data ) {
-                },
-                complete: function () {
+                complete: function (data) {
+                    self._log(data);
                 }
             });
         }

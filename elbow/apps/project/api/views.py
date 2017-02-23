@@ -8,3 +8,5 @@ class ProjectListAPIViewset(ReadOnlyModelViewSet):
     model = Project
     serializer_class = ProjectSerializer
     queryset = Project.objects.public()
+    lookup_field = 'slug'
+

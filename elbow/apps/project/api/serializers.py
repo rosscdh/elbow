@@ -3,7 +3,7 @@ from django.conf import settings
 from rest_framework import serializers
 
 from ..models import Project
-from elbow.apps.document.api.serializers import DocumentSerializer
+#from elbow.apps.document.api.serializers import DocumentSerializer
 
 
 class ProjectSerializer(serializers.ModelSerializer):
@@ -17,6 +17,10 @@ class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
         fields = ('urls', 'amount', 'minimum', 'interest_rate', 'num_backers', 'percent', 'revenue', )
+        lookup_field = 'slug'
+        extra_kwargs = {
+            'url': {'lookup_field': 'slug'}
+        }
 
     def get_urls(self, obj):
         return {
