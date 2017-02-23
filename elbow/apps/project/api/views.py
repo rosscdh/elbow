@@ -7,4 +7,4 @@ from .serializers import (ProjectSerializer,)
 class ProjectListAPIViewset(ReadOnlyModelViewSet):
     model = Project
     serializer_class = ProjectSerializer
-    queryset = Project.objects.all()
+    queryset = Project.objects.public()

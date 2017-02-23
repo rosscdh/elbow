@@ -1,10 +1,10 @@
 'use strict';
 /*
 */
-$(function() {
+jQuery(function($) {
     // the widget definition, where "custom" is the namespace,
     // "colorize" the widget name
-    $.widget( "elbow.list_projects", {
+    $.widget( "elbow.projects", {
         // default options
         options: {
             endpoint: 'http://localhost:8009/api/v1/projects/',

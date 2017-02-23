@@ -9,17 +9,14 @@ from elbow.apps.document.api.serializers import DocumentSerializer
 class ProjectSerializer(serializers.ModelSerializer):
     urls = serializers.SerializerMethodField()
     amount = serializers.SerializerMethodField()
-    minimum_investment = serializers.SerializerMethodField()
-    interest_rate = serializers.SerializerMethodField()
-    documents = DocumentSerializer(many=True)
+    minimum = serializers.SerializerMethodField()
     num_backers = serializers.SerializerMethodField()
     percent = serializers.SerializerMethodField()
     revenue = serializers.SerializerMethodField()
-    news_history = serializers.SerializerMethodField()
 
     class Meta:
         model = Project
-        exclude = ('amount_currency', 'minimum_investment_currency',)
+        fields = ('urls', 'amount', 'minimum', 'interest_rate', 'num_backers', 'percent', 'revenue', )
 
     def get_urls(self, obj):
         return {
@@ -33,7 +30,7 @@ class ProjectSerializer(serializers.ModelSerializer):
             'currency': str(obj.amount.currency),
         }
 
-    def get_minimum_investment(self, obj):
+    def get_minimum(self, obj):
         return {
             'amount': obj.minimum_investment.amount,
             'currency': str(obj.minimum_investment.currency),
@@ -46,7 +43,7 @@ class ProjectSerializer(serializers.ModelSerializer):
         return obj.num_backers
 
     def get_percent(self, obj):
-        return obj.percent
+        return round(obj.percent, 3)
 
     def get_revenue(self, obj):
         return {
