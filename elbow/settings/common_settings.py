@@ -213,14 +213,17 @@ ROLLBAR = {
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = ('*',)
-# CORS_ALLOW_HEADERS = (
-#     'x-requested-with',
-#     'content-type',
-#     'accept',
-#     'origin',
-#     'authorization',
-#     'x-csrftoken'
-# )
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_HEADERS = (
+    'x-requested-with',
+    'content-type',
+    'accept',
+    'origin',
+    'authorization',
+    'x-csrftoken',
+    'user-agent',
+    'accept-encoding',
+)
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -348,7 +351,7 @@ LEAFLET_CONFIG = {
     # 'MAX_ZOOM': 18,
 }
 
-
+ELBOW_SHOW_POTENTIAL_PAYMENTS = True
 TERMS_AND_CONDITIONS_URL = 'https://today-capital.de/impressum/agb/'
 
 #

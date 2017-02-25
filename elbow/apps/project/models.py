@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 from __future__ import unicode_literals
+from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
 from moneyed import Money
@@ -16,7 +17,6 @@ from autoslug import AutoSlugField
 from embed_video.fields import EmbedVideoField
 
 from elbow.utils import CustomManagedStorage
-from elbow.apps.document.apps import DOCUMENT_TYPES
 
 from .apps import PROJECT_STATUS, USE_PAYMENTOPTIONS, INTEREST_TYPE
 from .managers import ProjectManager
@@ -137,18 +137,26 @@ class Project(models.Model):
 
     @property
     def num_backers(self):
-        return self.order_set.paid().count()
+        if getattr(settings, 'ELBOW_SHOW_POTENTIAL_PAYMENTS', False) is True:
+            return self.order_set.potential().count()
+        else:
+            return self.order_set.paid().count()
 
     @property
     def percent(self):
         if self.amount.amount > 0:
-            return (float(self.revenue.amount) / float(self.amount.amount)) * 100
+            return round((float(self.revenue.amount) / float(self.amount.amount)) * 100, 2)
         else:
             return 0
 
     @property
     def revenue(self):
-        amount = self.order_set.paid().annotate(sum=models.Sum('amount')).aggregate(models.Sum('sum')).get('sum__sum')
+        if getattr(settings, 'ELBOW_SHOW_POTENTIAL_PAYMENTS', False) is True:
+            qs = self.order_set.potential()
+        else:
+            qs = self.order_set.paid()
+
+        amount = qs.annotate(sum=models.Sum('amount')).aggregate(models.Sum('sum')).get('sum__sum')
         return Money(amount, 'EUR') if amount else Money(0, 'EUR')
 
     @property
