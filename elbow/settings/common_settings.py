@@ -208,8 +208,8 @@ ROLLBAR = {
     'root': BASE_DIR,
 }
 
-CORS_ORIGIN_ALLOW_ALL = False
-CORS_ORIGIN_WHITELIST = ('today-capital.de', 'app.today-capital.eu',)
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = ('*',)
 
 # to allow jquery ajax calls to authenticate to allow menus to be generated
 SESSION_COOKIE_HTTPONLY = False
