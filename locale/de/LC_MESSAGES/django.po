@@ -869,7 +869,7 @@ msgid ""
 "    <a href=\"%(signup_url)s\">sign up</a> first."
 msgstr ""
 "Sie sind noch nicht registriert? Hier können Sie sich registrieren. Klick zu "
-"<a href=\"%(signup_url)s\">Neu registrieren</a>."
+"<a href=\"%(signup_url)s\">Registrieren</a>."
 
 #: templates/account/login.html:47 templates/account/login.html.py:56
 msgid "Forgot Password?"
@@ -1006,11 +1006,11 @@ msgstr "Passwort erstellen"
 
 #: templates/account/signup.html:3
 msgid "Sign up"
-msgstr "Neu registrieren"
+msgstr "Registrieren"
 
 #: templates/account/signup.html:7
 msgid "Sign Up"
-msgstr "Neu registrieren"
+msgstr "Registrieren"
 
 #: templates/account/signup.html:13
 #, python-format
@@ -1104,7 +1104,7 @@ msgstr "Anmelden"
 
 #: templates/navigation.html:36
 msgid "Register"
-msgstr "Neu registrieren"
+msgstr "Registrieren"
 
 #: templates/navigation.html:39
 msgid "Settings"

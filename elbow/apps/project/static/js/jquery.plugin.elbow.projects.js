@@ -28,9 +28,9 @@ jQuery.getScript( "//cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handleba
 });
 
 jQuery.getScript( "//cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js", function( data, textStatus, jqxhr ) {
-    jQuery.getScript( "https://793b3c40.ngrok.io/static/js/jquery.plugin.elbow.projects.js", function( data, textStatus, jqxhr ) {
-        jQuery('body > div.main_wrapper > header > div.navbar-wrapper > div > div.navbar.navbar-inverse > div > div > div > ul > li:nth-child(4)').menu_options({
-            endpoint: 'https://793b3c40.ngrok.io/de/api/v1/menu/',
+    jQuery.getScript( "//app.today-capital.eu/static/js/jquery.plugin.elbow.projects.js", function( data, textStatus, jqxhr ) {
+        jQuery('body > div.main_wrapper > header > div.navbar-wrapper > div > div.navbar.navbar-inverse > div > div > div > ul > li:nth-child(6)').menu_options({
+            endpoint: 'https://app.today-capital.eu/de/api/v1/menu/',
             source: '<li id="menu-item-601-{{ name }}" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601-{{ name }}"><a href="{{ url }}">{{ name }}</a></li>'
         });
     });
@@ -118,10 +118,13 @@ jQuery( function ($) {
                     xhr.withCredentials = true;
                 },
                 success: function ( data ) {
+                    var html = '';
                     $.each(data, function (i, row) {
-                        var html = self.template(row)
-                        self.element.after(html);
+                        html += self.template(row)
                     });
+                    if (html.length > 0) {
+                        self.element.replaceWith(html);
+                    }
                 },
                 error: function ( data ) {
                     self._log(data);
