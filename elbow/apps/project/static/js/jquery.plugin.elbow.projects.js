@@ -1,5 +1,6 @@
 'use strict';
 /*
+/////// Place this script in <script></script> tags on the project detail page \\\\\\\
 jQuery.getScript( "//cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js", function( data, textStatus, jqxhr ) {
     jQuery.getScript( "//app.today-capital.eu/static/js/jquery.plugin.elbow.projects.js", function( data, textStatus, jqxhr ) {
         jQuery('body > div.main_wrapper > div.container.page > div > div > div.span4 > div.project-info-wrapper > div.project-info').projects({
@@ -27,6 +28,7 @@ jQuery.getScript( "//cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handleba
     });
 });
 
+/////// Place this script in <script></script> tags on all pages \\\\\\\
 jQuery.getScript( "//cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js", function( data, textStatus, jqxhr ) {
     jQuery.getScript( "//app.today-capital.eu/static/js/jquery.plugin.elbow.projects.js", function( data, textStatus, jqxhr ) {
         jQuery('body > div.main_wrapper > header > div.navbar-wrapper > div > div.navbar.navbar-inverse > div > div > div > ul > li:nth-child(6)').menu_options({
