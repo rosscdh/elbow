@@ -36,12 +36,12 @@ class ListMenuItems(APIView):
         if request.user.is_authenticated():
             menu_items = [
                 {
-                    'name': _('Logout'),
-                    'url': urljoin(settings.BASE_URL, reverse('account_logout')),
-                },
-                {
                     'name': _('Change Password'),
                     'url': urljoin(settings.BASE_URL, reverse('account_change_password')),
+                },
+                {
+                    'name': _('Logout'),
+                    'url': urljoin(settings.BASE_URL, reverse('account_logout')),
                 },
             ]
         else:
