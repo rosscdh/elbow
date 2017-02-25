@@ -112,8 +112,10 @@ jQuery( function ($) {
                 xhrFields: {
                     withCredentials: true
                 },
+                crossDomain: true,
                 cache: false,
-                beforeSend: function () {
+                beforeSend: function (xhr) {
+                    xhr.withCredentials = true;
                 },
                 success: function ( data ) {
                     $.each(data, function (i, row) {

@@ -71,11 +71,6 @@ HELPER_APPS = (
     'crispy_forms',
     'django_extensions',
 
-    # 'corsheaders',
-    # 'rest_framework',
-    # 'rest_framework.authtoken',
-    # 'rest_framework_swagger',
-
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -90,6 +85,8 @@ HELPER_APPS = (
 
     'corsheaders',
     'rest_framework',
+    # 'rest_framework.authtoken',
+    # 'rest_framework_swagger',
 
     'import_export',
 
@@ -213,17 +210,20 @@ ROLLBAR = {
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = ('*',)
+
+# to allow jquery ajax calls to authenticate to allow menus to be generated
+SESSION_COOKIE_HTTPONLY = False
 CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOW_HEADERS = (
-    'x-requested-with',
-    'content-type',
-    'accept',
-    'origin',
-    'authorization',
-    'x-csrftoken',
-    'user-agent',
-    'accept-encoding',
-)
+# CORS_ALLOW_HEADERS = (
+#     'x-requested-with',
+#     'content-type',
+#     'accept',
+#     'origin',
+#     'authorization',
+#     'x-csrftoken',
+#     'user-agent',
+#     'accept-encoding',
+# )
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
