@@ -109,6 +109,9 @@ jQuery( function ($) {
             $.ajax({
                 type: 'GET',
                 url: self.options.endpoint,
+                xhrFields: {
+                    withCredentials: true
+                },
                 cache: false,
                 beforeSend: function () {
                 },

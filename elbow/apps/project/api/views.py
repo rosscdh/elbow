@@ -32,7 +32,7 @@ class ListMenuItems(APIView):
         Return a list of all users.
         """
         menu_items = []
-        import pdb;pdb.set_trace()
+
         if request.user.is_authenticated():
             menu_items = [
                 {
