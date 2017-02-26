@@ -3,7 +3,7 @@ from django.conf import settings
 from rest_framework import serializers
 
 from ..models import Project
-#from elbow.apps.document.api.serializers import DocumentSerializer
+from moneyed.localization import format_money
 
 
 class ProjectSerializer(serializers.ModelSerializer):
@@ -22,6 +22,12 @@ class ProjectSerializer(serializers.ModelSerializer):
             'url': {'lookup_field': 'slug'}
         }
 
+    def _custom_money_format(self, money):
+        try:
+            return format_money(money).split('.')[0].replace(',', '.')
+        except:
+            return str(money.amount)
+
     def get_urls(self, obj):
         return {
             'detail': '%s%s' % (getattr(settings, 'BASE_URL', None), obj.url),
@@ -30,13 +36,13 @@ class ProjectSerializer(serializers.ModelSerializer):
 
     def get_amount(self, obj):
         return {
-            'amount': obj.amount.amount.to_eng_string(),
+            'amount': self._custom_money_format(obj.amount),
             'currency': str(obj.amount.currency),
         }
 
     def get_minimum(self, obj):
         return {
-            'amount': obj.minimum_investment.amount.to_eng_string(),
+            'amount': self._custom_money_format(obj.minimum_investment),
             'currency': str(obj.minimum_investment.currency),
         }
 
@@ -51,7 +57,7 @@ class ProjectSerializer(serializers.ModelSerializer):
 
     def get_revenue(self, obj):
         return {
-            'amount': obj.revenue.amount.to_eng_string(),
+            'amount': self._custom_money_format(obj.revenue),
             'currency': str(obj.revenue.currency)
         }
 
