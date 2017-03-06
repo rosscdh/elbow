@@ -1,39 +1,43 @@
 'use strict';
 /*
 /////// Place this script in <script></script> tags on the project detail page \\\\\\\
-jQuery.getScript( "//cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js", function( data, textStatus, jqxhr ) {
-    jQuery.getScript( "//app.today-capital.eu/static/js/jquery.plugin.elbow.projects.js", function( data, textStatus, jqxhr ) {
-        jQuery('body > div.main_wrapper > div.container.page > div > div > div.span4 > div.project-info-wrapper > div.project-info').projects({
-            endpoint: 'https://app.today-capital.eu/de/api/v1/projects/todayhaus/',
-            source: '<table id="tablepress-7" class="tablepress tablepress-id-7">' +
-                '<tbody>' +
-                '<tr class="row-1">' +
-                '    <td class="column-1">{{ revenue.amount }} €</td>' +
-                '</tr>' +
-                '<tr class="row-2">' +
-                '    <td class="column-1">von {{ amount.amount }} € investiert</td>' +
-                '</tr>' +
-                '<!--<tr class="row-3">' +
-                '    <td class="column-1">9 Wochen verbleiben</td>' +
-                '</tr>-->' +
-                '<!--<tr class="row-4">' +
-                '    <td class="column-1"><img src="//today-capital.de/wp-content/uploads/2016/07/tc-progress-bar-00.png" alt="tc-progress-bar-00" width="256" height="16" class="alignnone size-full wp-image-443"></td>' +
-                '</tr>-->' +
-                '<tr class="row-5">' +
-                '    <td class="column-1"><div style="background-color:#94c11f;padding:16px;border-radius:8px;text-align:center;"><a href="{{ urls.invest_now }}?TB_iframe=true&amp;width=1024&amp;height=768&nonce='+ Math.random() +'" class="" style="color:#ffffff;font-size:150%;">Jetzt investieren</a></div></td>' +
-                '</tr>' +
-                '</tbody>' +
-                '</table>'
+jQuery(document).ready(function() {
+    jQuery.getScript( "//app.today-capital.eu/static/js/handlebars.min.js", function( data, textStatus, jqxhr ) {
+        jQuery.getScript( "//app.today-capital.eu/static/js/jquery.plugin.elbow.projects.js", function( data, textStatus, jqxhr ) {
+            jQuery('body > div.main_wrapper > div.container.page > div > div > div.span4 > div.project-info-wrapper > div.project-info').projects({
+                endpoint: 'https://app.today-capital.eu/de/api/v1/projects/todayhaus/',
+                source: '<table id="tablepress-7" class="tablepress tablepress-id-7">' +
+                    '<tbody>' +
+                    '<tr class="row-1">' +
+                    '    <td class="column-1">{{ revenue.amount }} €</td>' +
+                    '</tr>' +
+                    '<tr class="row-2">' +
+                    '    <td class="column-1">von {{ amount.amount }} € investiert</td>' +
+                    '</tr>' +
+                    '<!--<tr class="row-3">' +
+                    '    <td class="column-1">9 Wochen verbleiben</td>' +
+                    '</tr>-->' +
+                    '<!--<tr class="row-4">' +
+                    '    <td class="column-1"><img src="//today-capital.de/wp-content/uploads/2016/07/tc-progress-bar-00.png" alt="tc-progress-bar-00" width="256" height="16" class="alignnone size-full wp-image-443"></td>' +
+                    '</tr>-->' +
+                    '<tr class="row-5">' +
+                    '    <td class="column-1"><div style="background-color:#94c11f;padding:16px;border-radius:8px;text-align:center;"><a href="{{ urls.invest_now }}?TB_iframe=true&amp;width=1024&amp;height=768&nonce='+ Math.random() +'" class="thickbox" style="color:#ffffff;font-size:150%;">Jetzt investieren</a></div></td>' +
+                    '</tr>' +
+                    '</tbody>' +
+                    '</table>'
+            });
         });
     });
 });
 
 /////// Place this script in <script></script> tags on all pages \\\\\\\
-jQuery.getScript( "//cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js", function( data, textStatus, jqxhr ) {
-    jQuery.getScript( "//app.today-capital.eu/static/js/jquery.plugin.elbow.projects.js", function( data, textStatus, jqxhr ) {
-        jQuery('body > div.main_wrapper > header > div.navbar-wrapper > div > div.navbar.navbar-inverse > div > div > div > ul > li:nth-child(6)').menu_options({
-            endpoint: 'https://app.today-capital.eu/de/api/v1/menu/',
-            source: '<li id="menu-item-601-{{ name }}" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601-{{ name }}"><a href="{{ url }}">{{ name }}</a></li>'
+jQuery(document).ready(function() {
+    jQuery.getScript( "//app.today-capital.eu/static/js/handlebars.min.js", function( data, textStatus, jqxhr ) {
+        jQuery.getScript( "//app.today-capital.eu/static/js/jquery.plugin.elbow.projects.js", function( data, textStatus, jqxhr ) {
+            jQuery('body > div.main_wrapper > header > div.navbar-wrapper > div > div.navbar.navbar-inverse > div > div > div > ul > li:nth-child(6)').menu_options({
+                endpoint: 'https://app.today-capital.eu/de/api/v1/menu/',
+                source: '<li id="menu-item-601-{{ name }}" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601-{{ name }}"><a href="{{ url }}">{{ name }}</a></li>'
+            });
         });
     });
 });
