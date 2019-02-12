@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.views.generic import RedirectView
+from django.views.generic import TemplateView, RedirectView
 from allauth.account.views import LoginView as AllAuthLoginView
 from allauth.account.views import SignupView as AllAuthSignupView
 
@@ -7,8 +7,8 @@ from elbow.apps.project.models import Project
 from elbow.mixins import LoginRequiredMixin
 
 
-#class HomePageView(TemplateView):
-class HomePageView(LoginRequiredMixin, RedirectView):
+class HomePageView(TemplateView):
+#class HomePageView(LoginRequiredMixin, RedirectView):
     #url = '/de/p/start/'
     url = '/de/orders/todayhaus/order/'
     template_name = 'home/home.html'
