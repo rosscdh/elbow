@@ -104,7 +104,7 @@ pbr==1.8.1
 ply==3.8
 psycopg2==2.6.1
 pusher==1.2.3
-py==1.4.31
+py==1.10.0
 py-moneyed==0.6.0
 pyOpenSSL==16.0.0
 pyasn1==0.1.9
