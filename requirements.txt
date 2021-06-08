@@ -4,7 +4,7 @@ GitPython==1.0.2
 Jinja2==2.8
 Markdown==2.6.6
 MarkupSafe==0.23
-Pillow==3.1.1
+Pillow==8.2.0
 PyJWT==1.4.0
 PyPDF2==1.25.1
 PyYAML==3.11
