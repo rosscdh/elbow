@@ -80,7 +80,7 @@ futures==3.0.5
 gitdb==0.6.4
 honcho==0.6.6
 html2text==2016.1.8
-html5lib==0.9999999
+html5lib==0.999999999
 httpretty==0.8.14
 icalendar==3.9.2
 idna==2.1
